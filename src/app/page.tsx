@@ -4,22 +4,14 @@ import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
 import { 
   BookOpen, Play, FlaskConical, ChevronLeft, ChevronRight, Globe, User,
-  Atom, Calculator, Beaker, ArrowDown, Target, Waves, FunctionSquare, TrendingUp
+  Atom, Calculator, Beaker, Lock, CheckCircle, Clock
 } from "lucide-react";
 import { useState } from "react";
-
-// Import all simulators
-import { MotionSimulator } from "@/components/simulators/MotionSimulator";
-import { ForcesSimulator } from "@/components/simulators/ForcesSimulator";
-import { EnergySimulator } from "@/components/simulators/EnergySimulator";
-import { FreeFallSimulator } from "@/components/simulators/FreeFallSimulator";
-import { ProjectileSimulator } from "@/components/simulators/ProjectileSimulator";
-import { WaveSimulator } from "@/components/simulators/WaveSimulator";
-import { FunctionsSimulator } from "@/components/simulators/FunctionsSimulator";
-import { PeriodicTableSimulator } from "@/components/simulators/PeriodicTableSimulator";
+import { LessonView } from "@/components/LessonView";
+import { lessonsData, type LessonContent } from "@/data/lessons";
 
 // بيانات المواد العلمية
 const subjects = [
@@ -29,7 +21,6 @@ const subjects = [
     nameEn: "Physics",
     icon: Atom,
     color: "from-emerald-500 to-teal-600",
-    simulatorsCount: 6
   },
   { 
     id: "math", 
@@ -37,7 +28,6 @@ const subjects = [
     nameEn: "Mathematics",
     icon: Calculator,
     color: "from-blue-500 to-indigo-600",
-    simulatorsCount: 1
   },
   { 
     id: "chemistry", 
@@ -45,58 +35,52 @@ const subjects = [
     nameEn: "Chemistry",
     icon: Beaker,
     color: "from-purple-500 to-pink-600",
-    simulatorsCount: 1
   },
 ];
 
-// بيانات المحاكيات
-const allSimulators = [
-  // Physics
-  { id: "motion", icon: Play, color: "bg-emerald-500", subject: "physics", gradient: "from-emerald-500 to-teal-500" },
-  { id: "forces", icon: FlaskConical, color: "bg-orange-500", subject: "physics", gradient: "from-orange-500 to-red-500" },
-  { id: "energy", icon: TrendingUp, color: "bg-purple-500", subject: "physics", gradient: "from-purple-500 to-pink-500" },
-  { id: "freeFall", icon: ArrowDown, color: "bg-red-500", subject: "physics", gradient: "from-red-500 to-orange-500" },
-  { id: "projectile", icon: Target, color: "bg-sky-500", subject: "physics", gradient: "from-sky-500 to-blue-600" },
-  { id: "wave", icon: Waves, color: "bg-blue-500", subject: "physics", gradient: "from-blue-500 to-cyan-500" },
-  // Math
-  { id: "functions", icon: FunctionSquare, color: "bg-indigo-500", subject: "math", gradient: "from-indigo-500 to-purple-500" },
-  // Chemistry
-  { id: "periodicTable", icon: Atom, color: "bg-purple-600", subject: "chemistry", gradient: "from-purple-500 to-pink-500" },
-];
+// بيانات وهمية للتقدم
+const mockProgress = {
+  completedLessons: ["motion-intro", "velocity-acceleration"],
+  currentLesson: "equations-motion",
+};
 
 function DashboardContent() {
   const { language, setLanguage, t, dir } = useLanguage();
-  const [activeTab, setActiveTab] = useState<"dashboard" | "simulators">("dashboard");
-  const [activeSimulator, setActiveSimulator] = useState<string | null>(null);
-  const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<"dashboard" | "lessons">("dashboard");
+  const [selectedLesson, setSelectedLesson] = useState<LessonContent | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<string>("physics");
 
-  // Get simulators by subject
-  const getSimulatorsBySubject = (subjectId: string) => 
-    allSimulators.filter(s => s.subject === subjectId);
-
-  // Render simulator component
-  const renderSimulator = () => {
-    switch (activeSimulator) {
-      case "motion":
-        return <MotionSimulator language={language} />;
-      case "forces":
-        return <ForcesSimulator language={language} />;
-      case "energy":
-        return <EnergySimulator language={language} />;
-      case "freeFall":
-        return <FreeFallSimulator language={language} />;
-      case "projectile":
-        return <ProjectileSimulator language={language} />;
-      case "wave":
-        return <WaveSimulator language={language} />;
-      case "functions":
-        return <FunctionsSimulator language={language} />;
-      case "periodicTable":
-        return <PeriodicTableSimulator language={language} />;
-      default:
-        return null;
+  // Group lessons by unit
+  const groupedLessons = lessonsData.reduce((acc, lesson) => {
+    if (!acc[lesson.unit]) {
+      acc[lesson.unit] = [];
     }
-  };
+    acc[lesson.unit].push(lesson);
+    return acc;
+  }, {} as Record<string, LessonContent[]>);
+
+  // Get unique units
+  const units = [...new Set(lessonsData.map(l => l.unit))];
+
+  // Progress calculation
+  const totalLessons = lessonsData.length;
+  const completedCount = mockProgress.completedLessons.length;
+  const progressPercentage = (completedCount / totalLessons) * 100;
+
+  // If a lesson is selected, show the lesson view
+  if (selectedLesson) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900" dir={dir}>
+        <div className="container mx-auto px-4 py-6">
+          <LessonView 
+            lesson={selectedLesson} 
+            language={language} 
+            onBack={() => setSelectedLesson(null)} 
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900" dir={dir}>
@@ -122,17 +106,17 @@ function DashboardContent() {
           <nav className="hidden md:flex items-center gap-1">
             <Button 
               variant={activeTab === "dashboard" ? "default" : "ghost"} 
-              onClick={() => { setActiveTab("dashboard"); setActiveSimulator(null); }}
+              onClick={() => setActiveTab("dashboard")}
               className={activeTab === "dashboard" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
             >
               {t("nav.home")}
             </Button>
             <Button 
-              variant={activeTab === "simulators" ? "default" : "ghost"} 
-              onClick={() => { setActiveTab("simulators"); setActiveSimulator(null); }}
-              className={activeTab === "simulators" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+              variant={activeTab === "lessons" ? "default" : "ghost"} 
+              onClick={() => setActiveTab("lessons")}
+              className={activeTab === "lessons" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
             >
-              {t("nav.simulators")}
+              {language === "ar" ? "الدروس" : "Lessons"}
             </Button>
           </nav>
 
@@ -156,24 +140,65 @@ function DashboardContent() {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6 pb-24">
         {/* Dashboard Tab */}
-        {activeTab === "dashboard" && !activeSimulator && (
+        {activeTab === "dashboard" && (
           <div className="space-y-8">
             {/* Welcome Banner */}
             <Card className="border-0 shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-8 text-white">
                 <h2 className="text-3xl font-bold mb-2">{t("dashboard.welcome")}</h2>
                 <p className="text-emerald-100 text-lg">{t("dashboard.subtitle")}</p>
-                <div className="mt-4 flex gap-4">
+                <div className="mt-6 flex gap-4">
                   <Button 
                     className="bg-white text-emerald-600 hover:bg-emerald-50"
-                    onClick={() => setActiveTab("simulators")}
+                    onClick={() => setActiveTab("lessons")}
                   >
-                    {language === "ar" ? "ابدأ الاستكشاف" : "Start Exploring"}
+                    {language === "ar" ? "ابدأ التعلم" : "Start Learning"}
                     {dir === "rtl" ? <ChevronLeft className="w-4 h-4 mr-2" /> : <ChevronRight className="w-4 h-4 ml-2" />}
                   </Button>
                 </div>
               </div>
             </Card>
+
+            {/* Progress Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-slate-500">{language === "ar" ? "تقدمك الكلي" : "Your Progress"}</span>
+                    <span className="text-2xl font-bold">{completedCount}/{totalLessons}</span>
+                  </div>
+                  <Progress value={progressPercentage} className="h-3" />
+                </CardContent>
+              </Card>
+              
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+                      <CheckCircle className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <div>
+                      <p className="text-slate-500 text-sm">{language === "ar" ? "دروس مكتملة" : "Completed"}</p>
+                      <p className="text-2xl font-bold">{completedCount}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-0 shadow-md">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
+                      <Clock className="w-6 h-6 text-amber-600" />
+                    </div>
+                    <div>
+                      <p className="text-slate-500 text-sm">{language === "ar" ? "ساعات التعلم" : "Study Hours"}</p>
+                      <p className="text-2xl font-bold">2.5</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
             {/* Subjects Grid */}
             <div>
@@ -181,63 +206,82 @@ function DashboardContent() {
                 {language === "ar" ? "المواد الدراسية" : "Subjects"}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {subjects.map((subject) => (
-                  <Card 
-                    key={subject.id}
-                    className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                    onClick={() => { setSelectedSubject(subject.id); setActiveTab("simulators"); }}
-                  >
-                    <CardContent className="p-6">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${subject.color} flex items-center justify-center mb-4 animate-pulse`}>
-                        <subject.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <h3 className="text-xl font-bold mb-1">
-                        {language === "ar" ? subject.nameAr : subject.nameEn}
-                      </h3>
-                      <p className="text-slate-500">
-                        {subject.simulatorsCount} {language === "ar" ? "محاكي تفاعلي" : "interactive simulators"}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
+                {subjects.map((subject) => {
+                  const lessonCount = lessonsData.filter(l => l.subject === subject.id).length;
+                  return (
+                    <Card 
+                      key={subject.id}
+                      className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                      onClick={() => { setSelectedSubject(subject.id); setActiveTab("lessons"); }}
+                    >
+                      <CardContent className="p-6">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${subject.color} flex items-center justify-center mb-4`}>
+                          <subject.icon className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold mb-1">
+                          {language === "ar" ? subject.nameAr : subject.nameEn}
+                        </h3>
+                        <p className="text-slate-500">
+                          {lessonCount} {language === "ar" ? "درس" : "lessons"}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Quick Access to Simulators */}
+            {/* Continue Learning */}
             <div>
-              <h2 className="text-2xl font-bold mb-4">{t("simulators.title")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {allSimulators.slice(0, 8).map((sim) => (
-                  <Card 
-                    key={sim.id}
-                    className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105 group"
-                    onClick={() => { setActiveSimulator(sim.id); }}
-                  >
-                    <CardContent className="p-4">
-                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${sim.gradient} flex items-center justify-center mb-3 group-hover:animate-bounce`}>
-                        <sim.icon className="w-6 h-6 text-white" />
+              <h2 className="text-2xl font-bold mb-4">
+                {language === "ar" ? "استمر في التعلم" : "Continue Learning"}
+              </h2>
+              {lessonsData.find(l => l.id === mockProgress.currentLesson) && (
+                <Card 
+                  className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all"
+                  onClick={() => setSelectedLesson(lessonsData.find(l => l.id === mockProgress.currentLesson)!)}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                        <Play className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="font-semibold">{t(`simulators.${sim.id}`)}</h3>
-                      <p className="text-sm text-slate-500 mt-1">{t(`simulators.${sim.id}Desc`)}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      <div className="flex-1">
+                        <Badge className="mb-2">{language === "ar" ? "الدرس التالي" : "Next Lesson"}</Badge>
+                        <h3 className="text-xl font-bold">
+                          {language === "ar" 
+                            ? lessonsData.find(l => l.id === mockProgress.currentLesson)?.titleAr
+                            : lessonsData.find(l => l.id === mockProgress.currentLesson)?.titleEn}
+                        </h3>
+                        <p className="text-slate-500">
+                          {lessonsData.find(l => l.id === mockProgress.currentLesson)?.duration} {language === "ar" ? "دقيقة" : "min"}
+                        </p>
+                      </div>
+                      <Button className="bg-emerald-600 hover:bg-emerald-700">
+                        {language === "ar" ? "ابدأ" : "Start"}
+                        {dir === "rtl" ? <ChevronLeft className="w-4 h-4 mr-2" /> : <ChevronRight className="w-4 h-4 ml-2" />}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </div>
         )}
 
-        {/* Simulators Tab */}
-        {activeTab === "simulators" && !activeSimulator && (
+        {/* Lessons Tab */}
+        {activeTab === "lessons" && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">{t("simulators.title")}</h2>
+            <h2 className="text-2xl font-bold">
+              {language === "ar" ? "قائمة الدروس" : "Lessons List"}
+            </h2>
 
             {/* Subject Filter */}
             <div className="flex gap-2 flex-wrap">
               <Button
-                variant={selectedSubject === null ? "default" : "outline"}
-                onClick={() => setSelectedSubject(null)}
-                className={selectedSubject === null ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+                variant={selectedSubject === "all" ? "default" : "outline"}
+                onClick={() => setSelectedSubject("all")}
+                className={selectedSubject === "all" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
               >
                 {language === "ar" ? "الكل" : "All"}
               </Button>
@@ -253,45 +297,101 @@ function DashboardContent() {
               ))}
             </div>
 
-            {/* Simulators Grid */}
-            <div className="grid gap-4">
-              {(selectedSubject ? getSimulatorsBySubject(selectedSubject) : allSimulators).map((sim) => (
-                <Card 
-                  key={sim.id}
-                  className="border-0 shadow-md overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
-                  onClick={() => setActiveSimulator(sim.id)}
-                >
-                  <div className={`h-2 bg-gradient-to-r ${sim.gradient}`} />
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${sim.gradient} flex items-center justify-center animate-pulse`}>
-                          <sim.icon className="w-7 h-7 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold">{t(`simulators.${sim.id}`)}</h3>
-                          <p className="text-slate-500">{t(`simulators.${sim.id}Desc`)}</p>
-                        </div>
-                      </div>
-                      <Button className="bg-emerald-600 hover:bg-emerald-700">
-                        {t("simulators.open")}
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        )}
+            {/* Lessons by Unit */}
+            {units.map((unit) => {
+              const unitLessons = groupedLessons[unit] || [];
+              const filteredLessons = selectedSubject === "all" 
+                ? unitLessons 
+                : unitLessons.filter(l => l.subject === selectedSubject);
+              
+              if (filteredLessons.length === 0) return null;
 
-        {/* Active Simulator */}
-        {activeSimulator && (
-          <div className="space-y-4">
-            <Button variant="ghost" onClick={() => setActiveSimulator(null)} className="mb-4">
-              {dir === "rtl" ? <ChevronRight className="w-4 h-4 ml-2" /> : <ChevronLeft className="w-4 h-4 mr-2" />}
-              {language === "ar" ? "العودة للمحاكيات" : "Back to Simulators"}
-            </Button>
-            {renderSimulator()}
+              const unitInfo = filteredLessons[0];
+              
+              return (
+                <div key={unit} className="space-y-3">
+                  <h3 className="text-lg font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                    <div className={`w-3 h-3 rounded-full ${
+                      unit === "mechanics" ? "bg-emerald-500" : 
+                      unit === "forces" ? "bg-orange-500" : 
+                      unit === "energy" ? "bg-purple-500" : "bg-blue-500"
+                    }`} />
+                    {language === "ar" ? unitInfo.unitAr : unitInfo.unitEn}
+                  </h3>
+                  
+                  <div className="grid gap-3">
+                    {filteredLessons.map((lesson) => {
+                      const isCompleted = mockProgress.completedLessons.includes(lesson.id);
+                      const isLocked = !lesson.isFree && !mockProgress.completedLessons.includes(lesson.id) && lesson.order > 2;
+                      
+                      return (
+                        <Card 
+                          key={lesson.id}
+                          className={`border-0 shadow-md transition-all cursor-pointer hover:shadow-lg ${
+                            isLocked ? "opacity-60" : ""
+                          }`}
+                          onClick={() => !isLocked && setSelectedLesson(lesson)}
+                        >
+                          <CardContent className="p-4 flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                                isCompleted 
+                                  ? "bg-emerald-100 dark:bg-emerald-900" 
+                                  : isLocked 
+                                    ? "bg-slate-100 dark:bg-slate-800"
+                                    : "bg-amber-100 dark:bg-amber-900"
+                              }`}>
+                                {isCompleted ? (
+                                  <CheckCircle className="w-6 h-6 text-emerald-600" />
+                                ) : isLocked ? (
+                                  <Lock className="w-6 h-6 text-slate-400" />
+                                ) : (
+                                  <Play className="w-6 h-6 text-amber-600" />
+                                )}
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-lg">
+                                  {language === "ar" ? lesson.titleAr : lesson.titleEn}
+                                </h4>
+                                <div className="flex items-center gap-3 text-sm text-slate-500">
+                                  <span className="flex items-center gap-1">
+                                    <Clock className="w-4 h-4" />
+                                    {lesson.duration} {language === "ar" ? "دقيقة" : "min"}
+                                  </span>
+                                  {lesson.isFree ? (
+                                    <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700">
+                                      {language === "ar" ? "مجاني" : "Free"}
+                                    </Badge>
+                                  ) : (
+                                    <Badge variant="secondary" className="text-xs bg-amber-100 text-amber-700">
+                                      {language === "ar" ? "مدفوع" : "Premium"}
+                                    </Badge>
+                                  )}
+                                  {lesson.simulators.length > 0 && (
+                                    <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
+                                      <FlaskConical className="w-3 h-3 mr-1" />
+                                      {lesson.simulators.length} {language === "ar" ? "محاكي" : "simulators"}
+                                    </Badge>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              {isCompleted && (
+                                <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+                                  {language === "ar" ? "مكتمل" : "Completed"}
+                                </Badge>
+                              )}
+                              {dir === "rtl" ? <ChevronLeft className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </main>
@@ -302,7 +402,7 @@ function DashboardContent() {
           <Button 
             variant="ghost" 
             className="flex flex-col gap-1 h-auto py-2"
-            onClick={() => { setActiveTab("dashboard"); setActiveSimulator(null); }}
+            onClick={() => setActiveTab("dashboard")}
           >
             <BookOpen className={`w-5 h-5 ${activeTab === "dashboard" ? "text-emerald-600" : ""}`} />
             <span className="text-xs">{t("nav.home")}</span>
@@ -310,10 +410,10 @@ function DashboardContent() {
           <Button 
             variant="ghost" 
             className="flex flex-col gap-1 h-auto py-2"
-            onClick={() => { setActiveTab("simulators"); setActiveSimulator(null); }}
+            onClick={() => setActiveTab("lessons")}
           >
-            <FlaskConical className={`w-5 h-5 ${activeTab === "simulators" ? "text-emerald-600" : ""}`} />
-            <span className="text-xs">{t("nav.simulators")}</span>
+            <Play className={`w-5 h-5 ${activeTab === "lessons" ? "text-emerald-600" : ""}`} />
+            <span className="text-xs">{language === "ar" ? "الدروس" : "Lessons"}</span>
           </Button>
         </div>
       </nav>
