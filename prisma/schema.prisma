@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +10,79 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ==================== المستخدمين ====================
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String     @id @default(cuid())
+  email        String     @unique
+  name         String
+  password     String?    // للـ Email/Password login
+  role         String     @default("student") // student, admin
+  isSubscribed Boolean    @default(false) // مدفوع أو مجاني
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  progress     Progress[]
+  quizResults  QuizResult[]
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// ==================== الدروس ====================
+model Lesson {
+  id          String     @id @default(cuid())
+  titleAr     String     // عنوان بالعربي
+  titleEn     String     // عنوان بالإنجليزي
+  descriptionAr String   // وصف بالعربي
+  descriptionEn String   // وصف بالإنجليزي
+  videoUrl    String     // رابط الفيديو
+  pdfUrl      String?    // رابط PDF اختياري
+  order       Int        // ترتيب الدرس
+  unit        String     // الوحدة (mechanics, forces, energy)
+  duration    Int        // مدة الفيديو بالدقائق
+  isFree      Boolean    @default(false) // مجاني أم مدفوع
+  questions   Question[]
+  progress    Progress[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// ==================== الأسئلة ====================
+model Question {
+  id         String  @id @default(cuid())
+  lessonId   String
+  type       String  // mcq, numerical
+  questionAr String  // السؤال بالعربي
+  questionEn String  // السؤال بالإنجليزي
+  optionsAr  String? // JSON string للم选择题 بالعربي
+  optionsEn  String? // JSON string للم选择题 بالإنجليزي
+  answer     String  // الإجابة الصحيحة
+  explanationAr String? // شرح الإجابة بالعربي
+  explanationEn String? // شرح الإجابة بالإنجليزي
+  points     Int     @default(1)
+  lesson     Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+// ==================== تقدم الطالب ====================
+model Progress {
+  id         String   @id @default(cuid())
+  userId     String
+  lessonId   String
+  completed  Boolean  @default(false)
+  score      Int?     // الدرجة من 100
+  watchedAt  DateTime? // وقت مشاهدة الفيديو
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson     Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId]) // طالب واحد لكل درس
+}
+
+// ==================== نتائج الاختبارات ====================
+model QuizResult {
+  id         String   @id @default(cuid())
+  userId     String
+  lessonId   String
+  score      Int      // الدرجة
+  totalPoints Int     // إجمالي النقاط
+  answers    String   // JSON string للإجابات
+  completedAt DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
 }
