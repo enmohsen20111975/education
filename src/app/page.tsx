@@ -7,11 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { 
   BookOpen, Play, FlaskConical, ChevronLeft, ChevronRight, Globe, User,
-  Atom, Calculator, Beaker, Lock, CheckCircle, Clock
+  Atom, Calculator, Beaker, Lock, CheckCircle, Clock, Brain
 } from "lucide-react";
 import { useState } from "react";
 import { LessonView } from "@/components/LessonView";
 import { lessonsData, type LessonContent } from "@/data/lessons";
+import MindMap, { MIND_MAPS, type MindMapType } from "@/components/MindMap";
 
 // بيانات المواد العلمية
 const subjects = [
@@ -38,6 +39,13 @@ const subjects = [
   },
 ];
 
+// بيانات الخرائط الذهنية المتاحة
+const mindMapsList: { id: MindMapType; nameAr: string; nameEn: string; color: string }[] = [
+  { id: "motion", nameAr: "الحركة", nameEn: "Motion", color: "bg-emerald-500" },
+  { id: "energy", nameAr: "الطاقة", nameEn: "Energy", color: "bg-purple-500" },
+  { id: "atom", nameAr: "الذرة", nameEn: "Atom", color: "bg-cyan-500" },
+];
+
 // بيانات وهمية للتقدم
 const mockProgress = {
   completedLessons: ["motion-intro", "velocity-acceleration"],
@@ -46,9 +54,10 @@ const mockProgress = {
 
 function DashboardContent() {
   const { language, setLanguage, t, dir } = useLanguage();
-  const [activeTab, setActiveTab] = useState<"dashboard" | "lessons">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "lessons" | "mindmaps">("dashboard");
   const [selectedLesson, setSelectedLesson] = useState<LessonContent | null>(null);
   const [selectedSubject, setSelectedSubject] = useState<string>("physics");
+  const [selectedMindMap, setSelectedMindMap] = useState<MindMapType>("motion");
 
   // Group lessons by unit
   const groupedLessons = lessonsData.reduce((acc, lesson) => {
@@ -117,6 +126,14 @@ function DashboardContent() {
               className={activeTab === "lessons" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
             >
               {language === "ar" ? "الدروس" : "Lessons"}
+            </Button>
+            <Button 
+              variant={activeTab === "mindmaps" ? "default" : "ghost"} 
+              onClick={() => setActiveTab("mindmaps")}
+              className={activeTab === "mindmaps" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+            >
+              <Brain className="w-4 h-4 mr-2" />
+              {language === "ar" ? "خرائط ذهنية" : "Mind Maps"}
             </Button>
           </nav>
 
@@ -228,6 +245,44 @@ function DashboardContent() {
                     </Card>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* Mind Maps Preview */}
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold">
+                  {language === "ar" ? "الخرائط الذهنية" : "Mind Maps"}
+                </h2>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setActiveTab("mindmaps")}
+                  className="gap-2"
+                >
+                  {language === "ar" ? "عرض الكل" : "View All"}
+                  {dir === "rtl" ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {mindMapsList.map((map) => (
+                  <Card 
+                    key={map.id}
+                    className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                    onClick={() => { setSelectedMindMap(map.id); setActiveTab("mindmaps"); }}
+                  >
+                    <CardContent className="p-6">
+                      <div className={`w-12 h-12 rounded-xl ${map.color} flex items-center justify-center mb-4`}>
+                        <Brain className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold">
+                        {language === "ar" ? map.nameAr : map.nameEn}
+                      </h3>
+                      <p className="text-slate-500 text-sm">
+                        {language === "ar" ? "خريطة تفاعلية" : "Interactive mind map"}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
             </div>
 
@@ -394,6 +449,75 @@ function DashboardContent() {
             })}
           </div>
         )}
+
+        {/* Mind Maps Tab */}
+        {activeTab === "mindmaps" && (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">
+                {language === "ar" ? "الخرائط الذهنية التفاعلية" : "Interactive Mind Maps"}
+              </h2>
+            </div>
+
+            {/* Mind Map Selector */}
+            <div className="flex gap-2 flex-wrap">
+              {mindMapsList.map((map) => (
+                <Button
+                  key={map.id}
+                  variant={selectedMindMap === map.id ? "default" : "outline"}
+                  onClick={() => setSelectedMindMap(map.id)}
+                  className={selectedMindMap === map.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+                >
+                  <Brain className="w-4 h-4 mr-2" />
+                  {language === "ar" ? map.nameAr : map.nameEn}
+                </Button>
+              ))}
+            </div>
+
+            {/* Mind Map Display */}
+            <Card className="border-0 shadow-lg overflow-hidden">
+              <CardContent className="p-0">
+                <div className="h-[600px]">
+                  <MindMap 
+                    data={MIND_MAPS[selectedMindMap]} 
+                    language={language}
+                    onNodeClick={(node) => {
+                      console.log("Clicked node:", node);
+                    }}
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Description */}
+            <Card className="border-0 shadow-md bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+                  <Brain className="w-5 h-5 text-emerald-600" />
+                  {language === "ar" ? "كيفية استخدام الخريطة الذهنية" : "How to use the Mind Map"}
+                </h3>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    {language === "ar" ? "انقر على العقدة لتوسيع أو طي الفروع" : "Click on a node to expand or collapse branches"}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    {language === "ar" ? "استخدم العجلة للتكبير والتصغير" : "Use the mouse wheel to zoom in/out"}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-purple-500" />
+                    {language === "ar" ? "اسحب لتحريك الخريطة" : "Drag to pan the map"}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-amber-500" />
+                    {language === "ar" ? "استخدم زر 'توسيع الكل' لعرض كل الفروع" : "Use 'Expand All' button to show all branches"}
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </main>
 
       {/* Mobile Navigation */}
@@ -414,6 +538,14 @@ function DashboardContent() {
           >
             <Play className={`w-5 h-5 ${activeTab === "lessons" ? "text-emerald-600" : ""}`} />
             <span className="text-xs">{language === "ar" ? "الدروس" : "Lessons"}</span>
+          </Button>
+          <Button 
+            variant="ghost" 
+            className="flex flex-col gap-1 h-auto py-2"
+            onClick={() => setActiveTab("mindmaps")}
+          >
+            <Brain className={`w-5 h-5 ${activeTab === "mindmaps" ? "text-emerald-600" : ""}`} />
+            <span className="text-xs">{language === "ar" ? "خرائط" : "Mind Maps"}</span>
           </Button>
         </div>
       </nav>

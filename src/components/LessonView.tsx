@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   BookOpen, Target, Lightbulb, Calculator, FlaskConical, 
   ChevronLeft, ChevronRight, Play, CheckCircle, ArrowRight,
-  FileText, Zap, Brain, HelpCircle
+  FileText, Zap, Brain, HelpCircle, Network, BarChart3
 } from "lucide-react";
 import type { LessonContent } from "@/data/lessons";
 import { MotionSimulator } from "@/components/simulators/MotionSimulator";
@@ -19,6 +19,8 @@ import { WaveSimulator } from "@/components/simulators/WaveSimulator";
 import { FunctionsSimulator } from "@/components/simulators/FunctionsSimulator";
 import { PeriodicTableSimulator } from "@/components/simulators/PeriodicTableSimulator";
 import { ProjectileSimulator } from "@/components/simulators/ProjectileSimulator";
+import MindMap, { MIND_MAPS, type MindMapType } from "@/components/MindMap";
+import { Infographic, energyCircleData, atomTimelineData, speedComparisonData } from "@/components/Infographic";
 
 interface LessonViewProps {
   lesson: LessonContent;
@@ -40,6 +42,7 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
       simulators: "المحاكيات التفاعلية",
       summary: "الملخص",
       mindMap: "الخريطة الذهنية",
+      infographics: "الرسوم التوضيحية",
       back: "العودة للدروس",
       minutes: "دقيقة",
       free: "مجاني",
@@ -52,6 +55,8 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
       definition: "التعريف",
       term: "المصطلح",
       explanation: "الشرح",
+      interactiveMindMap: "خريطة ذهنية تفاعلية للمفاهيم",
+      visualDiagrams: "مخططات توضيحية للدرس",
     },
     en: {
       objectives: "Objectives",
@@ -62,6 +67,7 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
       simulators: "Interactive Simulators",
       summary: "Summary",
       mindMap: "Mind Map",
+      infographics: "Infographics",
       back: "Back to Lessons",
       minutes: "min",
       free: "Free",
@@ -74,11 +80,12 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
       definition: "Definition",
       term: "Term",
       explanation: "Explanation",
+      interactiveMindMap: "Interactive Mind Map of Concepts",
+      visualDiagrams: "Visual Diagrams for the Lesson",
     },
   };
 
   const t = texts[language];
-  const content = language === "ar" ? lesson : lesson; // Use appropriate language content
 
   // Render simulator by ID
   const renderSimulator = (simId: string) => {
@@ -118,6 +125,57 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
     };
     return names[simId]?.[language] || simId;
   };
+
+  // Get mind map for lesson
+  const getMindMapForLesson = (): MindMapType | null => {
+    if (lesson.id.includes("motion") || lesson.id.includes("velocity") || lesson.id.includes("acceleration")) {
+      return "motion";
+    }
+    if (lesson.id.includes("energy") || lesson.id.includes("work")) {
+      return "energy";
+    }
+    if (lesson.id.includes("atom") || lesson.id.includes("periodic") || lesson.id.includes("electron")) {
+      return "atom";
+    }
+    // Default based on subject
+    if (lesson.subject === "physics") return "motion";
+    if (lesson.subject === "chemistry") return "atom";
+    return "motion";
+  };
+
+  // Get infographic for lesson
+  const getInfographicForLesson = () => {
+    if (lesson.id.includes("energy")) {
+      return {
+        type: "circle" as const,
+        data: energyCircleData,
+        title: language === "ar" ? "أنواع الطاقة" : "Types of Energy",
+      };
+    }
+    if (lesson.id.includes("atom")) {
+      return {
+        type: "timeline" as const,
+        data: atomTimelineData,
+        title: language === "ar" ? "تطور نظرية الذرة" : "Atomic Theory Evolution",
+      };
+    }
+    if (lesson.id.includes("motion") || lesson.id.includes("velocity")) {
+      return {
+        type: "comparison" as const,
+        data: speedComparisonData,
+        title: language === "ar" ? "مقارنة السرعة والتسارع" : "Velocity vs Acceleration",
+      };
+    }
+    // Default
+    return {
+      type: "circle" as const,
+      data: energyCircleData,
+      title: language === "ar" ? "توزيع المفاهيم" : "Concepts Distribution",
+    };
+  };
+
+  const mindMapType = getMindMapForLesson();
+  const infographicData = getInfographicForLesson();
 
   return (
     <div className="space-y-6" dir={dir}>
@@ -171,32 +229,40 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
 
       {/* Navigation Tabs */}
       <Tabs value={activeSection} onValueChange={setActiveSection} className="w-full">
-        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-7">
-          <TabsTrigger value="intro" className="flex items-center gap-1">
+        <TabsList className="grid w-full grid-cols-5 lg:grid-cols-9 gap-1">
+          <TabsTrigger value="intro" className="flex items-center gap-1 text-xs sm:text-sm">
             <BookOpen className="w-4 h-4" />
             <span className="hidden sm:inline">{t.introduction}</span>
           </TabsTrigger>
-          <TabsTrigger value="objectives" className="flex items-center gap-1">
+          <TabsTrigger value="objectives" className="flex items-center gap-1 text-xs sm:text-sm">
             <Target className="w-4 h-4" />
             <span className="hidden sm:inline">{t.objectives}</span>
           </TabsTrigger>
-          <TabsTrigger value="concepts" className="flex items-center gap-1">
+          <TabsTrigger value="concepts" className="flex items-center gap-1 text-xs sm:text-sm">
             <Lightbulb className="w-4 h-4" />
             <span className="hidden sm:inline">{t.keyConcepts}</span>
           </TabsTrigger>
-          <TabsTrigger value="formulas" className="flex items-center gap-1">
+          <TabsTrigger value="formulas" className="flex items-center gap-1 text-xs sm:text-sm">
             <Calculator className="w-4 h-4" />
             <span className="hidden sm:inline">{t.formulas}</span>
           </TabsTrigger>
-          <TabsTrigger value="examples" className="flex items-center gap-1">
+          <TabsTrigger value="examples" className="flex items-center gap-1 text-xs sm:text-sm">
             <FileText className="w-4 h-4" />
             <span className="hidden sm:inline">{t.examples}</span>
           </TabsTrigger>
-          <TabsTrigger value="simulators" className="flex items-center gap-1">
+          <TabsTrigger value="simulators" className="flex items-center gap-1 text-xs sm:text-sm">
             <Play className="w-4 h-4" />
             <span className="hidden sm:inline">{t.simulators}</span>
           </TabsTrigger>
-          <TabsTrigger value="summary" className="flex items-center gap-1">
+          <TabsTrigger value="mindmap" className="flex items-center gap-1 text-xs sm:text-sm">
+            <Network className="w-4 h-4" />
+            <span className="hidden sm:inline">{t.mindMap}</span>
+          </TabsTrigger>
+          <TabsTrigger value="infographics" className="flex items-center gap-1 text-xs sm:text-sm">
+            <BarChart3 className="w-4 h-4" />
+            <span className="hidden sm:inline">{t.infographics}</span>
+          </TabsTrigger>
+          <TabsTrigger value="summary" className="flex items-center gap-1 text-xs sm:text-sm">
             <Brain className="w-4 h-4" />
             <span className="hidden sm:inline">{t.summary}</span>
           </TabsTrigger>
@@ -393,6 +459,50 @@ export function LessonView({ lesson, language, onBack }: LessonViewProps) {
                   </div>
                 )}
               </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Mind Map */}
+        <TabsContent value="mindmap" className="mt-6">
+          <Card className="border-0 shadow-md">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Network className="w-5 h-5 text-cyan-500" />
+                {t.mindMap}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-500 mb-4">{t.interactiveMindMap}</p>
+              <div className="h-[500px] rounded-xl overflow-hidden border">
+                {mindMapType && (
+                  <MindMap 
+                    data={MIND_MAPS[mindMapType]} 
+                    language={language} 
+                  />
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Infographics */}
+        <TabsContent value="infographics" className="mt-6">
+          <Card className="border-0 shadow-md">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-orange-500" />
+                {t.infographics}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-slate-500 mb-4">{t.visualDiagrams}</p>
+              <Infographic
+                type={infographicData.type}
+                data={infographicData.data}
+                language={language}
+                title={infographicData.title}
+              />
             </CardContent>
           </Card>
         </TabsContent>
