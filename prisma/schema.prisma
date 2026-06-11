@@ -34,7 +34,8 @@ model Lesson {
   videoUrl    String     // رابط الفيديو
   pdfUrl      String?    // رابط PDF اختياري
   order       Int        // ترتيب الدرس
-  unit        String     // الوحدة (mechanics, forces, energy)
+  subject     String     // المادة (physics, math, chemistry)
+  unit        String     // الوحدة (mechanics, algebra, reactions...)
   duration    Int        // مدة الفيديو بالدقائق
   isFree      Boolean    @default(false) // مجاني أم مدفوع
   questions   Question[]
