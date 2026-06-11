@@ -15,49 +15,170 @@ model User {
   id           String     @id @default(cuid())
   email        String     @unique
   name         String
-  password     String?    // للـ Email/Password login
+  password     String?
   role         String     @default("student") // student, admin
-  isSubscribed Boolean    @default(false) // مدفوع أو مجاني
+  isSubscribed Boolean    @default(false)
+  points       Int        @default(0)
+  level        String     @default("beginner") // beginner, learner, advanced, expert, teacher
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   progress     Progress[]
   quizResults  QuizResult[]
+  badges       UserBadge[]
+}
+
+// ==================== المواد ====================
+model Subject {
+  id          String    @id @default(cuid())
+  nameAr      String
+  nameEn      String
+  slug        String    @unique // physics, math, chemistry
+  icon        String
+  color       String
+  order       Int       @default(1)
+  units       Unit[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ==================== الوحدات ====================
+model Unit {
+  id          String    @id @default(cuid())
+  subjectId   String
+  nameAr      String
+  nameEn      String
+  slug        String    @unique // mechanics, algebra, etc.
+  order       Int       @default(1)
+  subject     Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 // ==================== الدروس ====================
 model Lesson {
-  id          String     @id @default(cuid())
-  titleAr     String     // عنوان بالعربي
-  titleEn     String     // عنوان بالإنجليزي
-  descriptionAr String   // وصف بالعربي
-  descriptionEn String   // وصف بالإنجليزي
-  videoUrl    String     // رابط الفيديو
-  pdfUrl      String?    // رابط PDF اختياري
-  order       Int        // ترتيب الدرس
-  subject     String     // المادة (physics, math, chemistry)
-  unit        String     // الوحدة (mechanics, algebra, reactions...)
-  duration    Int        // مدة الفيديو بالدقائق
-  isFree      Boolean    @default(false) // مجاني أم مدفوع
-  questions   Question[]
-  progress    Progress[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id            String     @id @default(cuid())
+  unitId        String
+  titleAr       String
+  titleEn       String
+  slug          String     @unique
+  descriptionAr String
+  descriptionEn String
+  duration      Int        // بالدقائق
+  order         Int        @default(1)
+  isFree        Boolean    @default(false)
+  videoUrl      String?
+  pdfUrl        String?
+  thumbnailUrl  String?
+  
+  // المحتوى الكامل
+  introductionAr String
+  introductionEn String
+  summaryAr      String
+  summaryEn      String
+  
+  // العلاقات
+  unit          Unit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  objectives    Objective[]
+  concepts      Concept[]
+  formulas      Formula[]
+  examples      Example[]
+  simulators    LessonSimulator[]
+  questions     Question[]
+  progress      Progress[]
+  quizResults   QuizResult[]
+  
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+// ==================== الأهداف ====================
+model Objective {
+  id        String   @id @default(cuid())
+  lessonId  String
+  textAr    String
+  textEn    String
+  order     Int      @default(1)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+// ==================== المفاهيم ====================
+model Concept {
+  id          String   @id @default(cuid())
+  lessonId    String
+  termAr      String
+  termEn      String
+  definitionAr String
+  definitionEn String
+  order       Int      @default(1)
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+// ==================== المعادلات ====================
+model Formula {
+  id           String   @id @default(cuid())
+  lessonId     String
+  formula      String
+  explanationAr String
+  explanationEn String
+  order        Int      @default(1)
+  lesson       Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+// ==================== الأمثلة ====================
+model Example {
+  id          String   @id @default(cuid())
+  lessonId    String
+  questionAr  String
+  questionEn  String
+  solutionAr  String
+  solutionEn  String
+  stepsAr     String   // JSON array
+  stepsEn     String   // JSON array
+  order       Int      @default(1)
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+// ==================== المحاكيات ====================
+model Simulator {
+  id          String   @id @default(cuid())
+  nameAr      String
+  nameEn      String
+  slug        String   @unique // motion, forces, energy, etc.
+  type        String   // physics, math, chemistry
+  descriptionAr String
+  descriptionEn String
+  lessons     LessonSimulator[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ==================== ربط المحاكيات بالدروس ====================
+model LessonSimulator {
+  id          String   @id @default(cuid())
+  lessonId    String
+  simulatorId String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  simulator   Simulator @relation(fields: [simulatorId], references: [id], onDelete: Cascade)
+
+  @@unique([lessonId, simulatorId])
 }
 
 // ==================== الأسئلة ====================
 model Question {
-  id         String  @id @default(cuid())
-  lessonId   String
-  type       String  // mcq, numerical
-  questionAr String  // السؤال بالعربي
-  questionEn String  // السؤال بالإنجليزي
-  optionsAr  String? // JSON string للم选择题 بالعربي
-  optionsEn  String? // JSON string للم选择题 بالإنجليزي
-  answer     String  // الإجابة الصحيحة
-  explanationAr String? // شرح الإجابة بالعربي
-  explanationEn String? // شرح الإجابة بالإنجليزي
-  points     Int     @default(1)
-  lesson     Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  id            String   @id @default(cuid())
+  lessonId      String
+  type          String   // mcq, numerical
+  questionAr    String
+  questionEn    String
+  optionsAr     String?  // JSON array
+  optionsEn     String?  // JSON array
+  answer        String
+  explanationAr String?
+  explanationEn String?
+  points        Int      @default(1)
+  order         Int      @default(1)
+  lesson        Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 // ==================== تقدم الطالب ====================
@@ -66,24 +187,67 @@ model Progress {
   userId     String
   lessonId   String
   completed  Boolean  @default(false)
-  score      Int?     // الدرجة من 100
-  watchedAt  DateTime? // وقت مشاهدة الفيديو
+  score      Int?
+  timeSpent  Int      @default(0) // بالثواني
+  watchedAt  DateTime?
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   lesson     Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, lessonId]) // طالب واحد لكل درس
+  @@unique([userId, lessonId])
 }
 
 // ==================== نتائج الاختبارات ====================
 model QuizResult {
-  id         String   @id @default(cuid())
-  userId     String
-  lessonId   String
-  score      Int      // الدرجة
-  totalPoints Int     // إجمالي النقاط
-  answers    String   // JSON string للإجابات
+  id          String   @id @default(cuid())
+  userId      String
+  lessonId    String
+  score       Int
+  totalPoints Int
+  answers     String   // JSON
   completedAt DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   @@unique([userId, lessonId])
+}
+
+// ==================== شارات المستخدم ====================
+model UserBadge {
+  id          String   @id @default(cuid())
+  userId      String
+  badgeSlug   String
+  earnedAt    DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeSlug])
+}
+
+// ==================== الشارات ====================
+model Badge {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  nameAr        String
+  nameEn        String
+  descriptionAr String
+  descriptionEn String
+  icon          String
+  color         String
+  requirement   Int
+  type          String   // lessons, subject, simulator, streak
+  createdAt     DateTime @default(now())
+}
+
+// ==================== الخرائط الذهنية ====================
+model MindMap {
+  id          String   @id @default(cuid())
+  lessonId    String   @unique
+  data        String   // JSON
+}
+
+// ==================== الرسوم التوضيحية ====================
+model Infographic {
+  id          String   @id @default(cuid())
+  lessonId    String   @unique
+  type        String   // comparison, process, circle, timeline
+  data        String   // JSON
 }
