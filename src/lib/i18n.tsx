@@ -52,6 +52,16 @@ const translations: Record<Language, Record<string, string>> = {
     "simulators.forcesDesc": "تعلم توازن القوى بالتجربة",
     "simulators.energy": "محاكي الطاقة",
     "simulators.energyDesc": "شاهد تحولات الطاقة",
+    "simulators.freeFall": "محاكي السقوط الحر",
+    "simulators.freeFallDesc": "استكشف حركة الأجسام تحت تأثير الجاذبية",
+    "simulators.projectile": "محاكي الرمي الأفقي",
+    "simulators.projectileDesc": "استكشف مسار المقذوفات والمدى الأفقي",
+    "simulators.wave": "محاكي الموجات",
+    "simulators.waveDesc": "استكشف أنواع الموجات وخصائصها",
+    "simulators.functions": "محاكي الدوال",
+    "simulators.functionsDesc": "استكشف الدوال الرياضية ورسومها",
+    "simulators.periodicTable": "الجدول الدوري",
+    "simulators.periodicTableDesc": "استكشف العناصر الكيميائية",
     "simulators.open": "افتح المحاكي",
     
     // Quiz
@@ -129,6 +139,16 @@ const translations: Record<Language, Record<string, string>> = {
     "simulators.forcesDesc": "Learn force balance through experiments",
     "simulators.energy": "Energy Simulator",
     "simulators.energyDesc": "Watch energy transformations",
+    "simulators.freeFall": "Free Fall Simulator",
+    "simulators.freeFallDesc": "Explore objects motion under gravity",
+    "simulators.projectile": "Projectile Motion",
+    "simulators.projectileDesc": "Explore projectile trajectory and range",
+    "simulators.wave": "Wave Simulator",
+    "simulators.waveDesc": "Explore wave types and properties",
+    "simulators.functions": "Functions Simulator",
+    "simulators.functionsDesc": "Explore mathematical functions and graphs",
+    "simulators.periodicTable": "Periodic Table",
+    "simulators.periodicTableDesc": "Explore chemical elements",
     "simulators.open": "Open Simulator",
     
     // Quiz
