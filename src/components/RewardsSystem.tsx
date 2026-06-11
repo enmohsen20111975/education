@@ -52,6 +52,7 @@ export interface Level {
 export interface UserProgress {
   totalPoints: number;
   completedLessons: number;
+  completedLessonIds: string[];
   physicsLessons: number;
   mathLessons: number;
   chemistryLessons: number;
@@ -584,15 +585,51 @@ export function BadgesDisplay({
 export function RewardsSystem({
   progress,
   language = "ar",
+  isOpen,
+  onClose,
 }: {
   progress: UserProgress;
   language?: "ar" | "en";
+  isOpen?: boolean;
+  onClose?: () => void;
 }) {
+  if (!isOpen) return null;
+  
   return (
-    <div className="space-y-4">
-      <AchievementBar progress={progress} language={language} />
-      <BadgesDisplay progress={progress} language={language} />
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        >
+          <motion.div
+            className="bg-white dark:bg-slate-900 rounded-2xl p-6 max-w-lg w-full mx-4 shadow-xl"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">
+                {language === "ar" ? "المكافآت والإنجازات" : "Rewards & Achievements"}
+              </h2>
+              {onClose && (
+                <button onClick={onClose} className="text-slate-500 hover:text-slate-700">
+                  ✕
+                </button>
+              )}
+            </div>
+            <div className="space-y-4">
+              <AchievementBar progress={progress} language={language} />
+              <BadgesDisplay progress={progress} language={language} />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -603,11 +640,13 @@ export function NewBadgeModal({
   onClose,
   language = "ar",
 }: {
-  badge: BadgeData;
+  badge: BadgeData | null;
   isOpen: boolean;
   onClose: () => void;
   language?: "ar" | "en";
 }) {
+  if (!badge) return null;
+  
   const Icon = badge.icon;
 
   return (
@@ -697,6 +736,7 @@ export function NewBadgeModal({
 export const mockUserProgress: UserProgress = {
   totalPoints: 0,
   completedLessons: 3,
+  completedLessonIds: ["lesson-1", "lesson-2", "lesson-3"],
   physicsLessons: 2,
   mathLessons: 1,
   chemistryLessons: 0,
