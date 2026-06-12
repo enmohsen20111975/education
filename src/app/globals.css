@@ -1,161 +1,65 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@custom-variant dark (&:is(.dark *));
+@layer base {
+  :root {
+    --radius: 1rem;
+    --background: #FAFBFC;
+    --foreground: #1a1a2e;
+    --card: #FFFFFF;
+    --card-foreground: #1a1a2e;
+    --popover: #FFFFFF;
+    --popover-foreground: #1a1a2e;
+    --primary: #8B5CF6;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F3F4F6;
+    --secondary-foreground: #8B5CF6;
+    --muted: #F3F4F6;
+    --muted-foreground: #6B7280;
+    --accent: #EC4899;
+    --accent-foreground: #FFFFFF;
+    --destructive: #EF4444;
+    --border: #E5E7EB;
+    --input: #E5E7EB;
+    --ring: #8B5CF6;
+    --chart-1: #8B5CF6;
+    --chart-2: #EC4899;
+    --chart-3: #06B6D4;
+    --chart-4: #F97316;
+    --chart-5: #10B981;
+  }
 
-/* ==================== THEME COLORS - YOUTH STYLE ==================== */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  
-  /* Youth Gradient Colors */
-  --color-youth-purple: #8B5CF6;
-  --color-youth-pink: #EC4899;
-  --color-youth-orange: #F97316;
-  --color-youth-cyan: #06B6D4;
-  --color-youth-green: #10B981;
-  --color-youth-blue: #3B82F6;
-  
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  .dark {
+    --background: #0F0F1A;
+    --foreground: #F9FAFB;
+    --card: #1A1A2E;
+    --card-foreground: #F9FAFB;
+    --popover: #1A1A2E;
+    --popover-foreground: #F9FAFB;
+    --primary: #A78BFA;
+    --primary-foreground: #0F0F1A;
+    --secondary: #2D2D44;
+    --secondary-foreground: #A78BFA;
+    --muted: #2D2D44;
+    --muted-foreground: #9CA3AF;
+    --accent: #F472B6;
+    --accent-foreground: #0F0F1A;
+    --destructive: #F87171;
+    --border: #374151;
+    --input: #374151;
+    --ring: #A78BFA;
+    --chart-1: #A78BFA;
+    --chart-2: #F472B6;
+    --chart-3: #22D3EE;
+    --chart-4: #FB923C;
+    --chart-5: #34D399;
+  }
 }
 
-/* ==================== LIGHT THEME - YOUTH VIBES ==================== */
-:root {
-  --radius: 1rem;
-  
-  /* Vibrant Youth Colors */
-  --background: #FAFBFC;
-  --foreground: #1a1a2e;
-  --card: #FFFFFF;
-  --card-foreground: #1a1a2e;
-  --popover: #FFFFFF;
-  --popover-foreground: #1a1a2e;
-  
-  /* Primary - Purple Gradient */
-  --primary: #8B5CF6;
-  --primary-foreground: #FFFFFF;
-  
-  /* Secondary - Pink */
-  --secondary: #F3F4F6;
-  --secondary-foreground: #8B5CF6;
-  
-  /* Muted */
-  --muted: #F3F4F6;
-  --muted-foreground: #6B7280;
-  
-  /* Accent - Cyan */
-  --accent: #EC4899;
-  --accent-foreground: #FFFFFF;
-  
-  --destructive: #EF4444;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #8B5CF6;
-  
-  /* Chart Colors - Vibrant */
-  --chart-1: #8B5CF6;
-  --chart-2: #EC4899;
-  --chart-3: #06B6D4;
-  --chart-4: #F97316;
-  --chart-5: #10B981;
-  
-  /* Sidebar */
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1a1a2e;
-  --sidebar-primary: #8B5CF6;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F3F4F6;
-  --sidebar-accent-foreground: #8B5CF6;
-  --sidebar-border: #E5E7EB;
-  --sidebar-ring: #8B5CF6;
-}
-
-/* ==================== DARK THEME - NEON YOUTH ==================== */
-.dark {
-  --background: #0F0F1A;
-  --foreground: #F9FAFB;
-  --card: #1A1A2E;
-  --card-foreground: #F9FAFB;
-  --popover: #1A1A2E;
-  --popover-foreground: #F9FAFB;
-  
-  /* Primary - Neon Purple */
-  --primary: #A78BFA;
-  --primary-foreground: #0F0F1A;
-  
-  /* Secondary */
-  --secondary: #2D2D44;
-  --secondary-foreground: #A78BFA;
-  
-  /* Muted */
-  --muted: #2D2D44;
-  --muted-foreground: #9CA3AF;
-  
-  /* Accent - Neon Pink */
-  --accent: #F472B6;
-  --accent-foreground: #0F0F1A;
-  
-  --destructive: #F87171;
-  --border: #374151;
-  --input: #374151;
-  --ring: #A78BFA;
-  
-  /* Chart Colors - Neon */
-  --chart-1: #A78BFA;
-  --chart-2: #F472B6;
-  --chart-3: #22D3EE;
-  --chart-4: #FB923C;
-  --chart-5: #34D399;
-  
-  /* Sidebar */
-  --sidebar: #1A1A2E;
-  --sidebar-foreground: #F9FAFB;
-  --sidebar-primary: #A78BFA;
-  --sidebar-primary-foreground: #0F0F1A;
-  --sidebar-accent: #2D2D44;
-  --sidebar-accent-foreground: #A78BFA;
-  --sidebar-border: #374151;
-  --sidebar-ring: #A78BFA;
-}
-
-/* ==================== BASE STYLES ==================== */
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
@@ -163,107 +67,23 @@
   }
 }
 
-/* ==================== ANIMATIONS - TIKTOK STYLE ==================== */
-
-/* Gradient Animation */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
+/* Gradient Animations */
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
 }
 
 /* Float Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
 /* Pulse Glow */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
-}
-
 .animate-pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Bounce In */
-@keyframes bounce-in {
-  0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.animate-bounce-in {
-  animation: bounce-in 0.5s ease-out;
-}
-
-/* Slide Up */
-@keyframes slide-up {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.6s ease-out;
-}
-
-/* Shake Animation */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-.animate-shake {
-  animation: shake 0.5s ease-in-out;
-}
-
-/* Spin Slow */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-/* Ripple Effect */
-@keyframes ripple {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
-}
-
-.ripple {
-  position: relative;
-  overflow: hidden;
-}
-
-.ripple::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  animation: ripple 0.6s ease-out;
-}
-
-/* ==================== GRADIENT BACKGROUNDS ==================== */
-
+/* Gradient Backgrounds */
 .gradient-primary {
   background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
 }
@@ -294,8 +114,7 @@
     radial-gradient(at 80% 100%, #8B5CF6 0px, transparent 50%);
 }
 
-/* ==================== GLASS EFFECT ==================== */
-
+/* Glass Effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -308,8 +127,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ==================== NEON EFFECTS ==================== */
-
+/* Neon Effects */
 .neon-purple {
   text-shadow: 0 0 10px #8B5CF6, 0 0 20px #8B5CF6, 0 0 30px #8B5CF6;
 }
@@ -326,11 +144,15 @@
   box-shadow: 0 0 5px #8B5CF6, 0 0 10px #8B5CF6, inset 0 0 5px rgba(139, 92, 246, 0.5);
 }
 
-/* ==================== CARD STYLES ==================== */
-
+/* Card Styles */
 .card-youth {
-  @apply rounded-2xl border border-border/50 bg-card p-6;
+  @apply rounded-2xl border bg-card p-6;
+  border-color: rgba(229, 231, 235, 0.5);
   transition: all 0.3s ease;
+}
+
+.dark .card-youth {
+  border-color: rgba(55, 65, 81, 0.5);
 }
 
 .card-youth:hover {
@@ -338,8 +160,7 @@
   box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
 }
 
-/* ==================== BUTTON STYLES ==================== */
-
+/* Button Styles */
 .btn-youth {
   @apply relative overflow-hidden rounded-xl font-bold;
   background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
@@ -366,8 +187,7 @@
   left: 100%;
 }
 
-/* ==================== SCROLLBAR ==================== */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -386,8 +206,7 @@
   background: linear-gradient(135deg, #EC4899, #8B5CF6);
 }
 
-/* ==================== RTL SUPPORT ==================== */
-
+/* RTL Support */
 [dir="rtl"] {
   text-align: right;
 }
@@ -396,8 +215,7 @@
   text-align: left;
 }
 
-/* ==================== RESPONSIVE ==================== */
-
+/* Responsive */
 @media (max-width: 640px) {
   .hide-mobile {
     display: none !important;
@@ -409,32 +227,3 @@
     display: none !important;
   }
 }
-
-/* ==================== SUBJECT COLORS ==================== */
-
-.subject-physics { --subject-color: #8B5CF6; }
-.subject-chemistry { --subject-color: #EC4899; }
-.subject-biology { --subject-color: #10B981; }
-.subject-math { --subject-color: #F97316; }
-.subject-arabic { --subject-color: #06B6D4; }
-.subject-english { --subject-color: #3B82F6; }
-.subject-history { --subject-color: #F59E0B; }
-.subject-geography { --subject-color: #14B8A6; }
-.subject-philosophy { --subject-color: #A855F7; }
-.subject-psychology { --subject-color: #EF4444; }
-.subject-sociology { --subject-color: #6366F1; }
-.subject-economics { --subject-color: #84CC16; }
-.subject-geometry { --subject-color: #0EA5E9; }
-.subject-algebra { --subject-color: #D946EF; }
-.subject-trigonometry { --subject-color: #F43F5E; }
-.subject-calculus { --subject-color: #7C3AED; }
-.subject-statistics { --subject-color: #22C55E; }
-.subject-mechanics { --subject-color: #2563EB; }
-.subject-optics { --subject-color: #DB2777; }
-.subject-electricity { --subject-color: #CA8A04; }
-.subject-thermodynamics { --subject-color: #DC2626; }
-.subject-organic { --subject-color: #059669; }
-.subject-inorganic { --subject-color: #7C2D12; }
-.subject-anatomy { --subject-color: #BE185D; }
-.subject-ecology { --subject-color: #15803D; }
-.subject-genetics { --subject-color: #6D28D9; }
