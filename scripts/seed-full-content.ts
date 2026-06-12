@@ -1,867 +1,672 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const db = new PrismaClient();
 
-// محتوى شامل لكل درس على حدة
-const lessonContent: Record<string, {
-  examples: Array<{
-    questionAr: string;
-    questionEn: string;
-    solutionAr: string;
-    solutionEn: string;
-    stepsAr: string[];
-    stepsEn: string[];
-  }>;
-  questions: Array<{
-    type: string;
-    questionAr: string;
-    questionEn: string;
-    optionsAr: string[];
-    optionsEn: string[];
-    answer: string;
-    explanationAr: string;
-    explanationEn: string;
-  }>;
-  formulas?: Array<{
-    formula: string;
-    explanationAr: string;
-    explanationEn: string;
-  }>;
-}> = {
-  // ==================== اللغة العربية ====================
+// ==================== محتوى الصف الأول الثانوي ====================
+
+const firstYearContent: Record<string, any> = {
+  // اللغة العربية
+  'اللغة العربية': {
+    lessons: {
+      'مقدمة في النحو': {
+        objectives: [
+          { ar: 'التعرف على مفهوم النحو وأهميته في اللغة العربية', en: 'Understanding the concept of grammar and its importance in Arabic' },
+          { ar: 'التمييز بين أنواع الكلمات (اسم، فعل، حرف)', en: 'Distinguishing between types of words (noun, verb, particle)' },
+          { ar: 'فهم الإعراب والبناء في اللغة العربية', en: 'Understanding inflection and construction in Arabic' }
+        ],
+        concepts: [
+          { ar: 'النحو', en: 'Grammar', defAr: 'علم يُعرف به أواخر الكلمات إعراباً وبناءً', defEn: 'The science of knowing the endings of words in terms of inflection and construction' },
+          { ar: 'الاسم', en: 'Noun', defAr: 'كلمة تدل على معنى في نفسها ولا تقترن بزمان', defEn: 'A word that indicates a meaning in itself and is not associated with time' },
+          { ar: 'الفعل', en: 'Verb', defAr: 'كلمة تدل على معنى في نفسها وتقترن بزمان', defEn: 'A word that indicates a meaning in itself and is associated with time' },
+          { ar: 'الحرف', en: 'Particle', defAr: 'كلمة لا يظهر معناها إلا مع غيرها', defEn: 'A word whose meaning does not appear except with others' }
+        ],
+        examples: [
+          { qAr: 'أعرب كلمة "الطالب" في جملة: جاء الطالبُ', qEn: 'Parse the word "الطالب" in: جاء الطالبُ', sAr: 'الطالبُ: فاعل مرفوع وعلامة رفعه الضمة', sEn: 'الطالبُ: subject, nominative, marked by damma' }
+        ],
+        questions: [
+          { qAr: 'ما الفرق بين الاسم والفعل؟', qEn: 'What is the difference between a noun and a verb?', answer: 'الزمان', options: ['الزمان', 'المعنى', 'اللفظ', 'الكتابة'] },
+          { qAr: 'كم أقسام الكلام في اللغة العربية؟', qEn: 'How many parts of speech in Arabic?', answer: 'ثلاثة', options: ['اثنان', 'ثلاثة', 'أربعة', 'خمسة'] }
+        ]
+      },
+      'المبتدأ والخبر': {
+        objectives: [
+          { ar: 'التعرف على المبتدأ والخبر وعلاقتهما', en: 'Understanding the subject and predicate and their relationship' },
+          { ar: 'معرفة أنواع المبتدأ والخبر', en: 'Knowing the types of subject and predicate' },
+          { ar: 'التدرب على إعراب الجملة الاسمية', en: 'Practicing parsing the nominal sentence' }
+        ],
+        concepts: [
+          { ar: 'المبتدأ', en: 'Subject', defAr: 'الاسم المرفوع الذي نبدأ به الجملة الاسمية', defEn: 'The nominative noun with which we begin the nominal sentence' },
+          { ar: 'الخبر', en: 'Predicate', defAr: 'الاسم المرفوع الذي يكمل معنى الجملة الاسمية', defEn: 'The nominative noun that completes the meaning of the nominal sentence' },
+          { ar: 'الجملة الاسمية', en: 'Nominal Sentence', defAr: 'الجملة التي تبدأ باسم', defEn: 'A sentence that begins with a noun' }
+        ],
+        examples: [
+          { qAr: 'حدد المبتدأ والخبر: السماءُ صافيةٌ', qEn: 'Identify subject and predicate: السماءُ صافيةٌ', sAr: 'السماءُ: مبتدأ مرفوع، صافيةٌ: خبر مرفوع', sEn: 'السماءُ: subject nominative, صافيةٌ: predicate nominative' }
+        ],
+        questions: [
+          { qAr: 'ما علامة رفع المبتدأ والخبر؟', qEn: 'What is the nominative mark of subject and predicate?', answer: 'الضمة', options: ['الضمة', 'الفتحة', 'الكسرة', 'السكون'] }
+        ]
+      }
+    }
+  },
   
-  // النحو
-  "المبتدأ والخبر": {
-    examples: [
-      {
-        questionAr: "أعرب الجملة التالية: العلمُ نورٌ",
-        questionEn: "Parse the sentence: العلمُ نورٌ",
-        solutionAr: "العلمُ: مبتدأ مرفوع بالضمة الظاهرة على آخره. نورٌ: خبر مرفوع بالضمة الظاهرة على آخره.",
-        solutionEn: "العلمُ: Subject in nominative case. نورٌ: Predicate in nominative case.",
-        stepsAr: ["نحدد المبتدأ: العلمُ", "نحدد الخبر: نورٌ", "كلاهما مرفوع بالضمة"],
-        stepsEn: ["Identify subject: العلمُ", "Identify predicate: نورٌ", "Both are nominative"]
+  // الرياضيات
+  'الرياضيات': {
+    lessons: {
+      'الأعداد الحقيقية': {
+        objectives: [
+          { ar: 'التعرف على مجموعة الأعداد الحقيقية', en: 'Understanding the set of real numbers' },
+          { ar: 'التمييز بين الأعداد النسبية وغير النسبية', en: 'Distinguishing between rational and irrational numbers' },
+          { ar: 'إجراء العمليات الحسابية على الأعداد الحقيقية', en: 'Performing arithmetic operations on real numbers' }
+        ],
+        concepts: [
+          { ar: 'الأعداد الحقيقية', en: 'Real Numbers', defAr: 'مجموعة تشمل جميع الأعداد النسبية وغير النسبية', defEn: 'A set that includes all rational and irrational numbers' },
+          { ar: 'الأعداد النسبية', en: 'Rational Numbers', defAr: 'أعداد يمكن كتابتها على صورة كسر (بسط/مقام)', defEn: 'Numbers that can be written as a fraction (numerator/denominator)' },
+          { ar: 'الأعداد غير النسبية', en: 'Irrational Numbers', defAr: 'أعداد لا يمكن كتابتها على صورة كسر مثل √2', defEn: 'Numbers that cannot be written as a fraction like √2' }
+        ],
+        formulas: [
+          { f: '|أ| = أ إذا أ ≥ 0، |أ| = -أ إذا أ < 0', arExp: 'القيمة المطلقة', enExp: 'Absolute Value' },
+          { f: '√(أ × ب) = √أ × √ب', arExp: 'خاصية الجذور', enExp: 'Square Root Property' }
+        ],
+        examples: [
+          { qAr: 'أوجد القيمة المطلقة لـ -5', qEn: 'Find the absolute value of -5', sAr: '|-5| = 5', sEn: '|-5| = 5', steps: 'لأن -5 < 0، إذن |-5| = -(-5) = 5' },
+          { qAr: 'هل √3 عدد نسبي؟', qEn: 'Is √3 a rational number?', sAr: 'لا، √3 عدد غير نسبي', sEn: 'No, √3 is an irrational number' }
+        ],
+        questions: [
+          { qAr: 'ما مجموعة الأعداد الحقيقية؟', qEn: 'What is the set of real numbers?', answer: 'الأعداد النسبية وغير النسبية', options: ['الأعداد الصحيحة فقط', 'الأعداد النسبية وغير النسبية', 'الأعداد الطبيعية فقط', 'الأعداد الأولية'] },
+          { qAr: 'أوجد |7|', qEn: 'Find |7|', answer: '7', options: ['7', '-7', '0', '14'] }
+        ]
       },
-      {
-        questionAr: "حدد المبتدأ والخبر ونوعه: الكتابُ على الطاولة",
-        questionEn: "Identify subject, predicate and its type: الكتابُ على الطاولة",
-        solutionAr: "المبتدأ: الكتابُ. الخبر: على الطاولة (شبه جملة جار ومجرور).",
-        solutionEn: "Subject: الكتابُ. Predicate: على الطاولة (prepositional phrase).",
-        stepsAr: ["المبتدأ: الكتابُ", "الخبر: على الطاولة", "نوع الخبر: شبه جملة"],
-        stepsEn: ["Subject: الكتابُ", "Predicate: على الطاولة", "Type: semi-sentence"]
-      },
-      {
-        questionAr: "أعرب: السماءُ صافيةٌ",
-        questionEn: "Parse: السماءُ صافيةٌ",
-        solutionAr: "السماءُ: مبتدأ مرفوع بالضمة. صافيةٌ: خبر مرفوع بالضمة.",
-        solutionEn: "السماءُ: Subject nominative. صافيةٌ: Predicate nominative.",
-        stepsAr: ["الجملة اسمية", "المبتدأ: السماءُ", "الخبر: صافيةٌ (مفرد)"],
-        stepsEn: ["Nominal sentence", "Subject: السماءُ", "Predicate: صافيةٌ (singular)"]
+      'الكسور والعمليات عليها': {
+        objectives: [
+          { ar: 'إتقان جمع وطرح الكسور', en: 'Mastering addition and subtraction of fractions' },
+          { ar: 'إتقان ضرب وقسمة الكسور', en: 'Mastering multiplication and division of fractions' },
+          { ar: 'تبسيط الكسور الجبرية', en: 'Simplifying algebraic fractions' }
+        ],
+        concepts: [
+          { ar: 'البسط', en: 'Numerator', defAr: 'العدد أعلى خط الكسر', defEn: 'The number above the fraction line' },
+          { ar: 'المقام', en: 'Denominator', defAr: 'العدد أسفل خط الكسر', defEn: 'The number below the fraction line' },
+          { ar: 'المقام المشترك', en: 'Common Denominator', defAr: 'مضاعف مشترك للمقامات', defEn: 'A common multiple of denominators' }
+        ],
+        formulas: [
+          { f: 'أ/ب + ج/د = (أ×د + ج×ب)/(ب×د)', arExp: 'جمع الكسور', enExp: 'Adding Fractions' },
+          { f: '(أ/ب) × (ج/د) = (أ×ج)/(ب×د)', arExp: 'ضرب الكسور', enExp: 'Multiplying Fractions' },
+          { f: '(أ/ب) ÷ (ج/د) = (أ×د)/(ب×ج)', arExp: 'قسمة الكسور', enExp: 'Dividing Fractions' }
+        ],
+        examples: [
+          { qAr: 'احسب: 1/2 + 1/3', qEn: 'Calculate: 1/2 + 1/3', sAr: '5/6', sEn: '5/6', steps: 'المقام المشترك = 6\n3/6 + 2/6 = 5/6' }
+        ],
+        questions: [
+          { qAr: 'ما ناتج 2/3 × 3/4؟', qEn: 'What is 2/3 × 3/4?', answer: '1/2', options: ['6/12', '1/2', '5/7', '6/7'] }
+        ]
       }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما نوع الخبر في جملة: الطالبُ يدرسُ؟",
-        questionEn: "What type of predicate in: الطالبُ يدرسُ؟",
-        optionsAr: ["مفرد", "جملة فعلية", "جملة اسمية", "شبه جملة"],
-        optionsEn: ["Singular", "Verbal sentence", "Nominal sentence", "Semi-sentence"],
-        answer: "جملة فعلية",
-        explanationAr: "الخبر (يدرسُ) جملة فعلية لأنه فعل + فاعل",
-        explanationEn: "The predicate (يدرسُ) is a verbal sentence"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما إعراب كلمة (مفيد) في: الكتابُ مفيدٌ؟",
-        questionEn: "Parse (مفيد) in: الكتابُ مفيدٌ؟",
-        optionsAr: ["مبتدأ", "خبر مرفوع", "صفة", "فاعل"],
-        optionsEn: ["Subject", "Predicate nominative", "Adjective", "Doer"],
-        answer: "خبر مرفوع",
-        explanationAr: "مفيدٌ خبر المبتدأ مرفوع بالضمة",
-        explanationEn: "مفيدٌ is the predicate in nominative case"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "أي الجمل التالية خبرها شبه جملة؟",
-        questionEn: "Which sentence has a semi-sentence predicate?",
-        optionsAr: ["الطالبُ مجتهدٌ", "النهرُ يجري", "الكتابُ في الحقيبة", "البيتُ كبيرٌ"],
-        optionsEn: ["الطالبُ مجتهدٌ", "النهرُ يجري", "الكتابُ في الحقيبة", "البيتُ كبيرٌ"],
-        answer: "الكتابُ في الحقيبة",
-        explanationAr: "الخبر (في الحقيبة) شبه جملة جار ومجرور",
-        explanationEn: "The predicate (في الحقيبة) is a prepositional phrase"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما شرط المبتدأ؟",
-        questionEn: "What is the condition for the subject?",
-        optionsAr: ["أن يكون فعلاً", "أن يكون اسماً في أول الجملة", "أن يكون حرفاً", "أن يكون صفة"],
-        optionsEn: ["Must be a verb", "Must be a noun at the beginning", "Must be a letter", "Must be an adjective"],
-        answer: "أن يكون اسماً في أول الجملة",
-        explanationAr: "المبتدأ هو الاسم المرفوع الذي نبدأ به الجملة الاسمية",
-        explanationEn: "The subject is the noun that starts the nominal sentence"
-      }
-    ]
+    }
   },
-
-  "الفاعل ونائب الفاعل": {
-    examples: [
-      {
-        questionAr: "أعرب: نجحَ الطالبُ",
-        questionEn: "Parse: نجحَ الطالبُ",
-        solutionAr: "الطالبُ: فاعل مرفوع بالضمة الظاهرة",
-        solutionEn: "الطالبُ: Doer in nominative case",
-        stepsAr: ["الفعل: نجحَ", "الفاعل: الطالبُ", "إعرابه: فاعل مرفوع"],
-        stepsEn: ["Verb: نجحَ", "Doer: الطالبُ", "Parsing: nominative doer"]
-      },
-      {
-        questionAr: "أعرب: فُتح البابُ",
-        questionEn: "Parse: فُتح البابُ",
-        solutionAr: "البابُ: نائب فاعل مرفوع بالضمة",
-        solutionEn: "البابُ: Deputy doer in nominative",
-        stepsAr: ["الفعل مبني للمجهول: فُتح", "نائب الفاعل: البابُ", "إعرابه: نائب فاعل مرفوع"],
-        stepsEn: ["Passive verb: فُتح", "Deputy doer: البابُ", "Parsing: nominative deputy doer"]
-      },
-      {
-        questionAr: "حول الجملة للمبني للمجهول: قرأَ الطالبُ الكتابَ",
-        questionEn: "Convert to passive: قرأَ الطالبُ الكتابَ",
-        solutionAr: "قُرئَ الكتابُ",
-        solutionEn: "قُرئَ الكتابُ",
-        stepsAr: ["نحوّل الفعل للمجهول: قُرئَ", "نائب الفاعل: الكتابُ", "الفاعل الأصلي يُحذف"],
-        stepsEn: ["Convert verb to passive: قُرئَ", "Deputy doer: الكتابُ", "Original doer is omitted"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "كيف نعرف الفعل المبني للمجهول؟",
-        questionEn: "How do we identify passive voice?",
-        optionsAr: ["يبدأ بسين", "يُضم أوله ويُكسر ما قبل آخره", "يكون مضارعاً فقط", "يُنون آخره"],
-        optionsEn: ["Starts with س", "First letter damma, before last kasra", "Present tense only", "Has tanween"],
-        answer: "يُضم أوله ويُكسر ما قبل آخره",
-        explanationAr: "الفعل المبني للمجهول يُضم أوله ويُكسر ما قبل آخره",
-        explanationEn: "Passive verb has damma at start and kasra before last"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما إعراب (النافذة) في: فُتحت النافذةُ؟",
-        questionEn: "Parse (النافذة) in: فُتحت النافذةُ؟",
-        optionsAr: ["فاعل", "نائب فاعل", "مبتدأ", "خبر"],
-        optionsEn: ["Doer", "Deputy doer", "Subject", "Predicate"],
-        answer: "نائب فاعل",
-        explanationAr: "لأن الفعل (فُتحت) مبني للمجهول",
-        explanationEn: "Because the verb is in passive voice"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما علامة رفع الفاعل؟",
-        questionEn: "What is the nominative sign of doer?",
-        optionsAr: ["الفتحة", "الضمة", "الكسرة", "السكون"],
-        optionsEn: ["Fatha", "Damma", "Kasra", "Sukun"],
-        answer: "الضمة",
-        explanationAr: "الفاعل مرفوع وعلامة رفعه الضمة",
-        explanationEn: "Doer is nominative with damma"
-      }
-    ]
-  },
-
-  "المفعول به": {
-    examples: [
-      {
-        questionAr: "أعرب: قرأتُ الكتابَ",
-        questionEn: "Parse: قرأتُ الكتابَ",
-        solutionAr: "الكتابَ: مفعول به منصوب بالفتحة",
-        solutionEn: "الكتابَ: Object in accusative with fatha",
-        stepsAr: ["الفعل: قرأتُ", "الفاعل: التاء", "المفعول به: الكتابَ"],
-        stepsEn: ["Verb: قرأتُ", "Doer: ta", "Object: الكتابَ"]
-      },
-      {
-        questionAr: "استخرج المفعول به: أكلَ الطفلُ التفاحةَ",
-        questionEn: "Extract the object: أكلَ الطفلُ التفاحةَ",
-        solutionAr: "المفعول به: التفاحةَ (منصوب بالفتحة)",
-        solutionEn: "Object: التفاحةَ (accusative with fatha)",
-        stepsAr: ["الفعل: أكلَ", "الفاعل: الطفلُ", "المفعول به: التفاحةَ"],
-        stepsEn: ["Verb: أكلَ", "Doer: الطفلُ", "Object: التفاحةَ"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما علامة نصب المفعول به؟",
-        questionEn: "What is the accusative sign?",
-        optionsAr: ["الضمة", "الفتحة", "الكسرة", "السكون"],
-        optionsEn: ["Damma", "Fatha", "Kasra", "Sukun"],
-        answer: "الفتحة",
-        explanationAr: "المفعول به منصوب بالفتحة",
-        explanationEn: "Object is accusative with fatha"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما المفعول به في: شربَ الولدُ اللبنَ؟",
-        questionEn: "What is the object in: شربَ الولدُ اللبنَ؟",
-        optionsAr: ["شربَ", "الولدُ", "اللبنَ", "لا مفعول به"],
-        optionsEn: ["شربَ", "الولدُ", "اللبنَ", "No object"],
-        answer: "اللبنَ",
-        explanationAr: "اللبنَ هو ما وقع عليه الفعل",
-        explanationEn: "اللبنَ is what received the action"
-      }
-    ]
-  },
-
-  // ==================== الفيزياء ====================
   
-  "مقدمة في الفيزياء": {
-    examples: [
-      {
-        questionAr: "ما هي الكميات الفيزيائية الأساسية السبع؟",
-        questionEn: "What are the seven fundamental quantities?",
-        solutionAr: "الطول (م)، الكتلة (كجم)، الزمن (ث)، التيار (أ)، الحرارة (ك)، كمية المادة (مول)، شدة الإضاءة (كد)",
-        solutionEn: "Length (m), Mass (kg), Time (s), Current (A), Temperature (K), Amount (mol), Luminous (cd)",
-        stepsAr: ["الطول - متر", "الكتلة - كجم", "الزمن - ثانية", "التيار - أمبير", "الحرارة - كلفن", "كمية المادة - مول", "شدة الإضاءة - كانديلا"],
-        stepsEn: ["Length - meter", "Mass - kg", "Time - second", "Current - ampere", "Temperature - kelvin", "Amount - mole", "Luminous - candela"]
+  // الفيزياء
+  'الفيزياء': {
+    lessons: {
+      'مقدمة في الفيزياء': {
+        objectives: [
+          { ar: 'التعرف على مفهوم الفيزياء وأهميتها', en: 'Understanding the concept and importance of physics' },
+          { ar: 'معرفة فروع الفيزياء الرئيسية', en: 'Knowing the main branches of physics' },
+          { ar: 'فهم المنهج العلمي في الفيزياء', en: 'Understanding the scientific method in physics' }
+        ],
+        concepts: [
+          { ar: 'الفيزياء', en: 'Physics', defAr: 'علم يدرس المادة والطاقة والعلاقة بينهما', defEn: 'The science that studies matter, energy, and the relationship between them' },
+          { ar: 'المادة', en: 'Matter', defAr: 'كل ما له كتلة ويشغل حيزاً من الفراغ', defEn: 'Anything that has mass and occupies space' },
+          { ar: 'الطاقة', en: 'Energy', defAr: 'القدرة على القيام بشغل أو إحداث تغيير', defEn: 'The ability to do work or cause change' }
+        ],
+        examples: [
+          { qAr: 'أمثلة على تحولات الطاقة في الحياة اليومية', qEn: 'Examples of energy transformations in daily life', sAr: 'المصباح الكهربائي: طاقة كهربائية ← طاقة ضوئية وحرارية', sEn: 'Electric lamp: electrical energy → light and heat energy' }
+        ],
+        questions: [
+          { qAr: 'ما الذي تدرسه الفيزياء؟', qEn: 'What does physics study?', answer: 'المادة والطاقة', options: ['المادة والطاقة', 'الكائنات الحية فقط', 'التفاعلات الكيميائية فقط', 'الظواهر الجوية فقط'] }
+        ]
       },
-      {
-        questionAr: "ما الفرق بين الكمية القياسية والمتجهة؟",
-        questionEn: "Difference between scalar and vector quantities?",
-        solutionAr: "الكمية القياسية: لها مقدار فقط (مثل الكتلة). الكمية المتجهة: لها مقدار واتجاه (مثل السرعة).",
-        solutionEn: "Scalar: magnitude only (mass). Vector: magnitude and direction (velocity).",
-        stepsAr: ["القياسية: مقدار فقط", "المتجهة: مقدار + اتجاه", "مثال قياسية: الكتلة", "مثال متجهة: السرعة"],
-        stepsEn: ["Scalar: magnitude only", "Vector: magnitude + direction", "Scalar example: mass", "Vector example: velocity"]
+      'الحركة والسرعة': {
+        objectives: [
+          { ar: 'التعرف على مفهوم الحركة وأنواعها', en: 'Understanding the concept and types of motion' },
+          { ar: 'حساب السرعة المتوسطة', en: 'Calculating average speed' },
+          { ar: 'التمييز بين السرعة والتسارع', en: 'Distinguishing between speed and acceleration' }
+        ],
+        concepts: [
+          { ar: 'الحركة', en: 'Motion', defAr: 'تغير موضع الجسم بالنسبة لنقطة ثابتة بمرور الزمن', defEn: 'Change in the position of an object relative to a fixed point over time' },
+          { ar: 'السرعة', en: 'Speed', defAr: 'المسافة المقطوعة خلال وحدة الزمن', defEn: 'The distance traveled per unit of time' },
+          { ar: 'التسارع', en: 'Acceleration', defAr: 'معدل تغير السرعة بالنسبة للزمن', defEn: 'The rate of change of velocity with respect to time' }
+        ],
+        formulas: [
+          { f: 'سر = ف/ز', arExp: 'السرعة = الإزاحة / الزمن', enExp: 'Speed = Displacement / Time' },
+          { f: 'ت = (سر2 - سر1) / ز', arExp: 'التسارع = تغير السرعة / الزمن', enExp: 'Acceleration = Change in Speed / Time' }
+        ],
+        examples: [
+          { qAr: 'سيارة تقطع 100 كم في ساعتين، ما سرعتها المتوسطة؟', qEn: 'A car travels 100 km in 2 hours, what is its average speed?', sAr: '50 كم/ساعة', sEn: '50 km/h', steps: 'السرعة = المسافة / الزمن = 100 / 2 = 50 كم/ساعة' }
+        ],
+        questions: [
+          { qAr: 'ما وحدة قياس السرعة في النظام الدولي؟', qEn: 'What is the SI unit of speed?', answer: 'م/ث', options: ['م/ث', 'كم/ساعة', 'م/ث²', 'نيوتن'] },
+          { qAr: 'إذا كانت سرعة جسم 20 م/ث وقطع مسافة 100 م، فما الزمن؟', qEn: 'If an object speed is 20 m/s and traveled 100 m, what is the time?', answer: '5 ثواني', options: ['2 ثواني', '5 ثواني', '10 ثواني', '200 ثانية'] }
+        ]
       }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما وحدة قياس القوة؟",
-        questionEn: "What is the unit of force?",
-        optionsAr: ["كجم", "نيوتن", "جول", "واط"],
-        optionsEn: ["kg", "Newton", "Joule", "Watt"],
-        answer: "نيوتن",
-        explanationAr: "النيوتن هو وحدة قياس القوة",
-        explanationEn: "Newton is the unit of force"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "أي الكميات التالية كمية متجهة؟",
-        questionEn: "Which is a vector quantity?",
-        optionsAr: ["الكتلة", "الزمن", "السرعة", "درجة الحرارة"],
-        optionsEn: ["Mass", "Time", "Velocity", "Temperature"],
-        answer: "السرعة",
-        explanationAr: "السرعة كمية متجهة لها مقدار واتجاه",
-        explanationEn: "Velocity is a vector with magnitude and direction"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما وحدة قياس الكتلة في النظام الدولي؟",
-        questionEn: "SI unit of mass?",
-        optionsAr: ["نيوتن", "كيلوجرام", "جرام", "متر"],
-        optionsEn: ["Newton", "Kilogram", "Gram", "Meter"],
-        answer: "كيلوجرام",
-        explanationAr: "الكيلوجرام هو الوحدة الأساسية للكتلة",
-        explanationEn: "Kilogram is the base unit for mass"
-      }
-    ],
-    formulas: [
-      { formula: "v = d/t", explanationAr: "السرعة = الإزاحة ÷ الزمن", explanationEn: "Velocity = displacement / time" },
-      { formula: "a = Δv/Δt", explanationAr: "التسارع = التغير في السرعة ÷ الزمن", explanationEn: "Acceleration = change in velocity / time" }
-    ]
+    }
   },
-
-  "القياس والوحدات": {
-    examples: [
-      {
-        questionAr: "حوّل 5 كم إلى متر",
-        questionEn: "Convert 5 km to meters",
-        solutionAr: "5 كم = 5 × 1000 = 5000 م",
-        solutionEn: "5 km = 5 × 1000 = 5000 m",
-        stepsAr: ["1 كم = 1000 م", "5 × 1000 = 5000 م"],
-        stepsEn: ["1 km = 1000 m", "5 × 1000 = 5000 m"]
-      },
-      {
-        questionAr: "حوّل 72 كم/س إلى م/ث",
-        questionEn: "Convert 72 km/h to m/s",
-        solutionAr: "72 كم/س = 72 × (5/18) = 20 م/ث",
-        solutionEn: "72 km/h = 72 × (5/18) = 20 m/s",
-        stepsAr: ["1 كم/س = 5/18 م/ث", "72 × 5/18 = 20 م/ث"],
-        stepsEn: ["1 km/h = 5/18 m/s", "72 × 5/18 = 20 m/s"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما قيمة البادئة (مللي)؟",
-        questionEn: "Value of prefix (milli)?",
-        optionsAr: ["10²", "10³", "10⁻³", "10⁻²"],
-        optionsEn: ["10²", "10³", "10⁻³", "10⁻²"],
-        answer: "10⁻³",
-        explanationAr: "مللي = 10⁻³ = 0.001",
-        explanationEn: "milli = 10⁻³ = 0.001"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "1 متر = ؟ سنتيمتر",
-        questionEn: "1 meter = ? centimeters",
-        optionsAr: ["10", "100", "1000", "0.01"],
-        optionsEn: ["10", "100", "1000", "0.01"],
-        answer: "100",
-        explanationAr: "1 م = 100 سم",
-        explanationEn: "1 m = 100 cm"
-      }
-    ],
-    formulas: [
-      { formula: "1 km = 10³ m", explanationAr: "الكيلومتر = 1000 متر", explanationEn: "Kilometer = 1000 meters" },
-      { formula: "1 cm = 10⁻² m", explanationAr: "السنتيمتر = 0.01 متر", explanationEn: "Centimeter = 0.01 meter" }
-    ]
-  },
-
-  "الحركة المستقيمة": {
-    examples: [
-      {
-        questionAr: "سيارة تتحرك بسرعة 20 م/ث لمدة 30 ثانية، أوجد الإزاحة",
-        questionEn: "Car moves at 20 m/s for 30 s, find displacement",
-        solutionAr: "الإزاحة = السرعة × الزمن = 20 × 30 = 600 م",
-        solutionEn: "Displacement = velocity × time = 20 × 30 = 600 m",
-        stepsAr: ["d = v × t", "d = 20 × 30", "d = 600 م"],
-        stepsEn: ["d = v × t", "d = 20 × 30", "d = 600 m"]
-      },
-      {
-        questionAr: "جسم يبدأ من السكون ويتسارع بمقدار 2 م/ث² لمدة 5 ثواني، أوجد السرعة النهائية",
-        questionEn: "Body starts from rest, accelerates at 2 m/s² for 5 s, find final velocity",
-        solutionAr: "v = v₀ + at = 0 + 2 × 5 = 10 م/ث",
-        solutionEn: "v = v₀ + at = 0 + 2 × 5 = 10 m/s",
-        stepsAr: ["v₀ = 0", "a = 2 م/ث²", "t = 5 ث", "v = 0 + 2 × 5 = 10 م/ث"],
-        stepsEn: ["v₀ = 0", "a = 2 m/s²", "t = 5 s", "v = 0 + 2 × 5 = 10 m/s"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما الفرق بين المسافة والإزاحة؟",
-        questionEn: "Difference between distance and displacement?",
-        optionsAr: ["لا فرق", "المسافة متجهة", "الإزاحة متجهة", "كلاهما متجهة"],
-        optionsEn: ["No difference", "Distance is vector", "Displacement is vector", "Both are vectors"],
-        answer: "الإزاحة متجهة",
-        explanationAr: "الإزاحة كمية متجهة لها مقدار واتجاه",
-        explanationEn: "Displacement is a vector with magnitude and direction"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما وحدة قياس التسارع؟",
-        questionEn: "Unit of acceleration?",
-        optionsAr: ["م/ث", "م/ث²", "م²/ث", "ث/م"],
-        optionsEn: ["m/s", "m/s²", "m²/s", "s/m"],
-        answer: "م/ث²",
-        explanationAr: "التسارع = التغير في السرعة ÷ الزمن = م/ث²",
-        explanationEn: "Acceleration = change in velocity / time = m/s²"
-      }
-    ],
-    formulas: [
-      { formula: "v = d/t", explanationAr: "السرعة = الإزاحة ÷ الزمن", explanationEn: "Velocity = displacement / time" },
-      { formula: "v = v₀ + at", explanationAr: "السرعة النهائية = الابتدائية + التسارع × الزمن", explanationEn: "Final velocity = initial + acceleration × time" },
-      { formula: "d = v₀t + ½at²", explanationAr: "الإزاحة = السرعة الابتدائية × الزمن + ½ × التسارع × مربع الزمن", explanationEn: "Displacement formula" }
-    ]
-  },
-
-  "القوى وقوانين نيوتن": {
-    examples: [
-      {
-        questionAr: "أوجد القوة اللازمة لتسريع جسم كتلته 5 كجم بتسارع 3 م/ث²",
-        questionEn: "Find force needed to accelerate 5 kg mass at 3 m/s²",
-        solutionAr: "F = ma = 5 × 3 = 15 نيوتن",
-        solutionEn: "F = ma = 5 × 3 = 15 Newton",
-        stepsAr: ["m = 5 كجم", "a = 3 م/ث²", "F = ma = 5 × 3 = 15 ن"],
-        stepsEn: ["m = 5 kg", "a = 3 m/s²", "F = ma = 5 × 3 = 15 N"]
-      },
-      {
-        questionAr: "ما وزن جسم كتلته 10 كجم؟ (g = 10 م/ث²)",
-        questionEn: "Weight of 10 kg mass? (g = 10 m/s²)",
-        solutionAr: "W = mg = 10 × 10 = 100 نيوتن",
-        solutionEn: "W = mg = 10 × 10 = 100 Newton",
-        stepsAr: ["m = 10 كجم", "g = 10 م/ث²", "W = 10 × 10 = 100 ن"],
-        stepsEn: ["m = 10 kg", "g = 10 m/s²", "W = 10 × 10 = 100 N"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما قانون نيوتن الأول؟",
-        questionEn: "Newton's first law?",
-        optionsAr: ["F = ma", "الجسم الساكن يبقى ساكناً", "لكل فعل رد فعل", "القوة = الكتلة"],
-        optionsEn: ["F = ma", "Body at rest stays at rest", "Action-reaction", "Force = mass"],
-        answer: "الجسم السامن يبقى ساكناً",
-        explanationAr: "قانون القصور الذاتي: الجسم يحافظ على حالته",
-        explanationEn: "Law of inertia: body maintains its state"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "ما وحدة قياس القوة؟",
-        questionEn: "Unit of force?",
-        optionsAr: ["كجم", "نيوتن", "جول", "واط"],
-        optionsEn: ["kg", "Newton", "Joule", "Watt"],
-        answer: "نيوتن",
-        explanationAr: "النيوتن = كجم.م/ث²",
-        explanationEn: "Newton = kg.m/s²"
-      }
-    ],
-    formulas: [
-      { formula: "F = ma", explanationAr: "القوة = الكتلة × التسارع", explanationEn: "Force = mass × acceleration" },
-      { formula: "W = mg", explanationAr: "الوزن = الكتلة × تسارع الجاذبية", explanationEn: "Weight = mass × gravity" }
-    ]
-  },
-
-  // ==================== الكيمياء ====================
   
-  "مقدمة في الكيمياء": {
-    examples: [
-      {
-        questionAr: "ما مكونات الذرة؟",
-        questionEn: "Components of atom?",
-        solutionAr: "الذرة = نواة (بروتونات + نيوترونات) + إلكترونات تدور حولها",
-        solutionEn: "Atom = nucleus (protons + neutrons) + electrons orbiting",
-        stepsAr: ["النواة: بروتونات (+) ونيوترونات (0)", "الإلكترونات (-) تدور حول النواة", "الذرة متعادلة: عدد البروتونات = عدد الإلكترونات"],
-        stepsEn: ["Nucleus: protons (+) and neutrons (0)", "Electrons (-) orbit nucleus", "Neutral atom: protons = electrons"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما شحنة البروتون؟",
-        questionEn: "Charge of proton?",
-        optionsAr: ["موجبة", "سالبة", "متعادلة", "لا شحنة"],
-        optionsEn: ["Positive", "Negative", "Neutral", "No charge"],
-        answer: "موجبة",
-        explanationAr: "البروتون له شحنة موجبة (+1)",
-        explanationEn: "Proton has positive charge (+1)"
+  // الكيمياء
+  'الكيمياء': {
+    lessons: {
+      'مقدمة في الكيمياء': {
+        objectives: [
+          { ar: 'التعرف على مفهوم الكيمياء وأهميتها', en: 'Understanding the concept and importance of chemistry' },
+          { ar: 'معرفة حالات المادة الثلاث', en: 'Knowing the three states of matter' },
+          { ar: 'فهم الفرق بين العنصر والمركب', en: 'Understanding the difference between element and compound' }
+        ],
+        concepts: [
+          { ar: 'الكيمياء', en: 'Chemistry', defAr: 'علم يدرس المادة وتحولاتها والتفاعلات الكيميائية', defEn: 'The science that studies matter, its transformations, and chemical reactions' },
+          { ar: 'العنصر', en: 'Element', defAr: 'مادة نقية لا يمكن تحليلها لمواد أبسط', defEn: 'A pure substance that cannot be broken down into simpler substances' },
+          { ar: 'المركب', en: 'Compound', defAr: 'مادة تتكون من اتحاد عنصرين أو أكثر بنسب ثابتة', defEn: 'A substance formed by the union of two or more elements in fixed ratios' }
+        ],
+        examples: [
+          { qAr: 'أمثلة على عناصر ومركبات', qEn: 'Examples of elements and compounds', sAr: 'عناصر: حديد، أكسجين، ذهب\nمركبات: ماء (H2O)، ملح الطعام (NaCl)', sEn: 'Elements: iron, oxygen, gold\nCompounds: water (H2O), table salt (NaCl)' }
+        ],
+        questions: [
+          { qAr: 'الماء عنصر أم مركب؟', qEn: 'Is water an element or compound?', answer: 'مركب', options: ['عنصر', 'مركب', 'خليط', 'محلول'] }
+        ]
       },
-      {
-        type: "multiple_choice",
-        questionAr: "أين توجد معظم كتلة الذرة؟",
-        questionEn: "Where is most atomic mass?",
-        optionsAr: ["الإلكترونات", "النواة", "الفراغ", "موزعة بالتساوي"],
-        optionsEn: ["Electrons", "Nucleus", "Space", "Evenly distributed"],
-        answer: "النواة",
-        explanationAr: "معظم الكتلة في النواة",
-        explanationEn: "Most mass in nucleus"
+      'الذرات والجزيئات': {
+        objectives: [
+          { ar: 'التعرف على تركيب الذرة', en: 'Understanding the structure of the atom' },
+          { ar: 'معرفة مكونات الذرة (البروتونات، النيوترونات، الإلكترونات)', en: 'Knowing the components of the atom (protons, neutrons, electrons)' },
+          { ar: 'فهم مفهوم العدد الذري والكتلة الذرية', en: 'Understanding atomic number and atomic mass' }
+        ],
+        concepts: [
+          { ar: 'الذرة', en: 'Atom', defAr: 'أصغر وحدة بنائية للمادة تحتفظ بخواص العنصر', defEn: 'The smallest building unit of matter that retains the properties of the element' },
+          { ar: 'البروتون', en: 'Proton', defAr: 'جسيم موجب الشحنة في نواة الذرة', defEn: 'A positively charged particle in the nucleus of the atom' },
+          { ar: 'الإلكترون', en: 'Electron', defAr: 'جسيم سالب الشحنة يدور حول النواة', defEn: 'A negatively charged particle orbiting the nucleus' },
+          { ar: 'النيوترون', en: 'Neutron', defAr: 'جسيم متعادل الشحنة في نواة الذرة', defEn: 'A neutral particle in the nucleus of the atom' }
+        ],
+        formulas: [
+          { f: 'العدد الذري (Z) = عدد البروتونات = عدد الإلكترونات', arExp: 'في الذرة المتعادلة', enExp: 'In a neutral atom' },
+          { f: 'الكتلة الذرية (A) = عدد البروتونات + عدد النيوترونات', arExp: 'حساب الكتلة الذرية', enExp: 'Calculating atomic mass' }
+        ],
+        examples: [
+          { qAr: 'ذرة كربون عددها الذري 6، ما عدد البروتونات والإلكترونات؟', qEn: 'A carbon atom has atomic number 6, what is the number of protons and electrons?', sAr: '6 بروتونات، 6 إلكترونات', sEn: '6 protons, 6 electrons' }
+        ],
+        questions: [
+          { qAr: 'أين توجد البروتونات في الذرة؟', qEn: 'Where are protons located in the atom?', answer: 'النواة', options: ['النواة', 'حول النواة', 'في الأغلفة', 'خارج الذرة'] },
+          { qAr: 'ما شحنة الإلكترون؟', qEn: 'What is the charge of the electron?', answer: 'سالبة', options: ['موجبة', 'سالبة', 'متعادلة', 'لا شحنة لها'] }
+        ]
       }
-    ],
-    formulas: [
-      { formula: "A = Z + N", explanationAr: "العدد الكتلي = العدد الذري + عدد النيوترونات", explanationEn: "Mass number = Atomic number + Neutrons" }
-    ]
+    }
   },
-
-  "الذرة والتركيب الذري": {
-    examples: [
-      {
-        questionAr: "أوجد عدد النيوترونات في الكربون-12 (Z=6)",
-        questionEn: "Find neutrons in carbon-12 (Z=6)",
-        solutionAr: "N = A - Z = 12 - 6 = 6 نيوترونات",
-        solutionEn: "N = A - Z = 12 - 6 = 6 neutrons",
-        stepsAr: ["العدد الكتلي A = 12", "العدد الذري Z = 6", "N = 12 - 6 = 6"],
-        stepsEn: ["Mass number A = 12", "Atomic number Z = 6", "N = 12 - 6 = 6"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما الذي يحدد العنصر؟",
-        questionEn: "What determines the element?",
-        optionsAr: ["عدد النيوترونات", "عدد البروتونات", "عدد الإلكترونات", "العدد الكتلي"],
-        optionsEn: ["Neutrons", "Protons", "Electrons", "Mass number"],
-        answer: "عدد البروتونات",
-        explanationAr: "العدد الذري (عدد البروتونات) يحدد هوية العنصر",
-        explanationEn: "Atomic number (protons) determines element identity"
-      }
-    ],
-    formulas: [
-      { formula: "N = A - Z", explanationAr: "عدد النيوترونات = العدد الكتلي - العدد الذري", explanationEn: "Neutrons = Mass number - Atomic number" }
-    ]
-  },
-
-  // ==================== الرياضيات ====================
   
-  "الأعداد الحقيقية": {
-    examples: [
-      {
-        questionAr: "أوجد |−5| + |3|",
-        questionEn: "Find |−5| + |3|",
-        solutionAr: "|−5| + |3| = 5 + 3 = 8",
-        solutionEn: "|−5| + |3| = 5 + 3 = 8",
-        stepsAr: ["|−5| = 5", "|3| = 3", "المجموع = 8"],
-        stepsEn: ["|−5| = 5", "|3| = 3", "Sum = 8"]
-      },
-      {
-        questionAr: "بسّط √18",
-        questionEn: "Simplify √18",
-        solutionAr: "√18 = √(9×2) = 3√2",
-        solutionEn: "√18 = √(9×2) = 3√2",
-        stepsAr: ["18 = 9 × 2", "√18 = √9 × √2", "= 3√2"],
-        stepsEn: ["18 = 9 × 2", "√18 = √9 × √2", "= 3√2"]
-      },
-      {
-        questionAr: "أوجد قيمة (−3)²",
-        questionEn: "Find (−3)²",
-        solutionAr: "(−3)² = 9",
-        solutionEn: "(−3)² = 9",
-        stepsAr: ["(−3)² = (−3) × (−3)", "= 9 (سالب × سالب = موجب)"],
-        stepsEn: ["(−3)² = (−3) × (−3)", "= 9 (negative × negative = positive)"]
+  // الأحياء
+  'الأحياء': {
+    lessons: {
+      'مقدمة في علم الأحياء': {
+        objectives: [
+          { ar: 'التعرف على مفهوم علم الأحياء وأهميته', en: 'Understanding the concept and importance of biology' },
+          { ar: 'معرفة خصائص الكائنات الحية', en: 'Knowing the characteristics of living organisms' },
+          { ar: 'فهم مستويات التنظيم الحيوي', en: 'Understanding levels of biological organization' }
+        ],
+        concepts: [
+          { ar: 'علم الأحياء', en: 'Biology', defAr: 'علم يدرس الكائنات الحية وخصائصها ووظائفها', defEn: 'The science that studies living organisms, their characteristics and functions' },
+          { ar: 'الخلية', en: 'Cell', defAr: 'الوحدة البنائية والوظيفية الأساسية للحياة', defEn: 'The basic structural and functional unit of life' },
+          { ar: 'التمثيل الغذائي', en: 'Metabolism', defAr: 'مجموعة التفاعلات الكيميائية في الخلية', defEn: 'All chemical reactions in the cell' }
+        ],
+        examples: [
+          { qAr: 'ما خصائص الكائنات الحية؟', qEn: 'What are the characteristics of living organisms?', sAr: 'النمو، التكاثر، التغذية، التنفس، الإخراج، الحركة، الإحساس', sEn: 'Growth, reproduction, nutrition, respiration, excretion, movement, sensation' }
+        ],
+        questions: [
+          { qAr: 'ما الوحدة الأساسية للحياة؟', qEn: 'What is the basic unit of life?', answer: 'الخلية', options: ['الذرة', 'الجزيء', 'الخلية', 'النسيج'] }
+        ]
       }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما القيمة المطلقة لـ −7؟",
-        questionEn: "What is |−7|?",
-        optionsAr: ["−7", "7", "0", "14"],
-        optionsEn: ["−7", "7", "0", "14"],
-        answer: "7",
-        explanationAr: "القيمة المطلقة دائماً موجبة",
-        explanationEn: "Absolute value is always positive"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "√16 = ؟",
-        questionEn: "√16 = ?",
-        optionsAr: ["2", "4", "8", "16"],
-        optionsEn: ["2", "4", "8", "16"],
-        answer: "4",
-        explanationAr: "4² = 16",
-        explanationEn: "4² = 16"
-      },
-      {
-        type: "multiple_choice",
-        questionAr: "أي الأعداد التالية عدد نسبي؟",
-        questionEn: "Which is a rational number?",
-        optionsAr: ["√2", "π", "3/4", "√3"],
-        optionsEn: ["√2", "π", "3/4", "√3"],
-        answer: "3/4",
-        explanationAr: "3/4 عدد نسبي لأنه يمكن كتابته ككسر",
-        explanationEn: "3/4 is rational because it can be written as a fraction"
-      }
-    ]
+    }
   },
-
-  "الجذور وخصائصها": {
-    examples: [
-      {
-        questionAr: "بسّط √12 × √3",
-        questionEn: "Simplify √12 × √3",
-        solutionAr: "√12 × √3 = √36 = 6",
-        solutionEn: "√12 × √3 = √36 = 6",
-        stepsAr: ["√a × √b = √(a×b)", "√12 × √3 = √36 = 6"],
-        stepsEn: ["√a × √b = √(a×b)", "√12 × √3 = √36 = 6"]
-      },
-      {
-        questionAr: "بسّط √50",
-        questionEn: "Simplify √50",
-        solutionAr: "√50 = √(25×2) = 5√2",
-        solutionEn: "√50 = √(25×2) = 5√2",
-        stepsAr: ["50 = 25 × 2", "√50 = √25 × √2", "= 5√2"],
-        stepsEn: ["50 = 25 × 2", "√50 = √25 × √2", "= 5√2"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "√8 × √2 = ؟",
-        questionEn: "√8 × √2 = ?",
-        optionsAr: ["√10", "4", "√16", "10"],
-        optionsEn: ["√10", "4", "√16", "10"],
-        answer: "4",
-        explanationAr: "√8 × √2 = √16 = 4",
-        explanationEn: "√8 × √2 = √16 = 4"
-      }
-    ],
-    formulas: [
-      { formula: "√a × √b = √(a×b)", explanationAr: "حاصل ضرب جذرين", explanationEn: "Product of square roots" },
-      { formula: "√a ÷ √b = √(a/b)", explanationAr: "قسمة جذرين", explanationEn: "Division of square roots" }
-    ]
-  },
-
-  "الجبر الأساسي": {
-    examples: [
-      {
-        questionAr: "حل المعادلة: 2x + 5 = 13",
-        questionEn: "Solve: 2x + 5 = 13",
-        solutionAr: "x = 4",
-        solutionEn: "x = 4",
-        stepsAr: ["2x + 5 = 13", "2x = 13 - 5 = 8", "x = 8/2 = 4"],
-        stepsEn: ["2x + 5 = 13", "2x = 13 - 5 = 8", "x = 8/2 = 4"]
-      },
-      {
-        questionAr: "بسّط: 3(x + 2) - 2x",
-        questionEn: "Simplify: 3(x + 2) - 2x",
-        solutionAr: "3x + 6 - 2x = x + 6",
-        solutionEn: "3x + 6 - 2x = x + 6",
-        stepsAr: ["3(x + 2) = 3x + 6", "3x + 6 - 2x", "= x + 6"],
-        stepsEn: ["3(x + 2) = 3x + 6", "3x + 6 - 2x", "= x + 6"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "حل المعادلة: 3x - 7 = 8",
-        questionEn: "Solve: 3x - 7 = 8",
-        optionsAr: ["x = 1", "x = 5", "x = 15", "x = 3"],
-        optionsEn: ["x = 1", "x = 5", "x = 15", "x = 3"],
-        answer: "x = 5",
-        explanationAr: "3x = 15, x = 5",
-        explanationEn: "3x = 15, x = 5"
-      }
-    ]
-  },
-
-  // ==================== الأحياء ====================
   
-  "مقدمة في الأحياء": {
-    examples: [
-      {
-        questionAr: "ما خصائص الكائنات الحية؟",
-        questionEn: "Characteristics of living organisms?",
-        solutionAr: "التنفس، التغذية، التكاثر، النمو، الإخراج، الحركة، الإحساس",
-        solutionEn: "Respiration, nutrition, reproduction, growth, excretion, movement, sensation",
-        stepsAr: ["التنفس: إنتاج الطاقة", "التغذية: الحصول على الغذاء", "التكاثر: إنتاج أفراد جدد", "النمو: زيادة الحجم"],
-        stepsEn: ["Respiration: energy production", "Nutrition: obtaining food", "Reproduction: producing new individuals", "Growth: increasing size"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما الوحدة البنائية للكائنات الحية؟",
-        questionEn: "Building unit of living organisms?",
-        optionsAr: ["الذرة", "الخلية", "الجزيء", "العضو"],
-        optionsEn: ["Atom", "Cell", "Molecule", "Organ"],
-        answer: "الخلية",
-        explanationAr: "الخلية هي الوحدة البنائية الأساسية",
-        explanationEn: "Cell is the basic building unit"
+  // التاريخ
+  'التاريخ': {
+    lessons: {
+      'مقدمة عن الحضارة المصرية': {
+        objectives: [
+          { ar: 'التعرف على نشأة الحضارة المصرية القديمة', en: 'Understanding the origins of ancient Egyptian civilization' },
+          { ar: 'معرفة العوامل التي ساعدت على قيام الحضارة', en: 'Knowing the factors that helped establish the civilization' },
+          { ar: 'فهم أهمية نهر النيل في الحضارة المصرية', en: 'Understanding the importance of the Nile River in Egyptian civilization' }
+        ],
+        concepts: [
+          { ar: 'الحضارة', en: 'Civilization', defAr: 'مجموعة المظاهر المادية والمعنوية التي ينتجها الإنسان', defEn: 'The set of material and immaterial aspects produced by humans' },
+          { ar: 'الحضارة المصرية القديمة', en: 'Ancient Egyptian Civilization', defAr: 'إحدى أعرق الحضارات في التاريخ البشري، نشأت على ضفاف نهر النيل', defEn: 'One of the oldest civilizations in human history, originated on the banks of the Nile' },
+          { ar: 'التاريخ', en: 'History', defAr: 'علم يدرس الماضي البشري من خلال الآثار والوثائق', defEn: 'The science that studies the human past through artifacts and documents' }
+        ],
+        examples: [
+          { qAr: 'أهم إنجازات الحضارة المصرية القديمة', qEn: 'Most important achievements of ancient Egyptian civilization', sAr: 'الأهرامات، الكتابة الهيروغليفية، التحنيط، الطب، الفلك', sEn: 'Pyramids, Hieroglyphic writing, Mummification, Medicine, Astronomy' }
+        ],
+        questions: [
+          { qAr: 'أين نشأت الحضارة المصرية القديمة؟', qEn: 'Where did ancient Egyptian civilization originate?', answer: 'على ضفاف نهر النيل', options: ['على ضفاف دجلة والفرات', 'على ضفاب نهر النيل', 'في شبه الجزيرة العربية', 'في أوروبا'] },
+          { qAr: 'ما هي لغة المصريين القدماء؟', qEn: 'What was the language of ancient Egyptians?', answer: 'الهيروغليفية', options: ['العربية', 'الهيروغليفية', 'اللاتينية', 'اليونانية'] }
+        ]
       },
-      {
-        type: "multiple_choice",
-        questionAr: "أي مما يلي ليس من خصائص الكائنات الحية؟",
-        questionEn: "Which is NOT a characteristic of living organisms?",
-        optionsAr: ["التكاثر", "التنفس", "الاحتراق", "النمو"],
-        optionsEn: ["Reproduction", "Respiration", "Combustion", "Growth"],
-        answer: "الاحتراق",
-        explanationAr: "الاحتراق ليس من خصائص الكائنات الحية",
-        explanationEn: "Combustion is not a characteristic of living organisms"
+      'الملوك والفراعنة': {
+        objectives: [
+          { ar: 'التعرف على أشهر الفراعنة المصريين', en: 'Learning about the most famous Egyptian pharaohs' },
+          { ar: 'معرفة إنجازات الملوك المصريين', en: 'Knowing the achievements of Egyptian kings' },
+          { ar: 'فهم نظام الحكم في مصر القديمة', en: 'Understanding the ruling system in ancient Egypt' }
+        ],
+        concepts: [
+          { ar: 'الفرعون', en: 'Pharaoh', defAr: 'لقب ملوك مصر القديمة، كان يُعتبر ممثل الآلهة على الأرض', defEn: 'Title of ancient Egyptian kings, considered representatives of gods on earth' },
+          { ar: 'الأسر الحاكمة', en: 'Ruling Dynasties', defAr: 'تتابع الملوك من أسرة واحدة في حكم مصر', defEn: 'Succession of kings from one family in ruling Egypt' },
+          { ar: 'المملكة', en: 'Kingdom', defAr: 'فترة تاريخية تتميز بالقوة والاستقرار', defEn: 'A historical period characterized by strength and stability' }
+        ],
+        examples: [
+          { qAr: 'أشهر فراعنة مصر القديمة', qEn: 'Most famous pharaohs of ancient Egypt', sAr: 'خوفو (باني الهرم الأكبر)، حتشبسوت، رمسيس الثاني، توت عنخ آمون', sEn: 'Khufu (builder of the Great Pyramid), Hatshepsut, Ramesses II, Tutankhamun' }
+        ],
+        questions: [
+          { qAr: 'من بني الهرم الأكبر؟', qEn: 'Who built the Great Pyramid?', answer: 'الملك خوفو', options: ['الملك خوفو', 'رعمسيس الثاني', 'توت عنخ آمون', 'حتشبسوت'] },
+          { qAr: 'من هي أشهر ملكات مصر القديمة؟', qEn: 'Who is the most famous queen of ancient Egypt?', answer: 'حتشبسوت', options: ['كليوباترا', 'حتشبسوت', 'نفرتيتي', 'إيزيس'] }
+        ]
+      },
+      'الفن والعمارة': {
+        objectives: [
+          { ar: 'التعرف على فنون مصر القديمة', en: 'Learning about ancient Egyptian arts' },
+          { ar: 'معرفة أساليب البناء والعمارة المصرية', en: 'Knowing Egyptian building and architectural styles' },
+          { ar: 'فهم أهمية الفن في الحياة المصرية القديمة', en: 'Understanding the importance of art in ancient Egyptian life' }
+        ],
+        concepts: [
+          { ar: 'الهرم', en: 'Pyramid', defAr: 'بناء ضخم على شكل هرم، بُني ليكون مقبرة للملك', defEn: 'A massive pyramid-shaped structure built to be the tomb of the king' },
+          { ar: 'المعبد', en: 'Temple', defAr: 'مكان العبادة في مصر القديمة', defEn: 'Place of worship in ancient Egypt' },
+          { ar: 'الهيروغليفية', en: 'Hieroglyphics', defAr: 'الكتابة المصرية القديمة بالرموز والصور', defEn: 'Ancient Egyptian writing using symbols and pictures' }
+        ],
+        examples: [
+          { qAr: 'أهم المعالم المعمارية المصرية', qEn: 'Most important Egyptian architectural landmarks', sAr: 'أهرامات الجيزة، معبد الكرنك، معبد الأقصر، أبو سمبل', sEn: 'Giza Pyramids, Karnak Temple, Luxor Temple, Abu Simbel' }
+        ],
+        questions: [
+          { qAr: 'كم عدد أهرامات الجيزة؟', qEn: 'How many pyramids are in Giza?', answer: '3', options: ['1', '2', '3', '5'] },
+          { qAr: 'ما اسم أكبر معبد في مصر القديمة؟', qEn: 'What is the name of the largest temple in ancient Egypt?', answer: 'معبد الكرنك', options: ['معبد الكرنك', 'معبد الأقصر', 'أبو سمبل', 'معبد إدفو'] }
+        ]
+      },
+      'نشأة الحضارة الإسلامية': {
+        objectives: [
+          { ar: 'التعرف على بداية الحضارة الإسلامية', en: 'Understanding the beginning of Islamic civilization' },
+          { ar: 'معرفة أهم إنجازات الحضارة الإسلامية', en: 'Knowing the main achievements of Islamic civilization' },
+          { ar: 'فهم دور المسلمين في نقل العلوم', en: 'Understanding the role of Muslims in transmitting sciences' }
+        ],
+        concepts: [
+          { ar: 'الحضارة الإسلامية', en: 'Islamic Civilization', defAr: 'حضارة قامت على أساس الإسلام وامتدت من الصين إلى الأندلس', defEn: 'A civilization based on Islam that extended from China to Andalusia' },
+          { ar: 'العصر الذهبي', en: 'Golden Age', defAr: 'فترة ازدهار العلوم والفنون الإسلامية', defEn: 'A period of flourishing Islamic sciences and arts' },
+          { ar: 'الترجمة', en: 'Translation', defAr: 'حركة نقل العلوم من اليونانية والفارسية إلى العربية', defEn: 'The movement of transferring sciences from Greek and Persian to Arabic' }
+        ],
+        examples: [
+          { qAr: 'أهم علماء الحضارة الإسلامية', qEn: 'Most important scholars of Islamic civilization', sAr: 'ابن سينا (الطب)، الخوارزمي (الرياضيات)، جابر بن حيان (الكيمياء)، الفارابي (الفلسفة)', sEn: 'Ibn Sina (Medicine), Al-Khwarizmi (Mathematics), Jabir ibn Hayyan (Chemistry), Al-Farabi (Philosophy)' }
+        ],
+        questions: [
+          { qAr: 'من هو أبو الكيمياء؟', qEn: 'Who is the father of chemistry?', answer: 'جابر بن حيان', options: ['ابن سينا', 'الخوارزمي', 'جابر بن حيان', 'الفارابي'] },
+          { qAr: 'في أي مدينة تأسست أول جامعة في العالم؟', qEn: 'In which city was the first university in the world founded?', answer: 'القرويين - فاس', options: ['بغداد', 'القاهرة', 'القرويين - فاس', 'دمشق'] }
+        ]
+      },
+      'العلوم في الحضارة الإسلامية': {
+        objectives: [
+          { ar: 'التعرف على إنجازات المسلمين في العلوم', en: 'Learning about Muslim achievements in sciences' },
+          { ar: 'معرفة علماء المسلمين واكتشافاتهم', en: 'Knowing Muslim scholars and their discoveries' },
+          { ar: 'فهم تأثير الحضارة الإسلامية على أوروبا', en: 'Understanding the influence of Islamic civilization on Europe' }
+        ],
+        concepts: [
+          { ar: 'الخوارزميات', en: 'Algorithms', defAr: 'مجموعة من الخطوات المنظمة لحل مشكلة معينة', defEn: 'A set of organized steps to solve a specific problem' },
+          { ar: 'الجبر', en: 'Algebra', defAr: 'فرع من الرياضيات طوره الخوارزمي', defEn: 'A branch of mathematics developed by Al-Khwarizmi' },
+          { ar: 'الصيدلة', en: 'Pharmacy', defAr: 'علم تحضير الأدوية وتطويرها', defEn: 'The science of preparing and developing medicines' }
+        ],
+        examples: [
+          { qAr: 'إنجازات المسلمين في الطب', qEn: 'Muslim achievements in medicine', sAr: 'القانون في الطب لابن سينا، اكتشاف الدورة الدموية الصغرى، الجراحة', sEn: 'Canon of Medicine by Ibn Sina, discovery of pulmonary circulation, surgery' }
+        ],
+        questions: [
+          { qAr: 'من مؤلف كتاب "القانون في الطب"؟', qEn: 'Who wrote "Canon of Medicine"?', answer: 'ابن سينا', options: ['الرازي', 'ابن سينا', 'الخوارزمي', 'ابن النفيس'] },
+          { qAr: 'ما الكلمة التي أضيفت للغة الإنجليزية من اسم الخوارزمي؟', qEn: 'What word was added to English from Al-Khwarizmi name?', answer: 'Algorithm', options: ['Algebra', 'Algorithm', 'Chemistry', 'Zero'] }
+        ]
       }
-    ]
+    }
+  },
+  
+  // الجغرافيا
+  'الجغرافيا': {
+    lessons: {
+      'موقع مصر وأهميته': {
+        objectives: [
+          { ar: 'التعرف على الموقع الجغرافي لمصر', en: 'Understanding the geographical location of Egypt' },
+          { ar: 'معرفة أهمية موقع مصر الاستراتيجي', en: 'Knowing the strategic importance of Egypt location' },
+          { ar: 'فهم حدود مصر الجغرافية', en: 'Understanding the geographical borders of Egypt' }
+        ],
+        concepts: [
+          { ar: 'الموقع الفلكي', en: 'Astronomical Location', defAr: 'موقع مصر بالنسبة لخطوط الطول ودوائر العرض', defEn: 'Egypt location relative to longitude and latitude lines' },
+          { ar: 'الموقع الجغرافي', en: 'Geographical Location', defAr: 'موقع مصر بالنسبة للقارات والمحيطات والبحار', defEn: 'Egypt location relative to continents, oceans and seas' },
+          { ar: 'قناة السويس', en: 'Suez Canal', defAr: 'ممر مائي يربط بين البحر الأحمر والبحر المتوسط', defEn: 'A waterway connecting the Red Sea and the Mediterranean' }
+        ],
+        examples: [
+          { qAr: 'أهمية موقع مصر الاستراتيجي', qEn: 'Strategic importance of Egypt location', sAr: 'تربط بين قارات آسيا وأفريقيا وأوروبا، تتحكم في قناة السويس', sEn: 'Connects Asia, Africa and Europe, controls the Suez Canal' }
+        ],
+        questions: [
+          { qAr: 'في أي قارة تقع مصر؟', qEn: 'In which continent is Egypt located?', answer: 'أفريقيا', options: ['آسيا', 'أفريقيا', 'أوروبا', 'أمريكا'] },
+          { qAr: 'ما البحران اللذان تطل عليهما مصر؟', qEn: 'Which two seas does Egypt overlook?', answer: 'الأحمر والمتوسط', options: ['الأحمر والمتوسط', 'الأحمر والأسود', 'المتوسط والأسود', 'الخليج والمتوسط'] }
+        ]
+      },
+      'التضاريس المصرية': {
+        objectives: [
+          { ar: 'التعرف على تضاريس مصر المختلفة', en: 'Understanding the different terrains of Egypt' },
+          { ar: 'معرفة أنواع التضاريس في مصر', en: 'Knowing the types of terrain in Egypt' },
+          { ar: 'فهم تأثير التضاريس على السكان', en: 'Understanding the effect of terrain on population' }
+        ],
+        concepts: [
+          { ar: 'وادي النيل', en: 'Nile Valley', defAr: 'السهل الخصيب على جانبي نهر النيل', defEn: 'The fertile plain on both sides of the Nile River' },
+          { ar: 'الدلتا', en: 'Delta', defAr: 'مثلث عند مصب النهر حيث تتفرع الفروع', defEn: 'A triangle at the river mouth where branches diverge' },
+          { ar: 'الصحراء', en: 'Desert', defAr: 'منطقة جافة قليلة الأمطار والنباتات', defEn: 'An arid area with little rain and plants' }
+        ],
+        examples: [
+          { qAr: 'أنواع التضاريس في مصر', qEn: 'Types of terrain in Egypt', sAr: 'وادي النيل والدلتا (5% من المساحة)، الصحراء الغربية، الصحراء الشرقية، شبه جزيرة سيناء', sEn: 'Nile Valley and Delta (5% of area), Western Desert, Eastern Desert, Sinai Peninsula' }
+        ],
+        questions: [
+          { qAr: 'ما نسبة وادي النيل والدلتا من مساحة مصر؟', qEn: 'What percentage of Egypt area is the Nile Valley and Delta?', answer: '5%', options: ['5%', '10%', '20%', '50%'] },
+          { qAr: 'ما أكبر صحاري مصر؟', qEn: 'What is the largest desert in Egypt?', answer: 'الصحراء الغربية', options: ['الصحراء الغربية', 'الصحراء الشرقية', 'صحراء سيناء', 'صحراء النوبة'] }
+        ]
+      },
+      'المناخ والموارد': {
+        objectives: [
+          { ar: 'التعرف على مناخ مصر وخصائصه', en: 'Understanding Egypt climate and characteristics' },
+          { ar: 'معرفة الموارد الطبيعية في مصر', en: 'Knowing the natural resources in Egypt' },
+          { ar: 'فهم أهمية المياه في مصر', en: 'Understanding the importance of water in Egypt' }
+        ],
+        concepts: [
+          { ar: 'المناخ الصحراوي', en: 'Desert Climate', defAr: 'مناخ حار جاف صيفاً، معتدل ممطر شتاء', defEn: 'Hot dry climate in summer, moderate rainy in winter' },
+          { ar: 'الموارد الطبيعية', en: 'Natural Resources', defAr: 'المواد المتوفرة في الطبيعة والتي يمكن استغلالها', defEn: 'Materials available in nature that can be exploited' },
+          { ar: 'الرياح التجارية', en: 'Trade Winds', defAr: 'رياح منتظمة تهب من الشمال على مصر', defEn: 'Regular winds blowing from the north on Egypt' }
+        ],
+        examples: [
+          { qAr: 'الموارد المعدنية في مصر', qEn: 'Mineral resources in Egypt', sAr: 'البترول، الغاز الطبيعي، الفوسفات، الحديد، الذهب', sEn: 'Petroleum, Natural gas, Phosphate, Iron, Gold' }
+        ],
+        questions: [
+          { qAr: 'ما نوع مناخ مصر؟', qEn: 'What type of climate does Egypt have?', answer: 'صحراوي', options: ['استوائي', 'صحراوي', 'متوسطي', 'قطبي'] },
+          { qAr: 'ما أهم مورد مائي في مصر؟', qEn: 'What is the most important water resource in Egypt?', answer: 'نهر النيل', options: ['نهر النيل', 'الأمطار', 'المياه الجوفية', 'البحار'] }
+        ]
+      }
+    }
+  },
+  
+  // اللغة الإنجليزية
+  'اللغة الإنجليزية': {
+    lessons: {
+      'Reading Comprehension': {
+        objectives: [
+          { ar: 'تطوير مهارات فهم المقروء', en: 'Developing reading comprehension skills' },
+          { ar: 'التعرف على استراتيجيات القراءة الفعالة', en: 'Learning effective reading strategies' },
+          { ar: 'تحليل النصوص وفهم المعنى الضمني', en: 'Analyzing texts and understanding implied meaning' }
+        ],
+        concepts: [
+          { ar: 'القراءة النقدية', en: 'Critical Reading', defAr: 'قراءة تحليلية تهدف إلى فهم وتقييم النص', defEn: 'Analytical reading aimed at understanding and evaluating the text' },
+          { ar: 'المعنى السياقي', en: 'Contextual Meaning', defAr: 'معنى الكلمة من خلال السياق', defEn: 'The meaning of a word through context' },
+          { ar: 'الفكرة الرئيسية', en: 'Main Idea', defAr: 'النقطة المركزية التي يدور حولها النص', defEn: 'The central point around which the text revolves' }
+        ],
+        examples: [
+          { qAr: 'استراتيجيات فهم المقروء', qEn: 'Reading comprehension strategies', sAr: 'Skimming, Scanning, Prediction, Questioning, Summarizing', sEn: 'Skimming, Scanning, Prediction, Questioning, Summarizing' }
+        ],
+        questions: [
+          { qAr: 'ما الفرق بين Skimming و Scanning؟', qEn: 'What is the difference between Skimming and Scanning?', answer: 'Skimming للفكرة العامة، Scanning للتفاصيل', options: ['لا فرق', 'Skimming للفكرة العامة، Scanning للتفاصيل', 'كلاهما للتفاصيل', 'كلاهما للفكرة العامة'] }
+        ]
+      },
+      'Grammar Basics': {
+        objectives: [
+          { ar: 'فهم قواعد اللغة الإنجليزية الأساسية', en: 'Understanding basic English grammar rules' },
+          { ar: 'التدرب على الأزمنة الرئيسية', en: 'Practicing main tenses' },
+          { ar: 'بناء جمل صحيحة', en: 'Building correct sentences' }
+        ],
+        concepts: [
+          { ar: 'الفعل', en: 'Verb', defAr: 'كلمة تدل على فعل أو حالة', defEn: 'A word indicating an action or state' },
+          { ar: 'الزمن', en: 'Tense', defAr: 'شكل الفعل الذي يدل على زمان الحدث', defEn: 'The form of the verb indicating the time of the action' },
+          { ar: 'الجملة', en: 'Sentence', defAr: 'مجموعة كلمات لها معنى كامل', defEn: 'A group of words with complete meaning' }
+        ],
+        formulas: [
+          { f: 'Present Simple: S + V(s/es)', arExp: 'المضارع البسيط', enExp: 'Present Simple Tense' },
+          { f: 'Past Simple: S + V2', arExp: 'الماضي البسيط', enExp: 'Past Simple Tense' },
+          { f: 'Future Simple: S + will + V', arExp: 'المستقبل البسيط', enExp: 'Future Simple Tense' }
+        ],
+        examples: [
+          { qAr: 'حول إلى الماضي البسيط: She walks to school', qEn: 'Change to past simple: She walks to school', sAr: 'She walked to school', sEn: 'She walked to school' }
+        ],
+        questions: [
+          { qAr: 'ما الصيغة الصحيحة: He _____ to the cinema yesterday', qEn: 'What is the correct form: He _____ to the cinema yesterday', answer: 'went', options: ['go', 'goes', 'went', 'going'] }
+        ]
+      }
+    }
+  },
+  
+  // اللغة الفرنسية
+  'اللغة الفرنسية': {
+    lessons: {
+      'الأبجدية والنطق': {
+        objectives: [
+          { ar: 'التعرف على الحروف الفرنسية ونطقها', en: 'Learning French letters and pronunciation' },
+          { ar: 'فهم قواعد النطق الفرنسية', en: 'Understanding French pronunciation rules' },
+          { ar: 'التدرب على نطق الكلمات بشكل صحيح', en: 'Practicing correct word pronunciation' }
+        ],
+        concepts: [
+          { ar: 'الحروف المتحركة', en: 'Vowels', defAr: 'A, E, I, O, U, Y - حروف تُنطق دون عائق', defEn: 'Letters pronounced without obstruction' },
+          { ar: 'الحروف الساكنة', en: 'Consonants', defAr: 'الحروف التي تحتاج لتوقف جزئي في النطق', defEn: 'Letters requiring partial stop in pronunciation' },
+          { ar: 'النبر', en: 'Accent', defAr: 'علامات تغير نطق الحروف (é, è, ê)', defEn: 'Marks that change letter pronunciation' }
+        ],
+        examples: [
+          { qAr: 'نطق الحروف الفرنسية المميزة', qEn: 'Pronunciation of distinctive French letters', sAr: 'J = ج (جو), R = ر (مقصوصة), U = يو', sEn: 'J = zh, R = guttural r, U = yu' }
+        ],
+        questions: [
+          { qAr: 'كيف ينطق حرف R في الفرنسية؟', qEn: 'How is R pronounced in French?', answer: 'مقصوصة من الحلق', options: ['مثل الإنجليزية', 'مقصوصة من الحلق', 'صامت', 'مثل العربية'] }
+        ]
+      },
+      'التحيات والتعارف': {
+        objectives: [
+          { ar: 'تعلم التحيات الأساسية في الفرنسية', en: 'Learning basic greetings in French' },
+          { ar: 'التدرب على التعارف بالفرنسية', en: 'Practicing introductions in French' },
+          { ar: 'استخدام الضمائر المناسبة', en: 'Using appropriate pronouns' }
+        ],
+        concepts: [
+          { ar: 'التحية الرسمية', en: 'Formal Greeting', defAr: 'Bonjour, Bonsoir - تستخدم مع الغرباء', defEn: 'Used with strangers' },
+          { ar: 'التحية غير الرسمية', en: 'Informal Greeting', defAr: 'Salut, Coucou - تستخدم مع الأصدقاء', defEn: 'Used with friends' },
+          { ar: 'صيغة المخاطب', en: 'Address Form', defAr: 'Tu (أنت) للصديق، Vous (أنتما/أنتم) للرسمي', defEn: 'Tu for friend, Vous for formal' }
+        ],
+        examples: [
+          { qAr: 'تحيات أساسية', qEn: 'Basic greetings', sAr: 'Bonjour = صباح الخير\nBonsoir = مساء الخير\nAu revoir = مع السلامة\nMerci = شكراً', sEn: 'Bonjour = Good morning\nBonsoir = Good evening\nAu revoir = Goodbye\nMerci = Thank you' }
+        ],
+        questions: [
+          { qAr: 'ما معنى Bonjour؟', qEn: 'What does Bonjour mean?', answer: 'صباح الخير', options: ['صباح الخير', 'مساء الخير', 'مع السلامة', 'شكراً'] }
+        ]
+      }
+    }
+  },
+  
+  // الفلسفة والمنطق
+  'الفلسفة والمنطق': {
+    lessons: {
+      'ما هي الفلسفة؟': {
+        objectives: [
+          { ar: 'التعرف على مفهوم الفلسفة', en: 'Understanding the concept of philosophy' },
+          { ar: 'معرفة أهمية التفكير الفلسفي', en: 'Knowing the importance of philosophical thinking' },
+          { ar: 'فهم الفرق بين الفلسفة والعلوم الأخرى', en: 'Understanding the difference between philosophy and other sciences' }
+        ],
+        concepts: [
+          { ar: 'الفلسفة', en: 'Philosophy', defAr: 'حب الحكمة - التفكير العقلاني في المسائل الأساسية', defEn: 'Love of wisdom - rational thinking about fundamental issues' },
+          { ar: 'الحكمة', en: 'Wisdom', defAr: 'المعرفة العميقة والقدرة على التطبيق السليم', defEn: 'Deep knowledge and ability to apply correctly' },
+          { ar: 'التساؤل الفلسفي', en: 'Philosophical Questioning', defAr: 'طرح الأسئلة الجذرية عن الوجود والمعرفة والقيم', defEn: 'Asking radical questions about existence, knowledge, and values' }
+        ],
+        examples: [
+          { qAr: 'الأسئلة الفلسفية الأساسية', qEn: 'Fundamental philosophical questions', sAr: 'من نحن؟ ما الحقيقة؟ ما العدل؟ ما المعنى؟', sEn: 'Who are we? What is truth? What is justice? What is meaning?' }
+        ],
+        questions: [
+          { qAr: 'ما أصل كلمة فلسفة؟', qEn: 'What is the origin of the word philosophy?', answer: 'يوناني (فيلو صوفيا)', options: ['عربي', 'يوناني', 'لاتيني', 'فارسي'] },
+          { qAr: 'ما معنى فيلو صوفيا؟', qEn: 'What does philo-sophia mean?', answer: 'حب الحكمة', options: ['البحث عن الحقيقة', 'حب الحكمة', 'التفكير المنطقي', 'دراسة الطبيعة'] }
+        ]
+      },
+      'أساسيات المنطق': {
+        objectives: [
+          { ar: 'التعرف على مفهوم المنطق', en: 'Understanding the concept of logic' },
+          { ar: 'معرفة أنواع الاستدلال', en: 'Knowing types of reasoning' },
+          { ar: 'التدرب على التفكير المنطقي', en: 'Practicing logical thinking' }
+        ],
+        concepts: [
+          { ar: 'المنطق', en: 'Logic', defAr: 'علم يدرس قواعد التفكير السليم', defEn: 'The science that studies the rules of correct thinking' },
+          { ar: 'الاستدلال', en: 'Reasoning', defAr: 'انتقال الذهن من مقدمات إلى نتيجة', defEn: 'The mind moving from premises to a conclusion' },
+          { ar: 'القياس', en: 'Syllogism', defAr: 'شكل منطقي يتكون من مقدمتين ونتيجة', defEn: 'A logical form consisting of two premises and a conclusion' }
+        ],
+        examples: [
+          { qAr: 'مثال على القياس المنطقي', qEn: 'Example of logical syllogism', sAr: 'كل إنسان فانٍ (كبرى)\nسقراط إنسان (صغرى)\nإذن سقراط فانٍ (نتيجة)', sEn: 'All humans are mortal (major)\nSocrates is human (minor)\nTherefore, Socrates is mortal (conclusion)' }
+        ],
+        questions: [
+          { qAr: 'ما هو المنطق؟', qEn: 'What is logic?', answer: 'علم قواعد التفكير السليم', options: ['علم الرياضيات', 'علم قواعد التفكير السليم', 'علم النفس', 'علم اللغة'] }
+        ]
+      }
+    }
   }
 };
 
-// قوالب عامة للمواد الأخرى
-const genericTemplates = {
-  arabic: {
-    examples: [
-      {
-        questionAr: "حلل النص التالي واستخرج الأساليب البلاغية",
-        questionEn: "Analyze the text and extract rhetorical styles",
-        solutionAr: "يتم تحليل النص واستخراج الأساليب المطلوبة",
-        solutionEn: "Text is analyzed and required styles are extracted",
-        stepsAr: ["قراءة النص بعناية", "تحديد الأساليب البلاغية", "شرح كل أسلوب"],
-        stepsEn: ["Read text carefully", "Identify rhetorical styles", "Explain each style"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما الأسلوب البلاغي المستخدم؟",
-        questionEn: "What rhetorical style is used?",
-        optionsAr: ["تشبيه", "استعارة", "كناية", "جناس"],
-        optionsEn: ["Simile", "Metaphor", "Metonymy", "Paronomasia"],
-        answer: "تشبيه",
-        explanationAr: "التشبيه هو عقد مقارنة بين شيئين",
-        explanationEn: "Simile is comparing two things"
-      }
-    ]
-  },
-  english: {
-    examples: [
-      {
-        questionAr: "ترجم الجملة التالية إلى العربية",
-        questionEn: "Translate the following sentence to Arabic",
-        solutionAr: "الترجمة الصحيحة",
-        solutionEn: "Correct translation",
-        stepsAr: ["فهم معنى الجملة", "تحديد الكلمات المفتاحية", "صياغة الترجمة"],
-        stepsEn: ["Understand sentence meaning", "Identify keywords", "Formulate translation"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما معنى الكلمة؟",
-        questionEn: "What does the word mean?",
-        optionsAr: ["معنى 1", "معنى 2", "معنى 3", "معنى 4"],
-        optionsEn: ["Meaning 1", "Meaning 2", "Meaning 3", "Meaning 4"],
-        answer: "معنى 1",
-        explanationAr: "الشرح",
-        explanationEn: "Explanation"
-      }
-    ]
-  },
-  science: {
-    examples: [
-      {
-        questionAr: "اشرح الظاهرة العلمية",
-        questionEn: "Explain the scientific phenomenon",
-        solutionAr: "يتم شرح الظاهرة وذكر أسبابها ونتائجها",
-        solutionEn: "Phenomenon is explained with causes and results",
-        stepsAr: ["تحديد الظاهرة", "شرح الأسباب", "ذكر النتائج"],
-        stepsEn: ["Identify phenomenon", "Explain causes", "Mention results"]
-      }
-    ],
-    questions: [
-      {
-        type: "multiple_choice",
-        questionAr: "ما السبب الرئيسي للظاهرة؟",
-        questionEn: "What is the main cause of the phenomenon?",
-        optionsAr: ["سبب 1", "سبب 2", "سبب 3", "سبب 4"],
-        optionsEn: ["Cause 1", "Cause 2", "Cause 3", "Cause 4"],
-        answer: "سبب 1",
-        explanationAr: "الشرح",
-        explanationEn: "Explanation"
-      }
-    ],
-    formulas: [
-      {
-        formula: "القانون",
-        explanationAr: "شرح القانون",
-        explanationEn: "Law explanation"
-      }
-    ]
-  }
-};
+// ==================== دالة إضافة المحتوى ====================
 
-function getTemplateForSubject(subjectName: string) {
-  if (subjectName.includes("عربي")) return genericTemplates.arabic;
-  if (subjectName.includes("إنجليزي")) return genericTemplates.english;
-  return genericTemplates.science;
+async function addLessonContent(lesson: any, content: any) {
+  // إضافة الأهداف
+  if (content.objectives) {
+    for (let i = 0; i < content.objectives.length; i++) {
+      const obj = content.objectives[i];
+      await db.objective.create({
+        data: {
+          id: `obj_${Math.random().toString(36).substr(2, 16)}`,
+          lessonId: lesson.id,
+          textAr: obj.ar,
+          textEn: obj.en,
+          order: i + 1
+        }
+      });
+    }
+  }
+
+  // إضافة المفاهيم
+  if (content.concepts) {
+    for (let i = 0; i < content.concepts.length; i++) {
+      const concept = content.concepts[i];
+      await db.concept.create({
+        data: {
+          id: `con_${Math.random().toString(36).substr(2, 16)}`,
+          lessonId: lesson.id,
+          termAr: concept.ar,
+          termEn: concept.en,
+          definitionAr: concept.defAr,
+          definitionEn: concept.defEn,
+          order: i + 1
+        }
+      });
+    }
+  }
+
+  // إضافة القوانين
+  if (content.formulas) {
+    for (let i = 0; i < content.formulas.length; i++) {
+      const formula = content.formulas[i];
+      await db.formula.create({
+        data: {
+          id: `for_${Math.random().toString(36).substr(2, 16)}`,
+          lessonId: lesson.id,
+          formula: formula.f,
+          explanationAr: formula.arExp,
+          explanationEn: formula.enExp,
+          order: i + 1
+        }
+      });
+    }
+  }
+
+  // إضافة الأمثلة
+  if (content.examples) {
+    for (let i = 0; i < content.examples.length; i++) {
+      const example = content.examples[i];
+      await db.example.create({
+        data: {
+          id: `exa_${Math.random().toString(36).substr(2, 16)}`,
+          lessonId: lesson.id,
+          questionAr: example.qAr,
+          questionEn: example.qEn,
+          solutionAr: example.sAr,
+          solutionEn: example.sEn,
+          stepsAr: example.steps || '',
+          stepsEn: example.steps || '',
+          order: i + 1
+        }
+      });
+    }
+  }
+
+  // إضافة الأسئلة
+  if (content.questions) {
+    for (let i = 0; i < content.questions.length; i++) {
+      const q = content.questions[i];
+      await db.question.create({
+        data: {
+          id: `que_${Math.random().toString(36).substr(2, 16)}`,
+          lessonId: lesson.id,
+          type: 'mcq',
+          questionAr: q.qAr,
+          questionEn: q.qEn,
+          optionsAr: JSON.stringify(q.options),
+          optionsEn: JSON.stringify(q.options),
+          answer: q.answer,
+          points: 1,
+          order: i + 1
+        }
+      });
+    }
+  }
 }
 
-async function seedAllContent() {
-  console.log("📚 بدء ملء جميع البيانات...\n");
-
-  // الحصول على جميع الدروس بدون محتوى
-  const lessons = await prisma.lesson.findMany({
+async function main() {
+  console.log('=== Starting Content Seed ===');
+  
+  // جلب كل الدروس بدون محتوى
+  const lessons = await db.lesson.findMany({
     include: {
-      unit: {
-        include: {
-          subject: true
-        }
-      },
-      _count: {
-        select: { examples: true, questions: true }
-      }
+      Unit: { include: { Subject: { include: { AcademicYear: true } } } },
+      _count: { select: { Objective: true } }
     }
   });
-
-  console.log(`عدد الدروس الكلي: ${lessons.length}\n`);
-
+  
+  const lessonsWithoutContent = lessons.filter(l => l._count.Objective === 0);
+  console.log(`Found ${lessonsWithoutContent.length} lessons without content`);
+  
   let added = 0;
-  let skipped = 0;
-
-  for (const lesson of lessons) {
-    // تخطي الدروس التي لديها محتوى
-    if (lesson._count.examples > 0 && lesson._count.questions > 0) {
-      skipped++;
-      continue;
-    }
-
-    const subjectName = lesson.unit?.subject?.nameAr || "";
-    const content = lessonContent[lesson.titleAr];
+  
+  for (const lesson of lessonsWithoutContent) {
+    const subjectName = lesson.Unit.Subject.nameAr;
+    const lessonTitle = lesson.titleAr;
     
-    // استخدام المحتوى المحدد أو القالب العام
-    const data = content || getTemplateForSubject(subjectName);
-
-    if (data) {
-      try {
-        // إضافة الأمثلة
-        if (data.examples && lesson._count.examples === 0) {
-          for (let i = 0; i < data.examples.length; i++) {
-            const ex = data.examples[i];
-            await prisma.example.create({
-              data: {
-                lessonId: lesson.id,
-                questionAr: ex.questionAr,
-                questionEn: ex.questionEn,
-                solutionAr: ex.solutionAr,
-                solutionEn: ex.solutionEn,
-                stepsAr: JSON.stringify(ex.stepsAr),
-                stepsEn: JSON.stringify(ex.stepsEn),
-                order: i + 1
-              }
-            });
-          }
-        }
-
-        // إضافة الأسئلة
-        if (data.questions && lesson._count.questions === 0) {
-          for (let i = 0; i < data.questions.length; i++) {
-            const q = data.questions[i];
-            await prisma.question.create({
-              data: {
-                lessonId: lesson.id,
-                type: q.type,
-                questionAr: q.questionAr,
-                questionEn: q.questionEn,
-                optionsAr: JSON.stringify(q.optionsAr),
-                optionsEn: JSON.stringify(q.optionsEn),
-                answer: q.answer,
-                explanationAr: q.explanationAr,
-                explanationEn: q.explanationEn,
-                points: 1,
-                difficulty: "medium",
-                order: i + 1
-              }
-            });
-          }
-        }
-
-        // إضافة القوانين
-        if (data.formulas && data.formulas.length > 0) {
-          for (let i = 0; i < data.formulas.length; i++) {
-            const f = data.formulas[i];
-            await prisma.formula.create({
-              data: {
-                lessonId: lesson.id,
-                formula: f.formula,
-                explanationAr: f.explanationAr,
-                explanationEn: f.explanationEn,
-                order: i + 1
-              }
-            });
-          }
-        }
-
-        added++;
-        if (added % 100 === 0) {
-          console.log(`تم معالجة ${added} درس...`);
-        }
-      } catch (e) {
-        console.error(`خطأ في الدرس: ${lesson.titleAr}`);
-      }
+    // البحث عن المحتوى المناسب
+    const subjectContent = firstYearContent[subjectName];
+    if (subjectContent?.lessons?.[lessonTitle]) {
+      console.log(`Adding content for: ${subjectName} - ${lessonTitle}`);
+      await addLessonContent(lesson, subjectContent.lessons[lessonTitle]);
+      added++;
+    } else {
+      // إضافة محتوى افتراضي
+      console.log(`Adding default content for: ${subjectName} - ${lessonTitle}`);
+      await addLessonContent(lesson, {
+        objectives: [
+          { ar: `فهم درس ${lessonTitle}`, en: `Understanding ${lessonTitle}` }
+        ],
+        concepts: [
+          { ar: 'المفهوم الأساسي', en: 'Basic Concept', defAr: `شرح ${lessonTitle}`, defEn: `Explanation of ${lessonTitle}` }
+        ],
+        questions: [
+          { qAr: `ما هو الهدف من درس ${lessonTitle}؟`, qEn: `What is the purpose of ${lessonTitle}?`, answer: 'الفهم', options: ['الفهم', 'الحفظ', 'التكرار', 'النسخ'] }
+        ]
+      });
+      added++;
     }
   }
-
-  // الإحصائيات النهائية
-  const finalStats = await prisma.$transaction([
-    prisma.lesson.count(),
-    prisma.example.count(),
-    prisma.question.count(),
-    prisma.formula.count(),
-    prisma.objective.count(),
-    prisma.concept.count()
-  ]);
-
-  console.log(`\n📊 الإحصائيات النهائية:`);
-  console.log(`   الدروس: ${finalStats[0]}`);
-  console.log(`   الأمثلة: ${finalStats[1]}`);
-  console.log(`   الأسئلة: ${finalStats[2]}`);
-  console.log(`   القوانين: ${finalStats[3]}`);
-  console.log(`   الأهداف: ${finalStats[4]}`);
-  console.log(`   المفاهيم: ${finalStats[5]}`);
-  console.log(`\n   تمت معالجة: ${added}`);
-  console.log(`   تم تخطي (لديه محتوى): ${skipped}`);
-
-  await prisma.$disconnect();
-  console.log("\n✨ تم الانتهاء!");
+  
+  console.log(`\n=== Done! Added content to ${added} lessons ===`);
 }
 
-seedAllContent().catch(console.error);
+main()
+  .then(async () => {
+    await db.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await db.$disconnect();
+    process.exit(1);
+  });
