@@ -8,11 +8,11 @@ export async function GET() {
     const academicYears = await db.academicYear.findMany({
       orderBy: { order: "asc" },
       include: {
-        subjects: {
+        Subject: {
           orderBy: { order: "asc" },
           include: {
-            specialization: true,
-            units: {
+            Specialization: true,
+            Unit: {
               orderBy: { order: "asc" },
             },
           },

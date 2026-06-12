@@ -47,7 +47,8 @@ interface AcademicYearFromApi {
   nameAr: string;
   nameEn: string;
   order: number;
-  subjects: SubjectFromApi[];
+  Subject: SubjectFromApi[];
+  subjects?: SubjectFromApi[]; // alias for compatibility
 }
 
 interface SubjectFromApi {
@@ -59,13 +60,20 @@ interface SubjectFromApi {
   color: string;
   order: number;
   isCommon: boolean;
+  Specialization?: {
+    id: string;
+    code: string;
+    nameAr: string;
+    nameEn: string;
+  } | null;
   specialization?: {
     id: string;
     code: string;
     nameAr: string;
     nameEn: string;
   } | null;
-  units: UnitFromApi[];
+  Unit: UnitFromApi[];
+  units?: UnitFromApi[]; // alias for compatibility
 }
 
 interface UnitFromApi {
@@ -238,12 +246,13 @@ export default function MainPlatform({ onBack }: { onBack?: () => void }) {
     const year = academicYears.find(y => y.code === selectedYear);
     if (!year) return [];
     
-    let subjects = year.subjects;
+    // Use Subject (from API) or subjects (alias)
+    let subjects = year.Subject || year.subjects || [];
     
     // فلترة حسب التخصص
     if (selectedSpecialization && selectedYear !== "first-year") {
       subjects = subjects.filter(s => 
-        s.isCommon || s.specialization?.code === selectedSpecialization
+        s.isCommon || s.Specialization?.code === selectedSpecialization || s.specialization?.code === selectedSpecialization
       );
     }
     
@@ -439,14 +448,14 @@ export default function MainPlatform({ onBack }: { onBack?: () => void }) {
                       {language === "ar" ? selectedSubject.nameAr : selectedSubject.nameEn}
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400">
-                      {selectedSubject.units.length} {language === "ar" ? "وحدة" : "units"}
+                      {(selectedSubject.Unit?.length || selectedSubject.units?.length || 0)} {language === "ar" ? "وحدة" : "units"}
                     </p>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-4">
-                {selectedSubject.units
+                {((selectedSubject.Unit || selectedSubject.units || []) as UnitFromApi[])
                   .sort((a, b) => a.order - b.order)
                   .map((unit) => (
                     <UnitCard
@@ -517,7 +526,7 @@ export default function MainPlatform({ onBack }: { onBack?: () => void }) {
                                 {language === "ar" ? year.nameAr : year.nameEn}
                               </h3>
                               <p className="text-sm text-slate-500">
-                                {year.subjects?.length || 0} {language === "ar" ? "مادة" : "subjects"}
+                                {(year.Subject?.length || year.subjects?.length || 0)} {language === "ar" ? "مادة" : "subjects"}
                               </p>
                               {year.code === 'third-year' && (
                                 <Badge className="mt-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0">
@@ -654,7 +663,7 @@ export default function MainPlatform({ onBack }: { onBack?: () => void }) {
                                 {language === "ar" ? subject.nameAr : subject.nameEn}
                               </h3>
                               <p className="text-xs text-slate-500">
-                                {subject.units.length} {language === "ar" ? "وحدة" : "units"}
+                                {(subject.Unit?.length || subject.units?.length || 0)} {language === "ar" ? "وحدة" : "units"}
                               </p>
                             </CardContent>
                           </Card>
