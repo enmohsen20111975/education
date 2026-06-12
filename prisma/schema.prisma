@@ -10,18 +10,62 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ==================== السنوات الدراسية ====================
+model AcademicYear {
+  id          String    @id @default(cuid())
+  nameAr      String    // أولى ثانوي، ثانية ثانوي، ثالثة ثانوي
+  nameEn      String    // First Year, Second Year, Third Year
+  code        String    @unique // first, second, third
+  order       Int       @default(1)
+  subjects    Subject[]
+  users       User[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ==================== التخصصات ====================
+model Specialization {
+  id          String    @id @default(cuid())
+  nameAr      String    // علمي رياضة، علمي علوم، أدبي
+  nameEn      String    // Math Science, Science, Literary
+  code        String    @unique // math-science, science, literary
+  descriptionAr String?
+  descriptionEn String?
+  order       Int       @default(1)
+  subjects    Subject[]
+  users       User[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// ==================== الفصل الدراسي ====================
+model Semester {
+  id          String    @id @default(cuid())
+  nameAr      String    // الترم الأول، الترم الثاني
+  nameEn      String    // First Semester, Second Semester
+  code        String    @unique // first, second
+  order       Int       @default(1)
+  units       Unit[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
 // ==================== المستخدمين ====================
 model User {
   id           String     @id @default(cuid())
   email        String     @unique
   name         String
   password     String?
-  role         String     @default("student") // student, admin
+  role         String     @default("student") // student, teacher, admin
+  yearId       String?    // السنة الدراسية
+  specializationId String? // التخصص
   isSubscribed Boolean    @default(false)
   points       Int        @default(0)
-  level        String     @default("beginner") // beginner, learner, advanced, expert, teacher
+  level        String     @default("beginner")
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
+  year         AcademicYear?     @relation(fields: [yearId], references: [id])
+  specialization Specialization? @relation(fields: [specializationId], references: [id])
   progress     Progress[]
   quizResults  QuizResult[]
   badges       UserBadge[]
@@ -29,27 +73,37 @@ model User {
 
 // ==================== المواد ====================
 model Subject {
-  id          String    @id @default(cuid())
-  nameAr      String
-  nameEn      String
-  slug        String    @unique // physics, math, chemistry
-  icon        String
-  color       String
-  order       Int       @default(1)
-  units       Unit[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id               String    @id @default(cuid())
+  nameAr           String
+  nameEn           String
+  slug             String    @unique // physics, math, chemistry, biology, etc.
+  icon             String
+  color            String
+  order            Int       @default(1)
+  
+  // العلاقات الجديدة
+  yearId           String?
+  specializationId String?
+  isCommon         Boolean   @default(false) // مادة مشتركة (لكل التخصصات)
+  
+  year             AcademicYear?   @relation(fields: [yearId], references: [id])
+  specialization   Specialization? @relation(fields: [specializationId], references: [id])
+  units            Unit[]
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 }
 
 // ==================== الوحدات ====================
 model Unit {
   id          String    @id @default(cuid())
   subjectId   String
+  semesterId  String?
   nameAr      String
   nameEn      String
-  slug        String    @unique // mechanics, algebra, etc.
+  slug        String    @unique
   order       Int       @default(1)
   subject     Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  semester    Semester? @relation(fields: [semesterId], references: [id])
   lessons     Lesson[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
@@ -144,10 +198,12 @@ model Simulator {
   id          String   @id @default(cuid())
   nameAr      String
   nameEn      String
-  slug        String   @unique // motion, forces, energy, etc.
-  type        String   // physics, math, chemistry
+  slug        String   @unique
+  type        String   // physics, math, chemistry, biology, geography
   descriptionAr String
   descriptionEn String
+  icon        String?
+  difficulty  String   @default("intermediate") // beginner, intermediate, advanced
   lessons     LessonSimulator[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -168,7 +224,7 @@ model LessonSimulator {
 model Question {
   id            String   @id @default(cuid())
   lessonId      String
-  type          String   // mcq, numerical
+  type          String   // mcq, numerical, true-false
   questionAr    String
   questionEn    String
   optionsAr     String?  // JSON array
@@ -177,6 +233,7 @@ model Question {
   explanationAr String?
   explanationEn String?
   points        Int      @default(1)
+  difficulty    String   @default("medium") // easy, medium, hard
   order         Int      @default(1)
   lesson        Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
