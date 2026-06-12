@@ -83,6 +83,111 @@ interface SpecializationFromApi {
   nameEn: string;
 }
 
+// مكون بطاقة الوحدة
+function UnitCard({ 
+  unit, 
+  language,
+  onSelectLesson 
+}: { 
+  unit: UnitFromApi; 
+  language: string;
+  onSelectLesson: (lessonId: string) => void;
+}) {
+  const [lessons, setLessons] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const hasLoaded = useRef(false);
+
+  useEffect(() => {
+    if (!expanded || hasLoaded.current) return;
+    
+    hasLoaded.current = true;
+    
+    fetch(`/api/units/${unit.id}/lessons`)
+      .then(res => res.json())
+      .then(data => {
+        setLessons(data.lessons || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [expanded, unit.id]);
+
+  return (
+    <Card className="mb-4 overflow-hidden">
+      <div 
+        className="p-4 bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900 cursor-pointer flex items-center justify-between"
+        onClick={() => setExpanded(!expanded)}
+      >
+        <h3 className="font-bold text-slate-800 dark:text-white">
+          {language === "ar" ? unit.nameAr : unit.nameEn}
+        </h3>
+        <div className="flex items-center gap-2">
+          <Badge variant="secondary" className="text-xs">
+            {lessons.length || "..."} {language === "ar" ? "درس" : "lessons"}
+          </Badge>
+          <ChevronLeft className={`w-4 h-4 transition-transform ${expanded ? "-rotate-90" : ""}`} />
+        </div>
+      </div>
+      
+      {expanded && (
+        <div className="p-4 border-t border-slate-200 dark:border-slate-700">
+          {loading ? (
+            <div className="text-center py-4">
+              <div className="animate-spin w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full mx-auto"></div>
+            </div>
+          ) : lessons.length === 0 ? (
+            <div className="text-center py-4 text-slate-500">
+              <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
+              <p className="text-sm">
+                {language === "ar" ? "لا توجد دروس بعد" : "No lessons yet"}
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              {lessons.map((lesson) => (
+                <motion.div
+                  key={lesson.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+                  onClick={() => onSelectLesson(lesson.id)}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+                      {lesson.isFree ? (
+                        <Play className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      ) : (
+                        <Lock className="w-4 h-4 text-slate-400" />
+                      )}
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-slate-800 dark:text-white">
+                        {language === "ar" ? lesson.titleAr : lesson.titleEn}
+                      </h4>
+                      <div className="flex items-center gap-2 text-xs text-slate-500">
+                        <Clock className="w-3 h-3" />
+                        <span>{lesson.duration} {language === "ar" ? "دقيقة" : "min"}</span>
+                        {lesson.simulators?.length > 0 && (
+                          <>
+                            <span>•</span>
+                            <Zap className="w-3 h-3 text-amber-500" />
+                            <span>{lesson.simulators.length} {language === "ar" ? "محاكي" : "sims"}</span>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <ChevronLeft className="w-4 h-4 text-slate-400" />
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </Card>
+  );
+}
+
 // المكون الرئيسي
 function MainContent() {
   const { language, toggleLanguage, t } = useLanguage();
@@ -500,22 +605,12 @@ function MainContent() {
 
                   {/* الوحدات */}
                   {selectedSubject.units?.map((unit, unitIndex) => (
-                    <Card key={unit.id} className="mb-4">
-                      <div className="p-4 bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-t-lg">
-                        <h3 className="font-bold text-slate-800 dark:text-white">
-                          {language === "ar" ? unit.nameAr : unit.nameEn}
-                        </h3>
-                      </div>
-                      <div className="p-4 text-center text-slate-500">
-                        <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                        <p className="text-sm">
-                          {language === "ar" ? "الدروس قيد الإضافة..." : "Lessons are being added..."}
-                        </p>
-                        <p className="text-xs text-slate-400 mt-1">
-                          {language === "ar" ? "المرحلة الأولى: الفيزياء والرياضيات للثالثة الثانوي" : "Phase 1: Physics & Math for 3rd Year"}
-                        </p>
-                      </div>
-                    </Card>
+                    <UnitCard 
+                      key={unit.id} 
+                      unit={unit} 
+                      language={language}
+                      onSelectLesson={handleSelectLesson}
+                    />
                   ))}
                 </div>
               )}
