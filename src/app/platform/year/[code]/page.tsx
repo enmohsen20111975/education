@@ -123,26 +123,6 @@ export default function YearPage() {
       // Show subjects matching the selected specialization
       if (subject.Specialization?.code === selectedSpec) return true;
       
-      // Physics and Chemistry are shown to both science and math streams
-      // They are assigned to math stream but science students should see them too
-      if (selectedSpec === 'science' && subject.Specialization?.code === 'math') {
-        const subjectName = subject.nameAr + ' ' + subject.nameEn;
-        if (subjectName.includes('فيزياء') || subjectName.includes('Physics') || 
-            subjectName.includes('كيمياء') || subjectName.includes('Chemistry')) {
-          return true;
-        }
-      }
-      
-      // For math stream, also show science stream subjects (except biology and regular math)
-      // This allows math students to see physics, chemistry
-      if (selectedSpec === 'math' && subject.Specialization?.code === 'science') {
-        // Exclude biology for math stream
-        if (subject.nameAr === 'الأحياء' || subject.nameEn === 'Biology') return false;
-        // Exclude regular mathematics for math stream (they have math 1 & 2)
-        if (subject.nameAr === 'الرياضيات' || subject.nameEn === 'Mathematics') return false;
-        return true;
-      }
-      
       return false;
     });
   };
