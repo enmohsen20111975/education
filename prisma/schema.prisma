@@ -8,251 +8,19 @@ datasource db {
 }
 
 model AcademicYear {
-  id        String    @id @default(cuid())
+  id        String    @id
   nameAr    String
   nameEn    String
   code      String    @unique
   order     Int       @default(1)
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  subjects  Subject[]
-  users     User[]
-}
-
-model Specialization {
-  id            String    @id @default(cuid())
-  nameAr        String
-  nameEn        String
-  code          String    @unique
-  descriptionAr String?
-  descriptionEn String?
-  order         Int       @default(1)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  subjects      Subject[]
-  users         User[]
-}
-
-model Semester {
-  id        String   @id @default(cuid())
-  nameAr    String
-  nameEn    String
-  code      String   @unique
-  order     Int      @default(1)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  units     Unit[]
-}
-
-model User {
-  id               String          @id @default(cuid())
-  email            String          @unique
-  name             String
-  password         String?
-  role             String          @default("student")
-  yearId           String?
-  specializationId String?
-  isSubscribed     Boolean         @default(false)
-  points           Int             @default(0)
-  level            String          @default("beginner")
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
-  progress         Progress[]
-  quizResults      QuizResult[]
-  specialization   Specialization? @relation(fields: [specializationId], references: [id])
-  year             AcademicYear?   @relation(fields: [yearId], references: [id])
-  badges           UserBadge[]
-}
-
-model Subject {
-  id               String          @id @default(cuid())
-  nameAr           String
-  nameEn           String
-  slug             String          @unique
-  icon             String
-  color            String
-  order            Int             @default(1)
-  yearId           String?
-  specializationId String?
-  isCommon         Boolean         @default(false)
-  createdAt        DateTime        @default(now())
-  updatedAt        DateTime        @updatedAt
-  specialization   Specialization? @relation(fields: [specializationId], references: [id])
-  year             AcademicYear?   @relation(fields: [yearId], references: [id])
-  units            Unit[]
-}
-
-model Unit {
-  id         String    @id @default(cuid())
-  subjectId  String
-  semesterId String?
-  nameAr     String
-  nameEn     String
-  slug       String    @unique
-  order      Int       @default(1)
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  lessons    Lesson[]
-  semester   Semester? @relation(fields: [semesterId], references: [id])
-  subject    Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
-}
-
-model Lesson {
-  id             String            @id @default(cuid())
-  unitId         String
-  titleAr        String
-  titleEn        String
-  slug           String            @unique
-  descriptionAr  String
-  descriptionEn  String
-  duration       Int
-  order          Int               @default(1)
-  isFree         Boolean           @default(false)
-  videoUrl       String?
-  pdfUrl         String?
-  thumbnailUrl   String?
-  introductionAr String
-  introductionEn String
-  summaryAr      String
-  summaryEn      String
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
-  concepts       Concept[]
-  examples       Example[]
-  formulas       Formula[]
-  unit           Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
-  simulators     LessonSimulator[]
-  objectives     Objective[]
-  progress       Progress[]
-  questions      Question[]
-  quizResults    QuizResult[]
-}
-
-model Objective {
-  id       String @id @default(cuid())
-  lessonId String
-  textAr   String
-  textEn   String
-  order    Int    @default(1)
-  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-}
-
-model Concept {
-  id           String @id @default(cuid())
-  lessonId     String
-  termAr       String
-  termEn       String
-  definitionAr String
-  definitionEn String
-  order        Int    @default(1)
-  lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-}
-
-model Formula {
-  id            String @id @default(cuid())
-  lessonId      String
-  formula       String
-  explanationAr String
-  explanationEn String
-  order         Int    @default(1)
-  lesson        Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-}
-
-model Example {
-  id         String @id @default(cuid())
-  lessonId   String
-  questionAr String
-  questionEn String
-  solutionAr String
-  solutionEn String
-  stepsAr    String
-  stepsEn    String
-  order      Int    @default(1)
-  lesson     Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-}
-
-model Simulator {
-  id            String            @id @default(cuid())
-  nameAr        String
-  nameEn        String
-  slug          String            @unique
-  type          String
-  descriptionAr String
-  descriptionEn String
-  icon          String?
-  difficulty    String            @default("intermediate")
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
-  lessons       LessonSimulator[]
-}
-
-model LessonSimulator {
-  id          String    @id @default(cuid())
-  lessonId    String
-  simulatorId String
-  simulator   Simulator @relation(fields: [simulatorId], references: [id], onDelete: Cascade)
-  lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-
-  @@unique([lessonId, simulatorId])
-}
-
-model Question {
-  id            String  @id @default(cuid())
-  lessonId      String
-  type          String
-  questionAr    String
-  questionEn    String
-  optionsAr     String?
-  optionsEn     String?
-  answer        String
-  explanationAr String?
-  explanationEn String?
-  points        Int     @default(1)
-  difficulty    String  @default("medium")
-  order         Int     @default(1)
-  lesson        Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-}
-
-model Progress {
-  id        String    @id @default(cuid())
-  userId    String
-  lessonId  String
-  completed Boolean   @default(false)
-  score     Int?
-  timeSpent Int       @default(0)
-  watchedAt DateTime?
-  lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, lessonId])
-}
-
-model QuizResult {
-  id          String   @id @default(cuid())
-  userId      String
-  lessonId    String
-  score       Int
-  totalPoints Int
-  answers     String
-  completedAt DateTime @default(now())
-  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, lessonId])
-}
-
-model UserBadge {
-  id        String   @id @default(cuid())
-  userId    String
-  badgeSlug String
-  earnedAt  DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, badgeSlug])
+  updatedAt DateTime
+  Subject   Subject[]
+  User      User[]
 }
 
 model Badge {
-  id            String   @id @default(cuid())
+  id            String   @id
   slug          String   @unique
   nameAr        String
   nameEn        String
@@ -265,15 +33,247 @@ model Badge {
   createdAt     DateTime @default(now())
 }
 
+model Concept {
+  id           String @id
+  lessonId     String
+  termAr       String
+  termEn       String
+  definitionAr String
+  definitionEn String
+  order        Int    @default(1)
+  Lesson       Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Example {
+  id         String @id
+  lessonId   String
+  questionAr String
+  questionEn String
+  solutionAr String
+  solutionEn String
+  stepsAr    String
+  stepsEn    String
+  order      Int    @default(1)
+  Lesson     Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Formula {
+  id            String @id
+  lessonId      String
+  formula       String
+  explanationAr String
+  explanationEn String
+  order         Int    @default(1)
+  Lesson        Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Infographic {
+  id       String @id
+  lessonId String @unique
+  type     String
+  data     String
+}
+
+model Lesson {
+  id              String            @id
+  unitId          String
+  titleAr         String
+  titleEn         String
+  slug            String            @unique
+  descriptionAr   String
+  descriptionEn   String
+  duration        Int
+  order           Int               @default(1)
+  isFree          Boolean           @default(false)
+  videoUrl        String?
+  pdfUrl          String?
+  thumbnailUrl    String?
+  introductionAr  String
+  introductionEn  String
+  summaryAr       String
+  summaryEn       String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  Concept         Concept[]
+  Example         Example[]
+  Formula         Formula[]
+  Unit            Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  LessonSimulator LessonSimulator[]
+  Objective       Objective[]
+  Progress        Progress[]
+  Question        Question[]
+  QuizResult      QuizResult[]
+}
+
+model LessonSimulator {
+  id          String    @id
+  lessonId    String
+  simulatorId String
+  Simulator   Simulator @relation(fields: [simulatorId], references: [id], onDelete: Cascade)
+  Lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([lessonId, simulatorId])
+}
+
 model MindMap {
-  id       String @id @default(cuid())
+  id       String @id
   lessonId String @unique
   data     String
 }
 
-model Infographic {
-  id       String @id @default(cuid())
-  lessonId String @unique
-  type     String
-  data     String
+model Objective {
+  id       String @id
+  lessonId String
+  textAr   String
+  textEn   String
+  order    Int    @default(1)
+  Lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model Progress {
+  id        String    @id
+  userId    String
+  lessonId  String
+  completed Boolean   @default(false)
+  score     Int?
+  timeSpent Int       @default(0)
+  watchedAt DateTime?
+  Lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  User      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model Question {
+  id            String  @id
+  lessonId      String
+  type          String
+  questionAr    String
+  questionEn    String
+  optionsAr     String?
+  optionsEn     String?
+  answer        String
+  explanationAr String?
+  explanationEn String?
+  points        Int     @default(1)
+  difficulty    String  @default("medium")
+  order         Int     @default(1)
+  Lesson        Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model QuizResult {
+  id          String   @id
+  userId      String
+  lessonId    String
+  score       Int
+  totalPoints Int
+  answers     String
+  completedAt DateTime @default(now())
+  Lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+}
+
+model Semester {
+  id        String   @id
+  nameAr    String
+  nameEn    String
+  code      String   @unique
+  order     Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  Unit      Unit[]
+}
+
+model Simulator {
+  id              String            @id
+  nameAr          String
+  nameEn          String
+  slug            String            @unique
+  type            String
+  descriptionAr   String
+  descriptionEn   String
+  icon            String?
+  difficulty      String            @default("intermediate")
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime
+  LessonSimulator LessonSimulator[]
+}
+
+model Specialization {
+  id            String    @id
+  nameAr        String
+  nameEn        String
+  code          String    @unique
+  descriptionAr String?
+  descriptionEn String?
+  order         Int       @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime
+  Subject       Subject[]
+  User          User[]
+}
+
+model Subject {
+  id               String          @id
+  nameAr           String
+  nameEn           String
+  slug             String          @unique
+  icon             String
+  color            String
+  order            Int             @default(1)
+  yearId           String?
+  specializationId String?
+  isCommon         Boolean         @default(false)
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime
+  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
+  AcademicYear     AcademicYear?   @relation(fields: [yearId], references: [id])
+  Unit             Unit[]
+}
+
+model Unit {
+  id         String    @id
+  subjectId  String
+  semesterId String?
+  nameAr     String
+  nameEn     String
+  slug       String    @unique
+  order      Int       @default(1)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  Lesson     Lesson[]
+  Semester   Semester? @relation(fields: [semesterId], references: [id])
+  Subject    Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id               String          @id
+  email            String          @unique
+  name             String
+  password         String?
+  role             String          @default("student")
+  yearId           String?
+  specializationId String?
+  isSubscribed     Boolean         @default(false)
+  points           Int             @default(0)
+  level            String          @default("beginner")
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime
+  Progress         Progress[]
+  QuizResult       QuizResult[]
+  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
+  AcademicYear     AcademicYear?   @relation(fields: [yearId], references: [id])
+  UserBadge        UserBadge[]
+}
+
+model UserBadge {
+  id        String   @id
+  userId    String
+  badgeSlug String
+  earnedAt  DateTime @default(now())
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, badgeSlug])
 }
