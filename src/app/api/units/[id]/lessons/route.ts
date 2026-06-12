@@ -12,12 +12,12 @@ export async function GET(
     const lessons = await db.lesson.findMany({
       where: { unitId: id },
       include: {
-        simulators: {
+        LessonSimulator: {
           include: {
-            simulator: true,
+            Simulator: true,
           },
         },
-        objectives: {
+        Objective: {
           orderBy: { order: "asc" },
         },
       },

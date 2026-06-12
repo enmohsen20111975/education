@@ -2,16 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   Play, Sparkles, Rocket, Star, Zap, Trophy, Users, BookOpen,
-  ChevronDown, ArrowRight, Heart, Atom, Calculator, FlaskConical, Leaf,
+  ChevronDown, Heart, Atom, Calculator, FlaskConical, Leaf,
   Globe, Moon, Sun, Brain, Quote, Instagram, Twitter, Youtube
 } from "lucide-react";
-import { LanguageProvider } from "@/lib/i18n";
-import MainPlatform from "@/components/MainPlatform";
 
 // ==================== ANIMATIONS ====================
 const fadeInUp = {
@@ -38,7 +36,6 @@ const floatAnimation = {
 
 // ==================== MAIN APP ====================
 export default function HomePage() {
-  const [showPlatform, setShowPlatform] = useState(false);
   const [lang, setLang] = useState<"ar" | "en">("ar");
   const [isDark, setIsDark] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -56,17 +53,6 @@ export default function HomePage() {
   const t = (ar: string, en: string) => lang === "ar" ? ar : en;
   const isRTL = lang === "ar";
 
-  // إذا كان يعرض المنصة الرئيسية
-  if (showPlatform) {
-    return (
-      <LanguageProvider>
-        <MainPlatform onBack={() => setShowPlatform(false)} />
-      </LanguageProvider>
-    );
-  }
-
-  // ==================== LANDING PAGE ====================
-  
   // Features data
   const features = [
     { icon: Zap, title: { ar: "تعلم تفاعلي", en: "Interactive Learning" }, desc: { ar: "محاكيات ومحادثات ذكية", en: "Simulators & AI Chat" }, color: "from-purple-500 to-pink-500" },
@@ -140,7 +126,12 @@ export default function HomePage() {
             </span>
           </motion.div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            <Link href="/platform">
+              <Button variant="ghost" size="sm" className="rounded-full">
+                {t("المنصة", "Platform")}
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               size="sm"
@@ -233,14 +224,15 @@ export default function HomePage() {
                   variants={fadeInUp}
                   className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                  <Button 
-                    size="lg"
-                    onClick={() => setShowPlatform(true)}
-                    className="btn-youth px-8 py-6 text-lg text-white"
-                  >
-                    <Rocket className="w-5 h-5 mr-2" />
-                    {t("ابدأ التعلم الآن", "Start Learning Now")}
-                  </Button>
+                  <Link href="/platform">
+                    <Button 
+                      size="lg"
+                      className="btn-youth px-8 py-6 text-lg text-white"
+                    >
+                      <Rocket className="w-5 h-5 mr-2" />
+                      {t("ابدأ التعلم الآن", "Start Learning Now")}
+                    </Button>
+                  </Link>
                   <Button 
                     size="lg"
                     variant="outline"
@@ -378,16 +370,14 @@ export default function HomePage() {
             className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
           >
             {subjects.map((subject, index) => (
-              <motion.div
-                key={index}
-                variants={scaleIn}
-                whileHover={{ y: -5, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowPlatform(true)}
-                className="cursor-pointer group"
-              >
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-6 text-center">
+              <Link key={index} href="/platform">
+                <motion.div
+                  variants={scaleIn}
+                  whileHover={{ y: -5, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="cursor-pointer group"
+                >
+                  <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden rounded-xl bg-card p-6 text-center">
                     <motion.div 
                       className="w-16 h-16 rounded-2xl mx-auto mb-3 flex items-center justify-center"
                       style={{ backgroundColor: `${subject.color}20` }}
@@ -402,9 +392,9 @@ export default function HomePage() {
                     <p className="text-xs text-muted-foreground">
                       {subject.lessons} {t("درس", "lessons")}
                     </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
         </div>
@@ -503,14 +493,14 @@ export default function HomePage() {
               </p>
               
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button 
-                  size="lg"
-                  onClick={() => setShowPlatform(true)}
-                  className="bg-white text-purple-600 hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl"
-                >
-                  {t("ابدأ مجاناً الآن", "Start Free Now")}
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                <Link href="/platform">
+                  <Button 
+                    size="lg"
+                    className="bg-white text-purple-600 hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl"
+                  >
+                    {t("ابدأ مجاناً الآن", "Start Free Now")}
+                  </Button>
+                </Link>
               </motion.div>
             </div>
           </motion.div>

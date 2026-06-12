@@ -12,29 +12,29 @@ export async function GET(
     const lesson = await db.lesson.findUnique({
       where: { id },
       include: {
-        unit: {
+        Unit: {
           include: {
-            subject: true,
+            Subject: true,
           },
         },
-        objectives: {
+        Objective: {
           orderBy: { order: "asc" },
         },
-        concepts: {
+        Concept: {
           orderBy: { order: "asc" },
         },
-        formulas: {
+        Formula: {
           orderBy: { order: "asc" },
         },
-        examples: {
+        Example: {
           orderBy: { order: "asc" },
         },
-        simulators: {
+        LessonSimulator: {
           include: {
-            simulator: true,
+            Simulator: true,
           },
         },
-        questions: {
+        Question: {
           orderBy: { order: "asc" },
         },
       },
@@ -80,45 +80,45 @@ export async function GET(
         en: lesson.summaryEn,
       },
       unit: {
-        id: lesson.unit.id,
-        slug: lesson.unit.slug,
-        nameAr: lesson.unit.nameAr,
-        nameEn: lesson.unit.nameEn,
+        id: lesson.Unit.id,
+        slug: lesson.Unit.slug,
+        nameAr: lesson.Unit.nameAr,
+        nameEn: lesson.Unit.nameEn,
         subject: {
-          id: lesson.unit.subject.id,
-          slug: lesson.unit.subject.slug,
-          nameAr: lesson.unit.subject.nameAr,
-          nameEn: lesson.unit.subject.nameEn,
-          icon: lesson.unit.subject.icon,
-          color: lesson.unit.subject.color,
+          id: lesson.Unit.Subject.id,
+          slug: lesson.Unit.Subject.slug,
+          nameAr: lesson.Unit.Subject.nameAr,
+          nameEn: lesson.Unit.Subject.nameEn,
+          icon: lesson.Unit.Subject.icon,
+          color: lesson.Unit.Subject.color,
         },
       },
       objectives: {
-        ar: lesson.objectives.map(o => o.textAr),
-        en: lesson.objectives.map(o => o.textEn),
+        ar: lesson.Objective.map(o => o.textAr),
+        en: lesson.Objective.map(o => o.textEn),
       },
       keyConcepts: {
-        ar: lesson.concepts.map(c => ({ term: c.termAr, definition: c.definitionAr })),
-        en: lesson.concepts.map(c => ({ term: c.termEn, definition: c.definitionEn })),
+        ar: lesson.Concept.map(c => ({ term: c.termAr, definition: c.definitionAr })),
+        en: lesson.Concept.map(c => ({ term: c.termEn, definition: c.definitionEn })),
       },
       formulas: {
-        ar: lesson.formulas.map(f => ({ formula: f.formula, explanation: f.explanationAr })),
-        en: lesson.formulas.map(f => ({ formula: f.formula, explanation: f.explanationEn })),
+        ar: lesson.Formula.map(f => ({ formula: f.formula, explanation: f.explanationAr })),
+        en: lesson.Formula.map(f => ({ formula: f.formula, explanation: f.explanationEn })),
       },
       examples: {
-        ar: lesson.examples.map(e => ({
+        ar: lesson.Example.map(e => ({
           question: e.questionAr,
           solution: e.solutionAr,
           steps: JSON.parse(e.stepsAr || "[]"),
         })),
-        en: lesson.examples.map(e => ({
+        en: lesson.Example.map(e => ({
           question: e.questionEn,
           solution: e.solutionEn,
           steps: JSON.parse(e.stepsEn || "[]"),
         })),
       },
-      simulators: lesson.simulators.map(s => s.simulator.slug),
-      questions: lesson.questions.map(q => ({
+      simulators: lesson.LessonSimulator.map(s => s.Simulator?.slug).filter(Boolean),
+      questions: lesson.Question.map(q => ({
         id: q.id,
         type: q.type,
         questionAr: q.questionAr,
