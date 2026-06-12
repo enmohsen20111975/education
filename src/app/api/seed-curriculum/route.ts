@@ -168,7 +168,70 @@ const simulatorsConfig = [
   { nameAr: "محاكي الحضارات", nameEn: "Civilizations Simulator", slug: "civilizations", type: "history", descriptionAr: "محاكاة الحضارات القديمة", descriptionEn: "Simulate ancient civilizations", difficulty: "intermediate" },
 ];
 
-// وحدات المنهج للصف الثالث الثانوي (MVP)
+// وحدات الصف الأول الثانوي
+const firstYearUnits: Record<string, { nameAr: string; nameEn: string; slug: string; order: number }[]> = {
+  "physics-1": [
+    { nameAr: "مقدمة في الفيزياء", nameEn: "Introduction to Physics", slug: "intro-physics", order: 1 },
+    { nameAr: "الحركة والقوى", nameEn: "Motion and Forces", slug: "motion-forces", order: 2 },
+    { nameAr: "الطاقة والشغل", nameEn: "Energy and Work", slug: "energy-work", order: 3 },
+  ],
+  "mathematics-1": [
+    { nameAr: "الجبر الأساسي", nameEn: "Basic Algebra", slug: "algebra-basics", order: 1 },
+    { nameAr: "الهندسة", nameEn: "Geometry", slug: "geometry-basics", order: 2 },
+    { nameAr: "الإحصاء", nameEn: "Statistics", slug: "statistics-basics", order: 3 },
+  ],
+  "chemistry-1": [
+    { nameAr: "مقدمة في الكيمياء", nameEn: "Introduction to Chemistry", slug: "intro-chemistry", order: 1 },
+    { nameAr: "الذرة والجزيء", nameEn: "Atom and Molecule", slug: "atom-molecule", order: 2 },
+    { nameAr: "التفاعلات الكيميائية", nameEn: "Chemical Reactions", slug: "chemical-reactions", order: 3 },
+  ],
+  "biology-1": [
+    { nameAr: "الخلية", nameEn: "The Cell", slug: "cell-basics", order: 1 },
+    { nameAr: "الكائنات الحية", nameEn: "Living Organisms", slug: "living-organisms", order: 2 },
+  ],
+  "arabic-1": [
+    { nameAr: "القراءة والنصوص", nameEn: "Reading and Texts", slug: "reading-texts-1", order: 1 },
+    { nameAr: "النحو", nameEn: "Grammar", slug: "grammar-1", order: 2 },
+    { nameAr: "الأدب", nameEn: "Literature", slug: "literature-1", order: 3 },
+  ],
+  "english-1": [
+    { nameAr: "القراءة", nameEn: "Reading", slug: "reading-1", order: 1 },
+    { nameAr: "القواعد", nameEn: "Grammar", slug: "grammar-1", order: 2 },
+    { nameAr: "الكتابة", nameEn: "Writing", slug: "writing-1", order: 3 },
+  ],
+};
+
+// وحدات الصف الثاني الثانوي
+const secondYearUnits: Record<string, { nameAr: string; nameEn: string; slug: string; order: number }[]> = {
+  "physics-2-math": [
+    { nameAr: "الكهرباء", nameEn: "Electricity", slug: "electricity", order: 1 },
+    { nameAr: "المغناطيسية", nameEn: "Magnetism", slug: "magnetism", order: 2 },
+    { nameAr: "الضوء", nameEn: "Light", slug: "light", order: 3 },
+  ],
+  "physics-2-sci": [
+    { nameAr: "الكهرباء", nameEn: "Electricity", slug: "electricity", order: 1 },
+    { nameAr: "المغناطيسية", nameEn: "Magnetism", slug: "magnetism", order: 2 },
+  ],
+  "chemistry-2-math": [
+    { nameAr: "الجدول الدوري", nameEn: "Periodic Table", slug: "periodic-table", order: 1 },
+    { nameAr: "الروابط الكيميائية", nameEn: "Chemical Bonds", slug: "chemical-bonds", order: 2 },
+  ],
+  "chemistry-2-sci": [
+    { nameAr: "الجدول الدوري", nameEn: "Periodic Table", slug: "periodic-table", order: 1 },
+    { nameAr: "الروابط الكيميائية", nameEn: "Chemical Bonds", slug: "chemical-bonds", order: 2 },
+  ],
+  "mathematics-2-math": [
+    { nameAr: "المثلثات", nameEn: "Trigonometry", slug: "trigonometry", order: 1 },
+    { nameAr: "التفاضل", nameEn: "Differentiation", slug: "differentiation", order: 2 },
+    { nameAr: "التكامل", nameEn: "Integration", slug: "integration", order: 3 },
+  ],
+  "mathematics-2-sci": [
+    { nameAr: "المثلثات", nameEn: "Trigonometry", slug: "trigonometry", order: 1 },
+    { nameAr: "التفاضل", nameEn: "Differentiation", slug: "differentiation", order: 2 },
+  ],
+};
+
+// وحدات الصف الثالث الثانوي
 const thirdYearUnits: Record<string, { nameAr: string; nameEn: string; slug: string; order: number }[]> = {
   // فيزياء - علمي رياضة وعلوم
   "physics-3-math": [
@@ -338,7 +401,7 @@ export async function POST() {
     // 6. إنشاء المواد للصف الأول الثانوي (مشترك)
     console.log("Creating first year subjects (common)...");
     for (const subj of subjectsConfig["first-year"]) {
-      await db.subject.create({
+      const subject = await db.subject.create({
         data: {
           nameAr: subj.nameAr,
           nameEn: subj.nameEn,
@@ -350,6 +413,24 @@ export async function POST() {
           order: subjectsConfig["first-year"].indexOf(subj) + 1,
         },
       });
+      
+      // إنشاء الوحدات للصف الأول
+      const units = firstYearUnits[subj.slug];
+      if (units) {
+        for (const unit of units) {
+          const uniqueSlug = `${subj.slug}-${unit.slug}`;
+          await db.unit.create({
+            data: {
+              subjectId: subject.id,
+              semesterId: semesterRecords["first"].id,
+              nameAr: unit.nameAr,
+              nameEn: unit.nameEn,
+              slug: uniqueSlug,
+              order: unit.order,
+            },
+          });
+        }
+      }
     }
     
     // 7. إنشاء المواد للصف الثاني الثانوي
@@ -362,7 +443,7 @@ export async function POST() {
     
     for (const config of secondYearConfigs) {
       for (const subj of subjectsConfig[config.key]) {
-        await db.subject.create({
+        const subject = await db.subject.create({
           data: {
             nameAr: subj.nameAr,
             nameEn: subj.nameEn,
@@ -375,6 +456,24 @@ export async function POST() {
             order: subjectsConfig[config.key].indexOf(subj) + 1,
           },
         });
+        
+        // إنشاء الوحدات للصف الثاني
+        const units = secondYearUnits[subj.slug];
+        if (units) {
+          for (const unit of units) {
+            const uniqueSlug = `${subj.slug}-${unit.slug}`;
+            await db.unit.create({
+              data: {
+                subjectId: subject.id,
+                semesterId: semesterRecords["first"].id,
+                nameAr: unit.nameAr,
+                nameEn: unit.nameEn,
+                slug: uniqueSlug,
+                order: unit.order,
+              },
+            });
+          }
+        }
       }
     }
     
