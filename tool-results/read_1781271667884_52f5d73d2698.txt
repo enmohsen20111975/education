@@ -1,0 +1,695 @@
+     1→     1→"use client";
+     2→     2→
+     3→     3→import { LanguageProvider, useLanguage } from "@/lib/i18n";
+     4→     4→import { Button } from "@/components/ui/button";
+     5→     5→import { Card, CardContent } from "@/components/ui/card";
+     6→     6→import { Badge } from "@/components/ui/badge";
+     7→     7→import { Progress } from "@/components/ui/progress";
+     8→     8→import { 
+     9→     9→  BookOpen, Play, FlaskConical, ChevronLeft, ChevronRight, Globe, User,
+    10→    10→  Atom, Calculator, Beaker, Lock, CheckCircle, Clock, Brain,
+    11→    11→  Zap, Target, Award, TrendingUp, Moon, Sun, Sparkles, Rocket,
+    12→    12→  Cpu, Microscope, BarChart3, Users, Menu, X, RefreshCw, Database, Trophy,
+    13→    13→  Leaf, Map, Landmark, Sigma, Eye, Waves, Dna, Activity, CircleDot, Sun as SunIcon
+    14→    14→} from "lucide-react";
+    15→    15→import { useState, useEffect, useRef } from "react";
+    16→    16→import { LessonView } from "@/components/LessonView";
+    17→    17→import { motion, AnimatePresence } from "framer-motion";
+    18→    18→import { 
+    19→    19→  RewardsSystem, 
+    20→    20→  AchievementBar, 
+    21→    21→  BadgesDisplay, 
+    22→    22→  NewBadgeModal,
+    23→    23→  useRewards,
+    24→    24→} from "@/components/RewardsSystem";
+    25→    25→import { useApi, type LessonDetailFromApi } from "@/hooks/useApi";
+    26→    26→
+    27→    27→// أيقونات المواد
+    28→    28→const subjectIcons: Record<string, any> = {
+    29→    29→  Atom,
+    30→    30→  Calculator,
+    31→    31→  FlaskConical,
+    32→    32→  Leaf,
+    33→    33→  Map,
+    34→    34→  Landmark,
+    35→    35→  BookOpen,
+    36→    36→  Globe,
+    37→    37→  Cpu,
+    38→    38→  Eye,
+    39→    39→  Sigma,
+    40→    40→  BarChart3,
+    41→    41→};
+    42→    42→
+    43→    43→// نوع بيانات السنة الدراسية
+    44→    44→interface AcademicYearFromApi {
+    45→    45→  id: string;
+    46→    46→  code: string;
+    47→    47→  nameAr: string;
+    48→    48→  nameEn: string;
+    49→    49→  order: number;
+    50→    50→  subjects: SubjectFromApi[];
+    51→    51→}
+    52→    52→
+    53→    53→interface SubjectFromApi {
+    54→    54→  id: string;
+    55→    55→  slug: string;
+    56→    56→  nameAr: string;
+    57→    57→  nameEn: string;
+    58→    58→  icon: string;
+    59→    59→  color: string;
+    60→    60→  order: number;
+    61→    61→  isCommon: boolean;
+    62→    62→  specialization?: {
+    63→    63→    id: string;
+    64→    64→    code: string;
+    65→    65→    nameAr: string;
+    66→    66→    nameEn: string;
+    67→    67→  } | null;
+    68→    68→  units: UnitFromApi[];
+    69→    69→}
+    70→    70→
+    71→    71→interface UnitFromApi {
+    72→    72→  id: string;
+    73→    73→  slug: string;
+    74→    74→  nameAr: string;
+    75→    75→  nameEn: string;
+    76→    76→  order: number;
+    77→    77→}
+    78→    78→
+    79→    79→interface SpecializationFromApi {
+    80→    80→  id: string;
+    81→    81→  code: string;
+    82→    82→  nameAr: string;
+    83→    83→  nameEn: string;
+    84→    84→}
+    85→    85→
+    86→    86→// مكون بطاقة الوحدة
+    87→    87→function UnitCard({ 
+    88→    88→  unit, 
+    89→    89→  language,
+    90→    90→  onSelectLesson 
+    91→    91→}: { 
+    92→    92→  unit: UnitFromApi; 
+    93→    93→  language: string;
+    94→    94→  onSelectLesson: (lessonId: string) => void;
+    95→    95→}) {
+    96→    96→  const [lessons, setLessons] = useState<any[]>([]);
+    97→    97→  const [loading, setLoading] = useState(false);
+    98→    98→  const [expanded, setExpanded] = useState(false);
+    99→    99→  const hasLoaded = useRef(false);
+   100→   100→
+   101→   101→  useEffect(() => {
+   102→   102→    if (!expanded || hasLoaded.current) return;
+   103→   103→    
+   104→   104→    hasLoaded.current = true;
+   105→   105→    
+   106→   106→    fetch(`/api/units/${unit.id}/lessons`)
+   107→   107→      .then(res => res.json())
+   108→   108→      .then(data => {
+   109→   109→        setLessons(data.lessons || []);
+   110→   110→        setLoading(false);
+   111→   111→      })
+   112→   112→      .catch(() => setLoading(false));
+   113→   113→  }, [expanded, unit.id]);
+   114→   114→
+   115→   115→  return (
+   116→   116→    <Card className="mb-4 overflow-hidden">
+   117→   117→      <div 
+   118→   118→        className="p-4 bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900 cursor-pointer flex items-center justify-between"
+   119→   119→        onClick={() => setExpanded(!expanded)}
+   120→   120→      >
+   121→   121→        <h3 className="font-bold text-slate-800 dark:text-white">
+   122→   122→          {language === "ar" ? unit.nameAr : unit.nameEn}
+   123→   123→        </h3>
+   124→   124→        <div className="flex items-center gap-2">
+   125→   125→          <Badge variant="secondary" className="text-xs">
+   126→   126→            {lessons.length || "..."} {language === "ar" ? "درس" : "lessons"}
+   127→   127→          </Badge>
+   128→   128→          <ChevronLeft className={`w-4 h-4 transition-transform ${expanded ? "-rotate-90" : ""}`} />
+   129→   129→        </div>
+   130→   130→      </div>
+   131→   131→      
+   132→   132→      {expanded && (
+   133→   133→        <div className="p-4 border-t border-slate-200 dark:border-slate-700">
+   134→   134→          {loading ? (
+   135→   135→            <div className="text-center py-4">
+   136→   136→              <div className="animate-spin w-6 h-6 border-2 border-emerald-500 border-t-transparent rounded-full mx-auto"></div>
+   137→   137→            </div>
+   138→   138→          ) : lessons.length === 0 ? (
+   139→   139→            <div className="text-center py-4 text-slate-500">
+   140→   140→              <Database className="w-8 h-8 mx-auto mb-2 opacity-50" />
+   141→   141→              <p className="text-sm">
+   142→   142→                {language === "ar" ? "لا توجد دروس بعد" : "No lessons yet"}
+   143→   143→              </p>
+   144→   144→            </div>
+   145→   145→          ) : (
+   146→   146→            <div className="space-y-2">
+   147→   147→              {lessons.map((lesson) => (
+   148→   148→                <motion.div
+   149→   149→                  key={lesson.id}
+   150→   150→                  initial={{ opacity: 0, x: -10 }}
+   151→   151→                  animate={{ opacity: 1, x: 0 }}
+   152→   152→                  className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer transition-colors"
+   153→   153→                  onClick={() => onSelectLesson(lesson.id)}
+   154→   154→                >
+   155→   155→                  <div className="flex items-center gap-3">
+   156→   156→                    <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
+   157→   157→                      {lesson.isFree ? (
+   158→   158→                        <Play className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+   159→   159→                      ) : (
+   160→   160→                        <Lock className="w-4 h-4 text-slate-400" />
+   161→   161→                      )}
+   162→   162→                    </div>
+   163→   163→                    <div>
+   164→   164→                      <h4 className="font-medium text-slate-800 dark:text-white">
+   165→   165→                        {language === "ar" ? lesson.titleAr : lesson.titleEn}
+   166→   166→                      </h4>
+   167→   167→                      <div className="flex items-center gap-2 text-xs text-slate-500">
+   168→   168→                        <Clock className="w-3 h-3" />
+   169→   169→                        <span>{lesson.duration} {language === "ar" ? "دقيقة" : "min"}</span>
+   170→   170→                        {lesson.simulators?.length > 0 && (
+   171→   171→                          <>
+   172→   172→                            <span>•</span>
+   173→   173→                            <Zap className="w-3 h-3 text-amber-500" />
+   174→   174→                            <span>{lesson.simulators.length} {language === "ar" ? "محاكي" : "sims"}</span>
+   175→   175→                          </>
+   176→   176→                        )}
+   177→   177→                      </div>
+   178→   178→                    </div>
+   179→   179→                  </div>
+   180→   180→                  <ChevronLeft className="w-4 h-4 text-slate-400" />
+   181→   181→                </motion.div>
+   182→   182→              ))}
+   183→   183→            </div>
+   184→   184→          )}
+   185→   185→        </div>
+   186→   186→      )}
+   187→   187→    </Card>
+   188→   188→  );
+   189→   189→}
+   190→   190→
+   191→   191→// المكون الرئيسي
+   192→   192→function MainContent() {
+   193→   193→  const { language, toggleLanguage, t } = useLanguage();
+   194→   194→  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+   195→   195→  const [selectedSpecialization, setSelectedSpecialization] = useState<string | null>(null);
+   196→   196→  const [selectedSubject, setSelectedSubject] = useState<SubjectFromApi | null>(null);
+   197→   197→  const [selectedLesson, setSelectedLesson] = useState<LessonDetailFromApi | null>(null);
+   198→   198→  const [showRewards, setShowRewards] = useState(false);
+   199→   199→  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+   200→   200→  
+   201→   201→  // جلب هيكل المنهج من API
+   202→   202→  const { data: structureData, loading: structureLoading, refetch: refetchStructure } = useApi<{
+   203→   203→    academicYears: AcademicYearFromApi[];
+   204→   204→    specializations: SpecializationFromApi[];
+   205→   205→    semesters: any[];
+   206→   206→  }>("/api/structure");
+   207→   207→  
+   208→   208→  const academicYears = structureData?.academicYears || [];
+   209→   209→  const specializations = structureData?.specializations || [];
+   210→   210→  
+   211→   211→  // نظام المكافآت
+   212→   212→  const { progress: userProgress, updateProgress, newBadge: earnedBadge, closeBadgeModal, points, level } = useRewards();
+   213→   213→  const [showBadgeModal, setShowBadgeModal] = useState(false);
+   214→   214→  const [newBadge, setNewBadge] = useState<any>(null);
+   215→   215→
+   216→   216→  // تحميل صورة الطالب
+   217→   217→  const [showSplash, setShowSplash] = useState(true);
+   218→   218→  const splashRef = useRef<HTMLDivElement>(null);
+   219→   219→  
+   220→   220→  useEffect(() => {
+   221→   221→    const timer = setTimeout(() => {
+   222→   222→      setShowSplash(false);
+   223→   223→    }, 2500);
+   224→   224→    return () => clearTimeout(timer);
+   225→   225→  }, []);
+   226→   226→
+   227→   227→  // الحصول على المواد حسب السنة والتخصص
+   228→   228→  const getSubjectsForYearAndSpec = () => {
+   229→   229→    if (!selectedYear || !academicYears) return [];
+   230→   230→    
+   231→   231→    const year = academicYears.find(y => y.code === selectedYear);
+   232→   232→    if (!year) return [];
+   233→   233→    
+   234→   234→    let subjects = year.subjects;
+   235→   235→    
+   236→   236→    // فلترة حسب التخصص
+   237→   237→    if (selectedSpecialization && selectedYear !== "first") {
+   238→   238→      subjects = subjects.filter(s => 
+   239→   239→        s.isCommon || s.specialization?.code === selectedSpecialization
+   240→   240→      );
+   241→   241→    }
+   242→   242→    
+   243→   243→    return subjects;
+   244→   244→  };
+   245→   245→
+   246→   246→  // تحديد الدرس
+   247→   247→  const handleSelectLesson = async (lessonId: string) => {
+   248→   248→    try {
+   249→   249→      const response = await fetch(`/api/lessons/${lessonId}`);
+   250→   250→      if (response.ok) {
+   251→   251→        const data = await response.json();
+   252→   252→        setSelectedLesson(data.lesson);
+   253→   253→      }
+   254→   254→    } catch (error) {
+   255→   255→      console.error("Error fetching lesson:", error);
+   256→   256→    }
+   257→   257→  };
+   258→   258→
+   259→   259→  // شاشة التحميل
+   260→   260→  if (showSplash) {
+   261→   261→    return (
+   262→   262→      <div className="fixed inset-0 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-600 flex items-center justify-center z-50">
+   263→   263→        <motion.div
+   264→   264→          initial={{ scale: 0, rotate: -180 }}
+   265→   265→          animate={{ scale: 1, rotate: 0 }}
+   266→   266→          transition={{ duration: 1, type: "spring" }}
+   267→   267→          className="text-center"
+   268→   268→        >
+   269→   269→          <motion.div
+   270→   270→            animate={{ rotate: 360 }}
+   271→   271→            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+   272→   272→            className="w-24 h-24 mx-auto mb-6 border-4 border-white/30 border-t-white rounded-full"
+   273→   273→          />
+   274→   274→          <motion.h1
+   275→   275→            initial={{ opacity: 0, y: 20 }}
+   276→   276→            animate={{ opacity: 1, y: 0 }}
+   277→   277→            transition={{ delay: 0.5 }}
+   278→   278→            className="text-4xl font-bold text-white mb-2"
+   279→   279→          >
+   280→   280→            {language === "ar" ? "ثانوية تفاعلية" : "Interactive HS"}
+   281→   281→          </motion.h1>
+   282→   282→          <motion.p
+   283→   283→            initial={{ opacity: 0 }}
+   284→   284→            animate={{ opacity: 1 }}
+   285→   285→            transition={{ delay: 1 }}
+   286→   286→            className="text-white/80"
+   287→   287→          >
+   288→   288→            {language === "ar" ? "المنهج المصري الكامل" : "Complete Egyptian Curriculum"}
+   289→   289→          </motion.p>
+   290→   290→        </motion.div>
+   291→   291→      </div>
+   292→   292→    );
+   293→   293→  }
+   294→   294→
+   295→   295→  return (
+   296→   296→    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 flex flex-col">
+   297→   297→      {/* شريط الإنجاز */}
+   298→   298→      <AchievementBar progress={userProgress} language={language} />
+   299→   299→
+   300→   300→      {/* الهيدر */}
+   301→   301→      <header className="sticky top-0 z-40 backdrop-blur-xl bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800">
+   302→   302→        <div className="container mx-auto px-4 py-3">
+   303→   303→          <div className="flex items-center justify-between">
+   304→   304→            {/* اللوجو */}
+   305→   305→            <motion.div 
+   306→   306→              className="flex items-center gap-3"
+   307→   307→              whileHover={{ scale: 1.02 }}
+   308→   308→            >
+   309→   309→              <div className="p-2 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg shadow-emerald-500/20">
+   310→   310→                <Atom className="w-6 h-6 text-white" />
+   311→   311→              </div>
+   312→   312→              <div>
+   313→   313→                <h1 className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+   314→   314→                  {language === "ar" ? "ثانوية تفاعلية" : "Interactive HS"}
+   315→   315→                </h1>
+   316→   316→                <p className="text-xs text-slate-500 dark:text-slate-400">
+   317→   317→                  {language === "ar" ? "المنهج المصري" : "Egyptian Curriculum"}
+   318→   318→                </p>
+   319→   319→              </div>
+   320→   320→            </motion.div>
+   321→   321→
+   322→   322→            {/* أزرار التحكم */}
+   323→   323→            <div className="flex items-center gap-2">
+   324→   324→              {/* زر التحديث */}
+   325→   325→              <Button
+   326→   326→                variant="ghost"
+   327→   327→                size="icon"
+   328→   328→                onClick={() => refetchStructure()}
+   329→   329→                className="rounded-full"
+   330→   330→                title={language === "ar" ? "تحديث البيانات" : "Refresh data"}
+   331→   331→              >
+   332→   332→                <RefreshCw className="w-4 h-4" />
+   333→   333→              </Button>
+   334→   334→              
+   335→   335→              {/* زر المكافآت */}
+   336→   336→              <Button
+   337→   337→                variant="ghost"
+   338→   338→                size="icon"
+   339→   339→                onClick={() => setShowRewards(true)}
+   340→   340→                className="rounded-full relative"
+   341→   341→              >
+   342→   342→                <Trophy className="w-4 h-4" />
+   343→   343→                {userProgress.earnedBadges?.length > 0 && (
+   344→   344→                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 text-white text-xs rounded-full flex items-center justify-center">
+   345→   345→                    {userProgress.earnedBadges.length}
+   346→   346→                  </span>
+   347→   347→                )}
+   348→   348→              </Button>
+   349→   349→
+   350→   350→              {/* زر اللغة */}
+   351→   351→              <Button
+   352→   352→                variant="ghost"
+   353→   353→                size="icon"
+   354→   354→                onClick={toggleLanguage}
+   355→   355→                className="rounded-full"
+   356→   356→              >
+   357→   357→                <Globe className="w-4 h-4" />
+   358→   358→              </Button>
+   359→   359→            </div>
+   360→   360→          </div>
+   361→   361→        </div>
+   362→   362→      </header>
+   363→   363→
+   364→   364→      {/* المحتوى الرئيسي */}
+   365→   365→      <main className="flex-1 container mx-auto px-4 py-6">
+   366→   366→        {/* شاشة الدرس */}
+   367→   367→        <AnimatePresence mode="wait">
+   368→   368→          {selectedLesson ? (
+   369→   369→            <motion.div
+   370→   370→              key="lesson-view"
+   371→   371→              initial={{ opacity: 0, x: 100 }}
+   372→   372→              animate={{ opacity: 1, x: 0 }}
+   373→   373→              exit={{ opacity: 0, x: -100 }}
+   374→   374→            >
+   375→   375→              <LessonView
+   376→   376→                lesson={selectedLesson}
+   377→   377→                language={language}
+   378→   378→                onBack={() => setSelectedLesson(null)}
+   379→   379→              />
+   380→   380→            </motion.div>
+   381→   381→          ) : (
+   382→   382→            <motion.div
+   383→   383→              key="main-view"
+   384→   384→              initial={{ opacity: 0 }}
+   385→   385→              animate={{ opacity: 1 }}
+   386→   386→              exit={{ opacity: 0 }}
+   387→   387→            >
+   388→   388→              {/* اختيار السنة الدراسية */}
+   389→   389→              {!selectedYear && (
+   390→   390→                <div>
+   391→   391→                  <div className="text-center mb-8">
+   392→   392→                    <motion.h2
+   393→   393→                      initial={{ opacity: 0, y: -20 }}
+   394→   394→                      animate={{ opacity: 1, y: 0 }}
+   395→   395→                      className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2"
+   396→   396→                    >
+   397→   397→                      {language === "ar" ? "اختر السنة الدراسية" : "Select Academic Year"}
+   398→   398→                    </motion.h2>
+   399→   399→                    <motion.p
+   400→   400→                      initial={{ opacity: 0 }}
+   401→   401→                      animate={{ opacity: 1, transition: { delay: 0.2 } }}
+   402→   402→                      className="text-slate-600 dark:text-slate-400"
+   403→   403→                    >
+   404→   404→                      {language === "ar" 
+   405→   405→                        ? "المنهج المصري للثانوية العامة" 
+   406→   406→                        : "Egyptian Secondary School Curriculum"}
+   407→   407→                    </motion.p>
+   408→   408→                  </div>
+   409→   409→
+   410→   410→                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+   411→   411→                    {structureLoading ? (
+   412→   412→                      <div className="col-span-3 text-center py-12">
+   413→   413→                        <div className="animate-spin w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+   414→   414→                        <p className="text-slate-500">{language === "ar" ? "جاري التحميل..." : "Loading..."}</p>
+   415→   415→                      </div>
+   416→   416→                    ) : (
+   417→   417→                      academicYears.map((year, index) => (
+   418→   418→                        <motion.div
+   419→   419→                          key={year.id}
+   420→   420→                          initial={{ opacity: 0, y: 20 }}
+   421→   421→                          animate={{ opacity: 1, y: 0 }}
+   422→   422→                          transition={{ delay: index * 0.1 }}
+   423→   423→                        >
+   424→   424→                          <Card
+   425→   425→                            onClick={() => setSelectedYear(year.code)}
+   426→   426→                            className="group cursor-pointer overflow-hidden border-2 border-transparent hover:border-emerald-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10"
+   427→   427→                          >
+   428→   428→                            <CardContent className="p-6 text-center">
+   429→   429→                              <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center text-white text-2xl font-bold ${
+   430→   430→                                year.code === 'first' ? 'bg-gradient-to-br from-blue-400 to-cyan-500' :
+   431→   431→                                year.code === 'second' ? 'bg-gradient-to-br from-purple-400 to-pink-500' :
+   432→   432→                                'bg-gradient-to-br from-emerald-400 to-teal-500'
+   433→   433→                              }`}>
+   434→   434→                                {year.code === 'first' ? '1' : year.code === 'second' ? '2' : '3'}
+   435→   435→                              </div>
+   436→   436→                              <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-1">
+   437→   437→                                {language === "ar" ? year.nameAr : year.nameEn}
+   438→   438→                              </h3>
+   439→   439→                              <p className="text-sm text-slate-500">
+   440→   440→                                {year.subjects?.length || 0} {language === "ar" ? "مادة" : "subjects"}
+   441→   441→                              </p>
+   442→   442→                              {year.code === 'third' && (
+   443→   443→                                <Badge className="mt-2 bg-amber-500 text-white">
+   444→   444→                                  {language === "ar" ? "السنة النهائية" : "Final Year"}
+   445→   445→                                </Badge>
+   446→   446→                              )}
+   447→   447→                            </CardContent>
+   448→   448→                          </Card>
+   449→   449→                        </motion.div>
+   450→   450→                      ))
+   451→   451→                    )}
+   452→   452→                  </div>
+   453→   453→                </div>
+   454→   454→              )}
+   455→   455→
+   456→   456→              {/* اختيار التخصص (لثانية وتالتة) */}
+   457→   457→              {selectedYear && selectedYear !== "first" && !selectedSpecialization && (
+   458→   458→                <div>
+   459→   459→                  <Button
+   460→   460→                    variant="ghost"
+   461→   461→                    onClick={() => setSelectedYear(null)}
+   462→   462→                    className="mb-4"
+   463→   463→                  >
+   464→   464→                    {language === "ar" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+   465→   465→                    {language === "ar" ? "العودة للسنوات" : "Back to Years"}
+   466→   466→                  </Button>
+   467→   467→
+   468→   468→                  <div className="text-center mb-8">
+   469→   469→                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">
+   470→   470→                      {language === "ar" ? "اختر التخصص" : "Select Specialization"}
+   471→   471→                    </h2>
+   472→   472→                    <p className="text-slate-600 dark:text-slate-400">
+   473→   473→                      {language === "ar" 
+   474→   474→                        ? `${academicYears.find(y => y.code === selectedYear)?.nameAr}` 
+   475→   475→                        : `${academicYears.find(y => y.code === selectedYear)?.nameEn}`}
+   476→   476→                    </p>
+   477→   477→                  </div>
+   478→   478→
+   479→   479→                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+   480→   480→                    {specializations.map((spec, index) => (
+   481→   481→                      <motion.div
+   482→   482→                        key={spec.id}
+   483→   483→                        initial={{ opacity: 0, y: 20 }}
+   484→   484→                        animate={{ opacity: 1, y: 0 }}
+   485→   485→                        transition={{ delay: index * 0.1 }}
+   486→   486→                      >
+   487→   487→                        <Card
+   488→   488→                          onClick={() => setSelectedSpecialization(spec.code)}
+   489→   489→                          className="group cursor-pointer overflow-hidden border-2 border-transparent hover:border-emerald-500/50 transition-all duration-300"
+   490→   490→                        >
+   491→   491→                          <CardContent className="p-6 text-center">
+   492→   492→                            <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
+   493→   493→                              spec.code === 'math-science' ? 'bg-gradient-to-br from-blue-400 to-purple-500' :
+   494→   494→                              spec.code === 'science' ? 'bg-gradient-to-br from-green-400 to-emerald-500' :
+   495→   495→                              'bg-gradient-to-br from-amber-400 to-orange-500'
+   496→   496→                            }`}>
+   497→   497→                              {spec.code === 'math-science' ? (
+   498→   498→                                <Calculator className="w-8 h-8 text-white" />
+   499→   499→                              ) : spec.code === 'science' ? (
+   500→   500→                                <Leaf className="w-8 h-8 text-white" />
+   501→   501→                              ) : (
+   502→   502→                                <BookOpen className="w-8 h-8 text-white" />
+   503→   503→                              )}
+   504→   504→                            </div>
+   505→   505→                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-1">
+   506→   506→                              {language === "ar" ? spec.nameAr : spec.nameEn}
+   507→   507→                            </h3>
+   508→   508→                          </CardContent>
+   509→   509→                        </Card>
+   510→   510→                      </motion.div>
+   511→   511→                    ))}
+   512→   512→                  </div>
+   513→   513→                </div>
+   514→   514→              )}
+   515→   515→
+   516→   516→              {/* عرض المواد */}
+   517→   517→              {selectedYear && (selectedYear === "first" || selectedSpecialization) && !selectedSubject && (
+   518→   518→                <div>
+   519→   519→                  <Button
+   520→   520→                    variant="ghost"
+   521→   521→                    onClick={() => {
+   522→   522→                      if (selectedSpecialization) {
+   523→   523→                        setSelectedSpecialization(null);
+   524→   524→                      } else {
+   525→   525→                        setSelectedYear(null);
+   526→   526→                      }
+   527→   527→                    }}
+   528→   528→                    className="mb-4"
+   529→   529→                  >
+   530→   530→                    {language === "ar" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+   531→   531→                    {language === "ar" ? "العودة" : "Back"}
+   532→   532→                  </Button>
+   533→   533→
+   534→   534→                  <div className="text-center mb-6">
+   535→   535→                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">
+   536→   536→                      {language === "ar" 
+   537→   537→                        ? `${academicYears.find(y => y.code === selectedYear)?.nameAr}${selectedSpecialization ? ` - ${specializations.find(s => s.code === selectedSpecialization)?.nameAr}` : ''}`
+   538→   538→                        : `${academicYears.find(y => y.code === selectedYear)?.nameEn}${selectedSpecialization ? ` - ${specializations.find(s => s.code === selectedSpecialization)?.nameEn}` : ''}`}
+   539→   539→                    </h2>
+   540→   540→                  </div>
+   541→   541→
+   542→   542→                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+   543→   543→                    {getSubjectsForYearAndSpec().map((subject, index) => {
+   544→   544→                      const Icon = subjectIcons[subject.icon] || BookOpen;
+   545→   545→                      
+   546→   546→                      return (
+   547→   547→                        <motion.div
+   548→   548→                          key={subject.id}
+   549→   549→                          initial={{ opacity: 0, y: 20 }}
+   550→   550→                          animate={{ opacity: 1, y: 0 }}
+   551→   551→                          transition={{ delay: index * 0.05 }}
+   552→   552→                        >
+   553→   553→                          <Card
+   554→   554→                            onClick={() => setSelectedSubject(subject)}
+   555→   555→                            className="cursor-pointer hover:border-emerald-500/50 transition-all"
+   556→   556→                          >
+   557→   557→                            <CardContent className="p-4">
+   558→   558→                              <div className="flex items-center gap-3">
+   559→   559→                                <div className={`p-3 rounded-xl bg-gradient-to-br ${
+   560→   560→                                  subject.color === 'emerald' ? 'from-emerald-400 to-teal-500' :
+   561→   561→                                  subject.color === 'purple' ? 'from-purple-400 to-pink-500' :
+   562→   562→                                  subject.color === 'blue' ? 'from-blue-400 to-cyan-500' :
+   563→   563→                                  subject.color === 'amber' ? 'from-amber-400 to-orange-500' :
+   564→   564→                                  subject.color === 'rose' ? 'from-rose-400 to-pink-500' :
+   565→   565→                                  subject.color === 'teal' ? 'from-teal-400 to-cyan-500' :
+   566→   566→                                  'from-slate-400 to-slate-500'
+   567→   567→                                }`}>
+   568→   568→                                  <Icon className="w-6 h-6 text-white" />
+   569→   569→                                </div>
+   570→   570→                                <div>
+   571→   571→                                  <h3 className="font-bold text-slate-800 dark:text-white">
+   572→   572→                                    {language === "ar" ? subject.nameAr : subject.nameEn}
+   573→   573→                                  </h3>
+   574→   574→                                  <p className="text-sm text-slate-500">
+   575→   575→                                    {subject.units?.length || 0} {language === "ar" ? "وحدة" : "units"}
+   576→   576→                                  </p>
+   577→   577→                                </div>
+   578→   578→                              </div>
+   579→   579→                            </CardContent>
+   580→   580→                          </Card>
+   581→   581→                        </motion.div>
+   582→   582→                      );
+   583→   583→                    })}
+   584→   584→                  </div>
+   585→   585→                </div>
+   586→   586→              )}
+   587→   587→
+   588→   588→              {/* عرض الوحدات والدروس */}
+   589→   589→              {selectedSubject && (
+   590→   590→                <div>
+   591→   591→                  <Button
+   592→   592→                    variant="ghost"
+   593→   593→                    onClick={() => setSelectedSubject(null)}
+   594→   594→                    className="mb-4"
+   595→   595→                  >
+   596→   596→                    {language === "ar" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+   597→   597→                    {language === "ar" ? "العودة للمواد" : "Back to Subjects"}
+   598→   598→                  </Button>
+   599→   599→
+   600→   600→                  <div className="mb-6">
+   601→   601→                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">
+   602→   602→                      {language === "ar" ? selectedSubject.nameAr : selectedSubject.nameEn}
+   603→   603→                    </h2>
+   604→   604→                  </div>
+   605→   605→
+   606→   606→                  {/* الوحدات */}
+   607→   607→                  {selectedSubject.units?.map((unit, unitIndex) => (
+   608→   608→                    <UnitCard 
+   609→   609→                      key={unit.id} 
+   610→   610→                      unit={unit} 
+   611→   611→                      language={language}
+   612→   612→                      onSelectLesson={handleSelectLesson}
+   613→   613→                    />
+   614→   614→                  ))}
+   615→   615→                </div>
+   616→   616→              )}
+   617→   617→
+   618→   618→              {/* إحصائيات */}
+   619→   619→              {!selectedYear && (
+   620→   620→                <motion.div
+   621→   621→                  initial={{ opacity: 0, y: 20 }}
+   622→   622→                  animate={{ opacity: 1, y: 0 }}
+   623→   623→                  transition={{ delay: 0.5 }}
+   624→   624→                  className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4"
+   625→   625→                >
+   626→   626→                  <Card className="text-center p-4">
+   627→   627→                    <Database className="w-8 h-8 mx-auto mb-2 text-emerald-500" />
+   628→   628→                    <div className="text-2xl font-bold text-slate-800 dark:text-white">3</div>
+   629→   629→                    <div className="text-sm text-slate-500">{language === "ar" ? "سنوات دراسية" : "Years"}</div>
+   630→   630→                  </Card>
+   631→   631→                  <Card className="text-center p-4">
+   632→   632→                    <BookOpen className="w-8 h-8 mx-auto mb-2 text-blue-500" />
+   633→   633→                    <div className="text-2xl font-bold text-slate-800 dark:text-white">12</div>
+   634→   634→                    <div className="text-sm text-slate-500">{language === "ar" ? "محاكي تفاعلي" : "Simulators"}</div>
+   635→   635→                  </Card>
+   636→   636→                  <Card className="text-center p-4">
+   637→   637→                    <Users className="w-8 h-8 mx-auto mb-2 text-purple-500" />
+   638→   638→                    <div className="text-2xl font-bold text-slate-800 dark:text-white">3</div>
+   639→   639→                    <div className="text-sm text-slate-500">{language === "ar" ? "تخصصات" : "Tracks"}</div>
+   640→   640→                  </Card>
+   641→   641→                  <Card className="text-center p-4">
+   642→   642→                    <Brain className="w-8 h-8 mx-auto mb-2 text-amber-500" />
+   643→   643→                    <div className="text-2xl font-bold text-slate-800 dark:text-white">{points}</div>
+   644→   644→                    <div className="text-sm text-slate-500">{language === "ar" ? "نقطة" : "Points"}</div>
+   645→   645→                  </Card>
+   646→   646→                </motion.div>
+   647→   647→              )}
+   648→   648→            </motion.div>
+   649→   649→          )}
+   650→   650→        </AnimatePresence>
+   651→   651→      </main>
+   652→   652→
+   653→   653→      {/* الفوتر */}
+   654→   654→      <footer className="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
+   655→   655→        <div className="container mx-auto px-4 py-4">
+   656→   656→          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+   657→   657→            <p className="text-sm text-slate-500 dark:text-slate-400 text-center md:text-start">
+   658→   658→              {language === "ar" 
+   659→   659→                ? "© 2024 ثانوية تفاعلية - المنهج المصري الكامل" 
+   660→   660→                : "© 2024 Interactive HS - Complete Egyptian Curriculum"}
+   661→   661→            </p>
+   662→   662→            <div className="flex items-center gap-4">
+   663→   663→              <Badge variant="secondary" className="gap-1">
+   664→   664→                <Database className="w-3 h-3" />
+   665→   665→                API Ready
+   666→   666→              </Badge>
+   667→   667→              <Badge variant="secondary" className="gap-1">
+   668→   668→                <Sparkles className="w-3 h-3" />
+   669→   669→                v3.0
+   670→   670→              </Badge>
+   671→   671→            </div>
+   672→   672→          </div>
+   673→   673→        </div>
+   674→   674→      </footer>
+   675→   675→
+   676→   676→      {/* نافذة المكافآت */}
+   677→   677→      <RewardsSystem
+   678→   678→        isOpen={showRewards}
+   679→   679→        onClose={() => setShowRewards(false)}
+   680→   680→        userProgress={userProgress}
+   681→   681→        language={language}
+   682→   682→      />
+   683→   683→    </div>
+   684→   684→  );
+   685→   685→}
+   686→   686→
+   687→   687→// المكون الرئيسي مع Provider
+   688→   688→export default function Home() {
+   689→   689→  return (
+   690→   690→    <LanguageProvider>
+   691→   691→      <MainContent />
+   692→   692→    </LanguageProvider>
+   693→   693→  );
+   694→   694→}
+   695→   695→

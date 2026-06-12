@@ -234,7 +234,7 @@ function MainContent() {
     let subjects = year.subjects;
     
     // فلترة حسب التخصص
-    if (selectedSpecialization && selectedYear !== "first") {
+    if (selectedSpecialization && selectedYear !== "first-year") {
       subjects = subjects.filter(s => 
         s.isCommon || s.specialization?.code === selectedSpecialization
       );
@@ -347,14 +347,16 @@ function MainContent() {
                 )}
               </Button>
 
-              {/* زر اللغة */}
+              {/* زر تبديل اللغة */}
               <Button
-                variant="ghost"
-                size="icon"
+                variant="outline"
                 onClick={toggleLanguage}
-                className="rounded-full"
+                className="gap-2 rounded-full px-4 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/30"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-sm font-medium">
+                  {language === "ar" ? "English" : "عربي"}
+                </span>
               </Button>
             </div>
           </div>
@@ -454,7 +456,7 @@ function MainContent() {
               )}
 
               {/* اختيار التخصص (لثانية وتالتة) */}
-              {selectedYear && selectedYear !== "first" && !selectedSpecialization && (
+              {selectedYear && selectedYear !== "first-year" && !selectedSpecialization && (
                 <div>
                   <Button
                     variant="ghost"
@@ -490,11 +492,11 @@ function MainContent() {
                         >
                           <CardContent className="p-6 text-center">
                             <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-                              spec.code === 'math-science' ? 'bg-gradient-to-br from-blue-400 to-purple-500' :
+                              spec.code === 'math' ? 'bg-gradient-to-br from-blue-400 to-purple-500' :
                               spec.code === 'science' ? 'bg-gradient-to-br from-green-400 to-emerald-500' :
                               'bg-gradient-to-br from-amber-400 to-orange-500'
                             }`}>
-                              {spec.code === 'math-science' ? (
+                              {spec.code === 'math' ? (
                                 <Calculator className="w-8 h-8 text-white" />
                               ) : spec.code === 'science' ? (
                                 <Leaf className="w-8 h-8 text-white" />
@@ -514,7 +516,7 @@ function MainContent() {
               )}
 
               {/* عرض المواد */}
-              {selectedYear && (selectedYear === "first" || selectedSpecialization) && !selectedSubject && (
+              {selectedYear && (selectedYear === "first-year" || selectedSpecialization) && !selectedSubject && (
                 <div>
                   <Button
                     variant="ghost"
