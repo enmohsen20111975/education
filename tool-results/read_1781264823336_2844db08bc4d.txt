@@ -1,0 +1,753 @@
+     1→import { NextResponse } from "next/server";
+     2→import { db } from "@/lib/db";
+     3→
+     4→// ==================== دروس الصف الثالث الثانوي ====================
+     5→
+     6→// دروس الفيزياء - الميكانيكا
+     7→const physicsMechanicsLessons = [
+     8→  {
+     9→    titleAr: "الحركة المستقيمة المنتظمة",
+    10→    titleEn: "Uniform Linear Motion",
+    11→    slug: "uniform-linear-motion",
+    12→    descriptionAr: "دراسة الحركة في خط مستقيم بسرعة ثابتة والعلاقة بين المسافة والزمن",
+    13→    descriptionEn: "Study of motion in a straight line with constant velocity",
+    14→    duration: 45,
+    15→    order: 1,
+    16→    isFree: true,
+    17→    introductionAr: "الحركة المستقيمة المنتظمة هي أبسط أنواع الحركة، حيث يتحرك الجسم في خط مستقيم بسرعة ثابتة. في هذا الدرس سنتعلم كيف نصف هذه الحركة رياضياً ونحسب المسافة والزمن.",
+    18→    introductionEn: "Uniform linear motion is the simplest type of motion, where an object moves in a straight line at constant velocity.",
+    19→    summaryAr: "الخلاصة: الحركة المستقيمة المنتظمة تتميز بسرعة ثابتة ومسار مستقيم. المعادلة الأساسية: المسافة = السرعة × الزمن",
+    20→    summaryEn: "Summary: Uniform linear motion is characterized by constant velocity and straight path. Basic equation: Distance = Velocity × Time",
+    21→    objectives: {
+    22→      ar: ["فهم مفهوم الحركة المستقيمة المنتظمة", "حساب السرعة المتوسطة", "تطبيق معادلة المسافة", "تحليل الرسوم البيانية للحركة"],
+    23→      en: ["Understand uniform linear motion", "Calculate average velocity", "Apply distance equation", "Analyze motion graphs"]
+    24→    },
+    25→    concepts: {
+    26→      ar: [
+    27→        { term: "السرعة", definition: "المسافة المقطوعة في وحدة الزمن" },
+    28→        { term: "الإزاحة", definition: "أقرب مسافة بين نقطة البداية ونقطة النهاية" },
+    29→        { term: "المسافة", definition: "طول المسار الفعلي الذي يسلكه الجسم" }
+    30→      ],
+    31→      en: [
+    32→        { term: "Velocity", definition: "Distance traveled per unit time" },
+    33→        { term: "Displacement", definition: "Shortest distance between start and end points" },
+    34→        { term: "Distance", definition: "Actual path length traveled by the object" }
+    35→      ]
+    36→    },
+    37→    formulas: {
+    38→      ar: [
+    39→        { formula: "ع = ف / ز", explanation: "السرعة = المسافة / الزمن" },
+    40→        { formula: "ف = ع × ز", explanation: "المسافة = السرعة × الزمن" },
+    41→        { formula: "ز = ف / ع", explanation: "الزمن = المسافة / السرعة" }
+    42→      ],
+    43→      en: [
+    44→        { formula: "v = d / t", explanation: "Velocity = Distance / Time" },
+    45→        { formula: "d = v × t", explanation: "Distance = Velocity × Time" },
+    46→        { formula: "t = d / v", explanation: "Time = Distance / Velocity" }
+    47→      ]
+    48→    },
+    49→    examples: {
+    50→      ar: [
+    51→        {
+    52→          question: "سيارة تسير بسرعة 72 كم/ساعة. احسب المسافة التي تقطعها في ساعتين.",
+    53→          solution: "المسافة = السرعة × الزمن = 72 × 2 = 144 كم",
+    54→          steps: ["نستخدم المعادلة: ف = ع × ز", "نعوض القيم: ف = 72 × 2", "النتيجة: ف = 144 كم"]
+    55→        }
+    56→      ],
+    57→      en: [
+    58→        {
+    59→          question: "A car travels at 72 km/h. Calculate the distance it covers in 2 hours.",
+    60→          solution: "Distance = Velocity × Time = 72 × 2 = 144 km",
+    61→          steps: ["Use equation: d = v × t", "Substitute: d = 72 × 2", "Result: d = 144 km"]
+    62→        }
+    63→      ]
+    64→    },
+    65→    simulators: ["linear-motion"],
+    66→    questions: [
+    67→      { type: "mcq", questionAr: "ما وحدة قياس السرعة في النظام الدولي؟", questionEn: "What is the SI unit of velocity?", optionsAr: ["م/ث", "كم/س", "م", "ثانية"], optionsEn: ["m/s", "km/h", "m", "s"], answer: "م/ث", points: 1 },
+    68→      { type: "mcq", questionAr: "إذا قطعت سيارة 100 متر في 20 ثانية، فما سرعتها؟", questionEn: "If a car covers 100 meters in 20 seconds, what is its velocity?", optionsAr: ["5 م/ث", "10 م/ث", "2 م/ث", "20 م/ث"], optionsEn: ["5 m/s", "10 m/s", "2 m/s", "20 m/s"], answer: "5 م/ث", points: 1 }
+    69→    ]
+    70→  },
+    71→  {
+    72→    titleAr: "الحركة المتغيرة والتسارع",
+    73→    titleEn: "Variable Motion and Acceleration",
+    74→    slug: "variable-motion-acceleration",
+    75→    descriptionAr: "دراسة الحركة المتسارعة والعلاقة بين السرعة والتسارع والزمن",
+    76→    descriptionEn: "Study of accelerated motion and the relationship between velocity, acceleration, and time",
+    77→    duration: 50,
+    78→    order: 2,
+    79→    isFree: false,
+    80→    introductionAr: "التسارع هو التغير في السرعة خلال وحدة الزمن. عندما تتغير سرعة الجسم سواء بالزيادة أو النقصان، نقول أن الحركة متغيرة أو متسارعة.",
+    81→    introductionEn: "Acceleration is the change in velocity per unit time. When an object's velocity changes, we say the motion is variable or accelerated.",
+    82→    summaryAr: "التسارع = التغير في السرعة / الزمن. يمكن أن يكون التسارع موجباً (زيادة السرعة) أو سالباً (نقصان السرعة).",
+    83→    summaryEn: "Acceleration = Change in velocity / Time. Acceleration can be positive (speeding up) or negative (slowing down).",
+    84→    objectives: {
+    85→      ar: ["فهم مفهوم التسارع", "حساب التسارع من السرعات", "التفريق بين التسارع الموجب والسالب"],
+    86→      en: ["Understand acceleration concept", "Calculate acceleration from velocities", "Distinguish between positive and negative acceleration"]
+    87→    },
+    88→    concepts: {
+    89→      ar: [
+    90→        { term: "التسارع", definition: "معدل التغير في السرعة بالنسبة للزمن" },
+    91→        { term: "التسارع الموجب", definition: "زيادة سرعة الجسم مع الزمن" },
+    92→        { term: "التسارع السالب", definition: "نقصان سرعة الجسم مع الزمن" }
+    93→      ],
+    94→      en: [
+    95→        { term: "Acceleration", definition: "Rate of change of velocity with respect to time" },
+    96→        { term: "Positive Acceleration", definition: "Increase in object's speed over time" },
+    97→        { term: "Negative Acceleration", definition: "Decrease in object's speed over time" }
+    98→      ]
+    99→    },
+   100→    formulas: {
+   101→      ar: [
+   102→        { formula: "ت = (س₂ - س₁) / ز", explanation: "التسارع = (السرعة النهائية - السرعة الابتدائية) / الزمن" }
+   103→      ],
+   104→      en: [
+   105→        { formula: "a = (v₂ - v₁) / t", explanation: "Acceleration = (Final velocity - Initial velocity) / Time" }
+   106→      ]
+   107→    },
+   108→    examples: {
+   109→      ar: [
+   110→        {
+   111→          question: "سيارة تتحرك بسرعة 10 م/ث ثم زادت سرعتها إلى 30 م/ث خلال 5 ثواني. احسب التسارع.",
+   112→          solution: "ت = (30 - 10) / 5 = 20 / 5 = 4 م/ث²",
+   113→          steps: ["نحسب التغير في السرعة: Δس = 30 - 10 = 20 م/ث", "نقسم على الزمن: ت = 20 / 5", "النتيجة: ت = 4 م/ث²"]
+   114→        }
+   115→      ],
+   116→      en: [
+   117→        {
+   118→          question: "A car moving at 10 m/s increases its speed to 30 m/s in 5 seconds. Calculate the acceleration.",
+   119→          solution: "a = (30 - 10) / 5 = 20 / 5 = 4 m/s²",
+   120→          steps: ["Calculate velocity change: Δv = 30 - 10 = 20 m/s", "Divide by time: a = 20 / 5", "Result: a = 4 m/s²"]
+   121→        }
+   122→      ]
+   123→    },
+   124→    simulators: ["linear-motion"],
+   125→    questions: [
+   126→      { type: "mcq", questionAr: "ما وحدة قياس التسارع؟", questionEn: "What is the unit of acceleration?", optionsAr: ["م/ث²", "م/ث", "م²/ث", "ث/م"], optionsEn: ["m/s²", "m/s", "m²/s", "s/m"], answer: "م/ث²", points: 1 }
+   127→    ]
+   128→  },
+   129→  {
+   130→    titleAr: "معادلات الحركة",
+   131→    titleEn: "Equations of Motion",
+   132→    slug: "equations-of-motion",
+   133→    descriptionAr: "المعادلات الأساسية لحساب السرعة والإزاحة والتسارع",
+   134→    descriptionEn: "Fundamental equations for calculating velocity, displacement, and acceleration",
+   135→    duration: 55,
+   136→    order: 3,
+   137→    isFree: false,
+   138→    introductionAr: "معادلات الحركة هي ثلاث معادلات أساسية تربط بين السرعة والتسارع والإزاحة والزمن. هذه المعادلات هي حجر الأساس في دراسة الميكانيكا.",
+   139→    introductionEn: "Equations of motion are three fundamental equations that relate velocity, acceleration, displacement, and time. These equations are the cornerstone of mechanics.",
+   140→    summaryAr: "المعادلات الثلاث: 1) س = س₀ + تز  2) ف = س₀ز + ½تز²  3) س² = س₀² + 2تف",
+   141→    summaryEn: "Three equations: 1) v = v₀ + at  2) d = v₀t + ½at²  3) v² = v₀² + 2ad",
+   142→    objectives: {
+   143→      ar: ["حفظ المعادلات الثلاث", "تطبيق كل معادلة في الموقف المناسب", "حل مسائل الحركة المتسارعة"],
+   144→      en: ["Memorize the three equations", "Apply each equation in appropriate situations", "Solve accelerated motion problems"]
+   145→    },
+   146→    concepts: {
+   147→      ar: [
+   148→        { term: "السرعة الابتدائية", definition: "سرعة الجسم عند بداية الحركة" },
+   149→        { term: "السرعة النهائية", definition: "سرعة الجسم عند نهاية الحركة" }
+   150→      ],
+   151→      en: [
+   152→        { term: "Initial Velocity", definition: "Velocity of object at the start of motion" },
+   153→        { term: "Final Velocity", definition: "Velocity of object at the end of motion" }
+   154→      ]
+   155→    },
+   156→    formulas: {
+   157→      ar: [
+   158→        { formula: "س = س₀ + تز", explanation: "السرعة النهائية = السرعة الابتدائية + التسارع × الزمن" },
+   159→        { formula: "ف = س₀ز + ½تز²", explanation: "الإزاحة = السرعة الابتدائية × الزمن + نصف التسارع × الزمن²" },
+   160→        { formula: "س² = س₀² + 2تف", explanation: "مربع السرعة النهائية = مربع السرعة الابتدائية + 2 × التسارع × الإزاحة" }
+   161→      ],
+   162→      en: [
+   163→        { formula: "v = v₀ + at", explanation: "Final velocity = Initial velocity + Acceleration × Time" },
+   164→        { formula: "d = v₀t + ½at²", explanation: "Displacement = Initial velocity × Time + Half acceleration × Time²" },
+   165→        { formula: "v² = v₀² + 2ad", explanation: "Final velocity² = Initial velocity² + 2 × Acceleration × Displacement" }
+   166→      ]
+   167→    },
+   168→    examples: {
+   169→      ar: [
+   170→        {
+   171→          question: "سيارة تبدأ من السكون وتتحرك بتسارع 2 م/ث² لمدة 10 ثواني. احسب سرعتها النهائية والإزاحة.",
+   172→          solution: "س = 0 + 2×10 = 20 م/ث، ف = 0 + ½×2×100 = 100 م",
+   173→          steps: ["السرعة النهائية: س = س₀ + تز = 0 + 2×10 = 20 م/ث", "الإزاحة: ف = ½×ت×ز² = ½×2×100 = 100 م"]
+   174→        }
+   175→      ],
+   176→      en: [
+   177→        {
+   178→          question: "A car starts from rest and accelerates at 2 m/s² for 10 seconds. Calculate its final velocity and displacement.",
+   179→          solution: "v = 0 + 2×10 = 20 m/s, d = 0 + ½×2×100 = 100 m",
+   180→          steps: ["Final velocity: v = v₀ + at = 0 + 2×10 = 20 m/s", "Displacement: d = ½×a×t² = ½×2×100 = 100 m"]
+   181→        }
+   182→      ]
+   183→    },
+   184→    simulators: ["linear-motion", "free-fall"],
+   185→    questions: [
+   186→      { type: "mcq", questionAr: "أي معادلة تستخدم عندما لا نعرف الزمن؟", questionEn: "Which equation is used when time is unknown?", optionsAr: ["س = س₀ + تز", "ف = س₀ز + ½تز²", "س² = س₀² + 2تف", "ع = ف/ز"], optionsEn: ["v = v₀ + at", "d = v₀t + ½at²", "v² = v₀² + 2ad", "v = d/t"], answer: "س² = س₀² + 2تف", points: 1 }
+   187→    ]
+   188→  },
+   189→  {
+   190→    titleAr: "السقوط الحر",
+   191→    titleEn: "Free Fall",
+   192→    slug: "free-fall-physics",
+   193→    descriptionAr: "دراسة حركة الأجسام تحت تأثير الجاذبية فقط",
+   194→    descriptionEn: "Study of motion of objects under the influence of gravity only",
+   195→    duration: 45,
+   196→    order: 4,
+   197→    isFree: true,
+   198→    introductionAr: "السقوط الحر هو حركة جسم تحت تأثير الجاذبية فقط، بدون أي قوى أخرى. جميع الأجسام تسقط بنفس التسارع في غياب مقاومة الهواء.",
+   199→    introductionEn: "Free fall is the motion of an object under the influence of gravity only, without any other forces. All objects fall with the same acceleration in the absence of air resistance.",
+   200→    summaryAr: "تسارع السقوط الحر = 9.8 م/ث². معادلات السقوط الحر مشابهة لمعادلات الحركة المتسارعة.",
+   201→    summaryEn: "Free fall acceleration = 9.8 m/s². Free fall equations are similar to accelerated motion equations.",
+   202→    objectives: {
+   203→      ar: ["فهم مفهوم السقوط الحر", "حفظ قيمة تسارع الجاذبية", "تطبيق معادلات الحركة على السقوط الحر"],
+   204→      en: ["Understand free fall concept", "Memorize gravitational acceleration value", "Apply motion equations to free fall"]
+   205→    },
+   206→    concepts: {
+   207→      ar: [
+   208→        { term: "تسارع الجاذبية", definition: "التسارع الناتج عن الجاذبية الأرضية ويساوي 9.8 م/ث²" },
+   209→        { term: "السقوط الحر", definition: "حركة جسم تحت تأثير الجاذبية فقط" }
+   210→      ],
+   211→      en: [
+   212→        { term: "Gravitational Acceleration", definition: "Acceleration due to Earth's gravity, equals 9.8 m/s²" },
+   213→        { term: "Free Fall", definition: "Motion of an object under gravity only" }
+   214→      ]
+   215→    },
+   216→    formulas: {
+   217→      ar: [
+   218→        { formula: "س = جز", explanation: "السرعة النهائية = تسارع الجاذبية × الزمن" },
+   219→        { formula: "ع = ½جز²", explanation: "الارتفاع = نصف × تسارع الجاذبية × الزمن²" }
+   220→      ],
+   221→      en: [
+   222→        { formula: "v = gt", explanation: "Final velocity = Gravitational acceleration × Time" },
+   223→        { formula: "h = ½gt²", explanation: "Height = Half × Gravitational acceleration × Time²" }
+   224→      ]
+   225→    },
+   226→    examples: {
+   227→      ar: [
+   228→        {
+   229→          question: "سقطت كرة من ارتفاع 45 متر. احسب زمن السقوط والسرعة عند الاصطدام بالأرض.",
+   230→          solution: "ز = √(2×45/9.8) ≈ 3 ثواني، س = 9.8×3 ≈ 29.4 م/ث",
+   231→          steps: ["من معادلة ع = ½جز²: 45 = ½×9.8×ز²", "ز² = 45/4.9 ≈ 9", "ز ≈ 3 ثواني", "س = جز = 9.8×3 ≈ 29.4 م/ث"]
+   232→        }
+   233→      ],
+   234→      en: [
+   235→        {
+   236→          question: "A ball falls from a height of 45 meters. Calculate the fall time and velocity upon impact.",
+   237→          solution: "t = √(2×45/9.8) ≈ 3 seconds, v = 9.8×3 ≈ 29.4 m/s",
+   238→          steps: ["From h = ½gt²: 45 = ½×9.8×t²", "t² = 45/4.9 ≈ 9", "t ≈ 3 seconds", "v = gt = 9.8×3 ≈ 29.4 m/s"]
+   239→        }
+   240→      ]
+   241→    },
+   242→    simulators: ["free-fall"],
+   243→    questions: [
+   244→      { type: "mcq", questionAr: "ما قيمة تسارع الجاذبية الأرضية؟", questionEn: "What is the value of Earth's gravitational acceleration?", optionsAr: ["9.8 م/ث²", "10 م/ث²", "8.9 م/ث²", "9 م/ث²"], optionsEn: ["9.8 m/s²", "10 m/s²", "8.9 m/s²", "9 m/s²"], answer: "9.8 م/ث²", points: 1 }
+   245→    ]
+   246→  }
+   247→];
+   248→
+   249→// دروس الكيمياء - بنية الذرة
+   250→const chemistryAtomicLessons = [
+   251→  {
+   252→    titleAr: "تركيب الذرة",
+   253→    titleEn: "Atomic Structure",
+   254→    slug: "atomic-structure-chemistry",
+   255→    descriptionAr: "دراسة مكونات الذرة الأساسية: البروتونات والنيوترونات والإلكترونات",
+   256→    descriptionEn: "Study of atomic components: protons, neutrons, and electrons",
+   257→    duration: 50,
+   258→    order: 1,
+   259→    isFree: true,
+   260→    introductionAr: "الذرة هي وحدة البناء الأساسية للمادة. تتكون من نواة مركزية تحتوي على بروتونات موجبة ونيوترونات متعادلة، وتدور حولها إلكترونات سالبة في مستويات الطاقة.",
+   261→    introductionEn: "The atom is the basic building block of matter. It consists of a central nucleus containing positive protons and neutral neutrons, with negative electrons orbiting in energy levels.",
+   262→    summaryAr: "الذرة = نواة (بروتونات + نيوترونات) + إلكترونات. عدد البروتونات = العدد الذري.",
+   263→    summaryEn: "Atom = Nucleus (protons + neutrons) + Electrons. Number of protons = Atomic number.",
+   264→    objectives: {
+   265→      ar: ["التعرف على مكونات الذرة", "فهم العلاقة بين العدد الذري وعدد البروتونات", "حساب عدد النيوترونات"],
+   266→      en: ["Identify atomic components", "Understand relationship between atomic number and protons", "Calculate number of neutrons"]
+   267→    },
+   268→    concepts: {
+   269→      ar: [
+   270→        { term: "البروتون", definition: "جسيم موجب الشحنة موجود في النواة" },
+   271→        { term: "النيوترون", definition: "جسيم متعادل الشحنة موجود في النواة" },
+   272→        { term: "الإلكترون", definition: "جسيم سالب الشحنة يدور حول النواة" },
+   273→        { term: "العدد الذري", definition: "عدد البروتونات في نواة الذرة" },
+   274→        { term: "العدد الكتلي", definition: "مجموع عدد البروتونات والنيوترونات" }
+   275→      ],
+   276→      en: [
+   277→        { term: "Proton", definition: "Positively charged particle in the nucleus" },
+   278→        { term: "Neutron", definition: "Neutral particle in the nucleus" },
+   279→        { term: "Electron", definition: "Negatively charged particle orbiting the nucleus" },
+   280→        { term: "Atomic Number", definition: "Number of protons in the nucleus" },
+   281→        { term: "Mass Number", definition: "Sum of protons and neutrons" }
+   282→      ]
+   283→    },
+   284→    formulas: {
+   285→      ar: [
+   286→        { formula: "عدد النيوترونات = العدد الكتلي - العدد الذري", explanation: "حساب عدد النيوترونات من العدد الكتلي والذري" }
+   287→      ],
+   288→      en: [
+   289→        { formula: "Neutrons = Mass Number - Atomic Number", explanation: "Calculate neutrons from mass and atomic numbers" }
+   290→      ]
+   291→    },
+   292→    examples: {
+   293→      ar: [
+   294→        {
+   295→          question: "ذرة كربون عددها الذري 6 وعددها الكتلي 12. احسب عدد النيوترونات.",
+   296→          solution: "عدد النيوترونات = 12 - 6 = 6 نيوترونات",
+   297→          steps: ["العدد الكتلي = 12", "العدد الذري = 6", "عدد النيوترونات = 12 - 6 = 6"]
+   298→        }
+   299→      ],
+   300→      en: [
+   301→        {
+   302→          question: "A carbon atom has atomic number 6 and mass number 12. Calculate the number of neutrons.",
+   303→          solution: "Neutrons = 12 - 6 = 6 neutrons",
+   304→          steps: ["Mass number = 12", "Atomic number = 6", "Neutrons = 12 - 6 = 6"]
+   305→        }
+   306→      ]
+   307→    },
+   308→    simulators: ["atomic-structure", "periodic-table"],
+   309→    questions: [
+   310→      { type: "mcq", questionAr: "أين توجد البروتونات في الذرة؟", questionEn: "Where are protons located in the atom?", optionsAr: ["في النواة", "حول النواة", "في المستويات", "خارج الذرة"], optionsEn: ["In the nucleus", "Around the nucleus", "In energy levels", "Outside the atom"], answer: "في النواة", points: 1 },
+   311→      { type: "mcq", questionAr: "ما شحنة الإلكترون؟", questionEn: "What is the charge of an electron?", optionsAr: ["موجبة", "سالبة", "متعادلة", "لا شحنة لها"], optionsEn: ["Positive", "Negative", "Neutral", "No charge"], answer: "سالبة", points: 1 }
+   312→    ]
+   313→  },
+   314→  {
+   315→    titleAr: "التوزيع الإلكتروني",
+   316→    titleEn: "Electron Configuration",
+   317→    slug: "electron-configuration",
+   318→    descriptionAr: "كيفية توزيع الإلكترونات في مستويات الطاقة",
+   319→    descriptionEn: "How electrons are distributed in energy levels",
+   320→    duration: 45,
+   321→    order: 2,
+   322→    isFree: false,
+   323→    introductionAr: "التوزيع الإلكتروني هو ترتيب الإلكترونات في مستويات الطاقة حول النواة. يتبع هذا التوزيع قواعد محددة تحدد سعة كل مستوى.",
+   324→    introductionEn: "Electron configuration is the arrangement of electrons in energy levels around the nucleus. This arrangement follows specific rules that determine the capacity of each level.",
+   325→    summaryAr: "قاعدة 2ن² تحدد سعة كل مستوى طاقة. المستوى الأول = 2، الثاني = 8، الثالث = 18 إلكترون.",
+   326→    summaryEn: "The 2n² rule determines each energy level capacity. First level = 2, Second = 8, Third = 18 electrons.",
+   327→    objectives: {
+   328→      ar: ["فهم مستويات الطاقة", "تطبيق قاعدة 2ن²", "كتابة التوزيع الإلكتروني للعناصر"],
+   329→      en: ["Understand energy levels", "Apply 2n² rule", "Write electron configurations for elements"]
+   330→    },
+   331→    concepts: {
+   332→      ar: [
+   333→        { term: "مستوى الطاقة", definition: "مدار حول النواة يسلكه الإلكترون" },
+   334→        { term: "قاعدة 2ن²", definition: "سعة المستوى ن = 2×ن²" }
+   335→      ],
+   336→      en: [
+   337→        { term: "Energy Level", definition: "Orbit around the nucleus where electrons move" },
+   338→        { term: "2n² Rule", definition: "Capacity of level n = 2×n²" }
+   339→      ]
+   340→    },
+   341→    formulas: {
+   342→      ar: [
+   343→        { formula: "سعة المستوى = 2ن²", explanation: "حيث ن هو رقم المستوى" }
+   344→      ],
+   345→      en: [
+   346→        { formula: "Level Capacity = 2n²", explanation: "Where n is the level number" }
+   347→      ]
+   348→    },
+   349→    examples: {
+   350→      ar: [
+   351→        {
+   352→          question: "اكتب التوزيع الإلكتروني لذرة الصوديوم (Na) عددها الذري 11.",
+   353→          solution: "2, 8, 1",
+   354→          steps: ["المستوى الأول: 2 إلكترون", "المستوى الثاني: 8 إلكترونات", "المستوى الثالث: 1 إلكترون", "المجموع: 2+8+1 = 11"]
+   355→        }
+   356→      ],
+   357→      en: [
+   358→        {
+   359→          question: "Write the electron configuration for sodium (Na) with atomic number 11.",
+   360→          solution: "2, 8, 1",
+   361→          steps: ["First level: 2 electrons", "Second level: 8 electrons", "Third level: 1 electron", "Total: 2+8+1 = 11"]
+   362→        }
+   363→      ]
+   364→    },
+   365→    simulators: ["atomic-structure", "periodic-table"],
+   366→    questions: [
+   367→      { type: "mcq", questionAr: "ما سعة المستوى الأول من الطاقة؟", questionEn: "What is the capacity of the first energy level?", optionsAr: ["2 إلكترون", "8 إلكترونات", "18 إلكترون", "32 إلكترون"], optionsEn: ["2 electrons", "8 electrons", "18 electrons", "32 electrons"], answer: "2 إلكترون", points: 1 }
+   368→    ]
+   369→  }
+   370→];
+   371→
+   372→// دروس الرياضيات - التفاضل
+   373→const mathDifferentiationLessons = [
+   374→  {
+   375→    titleAr: "مفهوم المشتقة",
+   376→    titleEn: "Concept of Derivative",
+   377→    slug: "derivative-concept",
+   378→    descriptionAr: "مقدمة في حساب التفاضل ومفهوم المشتقة",
+   379→    descriptionEn: "Introduction to calculus and the concept of derivative",
+   380→    duration: 50,
+   381→    order: 1,
+   382→    isFree: true,
+   383→    introductionAr: "المشتقة هي أداة رياضية تقيس معدل التغير اللحظي للدالة. تُستخدم في العديد من التطبيقات في الفيزياء والهندسة والاقتصاد.",
+   384→    introductionEn: "The derivative is a mathematical tool that measures the instantaneous rate of change of a function. It's used in many applications in physics, engineering, and economics.",
+   385→    summaryAr: "المشتقة = معدل التغير اللحظي = ميل المماس للمنحنى عند نقطة معينة.",
+   386→    summaryEn: "Derivative = Instantaneous rate of change = Slope of the tangent to the curve at a specific point.",
+   387→    objectives: {
+   388→      ar: ["فهم مفهوم المشتقة هندسياً", "حساب مشتقة الدوال البسيطة", "تطبيق قواعد التفاضل الأساسية"],
+   389→      en: ["Understand derivative concept geometrically", "Calculate derivatives of simple functions", "Apply basic differentiation rules"]
+   390→    },
+   391→    concepts: {
+   392→      ar: [
+   393→        { term: "المشتقة", definition: "معدل التغير اللحظي للدالة" },
+   394→        { term: "ميل المماس", definition: "ميل المستقيم المماس للمنحنى عند نقطة" },
+   395→        { term: "التفاضل", definition: "عملية إيجاد المشتقة" }
+   396→      ],
+   397→      en: [
+   398→        { term: "Derivative", definition: "Instantaneous rate of change of a function" },
+   399→        { term: "Slope of Tangent", definition: "Slope of the line tangent to the curve at a point" },
+   400→        { term: "Differentiation", definition: "Process of finding the derivative" }
+   401→      ]
+   402→    },
+   403→    formulas: {
+   404→      ar: [
+   405→        { formula: "(سⁿ)′ = ن سⁿ⁻¹", explanation: "مشتقة دالة أسية" },
+   406→        { formula: "(ثابت)′ = 0", explanation: "مشتقة الثابت = صفر" }
+   407→      ],
+   408→      en: [
+   409→        { formula: "(xⁿ)′ = nxⁿ⁻¹", explanation: "Derivative of power function" },
+   410→        { formula: "(constant)′ = 0", explanation: "Derivative of constant = zero" }
+   411→      ]
+   412→    },
+   413→    examples: {
+   414→      ar: [
+   415→        {
+   416→          question: "أوجد مشتقة الدالة د(س) = س³ + 2س² - 5س + 7",
+   417→          solution: "د′(س) = 3س² + 4س - 5",
+   418→          steps: ["مشتقة س³ = 3س²", "مشتقة 2س² = 4س", "مشتقة -5س = -5", "مشتقة 7 = 0", "النتيجة: 3س² + 4س - 5"]
+   419→        }
+   420→      ],
+   421→      en: [
+   422→        {
+   423→          question: "Find the derivative of f(x) = x³ + 2x² - 5x + 7",
+   424→          solution: "f′(x) = 3x² + 4x - 5",
+   425→          steps: ["Derivative of x³ = 3x²", "Derivative of 2x² = 4x", "Derivative of -5x = -5", "Derivative of 7 = 0", "Result: 3x² + 4x - 5"]
+   426→        }
+   427→      ]
+   428→    },
+   429→    simulators: ["differentiation", "functions"],
+   430→    questions: [
+   431→      { type: "mcq", questionAr: "ما مشتقة د(س) = س²؟", questionEn: "What is the derivative of f(x) = x²?", optionsAr: ["2س", "س", "2", "س²"], optionsEn: ["2x", "x", "2", "x²"], answer: "2س", points: 1 }
+   432→    ]
+   433→  },
+   434→  {
+   435→    titleAr: "قواعد التفاضل",
+   436→    titleEn: "Differentiation Rules",
+   437→    slug: "differentiation-rules",
+   438→    descriptionAr: "قواعد جمع وضرب وقسمة الدوال",
+   439→    descriptionEn: "Rules for sum, product, and quotient of functions",
+   440→    duration: 55,
+   441→    order: 2,
+   442→    isFree: false,
+   443→    introductionAr: "توجد قواعد محددة للتفاضل تسهل حساب مشتقة الدوال المركبة. أهم هذه القواعد: قاعدة الجمع، قاعدة الضرب، وقاعدة القسمة.",
+   444→    introductionEn: "There are specific rules for differentiation that facilitate calculating derivatives of composite functions. The most important: sum rule, product rule, and quotient rule.",
+   445→    summaryAr: "قاعدة الجمع: (أ+ب)′ = أ′ + ب′. قاعدة الضرب: (أ×ب)′ = أ′ب + أب′. قاعدة القسمة: (أ/ب)′ = (أ′ب - أب′)/ب²",
+   446→    summaryEn: "Sum rule: (f+g)′ = f′ + g′. Product rule: (fg)′ = f′g + fg′. Quotient rule: (f/g)′ = (f′g - fg′)/g²",
+   447→    objectives: {
+   448→      ar: ["تطبيق قاعدة الجمع", "تطبيق قاعدة الضرب", "تطبيق قاعدة القسمة"],
+   449→      en: ["Apply sum rule", "Apply product rule", "Apply quotient rule"]
+   450→    },
+   451→    concepts: {
+   452→      ar: [
+   453→        { term: "قاعدة الضرب", definition: "(أ×ب)′ = أ′ب + أب′" },
+   454→        { term: "قاعدة القسمة", definition: "(أ/ب)′ = (أ′ب - أب′)/ب²" }
+   455→      ],
+   456→      en: [
+   457→        { term: "Product Rule", definition: "(fg)′ = f′g + fg′" },
+   458→        { term: "Quotient Rule", definition: "(f/g)′ = (f′g - fg′)/g²" }
+   459→      ]
+   460→    },
+   461→    formulas: {
+   462→      ar: [
+   463→        { formula: "(أ + ب)′ = أ′ + ب′", explanation: "مشتقة المجموع" },
+   464→        { formula: "(أ × ب)′ = أ′ب + أب′", explanation: "مشتقة الحاصل ضرب دالتين" },
+   465→        { formula: "(أ ÷ ب)′ = (أ′ب - أب′) ÷ ب²", explanation: "مشتقة خارج قسمة دالتين" }
+   466→      ],
+   467→      en: [
+   468→        { formula: "(f + g)′ = f′ + g′", explanation: "Derivative of sum" },
+   469→        { formula: "(f × g)′ = f′g + fg′", explanation: "Derivative of product of two functions" },
+   470→        { formula: "(f ÷ g)′ = (f′g - fg′) ÷ g²", explanation: "Derivative of quotient of two functions" }
+   471→      ]
+   472→    },
+   473→    examples: {
+   474→      ar: [
+   475→        {
+   476→          question: "أوجد مشتقة د(س) = س² × (س + 1)",
+   477→          solution: "د′(س) = 2س(س+1) + س²(1) = 2س² + 2س + س² = 3س² + 2س",
+   478→          steps: ["نطبق قاعدة الضرب", "أ′ = 2س، ب = س+1، ب′ = 1", "د′ = 2س(س+1) + س²(1)", "التبسيط: 3س² + 2س"]
+   479→        }
+   480→      ],
+   481→      en: [
+   482→        {
+   483→          question: "Find the derivative of f(x) = x² × (x + 1)",
+   484→          solution: "f′(x) = 2x(x+1) + x²(1) = 2x² + 2x + x² = 3x² + 2x",
+   485→          steps: ["Apply product rule", "f′ = 2x, g = x+1, g′ = 1", "f′ = 2x(x+1) + x²(1)", "Simplify: 3x² + 2x"]
+   486→        }
+   487→      ]
+   488→    },
+   489→    simulators: ["differentiation", "functions"],
+   490→    questions: [
+   491→      { type: "mcq", questionAr: "ما صيغة قاعدة الضرب؟", questionEn: "What is the product rule formula?", optionsAr: ["أ′ب + أب′", "أ′ب - أب′", "أ′ + ب′", "أ′ب′"], optionsEn: ["f′g + fg′", "f′g - fg′", "f′ + g′", "f′g′"], answer: "أ′ب + أب′", points: 1 }
+   492→    ]
+   493→  }
+   494→];
+   495→
+   496→// دروس الأحياء - الخلية والوراثة
+   497→const biologyLessons = [
+   498→  {
+   499→    titleAr: "تركيب الخلية",
+   500→    titleEn: "Cell Structure",
+   501→    slug: "cell-structure-biology",
+   502→    descriptionAr: "دراسة مكونات الخلية النباتية والحيوانية",
+   503→    descriptionEn: "Study of plant and animal cell components",
+   504→    duration: 50,
+   505→    order: 1,
+   506→    isFree: true,
+   507→    introductionAr: "الخلية هي وحدة البناء الأساسية لجميع الكائنات الحية. تحتوي على عضيات متخصصة تقوم بوظائف مختلفة ضرورية لحياة الخلية.",
+   508→    introductionEn: "The cell is the basic building unit of all living organisms. It contains specialized organelles that perform different functions essential for cell life.",
+   509→    summaryAr: "الخلية = غشاء بلازمي + سيتوبلازم + نواة. تحتوي على عضيات مثل الميتوكوندريا والريبوسومات.",
+   510→    summaryEn: "Cell = Plasma membrane + Cytoplasm + Nucleus. Contains organelles like mitochondria and ribosomes.",
+   511→    objectives: {
+   512→      ar: ["التعرف على مكونات الخلية", "التمييز بين الخلية النباتية والحيوانية", "فهم وظائف العضيات"],
+   513→      en: ["Identify cell components", "Distinguish between plant and animal cells", "Understand organelle functions"]
+   514→    },
+   515→    concepts: {
+   516→      ar: [
+   517→        { term: "الغشاء البلازمي", definition: "غشاء يحيط بالخلية وينظم مرور المواد" },
+   518→        { term: "النواة", definition: "مركز التحكم في الخلية وتحتوي على المادة الوراثية" },
+   519→        { term: "الميتوكوندريا", definition: "موقع إنتاج الطاقة في الخلية" },
+   520→        { term: "الريبية", definition: "موقع تصنيع البروتين" }
+   521→      ],
+   522→      en: [
+   523→        { term: "Plasma Membrane", definition: "Membrane surrounding the cell regulating material passage" },
+   524→        { term: "Nucleus", definition: "Control center containing genetic material" },
+   525→        { term: "Mitochondria", definition: "Site of energy production in the cell" },
+   526→        { term: "Ribosome", definition: "Site of protein synthesis" }
+   527→      ]
+   528→    },
+   529→    formulas: {
+   530→      ar: [],
+   531→      en: []
+   532→    },
+   533→    examples: {
+   534→      ar: [
+   535→        {
+   536→          question: "ما الفرق بين الخلية النباتية والخلية الحيوانية؟",
+   537→          solution: "الخلية النباتية تحتوي على جدار خلوي وكلوروبلاست، بينما الخلية الحيوانية لا تحتوي عليهما.",
+   538→          steps: ["الخلية النباتية: جدار خلوي + كلوروبلاست", "الخلية الحيوانية: لا جدار خلوي + لا كلوروبلاست", "كلاهما: غشاء بلازمي + نواة + ميتوكوندريا"]
+   539→        }
+   540→      ],
+   541→      en: [
+   542→        {
+   543→          question: "What is the difference between plant and animal cells?",
+   544→          solution: "Plant cell has cell wall and chloroplast, while animal cell lacks both.",
+   545→          steps: ["Plant cell: cell wall + chloroplast", "Animal cell: no cell wall + no chloroplast", "Both: plasma membrane + nucleus + mitochondria"]
+   546→        }
+   547→      ]
+   548→    },
+   549→    simulators: ["cell"],
+   550→    questions: [
+   551→      { type: "mcq", questionAr: "أين يتم إنتاج الطاقة في الخلية؟", questionEn: "Where is energy produced in the cell?", optionsAr: ["الميتوكوندريا", "النواة", "الريبية", "الغشاء"], optionsEn: ["Mitochondria", "Nucleus", "Ribosome", "Membrane"], answer: "الميتوكوندريا", points: 1 }
+   552→    ]
+   553→  }
+   554→];
+   555→
+   556→// ==================== دالة التعبئة الرئيسية ====================
+   557→
+   558→export async function POST() {
+   559→  try {
+   560→    console.log("Starting lessons seeding...");
+   561→    
+   562→    // جلب المحاكيات والوحدات
+   563→    const simulators = await db.simulator.findMany();
+   564→    const units = await db.unit.findMany();
+   565→    
+   566→    let createdLessons = 0;
+   567→    let createdQuestions = 0;
+   568→    const errors: string[] = [];
+   569→    
+   570→    // حذف البيانات القديمة
+   571→    await db.mindMap.deleteMany();
+   572→    await db.infographic.deleteMany();
+   573→    await db.question.deleteMany();
+   574→    await db.example.deleteMany();
+   575→    await db.formula.deleteMany();
+   576→    await db.concept.deleteMany();
+   577→    await db.objective.deleteMany();
+   578→    await db.lessonSimulator.deleteMany();
+   579→    await db.lesson.deleteMany();
+   580→    
+   581→    console.log("Old lesson data cleaned.");
+   582→    
+   583→    // دالة مساعدة لإنشاء الدروس
+   584→    async function createLessonsForUnit(
+   585→      unitSlug: string, 
+   586→      lessons: typeof physicsMechanicsLessons
+   587→    ) {
+   588→      const unit = units.find(u => u.slug === unitSlug);
+   589→      if (!unit) {
+   590→        errors.push(`Unit not found: ${unitSlug}`);
+   591→        return;
+   592→      }
+   593→      
+   594→      for (const lessonData of lessons) {
+   595→        try {
+   596→          const lesson = await db.lesson.create({
+   597→            data: {
+   598→              unitId: unit.id,
+   599→              titleAr: lessonData.titleAr,
+   600→              titleEn: lessonData.titleEn,
+   601→              slug: `${unitSlug}-${lessonData.slug}`,
+   602→              descriptionAr: lessonData.descriptionAr,
+   603→              descriptionEn: lessonData.descriptionEn,
+   604→              duration: lessonData.duration,
+   605→              order: lessonData.order,
+   606→              isFree: lessonData.isFree,
+   607→              introductionAr: lessonData.introductionAr,
+   608→              introductionEn: lessonData.introductionEn,
+   609→              summaryAr: lessonData.summaryAr,
+   610→              summaryEn: lessonData.summaryEn,
+   611→            },
+   612→          });
+   613→          
+   614→          // إضافة الأهداف
+   615→          for (let i = 0; i < lessonData.objectives.ar.length; i++) {
+   616→            await db.objective.create({
+   617→              data: {
+   618→                lessonId: lesson.id,
+   619→                textAr: lessonData.objectives.ar[i],
+   620→                textEn: lessonData.objectives.en[i] || "",
+   621→                order: i + 1,
+   622→              },
+   623→            });
+   624→          }
+   625→          
+   626→          // إضافة المفاهيم
+   627→          for (let i = 0; i < lessonData.concepts.ar.length; i++) {
+   628→            await db.concept.create({
+   629→              data: {
+   630→                lessonId: lesson.id,
+   631→                termAr: lessonData.concepts.ar[i].term,
+   632→                termEn: lessonData.concepts.en[i]?.term || "",
+   633→                definitionAr: lessonData.concepts.ar[i].definition,
+   634→                definitionEn: lessonData.concepts.en[i]?.definition || "",
+   635→                order: i + 1,
+   636→              },
+   637→            });
+   638→          }
+   639→          
+   640→          // إضافة المعادلات
+   641→          for (let i = 0; i < lessonData.formulas.ar.length; i++) {
+   642→            await db.formula.create({
+   643→              data: {
+   644→                lessonId: lesson.id,
+   645→                formula: lessonData.formulas.ar[i].formula,
+   646→                explanationAr: lessonData.formulas.ar[i].explanation,
+   647→                explanationEn: lessonData.formulas.en[i]?.explanation || "",
+   648→                order: i + 1,
+   649→              },
+   650→            });
+   651→          }
+   652→          
+   653→          // إضافة الأمثلة
+   654→          for (let i = 0; i < lessonData.examples.ar.length; i++) {
+   655→            await db.example.create({
+   656→              data: {
+   657→                lessonId: lesson.id,
+   658→                questionAr: lessonData.examples.ar[i].question,
+   659→                questionEn: lessonData.examples.en[i]?.question || "",
+   660→                solutionAr: lessonData.examples.ar[i].solution,
+   661→                solutionEn: lessonData.examples.en[i]?.solution || "",
+   662→                stepsAr: JSON.stringify(lessonData.examples.ar[i].steps),
+   663→                stepsEn: JSON.stringify(lessonData.examples.en[i]?.steps || []),
+   664→                order: i + 1,
+   665→              },
+   666→            });
+   667→          }
+   668→          
+   669→          // ربط المحاكيات
+   670→          for (const simSlug of lessonData.simulators) {
+   671→            const simulator = simulators.find(s => s.slug === simSlug);
+   672→            if (simulator) {
+   673→              await db.lessonSimulator.create({
+   674→                data: {
+   675→                  lessonId: lesson.id,
+   676→                  simulatorId: simulator.id,
+   677→                },
+   678→              });
+   679→            }
+   680→          }
+   681→          
+   682→          // إضافة الأسئلة
+   683→          for (const q of lessonData.questions) {
+   684→            await db.question.create({
+   685→              data: {
+   686→                lessonId: lesson.id,
+   687→                type: q.type,
+   688→                questionAr: q.questionAr,
+   689→                questionEn: q.questionEn,
+   690→                optionsAr: JSON.stringify(q.optionsAr),
+   691→                optionsEn: JSON.stringify(q.optionsEn),
+   692→                answer: q.answer,
+   693→                points: q.points,
+   694→                difficulty: "medium",
+   695→                order: 1,
+   696→              },
+   697→            });
+   698→            createdQuestions++;
+   699→          }
+   700→          
+   701→          createdLessons++;
+   702→        } catch (error) {
+   703→          errors.push(`Error creating lesson ${lessonData.slug}: ${String(error)}`);
+   704→        }
+   705→      }
+   706→    }
+   707→    
+   708→    // إنشاء دروس الفيزياء
+   709→    console.log("Creating physics lessons...");
+   710→    await createLessonsForUnit("physics-3-math-mechanics-3-math", physicsMechanicsLessons);
+   711→    await createLessonsForUnit("physics-3-sci-mechanics-3-sci", physicsMechanicsLessons);
+   712→    
+   713→    // إنشاء دروس الكيمياء
+   714→    console.log("Creating chemistry lessons...");
+   715→    await createLessonsForUnit("chemistry-3-math-atomic-structure-3-math", chemistryAtomicLessons);
+   716→    await createLessonsForUnit("chemistry-3-sci-atomic-structure-3-sci", chemistryAtomicLessons);
+   717→    
+   718→    // إنشاء دروس الرياضيات
+   719→    console.log("Creating math lessons...");
+   720→    await createLessonsForUnit("mathematics-3-2-differentiation-3", mathDifferentiationLessons);
+   721→    await createLessonsForUnit("mathematics-3-2-sci-differentiation-3-sci", mathDifferentiationLessons);
+   722→    
+   723→    // إنشاء دروس الأحياء
+   724→    console.log("Creating biology lessons...");
+   725→    await createLessonsForUnit("biology-3-cell-genetics-3", biologyLessons);
+   726→    
+   727→    const stats = {
+   728→      lessons: await db.lesson.count(),
+   729→      objectives: await db.objective.count(),
+   730→      concepts: await db.concept.count(),
+   731→      formulas: await db.formula.count(),
+   732→      examples: await db.example.count(),
+   733→      questions: createdQuestions,
+   734→      errors: errors.length,
+   735→    };
+   736→    
+   737→    console.log("Lessons seeding completed!", stats);
+   738→    
+   739→    return NextResponse.json({
+   740→      success: true,
+   741→      message: "تم إنشاء الدروس بنجاح",
+   742→      stats,
+   743→      errors: errors.length > 0 ? errors.slice(0, 5) : undefined,
+   744→    });
+   745→  } catch (error) {
+   746→    console.error("Error seeding lessons:", error);
+   747→    return NextResponse.json(
+   748→      { error: "Failed to seed lessons", details: String(error) },
+   749→      { status: 500 }
+   750→    );
+   751→  }
+   752→}
+   753→
