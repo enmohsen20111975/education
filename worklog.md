@@ -1,131 +1,133 @@
-# Project Worklog
+# 📋 سجل العمل | Worklog
 
 ---
-Task ID: 1
-Agent: Main Agent
-Task: Migrate educational platform from static TypeScript data to database + API architecture for Flutter mobile app integration
 
-Work Log:
-- Assessed current project state (Prisma schema, lessons data, components)
-- Verified database schema is up to date with db:push
-- Updated seed-lessons API to include MindMap and Infographic data
-- Created comprehensive mindMapData and infographicData for lessons
-- Seeded database with 41 lessons, 7 mind maps, and 3 infographics
-- Created useApi hook for data fetching from API
-- Updated main page.tsx to fetch subjects and lessons from API
-- Updated LessonView component to work with API data format
-- Fixed various code issues (imports, props, null handling)
-- Verified all functionality works with agent-browser
+## Session: 2026-06-12
 
-Stage Summary:
-- Database now contains: 3 subjects, 10 units, 41 lessons, 7 simulators, 6 badges
-- API endpoints working: /api/subjects, /api/lessons, /api/lessons/[id]
-- Frontend successfully fetches data from API instead of static file
-- Platform ready for Flutter mobile app integration
-- All 41 lessons have complete content (objectives, concepts, formulas, examples, simulators, mind maps, infographics)
+### Task ID: 1
+**Agent:** Main
+**Task:** إصلاح مشاكل العرض بعد الـ deployment
+
+**Work Log:**
+- فحص الـ dev server والـ logs
+- اكتشاف خطأ في Prisma API (أسماء حقول غلط)
+- إصلاح `/api/structure/route.ts` لاستخدام `Subject`, `Unit`, `Specialization`
+- تحديث `MainPlatform.tsx` للتعامل مع الأسماء الصح
+- اختبار الصفحة وتأكيد عملها
+
+**Stage Summary:**
+- ✅ إصلاح Prisma API schema mismatch
+- ✅ تحديث الـ interfaces
+- ✅ الصفحة تعمل بشكل صحيح
 
 ---
-Task ID: 2
-Agent: Main Agent
-Task: Restructure platform to match Egyptian curriculum with 3 years, specializations, and semesters
 
-Work Log:
-- Updated Prisma schema with AcademicYear, Specialization, Semester models
-- Added yearId, specializationId, isCommon fields to Subject model
-- Created seed-egyptian API endpoint for Egyptian curriculum structure
-- Created structure API endpoint for frontend/Flutter consumption
-- Added 12 interactive simulators (Physics: 6, Chemistry: 4, Math: 2, Biology: 2)
-- Updated frontend with year/track selection flow
-- Added proper navigation between years, specializations, and subjects
+### Task ID: 2
+**Agent:** Main
+**Task:** إصلاح نظام التنقل
 
-Stage Summary:
-- 3 Academic Years: أولى، ثانية، ثالثة ثانوي
-- 3 Specializations: علمي رياضة، علمي علوم، أدبي
-- 2 Semesters: الترم الأول، الترم الثاني
-- 12 Interactive Simulators ready for implementation
-- Database structure ready for Phase 1 MVP content
-- Pushed to GitHub: https://github.com/enmohsen20111975/education
+**Work Log:**
+- إنشاء نظام Routing كامل
+- صفحة الهبوط: `/`
+- المنصة: `/platform`
+- اختيار السنة: `/platform/year/[code]`
+- اختيار المادة: `/platform/subject/[id]`
+- صفحة الدرس: `/platform/lesson/[id]`
+- إزالة نظام النقاط العام من أسفل الصفحة
+
+**Stage Summary:**
+- ✅ كل شاشة لها URL مستقل
+- ✅ زر Back/Forward يعمل
+- ✅ يمكن فتح أكتر من Tab
 
 ---
-Task ID: curriculum-restructure
-Agent: Main Agent
-Task: إعادة هيكلة المنصة للمنهج المصري الصحيح
 
-Work Log:
-- إنشاء API للتعبئة الأولية للمنهج (/api/seed-curriculum)
-- إنشاء 3 سنوات دراسية (أولى، ثانية، ثالثة ثانوي)
-- إنشاء 3 تخصصات (علمي رياضة، علمي علوم، أدبي)
-- إنشاء 38 مادة دراسية موزعة على السنوات والتخصصات
-- إنشاء 37 محاكي تفاعلي (فيزياء، كيمياء، رياضيات، أحياء، جغرافيا، تاريخ)
-- إنشاء 56 وحدة دراسية للصف الثالث الثانوي
-- إنشاء API للتعبئة (/api/seed-lessons-v2)
-- إنشاء 17 درس مع الأهداف والمفاهيم والمعادلات والأمثلة والأسئلة
-- إنشاء API لجلب دروس الوحدة (/api/units/[id]/lessons)
-- تحديث الواجهة الأمامية لدعم الهيكل الجديد
-- التحقق من عمل التطبيق باستخدام agent-browser
+### Task ID: 3
+**Agent:** Main
+**Task:** تنظيف البيانات المكررة
 
-Stage Summary:
-- تم الدفع إلى GitHub: https://github.com/enmohsen20111975/education
-- الإحصائيات النهائية:
-  - 3 سنوات دراسية
-  - 3 تخصصات
-  - 38 مادة دراسية
-  - 56 وحدة دراسية
-  - 17 درس
-  - 37 محاكي تفاعلي
-  - 8 شارات
-- التطبيق يعمل بشكل صحيح مع دعم RTL للعربية
-- التركيز على الصف الثالث الثانوي كـ MVP
+**Work Log:**
+- إنشاء API لفحص التكرارات: `/api/debug-subjects`
+- اكتشاف 38 مادة مكررة من أصل 74
+- إنشاء API للتنظيف: `/api/cleanup-duplicates`
+- حذف المواد المكررة والاحتفاظ بالأكثر وحدات
+- النتيجة: 36 مادة بدون تكرار
+
+**Stage Summary:**
+- ✅ حذف 38 مادة مكررة
+- ✅ توزيع المواد: أولى (10)، ثانية (12)، ثالثة (14)
 
 ---
-Task ID: content-creation
-Agent: Main Agent
-Task: إنشاء المحتوى الفعلي من المنهج المصري
 
-Work Log:
-- البحث عن توزيع المنهج من المصادر المصرية
-- قراءة توزيع منهج الفيزياء للصف الثالث الثانوي
-- إنشاء هيكل ملفات المحتوى (content/physics/grade-3/term-1/...)
-- إنشاء أول درس كامل بتنسيق Markdown
-- إنشاء API لتعبئة المحتوى في قاعدة البيانات
-- تعبئة 10 دروس فيزياء مع:
-  - 7 دروس للفصل الأول (التيار الكهربي وقانون أوم)
-  - 3 دروس للفصل الثاني (التأثير المغناطيسي)
-- إنشاء 20 سؤال اختباري (MCQ و Numerical)
-- إضافة الأهداف والمعادلات والمفاهيم لكل درس
-- الدفع إلى GitHub
+### Task ID: 4
+**Agent:** Main
+**Task:** إصلاح التخصصات
 
-Stage Summary:
-- تم إنشاء المحتوى الفعلي من المنهج المصري
-- 10 دروس فيزياء كاملة
-- 20 سؤال اختباري
-- API للتعبئة: POST /api/content/seed
-- ملفات المحتوى في مجلد content/
+**Work Log:**
+- فحص التخصصات الموجودة
+- اكتشاف تكرار: علمي رياضة (2)، أدبي (2)
+- إنشاء API للإصلاح: `/api/fix-specializations`
+- توحيد التخصصات إلى 3: science, math, arts
+- ربط المواد بالتخصصات الصحيحة
+
+**Stage Summary:**
+- ✅ 3 تخصصات فقط
+- ✅ المواد مرتبطة صح حسب النظام المصري
 
 ---
-Task ID: full-seeding
-Agent: Main Agent
-Task: تعبئة المنهج والدروس لجميع المراحل الدراسية (أولى، ثانية، ثالثة ثانوي)
 
-Work Log:
-- تحديث ملف i18n.tsx لإضافة دالة toggleLanguage
-- إنشاء seed-all-lessons API جديد للتعبئة الشاملة
-- إضافة وحدات للصف الأول والثاني الثانوي في seed-curriculum
-- تحديث unit slugs لتتوافق مع الهيكل الجديد
-- تشغيل seed-curriculum: إنشاء 82 وحدة دراسية، 38 مادة
-- تشغيل seed-all-lessons: إنشاء 12 درس مع محتوى كامل
-- التحقق من عمل التطبيق باستخدام agent-browser
-- التأكد من وجود زر تبديل اللغة (Globe button)
+### Task ID: 5
+**Agent:** Main
+**Task:** إنشاء UI اختيار التخصص
 
-Stage Summary:
-- تم إنشاء الهيكل الكامل للمنهج المصري:
-  - 3 سنوات دراسية (أولى، ثانية، ثالثة ثانوي)
-  - 3 تخصصات (علمي رياضة، علمي علوم، أدبي)
-  - 38 مادة دراسية
-  - 82 وحدة دراسية
-  - 12 درس مع محتوى كامل (أهداف، مفاهيم، معادلات، أمثلة، أسئلة)
-  - 37 محاكي تفاعلي
-  - 8 شارات
-- تم إصلاح زر تبديل اللغة (العربية/الإنجليزية)
-- الدروس تحتوي على بيانات فعلية وليس "No lessons yet"
-- التطبيق يعمل بشكل صحيح على http://localhost:3000
+**Work Log:**
+- تعديل صفحة `/platform/year/[code]/page.tsx`
+- إضافة شاشة اختيار التخصص للسنة الثانية والثالثة
+- فلترة المواد حسب التخصص المختار
+- إضافة زر "تغيير التخصص"
+- اختبار كل تخصص: علمي علوم، علمي رياضة، أدبي
+
+**Stage Summary:**
+- ✅ اختيار التخصص يظهر للسنة الثانية والثالثة
+- ✅ المواد تظهر بشكل صحيح لكل تخصص
+- ✅ المواد المشتركة تظهر للكل
+
+---
+
+### Task ID: 6
+**Agent:** Main
+**Task:** التوثيق
+
+**Work Log:**
+- إنشاء ملف DOCUMENTATION.md
+- توثيق البنية التقنية
+- توثيق قاعدة البيانات
+- توثيق نظام التخصصات
+- توثيق المشاكل والحلول
+
+**Stage Summary:**
+- ✅ ملف توثيق شامل
+- ✅ سجل العمل (Worklog)
+
+---
+
+## 📊 ملخص الجلسة
+
+| المهمة | الحالة |
+|--------|--------|
+| إصلاح العرض | ✅ |
+| نظام التنقل | ✅ |
+| تنظيف البيانات | ✅ |
+| إصلاح التخصصات | ✅ |
+| UI التخصصات | ✅ |
+| التوثيق | ✅ |
+
+---
+
+## 🔜 المهام المتبقية
+
+1. نظام تسجيل الدخول
+2. نظام التتبع التفصيلي لكل طالب
+3. التقارير والإحصائيات
+4. المحاكيات التفاعلية
+5. نشر على Hostinger
