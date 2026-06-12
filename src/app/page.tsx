@@ -10,6 +10,8 @@ import {
   ChevronDown, ArrowRight, Heart, Atom, Calculator, FlaskConical, Leaf,
   Globe, Moon, Sun, Brain, Quote, Instagram, Twitter, Youtube
 } from "lucide-react";
+import { LanguageProvider } from "@/lib/i18n";
+import MainPlatform from "@/components/MainPlatform";
 
 // ==================== ANIMATIONS ====================
 const fadeInUp = {
@@ -34,15 +36,14 @@ const floatAnimation = {
   }
 };
 
-// ==================== MAIN COMPONENT ====================
-export default function LandingPage() {
+// ==================== MAIN APP ====================
+export default function HomePage() {
+  const [showPlatform, setShowPlatform] = useState(false);
   const [lang, setLang] = useState<"ar" | "en">("ar");
   const [isDark, setIsDark] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    setIsLoaded(true);
     const timer = setTimeout(() => setShowContent(true), 500);
     return () => clearTimeout(timer);
   }, []);
@@ -55,6 +56,17 @@ export default function LandingPage() {
   const t = (ar: string, en: string) => lang === "ar" ? ar : en;
   const isRTL = lang === "ar";
 
+  // إذا كان يعرض المنصة الرئيسية
+  if (showPlatform) {
+    return (
+      <LanguageProvider>
+        <MainPlatform onBack={() => setShowPlatform(false)} />
+      </LanguageProvider>
+    );
+  }
+
+  // ==================== LANDING PAGE ====================
+  
   // Features data
   const features = [
     { icon: Zap, title: { ar: "تعلم تفاعلي", en: "Interactive Learning" }, desc: { ar: "محاكيات ومحادثات ذكية", en: "Simulators & AI Chat" }, color: "from-purple-500 to-pink-500" },
@@ -86,32 +98,25 @@ export default function LandingPage() {
     {
       name: "أحمد محمد",
       grade: "الصف الثالث الثانوي",
-      text: { ar: "المحاكيات خلتنى أفهم الفيزياء بطريقة مختلفة تماماً! كنت بكره الفيزياء دلوقتي بنجح فيها بتفوق!", en: "The simulators made me understand physics in a totally different way! I used to hate physics, now I excel at it!" },
+      text: { ar: "المحاكيات خلتنى أفهم الفيزياء بطريقة مختلفة تماماً! كنت بكره الفيزياء دلوقتي بنجح فيها بتفوق!", en: "The simulators made me understand physics in a totally different way!" },
       avatar: "👨‍🎓",
       rating: 5
     },
     {
       name: "سارة أحمد",
       grade: "الصف الثاني الثانوي",
-      text: { ar: "أخيراً منصة تعليمية مش بتوجع! بتعلم وأستمتع في نفس الوقت", en: "Finally an educational platform that doesn't hurt! I learn and have fun at the same time" },
+      text: { ar: "أخيراً منصة تعليمية مش بتوجع! بتعلم وأستمتع في نفس الوقت", en: "Finally an educational platform that doesn't hurt!" },
       avatar: "👩‍🎓",
       rating: 5
     },
     {
       name: "محمد علي",
       grade: "الصف الأول الثانوي",
-      text: { ar: "نظام النقاط والشارات محفز جداً! خلاني أحب المذاكرة", en: "The points and badges system is very motivating! It made me love studying" },
+      text: { ar: "نظام النقاط والشارات محفز جداً! خلاني أحب المذاكرة", en: "The points and badges system is very motivating!" },
       avatar: "🧑‍🎓",
       rating: 5
     },
   ];
-
-  const handleStartLearning = () => {
-    setShowContent(false);
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-  };
 
   return (
     <div className={`min-h-screen bg-background overflow-x-hidden ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
@@ -230,7 +235,7 @@ export default function LandingPage() {
                 >
                   <Button 
                     size="lg"
-                    onClick={handleStartLearning}
+                    onClick={() => setShowPlatform(true)}
                     className="btn-youth px-8 py-6 text-lg text-white"
                   >
                     <Rocket className="w-5 h-5 mr-2" />
@@ -378,6 +383,7 @@ export default function LandingPage() {
                 variants={scaleIn}
                 whileHover={{ y: -5, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => setShowPlatform(true)}
                 className="cursor-pointer group"
               >
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
@@ -499,7 +505,7 @@ export default function LandingPage() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button 
                   size="lg"
-                  onClick={handleStartLearning}
+                  onClick={() => setShowPlatform(true)}
                   className="bg-white text-purple-600 hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl"
                 >
                   {t("ابدأ مجاناً الآن", "Start Free Now")}
