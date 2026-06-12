@@ -23,9 +23,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Local env files
+# Local env files - keep .env for production deployment
 .env*.local
-.env
+# .env is now included for Hostinger deployment
 
 # Vercel
 .vercel
@@ -40,10 +40,9 @@ next-env.d.ts
 *.swp
 *.swo
 
-# Database
-*.db
+# Database - include db/custom.db for production
 *.db-journal
-db/*.db
+# Keep the main database file for deployment
 
 # Logs
 dev.log
