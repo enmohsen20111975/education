@@ -3,20 +3,70 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  Sparkles, Globe, Moon, Sun, ChevronRight, ArrowLeft,
+  Globe, Moon, Sun, ChevronRight, ArrowLeft,
   Clock, Play, Lock, BookOpen, Target, Lightbulb, 
-  FileText, HelpCircle, Beaker, Share2, Bookmark,
-  CheckCircle, X, ChevronDown
+  FileText, HelpCircle, Beaker, CheckCircle
 } from "lucide-react";
+import { loadStaticData } from "@/lib/static-data";
 
-interface LessonDetailFromApi {
+interface Objective {
+  id: string;
+  textAr: string;
+  textEn: string;
+  order: number;
+}
+
+interface Concept {
+  id: string;
+  termAr: string;
+  termEn: string;
+  definitionAr: string;
+  definitionEn: string;
+  order: number;
+}
+
+interface Formula {
+  id: string;
+  formula: string;
+  explanationAr: string;
+  explanationEn: string;
+  order: number;
+}
+
+interface Example {
+  id: string;
+  questionAr: string;
+  questionEn: string;
+  solutionAr: string;
+  solutionEn: string;
+  stepsAr: string;
+  stepsEn: string;
+  order: number;
+}
+
+interface Question {
+  id: string;
+  type: string;
+  questionAr: string;
+  questionEn: string;
+  optionsAr?: string;
+  optionsEn?: string;
+  answer: string;
+  explanationAr?: string;
+  explanationEn?: string;
+  points: number;
+  difficulty: string;
+  order: number;
+}
+
+interface LessonDetail {
   id: string;
   slug: string;
   titleAr: string;
@@ -27,14 +77,21 @@ interface LessonDetailFromApi {
   isFree: boolean;
   videoUrl?: string;
   thumbnailUrl?: string;
-  introduction: { ar: string; en: string };
-  summary: { ar: string; en: string };
-  unit: {
+  introductionAr: string;
+  introductionEn: string;
+  summaryAr: string;
+  summaryEn: string;
+  Objective: Objective[];
+  Concept: Concept[];
+  Formula: Formula[];
+  Example: Example[];
+  Question: Question[];
+  Unit: {
     id: string;
     slug: string;
     nameAr: string;
     nameEn: string;
-    subject: {
+    Subject: {
       id: string;
       slug: string;
       nameAr: string;
@@ -43,20 +100,13 @@ interface LessonDetailFromApi {
       color: string;
     };
   };
-  objectives: { ar: string[]; en: string[] };
-  keyConcepts: { ar: { term: string; definition: string }[]; en: { term: string; definition: string }[] };
-  formulas: { ar: { formula: string; explanation: string }[]; en: { formula: string; explanation: string }[] };
-  examples: { ar: { question: string; solution: string; steps: string[] }[]; en: { question: string; solution: string; steps: string[] }[] };
-  simulators: string[];
-  questions: any[];
 }
 
 export default function LessonPage() {
   const params = useParams();
-  const router = useRouter();
   const lessonId = params.id as string;
   const { language, toggleLanguage, t } = useLanguage();
-  const [lesson, setLesson] = useState<LessonDetailFromApi | null>(null);
+  const [lesson, setLesson] = useState<LessonDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
 
@@ -65,11 +115,28 @@ export default function LessonPage() {
   useEffect(() => {
     const fetchLesson = async () => {
       try {
-        const res = await fetch(`/api/lessons/${lessonId}`);
-        if (res.ok) {
-          const data = await res.json();
-          setLesson(data.lesson);
+        const data = await loadStaticData();
+        
+        let foundLesson: LessonDetail | null = null;
+        
+        for (const year of data?.academicYears || []) {
+          for (const subject of year.Subject || []) {
+            for (const unit of subject.Unit || []) {
+              const lesson = unit.Lesson?.find((l: any) => l.id === lessonId);
+              if (lesson) {
+                foundLesson = {
+                  ...lesson,
+                  Unit: { ...unit, Subject: subject }
+                };
+                break;
+              }
+            }
+            if (foundLesson) break;
+          }
+          if (foundLesson) break;
         }
+        
+        setLesson(foundLesson);
       } catch (error) {
         console.error("Error fetching lesson:", error);
       } finally {
@@ -97,32 +164,44 @@ export default function LessonPage() {
 
   const getIntroduction = () => {
     if (!lesson) return "";
-    return language === "ar" ? lesson.introduction?.ar : lesson.introduction?.en;
+    return language === "ar" ? lesson.introductionAr : lesson.introductionEn;
   };
 
   const getSummary = () => {
     if (!lesson) return "";
-    return language === "ar" ? lesson.summary?.ar : lesson.summary?.en;
+    return language === "ar" ? lesson.summaryAr : lesson.summaryEn;
   };
 
   const getObjectives = () => {
-    if (!lesson) return [];
-    return language === "ar" ? lesson.objectives?.ar || [] : lesson.objectives?.en || [];
+    if (!lesson?.Objective) return [];
+    return lesson.Objective.sort((a, b) => a.order - b.order).map(obj => 
+      language === "ar" ? obj.textAr : obj.textEn
+    );
   };
 
   const getKeyConcepts = () => {
-    if (!lesson) return [];
-    return language === "ar" ? lesson.keyConcepts?.ar || [] : lesson.keyConcepts?.en || [];
+    if (!lesson?.Concept) return [];
+    return lesson.Concept.sort((a, b) => a.order - b.order).map(concept => ({
+      term: language === "ar" ? concept.termAr : concept.termEn,
+      definition: language === "ar" ? concept.definitionAr : concept.definitionEn
+    }));
   };
 
   const getFormulas = () => {
-    if (!lesson) return [];
-    return language === "ar" ? lesson.formulas?.ar || [] : lesson.formulas?.en || [];
+    if (!lesson?.Formula) return [];
+    return lesson.Formula.sort((a, b) => a.order - b.order).map(formula => ({
+      formula: formula.formula,
+      explanation: language === "ar" ? formula.explanationAr : formula.explanationEn
+    }));
   };
 
   const getExamples = () => {
-    if (!lesson) return [];
-    return language === "ar" ? lesson.examples?.ar || [] : lesson.examples?.en || [];
+    if (!lesson?.Example) return [];
+    return lesson.Example.sort((a, b) => a.order - b.order).map(example => ({
+      question: language === "ar" ? example.questionAr : example.questionEn,
+      solution: language === "ar" ? example.solutionAr : example.solutionEn,
+      steps: language === "ar" ? example.stepsAr?.split('\n') : example.stepsEn?.split('\n')
+    }));
   };
 
   return (
@@ -141,8 +220,8 @@ export default function LessonPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              {lesson?.unit?.subject && (
-                <Link href={`/platform/subject/${lesson.unit.subject.id}`}>
+              {lesson?.Unit?.Subject && (
+                <Link href={`/platform/subject/${lesson.Unit.Subject.id}`}>
                   <Button variant="ghost" size="sm" className="gap-2">
                     <ArrowLeft className="w-4 h-4" />
                     {t("العودة", "Back")}
@@ -195,13 +274,13 @@ export default function LessonPage() {
                 {t("المنصة", "Platform")}
               </Link>
               <ChevronRight className="w-4 h-4" />
-              {lesson.unit?.subject && (
+              {lesson.Unit?.Subject && (
                 <>
                   <Link 
-                    href={`/platform/subject/${lesson.unit.subject.id}`} 
+                    href={`/platform/subject/${lesson.Unit.Subject.id}`} 
                     className="hover:text-purple-600 transition"
                   >
-                    {language === "ar" ? lesson.unit.subject.nameAr : lesson.unit.subject.nameEn}
+                    {language === "ar" ? lesson.Unit.Subject.nameAr : lesson.Unit.Subject.nameEn}
                   </Link>
                   <ChevronRight className="w-4 h-4" />
                 </>
@@ -485,32 +564,6 @@ export default function LessonPage() {
                 </motion.div>
               </TabsContent>
             </Tabs>
-
-            {/* Simulators */}
-            {lesson.simulators && lesson.simulators.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-8"
-              >
-                <Card className="border-0 shadow-md bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-                      <Beaker className="w-5 h-5 text-cyan-500" />
-                      {t("المحاكيات التفاعلية", "Interactive Simulators")}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {lesson.simulators.map((sim, i) => (
-                        <Badge key={i} variant="secondary" className="px-3 py-1">
-                          {sim}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
           </>
         )}
       </main>

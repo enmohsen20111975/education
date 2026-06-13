@@ -79,9 +79,9 @@ async function exportDatabase() {
 
     await db.$disconnect();
   } catch (error) {
-    console.error('⚠️ Export failed (this is OK during build):', error);
+    console.error('⚠️ Export failed:', error);
     await db.$disconnect();
-    process.exit(0); // Exit with success to not fail the build
+    process.exit(1);
   }
 }
 

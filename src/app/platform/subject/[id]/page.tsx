@@ -1,26 +1,27 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { 
-  Sparkles, Globe, Moon, Sun, ChevronRight, ArrowLeft,
+  Globe, Moon, Sun, ChevronRight, ArrowLeft,
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe as GlobeIcon,
   Map, Landmark, Cpu, Eye, Sigma, BarChart3, ChevronDown, Lock, 
-  CheckCircle, Clock, Play
+  Clock, Play
 } from "lucide-react";
+import { loadStaticData } from "@/lib/static-data";
 
 const subjectIcons: Record<string, any> = {
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe: GlobeIcon,
   Map, Landmark, Cpu, Eye, Sigma, BarChart3,
 };
 
-interface LessonFromApi {
+interface Lesson {
   id: string;
   slug: string;
   titleAr: string;
@@ -30,23 +31,23 @@ interface LessonFromApi {
   order: number;
 }
 
-interface UnitFromApi {
+interface Unit {
   id: string;
   slug: string;
   nameAr: string;
   nameEn: string;
   order: number;
-  lessons?: LessonFromApi[];
+  Lesson: Lesson[];
 }
 
-interface SubjectDetailFromApi {
+interface SubjectDetail {
   id: string;
   nameAr: string;
   nameEn: string;
   icon: string;
   color: string;
   yearId: string;
-  Unit: UnitFromApi[];
+  Unit: Unit[];
   AcademicYear?: {
     id: string;
     code: string;
@@ -59,29 +60,24 @@ export default function SubjectPage() {
   const params = useParams();
   const subjectId = params.id as string;
   const { language, toggleLanguage, t } = useLanguage();
-  const [subject, setSubject] = useState<SubjectDetailFromApi | null>(null);
+  const [subject, setSubject] = useState<SubjectDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
   const [expandedUnits, setExpandedUnits] = useState<Set<string>>(new Set());
-  const [lessonsCache, setLessonsCache] = useState<Record<string, LessonFromApi[]>>({});
 
   const isRTL = language === "ar";
 
   useEffect(() => {
     const fetchSubject = async () => {
       try {
-        // First get structure to find the subject
-        const structureRes = await fetch("/api/structure");
-        const structureData = await structureRes.json();
+        const data = await loadStaticData();
         
-        let foundSubject: SubjectDetailFromApi | null = null;
-        let foundYear: any = null;
+        let foundSubject: SubjectDetail | null = null;
         
-        for (const year of structureData.academicYears || []) {
+        for (const year of data?.academicYears || []) {
           const subj = year.Subject?.find((s: any) => s.id === subjectId);
           if (subj) {
             foundSubject = { ...subj, AcademicYear: year };
-            foundYear = year;
             break;
           }
         }
@@ -102,24 +98,13 @@ export default function SubjectPage() {
     document.documentElement.classList.toggle('dark');
   };
 
-  const toggleUnit = async (unitId: string) => {
+  const toggleUnit = (unitId: string) => {
     const newExpanded = new Set(expandedUnits);
     
     if (newExpanded.has(unitId)) {
       newExpanded.delete(unitId);
     } else {
       newExpanded.add(unitId);
-      
-      // Fetch lessons if not cached
-      if (!lessonsCache[unitId]) {
-        try {
-          const res = await fetch(`/api/units/${unitId}/lessons`);
-          const data = await res.json();
-          setLessonsCache(prev => ({ ...prev, [unitId]: data.lessons || [] }));
-        } catch (error) {
-          console.error("Error fetching lessons:", error);
-        }
-      }
     }
     
     setExpandedUnits(newExpanded);
@@ -235,7 +220,7 @@ export default function SubjectPage() {
           <div className="space-y-4">
             {units.sort((a, b) => a.order - b.order).map((unit, index) => {
               const isExpanded = expandedUnits.has(unit.id);
-              const lessons = lessonsCache[unit.id] || [];
+              const lessons = unit.Lesson || [];
               
               return (
                 <motion.div
@@ -259,7 +244,7 @@ export default function SubjectPage() {
                             {language === "ar" ? unit.nameAr : unit.nameEn}
                           </h3>
                           <p className="text-xs text-slate-500">
-                            {lessons.length || "..."} {t("درس", "lessons")}
+                            {lessons.length} {t("درس", "lessons")}
                           </p>
                         </div>
                       </div>

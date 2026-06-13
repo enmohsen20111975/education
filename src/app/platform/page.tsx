@@ -8,11 +8,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Sparkles, Globe, Moon, Sun, ChevronLeft, Home, RefreshCw,
+  Sparkles, Globe, Moon, Sun, Home,
   BookOpen, Users, Trophy
 } from "lucide-react";
+import { getAcademicYearsStatic } from "@/lib/static-data";
 
-interface AcademicYearFromApi {
+interface AcademicYear {
   id: string;
   code: string;
   nameAr: string;
@@ -23,7 +24,7 @@ interface AcademicYearFromApi {
 
 export default function PlatformPage() {
   const { language, toggleLanguage, t } = useLanguage();
-  const [academicYears, setAcademicYears] = useState<AcademicYearFromApi[]>([]);
+  const [academicYears, setAcademicYears] = useState<AcademicYear[]>([]);
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
 
@@ -32,9 +33,8 @@ export default function PlatformPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/structure");
-        const data = await res.json();
-        setAcademicYears(data.academicYears || []);
+        const years = await getAcademicYearsStatic();
+        setAcademicYears(years);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {

@@ -9,17 +9,18 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Sparkles, Globe, Moon, Sun, ChevronRight, ArrowLeft,
+  Globe, Moon, Sun, ChevronRight, ArrowLeft,
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe as GlobeIcon,
-  Map, Landmark, Cpu, Eye, Sigma, BarChart3, FlaskConical as Beaker
+  Map, Landmark, Cpu, Eye, Sigma, BarChart3
 } from "lucide-react";
+import { loadStaticData } from "@/lib/static-data";
 
 const subjectIcons: Record<string, any> = {
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe: GlobeIcon,
-  Map, Landmark, Cpu, Eye, Sigma, BarChart3, Beaker,
+  Map, Landmark, Cpu, Eye, Sigma, BarChart3,
 };
 
-interface SubjectFromApi {
+interface Subject {
   id: string;
   slug: string;
   nameAr: string;
@@ -32,19 +33,19 @@ interface SubjectFromApi {
   Unit: { id: string; nameAr: string; nameEn: string }[];
 }
 
-interface SpecializationFromApi {
+interface Specialization {
   id: string;
   code: string;
   nameAr: string;
   nameEn: string;
 }
 
-interface AcademicYearFromApi {
+interface AcademicYear {
   id: string;
   code: string;
   nameAr: string;
   nameEn: string;
-  Subject: SubjectFromApi[];
+  Subject: Subject[];
 }
 
 const specializationColors: Record<string, string> = {
@@ -63,8 +64,8 @@ export default function YearPage() {
   const params = useParams();
   const yearCode = params.code as string;
   const { language, toggleLanguage, t } = useLanguage();
-  const [yearData, setYearData] = useState<AcademicYearFromApi | null>(null);
-  const [specializations, setSpecializations] = useState<SpecializationFromApi[]>([]);
+  const [yearData, setYearData] = useState<AcademicYear | null>(null);
+  const [specializations, setSpecializations] = useState<Specialization[]>([]);
   const [selectedSpec, setSelectedSpec] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
@@ -74,11 +75,10 @@ export default function YearPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/api/structure");
-        const data = await res.json();
-        const year = data.academicYears?.find((y: any) => y.code === yearCode);
+        const data = await loadStaticData();
+        const year = data?.academicYears?.find((y: any) => y.code === yearCode);
         setYearData(year || null);
-        setSpecializations(data.specializations || []);
+        setSpecializations(data?.specializations || []);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
