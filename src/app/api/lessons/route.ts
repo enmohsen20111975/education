@@ -11,27 +11,27 @@ export async function GET(request: Request) {
     const where: any = {};
     
     if (subjectSlug || unitSlug) {
-      where.unit = {};
-      if (subjectSlug) where.unit.subject = { slug: subjectSlug };
-      if (unitSlug) where.unit.slug = unitSlug;
+      where.Unit = {};
+      if (subjectSlug) where.Unit.Subject = { slug: subjectSlug };
+      if (unitSlug) where.Unit.slug = unitSlug;
     }
 
     const lessons = await db.lesson.findMany({
       where,
       include: {
-        unit: {
+        Unit: {
           include: {
-            subject: true,
+            Subject: true,
           },
         },
-        simulators: {
+        LessonSimulator: {
           include: {
-            simulator: true,
+            Simulator: true,
           },
         },
         _count: {
           select: {
-            questions: true,
+            Question: true,
           },
         },
       },
@@ -50,21 +50,21 @@ export async function GET(request: Request) {
       isFree: lesson.isFree,
       order: lesson.order,
       unit: {
-        id: lesson.unit.id,
-        slug: lesson.unit.slug,
-        nameAr: lesson.unit.nameAr,
-        nameEn: lesson.unit.nameEn,
+        id: lesson.Unit.id,
+        slug: lesson.Unit.slug,
+        nameAr: lesson.Unit.nameAr,
+        nameEn: lesson.Unit.nameEn,
         subject: {
-          id: lesson.unit.subject.id,
-          slug: lesson.unit.subject.slug,
-          nameAr: lesson.unit.subject.nameAr,
-          nameEn: lesson.unit.subject.nameEn,
-          icon: lesson.unit.subject.icon,
-          color: lesson.unit.subject.color,
+          id: lesson.Unit.Subject.id,
+          slug: lesson.Unit.Subject.slug,
+          nameAr: lesson.Unit.Subject.nameAr,
+          nameEn: lesson.Unit.Subject.nameEn,
+          icon: lesson.Unit.Subject.icon,
+          color: lesson.Unit.Subject.color,
         },
       },
-      simulators: lesson.simulators.map(s => s.simulator.slug),
-      questionsCount: lesson._count.questions,
+      simulators: lesson.LessonSimulator.map(s => s.Simulator.slug),
+      questionsCount: lesson._count.Question,
     }));
 
     return NextResponse.json({ lessons: formattedLessons });

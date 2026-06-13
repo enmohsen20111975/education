@@ -109,8 +109,8 @@ model LessonSimulator {
   id          String    @id
   lessonId    String
   simulatorId String
-  Simulator   Simulator @relation(fields: [simulatorId], references: [id], onDelete: Cascade)
   Lesson      Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  Simulator   Simulator @relation(fields: [simulatorId], references: [id], onDelete: Cascade)
 
   @@unique([lessonId, simulatorId])
 }
@@ -138,8 +138,8 @@ model Progress {
   score     Int?
   timeSpent Int       @default(0)
   watchedAt DateTime?
-  Lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
   User      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Lesson    Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   @@unique([userId, lessonId])
 }
@@ -169,8 +169,8 @@ model QuizResult {
   totalPoints Int
   answers     String
   completedAt DateTime @default(now())
-  Lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
   User        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 
   @@unique([userId, lessonId])
 }
@@ -228,8 +228,8 @@ model Subject {
   isCommon         Boolean         @default(false)
   createdAt        DateTime        @default(now())
   updatedAt        DateTime
-  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
   AcademicYear     AcademicYear?   @relation(fields: [yearId], references: [id])
+  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
   Unit             Unit[]
 }
 
@@ -244,8 +244,8 @@ model Unit {
   createdAt  DateTime  @default(now())
   updatedAt  DateTime
   Lesson     Lesson[]
-  Semester   Semester? @relation(fields: [semesterId], references: [id])
   Subject    Subject   @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  Semester   Semester? @relation(fields: [semesterId], references: [id])
 }
 
 model User {
@@ -263,8 +263,8 @@ model User {
   updatedAt        DateTime
   Progress         Progress[]
   QuizResult       QuizResult[]
-  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
   AcademicYear     AcademicYear?   @relation(fields: [yearId], references: [id])
+  Specialization   Specialization? @relation(fields: [specializationId], references: [id])
   UserBadge        UserBadge[]
 }
 

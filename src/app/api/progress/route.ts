@@ -56,14 +56,14 @@ export async function GET(request: Request) {
     const progress = await db.progress.findMany({
       where: { userId },
       include: {
-        lesson: {
+        Lesson: {
           select: {
             id: true,
             titleAr: true,
             titleEn: true,
-            unit: {
+            Unit: {
               include: {
-                subject: true,
+                Subject: true,
               },
             },
           },
@@ -77,7 +77,16 @@ export async function GET(request: Request) {
     const totalTimeSpent = progress.reduce((sum, p) => sum + (p.timeSpent || 0), 0);
 
     return NextResponse.json({
-      progress,
+      progress: progress.map(p => ({
+        ...p,
+        lesson: p.Lesson ? {
+          ...p.Lesson,
+          unit: p.Lesson.Unit ? {
+            ...p.Lesson.Unit,
+            subject: p.Lesson.Unit.Subject,
+          } : null,
+        } : null,
+      })),
       stats: {
         completedLessons,
         totalScore,
