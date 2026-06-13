@@ -3853,86 +3853,126 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 4",
-                  "introductionEn": "Introduction to Lesson 4",
-                  "summaryAr": "ملخص الدرس 4",
-                  "summaryEn": "Summary of Lesson 4",
+                  "introductionAr": "مرحباً بكم في درسنا الرابع حول القواعد الفرنسية (Grammaire) في المرحلة الثانوية. في هذا الدرس، سنتناول أساسيات القواعد النحوية الفرنسية الأساسية التي تمثل حجر الزاوية في بناء الجمل الفرنسية الصحيحة. سنتعلم كيفية استخدام الأزمنة المختلفة، والصيغ الصرفية للأفعال، والبناء الصحيح للجمل، والاستخدام الصحيح للصفات والأسماء. هذا الدرس مهم جداً لأنه يمنحك الأساس القوي اللازم لفهم اللغة الفرنسية بشكل أعمق وتطوير مهاراتك في القراءة والكتابة والاستماع والتحدث.",
+                  "introductionEn": "Welcome to our fourth lesson on French Grammar (Grammaire) in high school. In this lesson, we will cover the basics of French grammar that form the cornerstone of building correct French sentences. We will learn how to use different tenses, verb conjugations, proper sentence structure, and the correct use of adjectives and nouns. This lesson is very important as it gives you the strong foundation needed to understand French more deeply and develop your skills in reading, writing, listening, and speaking.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات القواعد الفرنسية (Grammaire). تناولنا الأزمنة الفعلية الرئيسية مثل الماضي البسيد (Passé Composé) والماضي غير المكتمل (Imparfait)، وكيفية صياغة الأفعال بشكل صحيح. تعلمنا أيضاً كيفية بناء الجمل الصحيحة، بما في ذلك ترتيب الكلمات واستخدام الضمائر، وكيفية الموافقة بين الصفات والأسماء في الجنس والعدد. هذه القواعد ضرورية لتكوين جمل صحيحة ومعبرة في الفرنسية. الممارسة المستمعة هي مفتاح إتقان هذه القواعد وتطبيقها بشكل صحيح في الكتابة والنطق.",
+                  "summaryEn": "In this lesson, we learned the basics of French Grammar (Grammaire). We covered the main verb tenses such as Passé Composé and Imparfait, and how to conjugate verbs correctly. We also learned how to construct proper sentences, including word order and pronoun usage, and how to agree between adjectives and nouns in gender and number. These rules are essential for forming correct and expressive sentences in French. Continuous practice is the key to mastering these rules and applying them correctly in writing and speaking.",
                   "createdAt": "2026-06-13T10:13:57.896Z",
                   "updatedAt": "2026-06-13T10:13:57.895Z",
                   "Objective": [
                     {
-                      "id": "id_gauwscdt6zp",
+                      "id": "obj-id_5tjr9ccklhr-0",
                       "lessonId": "id_5tjr9ccklhr",
-                      "textAr": "فهم محتوى الدرس 4",
-                      "textEn": "Understand lesson 4 content",
+                      "textAr": "الأزمنة الفعلية الرئيسية في الفرنسية",
+                      "textEn": "Main verb tenses in French",
                       "order": 1
                     },
                     {
-                      "id": "id_spxwrvvmzwi",
+                      "id": "obj-id_5tjr9ccklhr-1",
                       "lessonId": "id_5tjr9ccklhr",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "صيغ الأفعال الشائعة والموافقة",
+                      "textEn": "Common verb conjugations and agreement",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_5tjr9ccklhr-2",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "textAr": "بناء الجمل الصحيحة والاستفهام",
+                      "textEn": "Proper sentence construction and questions",
+                      "order": 3
+                    },
+                    {
+                      "id": "obj-id_5tjr9ccklhr-3",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "textAr": "الموافقة بين الصفات والأسماء",
+                      "textEn": "Agreement between adjectives and nouns",
+                      "order": 4
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_pr6ypmquzj",
+                      "id": "concept-id_5tjr9ccklhr-0",
                       "lessonId": "id_5tjr9ccklhr",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
-                      "order": 1
-                    }
-                  ],
-                  "Formula": [],
-                  "Example": [],
-                  "Question": [
-                    {
-                      "id": "id_a61mhya3g08",
-                      "lessonId": "id_5tjr9ccklhr",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 4؟",
-                      "questionEn": "What is the purpose of Lesson 4?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
+                      "termAr": "الأزمنة الفعلية الرئيسية في الفرنسية",
+                      "termEn": "Main verb tenses in French",
+                      "definitionAr": "الأزمنة الفعلية الرئيسية في الفرنسية",
+                      "definitionEn": "Main verb tenses in French",
                       "order": 1
                     },
                     {
-                      "id": "q-id_5tjr9ccklhr-add-0",
+                      "id": "concept-id_5tjr9ccklhr-1",
                       "lessonId": "id_5tjr9ccklhr",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 4: Grammaire",
-                      "questionEn": "Application question on Lesson 4",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
+                      "termAr": "صيغ الأفعال الشائعة والموافقة",
+                      "termEn": "Common verb conjugations and agreement",
+                      "definitionAr": "صيغ الأفعال الشائعة والموافقة",
+                      "definitionEn": "Common verb conjugations and agreement",
                       "order": 2
                     },
                     {
-                      "id": "q-id_5tjr9ccklhr-add-1",
+                      "id": "concept-id_5tjr9ccklhr-2",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "termAr": "بناء الجمل الصحيحة والاستفهام",
+                      "termEn": "Proper sentence construction and questions",
+                      "definitionAr": "بناء الجمل الصحيحة والاستفهام",
+                      "definitionEn": "Proper sentence construction and questions",
+                      "order": 3
+                    }
+                  ],
+                  "Formula": [],
+                  "Example": [
+                    {
+                      "id": "example-id_5tjr9ccklhr-0",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "questionAr": "استخدام زمن الماضي البسيد: الماضي البسيد يستخدم للإشارة إلى حدث انتهى في الماضي المحدد.",
+                      "questionEn": "Using Passé Composé tense: Passé Composé is used to refer to an action that was completed in a specific past time.",
+                      "solutionAr": "استخدام الفعل المساعد avoir أو être مع الفعل الرئيسي في الماضي البسيد\\nإضافة الفعل الرئيسي في شكل الماضي البسيد (للأفعال التي تنتهي بـ -er، -ir، -re)",
+                      "solutionEn": "Use the auxiliary verb avoir or être with the main verb in Passé Composé\\nAdd the main verb in its past participle form (for verbs ending in -er, -ir, -re)",
+                      "stepsAr": "استخدام الفعل المساعد avoir أو être مع الفعل الرئيسي في الماضي البسيد\\nإضافة الفعل الرئيسي في شكل الماضي البسيد (للأفعال التي تنتهي بـ -er، -ir، -re)",
+                      "stepsEn": "Use the auxiliary verb avoir or être with the main verb in Passé Composé\\nAdd the main verb in its past participle form (for verbs ending in -er, -ir, -re)",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_5tjr9ccklhr-1",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "questionAr": "استخدام زمن الماضي غير المكتمل: الماضي غير المكتمل يستخدم للوصف أو الحالات المستمرة في الماضي.",
+                      "questionEn": "Using Imparfait tense: Imparfait is used for describing or ongoing states in the past.",
+                      "solutionAr": "إضافة الأصوات التالية إلى جذور الأفعال: -ais, -ais, -ait, -ions, -iez, -aient\\nاستخدم هذا الزمن للوصف أو الحالات المستمرة في الماضي",
+                      "solutionEn": "Add the following endings to verb stems: -ais, -ais, -ait, -ions, -iez, -aient\\nUse this tense for describing or ongoing states in the past",
+                      "stepsAr": "إضافة الأصوات التالية إلى جذور الأفعال: -ais, -ais, -ait, -ions, -iez, -aient\\nاستخدم هذا الزمن للوصف أو الحالات المستمرة في الماضي",
+                      "stepsEn": "Add the following endings to verb stems: -ais, -ais, -ait, -ions, -iez, -aient\\nUse this tense for describing or ongoing states in the past",
+                      "order": 2
+                    }
+                  ],
+                  "Question": [
+                    {
+                      "id": "q-id_5tjr9ccklhr-0",
                       "lessonId": "id_5tjr9ccklhr",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 4: Grammaire",
-                      "questionEn": "Conceptual question in Lesson 4",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "أي زمن يُستخدم للإشارة إلى حدث انتهى في الماضي المحدد؟",
+                      "questionEn": "Which tense is used to refer to an action that was completed in a specific past time?",
+                      "optionsAr": "[\"أ. Présent\",\"ب. Passé Composé\",\"ج. Imparfait\",\"د. Futur\"]",
+                      "optionsEn": "[\"A. Présent\",\"B. Passé Composé\",\"C. Imparfait\",\"D. Futur\"]",
+                      "answer": "ب",
+                      "explanationAr": "Passé Composé هو زمن الماضي البسيد الذي يُستخدم للإشارة إلى حدث انتهى في الماضي المحدد. Présent هو زمن الحاضر، Imparfait هو زمن الماضي غير المكتمل، وFutur هو زمن المستقبل.",
+                      "explanationEn": "Passé Composé is the past simple tense used to refer to an action that was completed in a specific past time. Présent is the present tense, Imparfait is the past imperfect tense, and Futur is the future tense.",
                       "points": 1,
                       "difficulty": "medium",
-                      "order": 3
+                      "order": 1
+                    },
+                    {
+                      "id": "q-id_5tjr9ccklhr-1",
+                      "lessonId": "id_5tjr9ccklhr",
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي الصيغة الصحيحة للفعل 'parler' في الماضي البسيد مع الضمير 'je'؟",
+                      "questionEn": "What is the correct form of the verb 'parler' in Passé Composé with the pronoun 'je'?",
+                      "optionsAr": "[\"أ. j'ai parlé\",\"ب. j'ai parlais\",\"ج. j'ai parlait\",\"د. j'ai parlé\"]",
+                      "optionsEn": "[\"A. j'ai parlé\",\"B. j'ai parlais\",\"C. j'ai parlait\",\"D. j'ai parlé\"]",
+                      "answer": "أ",
+                      "explanationAr": "الصيغة الصحيحة هي 'j'ai parlé'. في الماضي البسيد، نستخدم الفعل المساعد 'avoir' مع الفعل الرئيسي في شكل الماضي البسيد. الفعل 'parler' ينتهي بـ -er، لذا شكل الماضي البسيد هو 'parlé'.",
+                      "explanationEn": "The correct form is 'j'ai parlé'. In Passé Composé, we use the auxiliary verb 'avoir' with the main verb in its past participle form. The verb 'parler' ends in -er, so the past participle is 'parlé'.",
+                      "points": 1,
+                      "difficulty": "medium",
+                      "order": 2
                     }
                   ]
                 }
