@@ -142,9 +142,7 @@ export default function SubjectPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link href="/platform" className="flex items-center gap-2 hover:opacity-80 transition">
-                <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-white" />
-                </div>
+                <img src="/logo.jpeg" alt="SmartEdu" className="w-10 h-10 rounded-xl object-cover" />
                 <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hidden sm:inline">
                   {t("تعلم ذكي", "SmartEdu")}
                 </span>
