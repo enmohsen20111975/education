@@ -8,7 +8,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  t: (key: string) => string;
+  t: (ar: string, en?: string) => string;
   dir: "rtl" | "ltr";
 }
 
@@ -226,8 +226,13 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     handleSetLanguage(newLang);
   };
 
-  const t = (key: string): string => {
-    return translations[language][key] || key;
+  const t = (ar: string, en?: string): string => {
+    // If two arguments provided, use them directly
+    if (en !== undefined) {
+      return language === "ar" ? ar : en;
+    }
+    // Otherwise, look up in translations object
+    return translations[language][ar] || ar;
   };
 
   const dir = language === "ar" ? "rtl" : "ltr";
