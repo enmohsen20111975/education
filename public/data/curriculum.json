@@ -5810,37 +5810,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 4",
-                  "introductionEn": "Introduction to Lesson 4",
-                  "summaryAr": "ملخص الدرس 4",
-                  "summaryEn": "Summary of Lesson 4",
+                  "introductionAr": "مرحباً بكم في درس الجبر للصف الأول الثانوي. يعتبر الجبر أحد الأركاس الأساسية في الرياضيات ويربط بين الرياضيات المجردة والتطبيقات العملية. في هذا الدرس، سنتناول المفاهيم الأساسية للجبر مثل المتغيرات، المعادلات، والمتباينات. سنتعلم كيفية تمثيل المشكلات الرياضية باستخدام الرموز وكيفية حل المعادلات الخطية والمتباينات. كما سنتناول تطبيقات عملية للجبر في حل مشاكل الحياة اليومية. يساعدنا الجبر على تطوير التفكير المنطقي وحل المشكلات، وهو أساسي لفهم الرياضيات المتقدمة في المستقبل.",
+                  "introductionEn": "Welcome to Algebra Lesson for First Secondary Grade. Algebra is one of the cornerstones of mathematics and connects abstract mathematics with practical applications. In this lesson, we will cover the basic concepts of algebra such as variables, equations, and inequalities. We will learn how to represent mathematical problems using symbols and how to solve linear equations and inequalities. We will also explore practical applications of algebra in solving everyday life problems. Algebra helps us develop logical thinking and problem-solving skills, and it is essential for understanding advanced mathematics in the future.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات الجبر بما في ذلك المتغيرات والمعادلات والمتباينات. تعلمنا كيفية تمثيل المشكلات الرياضية باستخدام الرموز وكيفية حل المعادلات الخطية باستخدام العمليات العكسية. كما تعلمنا خصائص حل المتباينات وكيفية التعامل مع علامات المتباينة عند الضرب أو القسمة على أعداد سالبة. الجبر أداة قوية لحل المشاكل في الحياة اليومية ويساعدنا على تطوير التفكير المنطقي والرياضي.",
+                  "summaryEn": "In this lesson, we learned the fundamentals of algebra including variables, equations, and inequalities. We learned how to represent mathematical problems using symbols and how to solve linear equations using inverse operations. We also learned the properties of solving inequalities and how to handle inequality signs when multiplying or dividing by negative numbers. Algebra is a powerful tool for solving problems in daily life and helps us develop logical and mathematical thinking.",
                   "createdAt": "2026-06-13T10:13:57.919Z",
                   "updatedAt": "2026-06-13T10:13:57.919Z",
                   "Objective": [
                     {
-                      "id": "id_hcudnq2ecy",
+                      "id": "obj-id_dtwc8gl7n9o-0",
                       "lessonId": "id_dtwc8gl7n9o",
-                      "textAr": "فهم محتوى الدرس 4",
-                      "textEn": "Understand lesson 4 content",
+                      "textAr": "المتغيرات والرموز في الجبر",
+                      "textEn": "Variables and symbols in algebra",
                       "order": 1
                     },
                     {
-                      "id": "id_gdyea0n6uw",
+                      "id": "obj-id_dtwc8gl7n9o-1",
                       "lessonId": "id_dtwc8gl7n9o",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "حل المعادلات الخطية",
+                      "textEn": "Solving linear equations",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_dtwc8gl7n9o-2",
+                      "lessonId": "id_dtwc8gl7n9o",
+                      "textAr": "حل المتباينات وخصائصها",
+                      "textEn": "Solving inequalities and their properties",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_nulwdrdpv1a",
+                      "id": "concept-id_dtwc8gl7n9o-0",
                       "lessonId": "id_dtwc8gl7n9o",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "المتغيرات والرموز في الجبر",
+                      "termEn": "Variables and symbols in algebra",
+                      "definitionAr": "المتغيرات والرموز في الجبر",
+                      "definitionEn": "Variables and symbols in algebra",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_dtwc8gl7n9o-1",
+                      "lessonId": "id_dtwc8gl7n9o",
+                      "termAr": "حل المعادلات الخطية",
+                      "termEn": "Solving linear equations",
+                      "definitionAr": "حل المعادلات الخطية",
+                      "definitionEn": "Solving linear equations",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_dtwc8gl7n9o-2",
+                      "lessonId": "id_dtwc8gl7n9o",
+                      "termAr": "حل المتباينات وخصائصها",
+                      "termEn": "Solving inequalities and their properties",
+                      "definitionAr": "حل المتباينات وخصائصها",
+                      "definitionEn": "Solving inequalities and their properties",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -5863,62 +5888,58 @@
                   ],
                   "Example": [
                     {
-                      "id": "ex-id_dtwc8gl7n9o",
+                      "id": "example-id_dtwc8gl7n9o-0",
                       "lessonId": "id_dtwc8gl7n9o",
-                      "questionAr": "أحسب قيم x في المعادلة: x² - 5x + 6 = 0",
-                      "questionEn": "Solve for x: x² - 5x + 6 = 0",
-                      "solutionAr": "x = 2 أو x = 3",
-                      "solutionEn": "x = 2 or x = 3",
-                      "stepsAr": "[\"نحلل المعادلة: (x - 2)(x - 3) = 0\",\"x - 2 = 0 → x = 2\",\"x - 3 = 0 → x = 3\"]",
-                      "stepsEn": "[\"Factor: (x - 2)(x - 3) = 0\",\"x - 2 = 0 → x = 2\",\"x - 3 = 0 → x = 3\"]",
+                      "questionAr": "حل المعادلة الخطية: حل المعادلة: 3x - 5 = 10",
+                      "questionEn": "Solving a linear equation: Solve the equation: 3x - 5 = 10",
+                      "solutionAr": "أولاً، نضيف 5 إلى الطرفين لنفصل الحد الذي يحتوي على المتغير: 3x = 15\\nثم نقسم الطرفين على 3 لنحصل على قيمة المتغير: x = 5",
+                      "solutionEn": "First, add 5 to both sides to isolate the variable term: 3x = 15\\nThen divide both sides by 3 to find the value of the variable: x = 5",
+                      "stepsAr": "أولاً، نضيف 5 إلى الطرفين لنفصل الحد الذي يحتوي على المتغير: 3x = 15\\nثم نقسم الطرفين على 3 لنحصل على قيمة المتغير: x = 5",
+                      "stepsEn": "First, add 5 to both sides to isolate the variable term: 3x = 15\\nThen divide both sides by 3 to find the value of the variable: x = 5",
                       "order": 1
+                    },
+                    {
+                      "id": "example-id_dtwc8gl7n9o-1",
+                      "lessonId": "id_dtwc8gl7n9o",
+                      "questionAr": "حل المتباينة: حل المتباينة: 2x + 4 > 12",
+                      "questionEn": "Solving an inequality: Solve the inequality: 2x + 4 > 12",
+                      "solutionAr": "نبدأ بطرح 4 من الطرفين: 2x > 8\\nثم نقسم الطرفين على 2 (رقم موجب، لذا لا يتغير اتجاه المتباينة): x > 4",
+                      "solutionEn": "Start by subtracting 4 from both sides: 2x > 8\\nThen divide both sides by 2 (positive number, so inequality direction remains unchanged): x > 4",
+                      "stepsAr": "نبدأ بطرح 4 من الطرفين: 2x > 8\\nثم نقسم الطرفين على 2 (رقم موجب، لذا لا يتغير اتجاه المتباينة): x > 4",
+                      "stepsEn": "Start by subtracting 4 from both sides: 2x > 8\\nThen divide both sides by 2 (positive number, so inequality direction remains unchanged): x > 4",
+                      "order": 2
                     }
                   ],
                   "Question": [
                     {
-                      "id": "id_oa8v76fr88",
+                      "id": "q-id_dtwc8gl7n9o-0",
                       "lessonId": "id_dtwc8gl7n9o",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 4؟",
-                      "questionEn": "What is the purpose of Lesson 4?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي قيمة x في المعادلة: 4x + 7 = 23؟",
+                      "questionEn": "What is the value of x in the equation: 4x + 7 = 23?",
+                      "optionsAr": "[\"أ. 4\",\"ب. 5\",\"ج. 6\",\"د. 7\"]",
+                      "optionsEn": "[\"A. 4\",\"B. 5\",\"C. 6\",\"D. 7\"]",
+                      "answer": "أ",
+                      "explanationAr": "لحل المعادلة، نبدأ بطرح 7 من الطرفين: 4x = 16، ثم نقسم الطرفين على 4: x = 4",
+                      "explanationEn": "To solve the equation, we first subtract 7 from both sides: 4x = 16, then divide both sides by 4: x = 4",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_dtwc8gl7n9o-add-0",
+                      "id": "q-id_dtwc8gl7n9o-1",
                       "lessonId": "id_dtwc8gl7n9o",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 4: الجبر",
-                      "questionEn": "Application question on Lesson 4",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما هي مجموعة حلول المتباينة: 3x - 2 ≤ 10؟",
+                      "questionEn": "What is the solution set of the inequality: 3x - 2 ≤ 10?",
+                      "optionsAr": "[\"أ. x ≤ 4\",\"ب. x ≥ 4\",\"ج. x < 4\",\"د. x > 4\"]",
+                      "optionsEn": "[\"A. x ≤ 4\",\"B. x ≥ 4\",\"C. x < 4\",\"D. x > 4\"]",
+                      "answer": "أ",
+                      "explanationAr": "نبدأ بإضافة 2 إلى الطرفين: 3x ≤ 12، ثم نقسم الطرفين على 3: x ≤ 4",
+                      "explanationEn": "We start by adding 2 to both sides: 3x ≤ 12, then divide both sides by 3: x ≤ 4",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
-                    },
-                    {
-                      "id": "q-id_dtwc8gl7n9o-add-1",
-                      "lessonId": "id_dtwc8gl7n9o",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 4: الجبر",
-                      "questionEn": "Conceptual question in Lesson 4",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 }
