@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Sparkles, Globe, Moon, Sun, Home,
-  BookOpen, Users, Trophy
+  BookOpen, Users, Trophy, Beaker, Calculator
 } from "lucide-react";
 import { getAcademicYearsStatic } from "@/lib/static-data";
 
@@ -110,6 +110,49 @@ export default function PlatformPage() {
           <p className="text-slate-600 dark:text-slate-400 text-lg">
             {t("ابدأ رحلتك التعليمية باختيار سنتك الدراسية", "Start your learning journey by selecting your academic year")}
           </p>
+        </motion.div>
+
+        {/* Featured Tools */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-12"
+        >
+          <Link href="/platform/simulations">
+            <Card className="group cursor-pointer overflow-hidden border-2 border-transparent hover:border-blue-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                  <Beaker className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 dark:text-white mb-1">
+                    {t("المحاكيات التعليمية", "Educational Simulations")}
+                  </h3>
+                  <p className="text-sm text-slate-500">
+                    {t("تجارب تفاعلية لفهم المفاهيم العلمية", "Interactive experiments to understand scientific concepts")}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href="/platform/simulations?type=calculator">
+            <Card className="group cursor-pointer overflow-hidden border-2 border-transparent hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+              <CardContent className="p-6 flex items-center gap-4">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                  <Calculator className="w-7 h-7 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 dark:text-white mb-1">
+                    {t("الأدوات الحسابية", "Calculation Tools")}
+                  </h3>
+                  <p className="text-sm text-slate-500">
+                    {t("آلات حاسبة وأدوات رياضية متقدمة", "Advanced calculators and mathematical tools")}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         </motion.div>
 
         {loading ? (

@@ -12,9 +12,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Globe, Moon, Sun, ChevronRight, ArrowLeft,
   Clock, Play, Lock, BookOpen, Target, Lightbulb, 
-  FileText, HelpCircle, Beaker, CheckCircle
+  FileText, HelpCircle, Beaker, CheckCircle, FlaskConical
 } from "lucide-react";
 import { loadStaticData } from "@/lib/static-data";
+import { getSimulationsByLessonId, getSimulationsBySubject, Simulation } from "@/lib/simulations";
+import { SimulationList } from "@/components/simulations/SimulationCard";
+import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
 
 interface Objective {
   id: string;
@@ -109,6 +112,8 @@ export default function LessonPage() {
   const [lesson, setLesson] = useState<LessonDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [isDark, setIsDark] = useState(false);
+  const [relatedSimulations, setRelatedSimulations] = useState<Simulation[]>([]);
+  const [showQuiz, setShowQuiz] = useState(false);
 
   const isRTL = language === "ar";
 
@@ -128,6 +133,18 @@ export default function LessonPage() {
                   ...lesson,
                   Unit: { ...unit, Subject: subject }
                 };
+                
+                // Get related simulations
+                const simByLesson = getSimulationsByLessonId(lesson.id);
+                const simBySubject = getSimulationsBySubject(subject.nameAr);
+                const allSims = [...simByLesson];
+                simBySubject.forEach(sim => {
+                  if (!allSims.find(s => s.id === sim.id)) {
+                    allSims.push(sim);
+                  }
+                });
+                setRelatedSimulations(allSims);
+                
                 break;
               }
             }
@@ -202,6 +219,11 @@ export default function LessonPage() {
       solution: language === "ar" ? example.solutionAr : example.solutionEn,
       steps: language === "ar" ? example.stepsAr?.split('\n') : example.stepsEn?.split('\n')
     }));
+  };
+
+  const getQuestions = () => {
+    if (!lesson?.Question) return [];
+    return lesson.Question.sort((a, b) => a.order - b.order);
   };
 
   return (
@@ -325,6 +347,12 @@ export default function LessonPage() {
                         {t("مجاني", "Free")}
                       </Badge>
                     )}
+                    {relatedSimulations.length > 0 && (
+                      <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-0">
+                        <FlaskConical className="w-3 h-3 mr-1" />
+                        {relatedSimulations.length} {t("محاكاة", "simulations")}
+                      </Badge>
+                    )}
                   </div>
                 </div>
               </div>
@@ -332,7 +360,7 @@ export default function LessonPage() {
 
             {/* Lesson Content Tabs */}
             <Tabs defaultValue="content" className="space-y-6">
-              <TabsList className="grid grid-cols-2 md:grid-cols-5 gap-2 h-auto p-2 bg-white dark:bg-slate-800 rounded-xl">
+              <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 h-auto p-2 bg-white dark:bg-slate-800 rounded-xl">
                 <TabsTrigger value="content" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
                   <BookOpen className="w-4 h-4 mr-2" />
                   {t("المحتوى", "Content")}
@@ -349,6 +377,10 @@ export default function LessonPage() {
                   <FileText className="w-4 h-4 mr-2" />
                   {t("أمثلة", "Examples")}
                 </TabsTrigger>
+                <TabsTrigger value="simulations" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+                  <Beaker className="w-4 h-4 mr-2" />
+                  {t("محاكيات", "Simulations")}
+                </TabsTrigger>
                 <TabsTrigger value="quiz" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
                   <HelpCircle className="w-4 h-4 mr-2" />
                   {t("اختبار", "Quiz")}
@@ -362,7 +394,6 @@ export default function LessonPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="space-y-6"
                 >
-                  {/* Objectives */}
                   {getObjectives().length > 0 && (
                     <Card className="border-0 shadow-md">
                       <CardContent className="p-6">
@@ -382,7 +413,6 @@ export default function LessonPage() {
                     </Card>
                   )}
 
-                  {/* Introduction */}
                   {getIntroduction() && (
                     <Card className="border-0 shadow-md">
                       <CardContent className="p-6">
@@ -397,7 +427,6 @@ export default function LessonPage() {
                     </Card>
                   )}
 
-                  {/* Summary */}
                   {getSummary() && (
                     <Card className="border-0 shadow-md bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
                       <CardContent className="p-6">
@@ -541,6 +570,31 @@ export default function LessonPage() {
                 </motion.div>
               </TabsContent>
 
+              {/* Simulations Tab */}
+              <TabsContent value="simulations">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <Card className="border-0 shadow-md">
+                    <CardContent className="p-6">
+                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+                        <Beaker className="w-5 h-5 text-purple-500" />
+                        {t("المحاكيات التفاعلية", "Interactive Simulations")}
+                      </h3>
+                      <SimulationList 
+                        simulations={relatedSimulations} 
+                        language={language}
+                        onSimulationClick={(sim) => {
+                          console.log("Opening simulation:", sim.id);
+                          // TODO: Open simulation modal or navigate to simulation page
+                        }}
+                      />
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </TabsContent>
+
               {/* Quiz Tab */}
               <TabsContent value="quiz">
                 <motion.div
@@ -548,17 +602,36 @@ export default function LessonPage() {
                   animate={{ opacity: 1, y: 0 }}
                 >
                   <Card className="border-0 shadow-md">
-                    <CardContent className="p-6 text-center">
-                      <HelpCircle className="w-16 h-16 mx-auto text-purple-500 mb-4" />
-                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
-                        {t("اختبار الدرس", "Lesson Quiz")}
-                      </h3>
-                      <p className="text-slate-600 dark:text-slate-300 mb-6">
-                        {t("اختبر فهمك للدرس من خلال الأسئلة التفاعلية", "Test your understanding with interactive questions")}
-                      </p>
-                      <Button className="gradient-primary text-white px-8">
-                        {t("ابدأ الاختبار", "Start Quiz")}
-                      </Button>
+                    <CardContent className="p-6">
+                      {!showQuiz ? (
+                        <div className="text-center py-8">
+                          <HelpCircle className="w-16 h-16 mx-auto text-purple-500 mb-4" />
+                          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
+                            {t("اختبار الدرس", "Lesson Quiz")}
+                          </h3>
+                          <p className="text-slate-600 dark:text-slate-300 mb-2">
+                            {t("اختبر فهمك للدرس من خلال الأسئلة التفاعلية", "Test your understanding with interactive questions")}
+                          </p>
+                          <p className="text-sm text-slate-500 mb-6">
+                            {getQuestions().length} {t("أسئلة", "questions")}
+                          </p>
+                          <Button 
+                            className="gradient-primary text-white px-8"
+                            onClick={() => setShowQuiz(true)}
+                            disabled={getQuestions().length === 0}
+                          >
+                            {t("ابدأ الاختبار", "Start Quiz")}
+                          </Button>
+                        </div>
+                      ) : (
+                        <InteractiveQuiz 
+                          questions={getQuestions()} 
+                          language={language}
+                          onComplete={(score, total) => {
+                            console.log("Quiz completed:", score, total);
+                          }}
+                        />
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>
