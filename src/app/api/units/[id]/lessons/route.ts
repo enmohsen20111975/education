@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getLessonsByUnitId } from "@/lib/data";
 
 // GET /api/units/[id]/lessons - جلب دروس وحدة معينة
 export async function GET(
@@ -8,22 +8,8 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    
-    const lessons = await db.lesson.findMany({
-      where: { unitId: id },
-      include: {
-        LessonSimulator: {
-          include: {
-            Simulator: true,
-          },
-        },
-        Objective: {
-          orderBy: { order: "asc" },
-        },
-      },
-      orderBy: { order: "asc" },
-    });
-    
+    const lessons = getLessonsByUnitId(id);
+
     return NextResponse.json({ lessons });
   } catch (error) {
     console.error("Error fetching lessons:", error);

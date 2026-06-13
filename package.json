@@ -8,13 +8,15 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "postinstall": "prisma generate",
-    "build": "prisma generate && next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/ && mkdir -p .next/standalone/db && cp db/custom.db .next/standalone/db/ && cp .env .next/standalone/",
+    "prebuild": "bunx tsx scripts/export-to-json.ts",
+    "build": "prisma generate && next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
     "start": "NODE_ENV=production node .next/standalone/server.js",
     "lint": "eslint .",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:seed": "bunx tsx prisma/seed.ts",
-    "db:reset": "prisma db push --force-reset && bunx tsx prisma/seed.ts"
+    "db:reset": "prisma db push --force-reset && bunx tsx prisma/seed.ts",
+    "export-data": "bunx tsx scripts/export-to-json.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

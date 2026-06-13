@@ -1,48 +1,46 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getData } from "@/lib/data";
 
 export async function GET() {
   try {
-    // Count records
+    const data = getData();
+
+    if (!data) {
+      return NextResponse.json({
+        status: "No data loaded!",
+        error: "Could not load curriculum.json"
+      }, { status: 500 });
+    }
+
     const counts = {
-      academicYears: await db.academicYear.count(),
-      subjects: await db.subject.count(),
-      units: await db.unit.count(),
-      lessons: await db.lesson.count(),
+      academicYears: data.academicYears?.length || 0,
+      subjects: 0,
+      units: 0,
+      lessons: 0,
     };
 
-    // Get academic years with subject counts
-    const academicYears = await db.academicYear.findMany({
-      include: {
-        _count: {
-          select: { Subject: true }
+    for (const year of data.academicYears || []) {
+      counts.subjects += year.Subject?.length || 0;
+      for (const subject of year.Subject || []) {
+        counts.units += subject.Unit?.length || 0;
+        for (const unit of subject.Unit || []) {
+          counts.lessons += unit.Lesson?.length || 0;
         }
-      },
-      orderBy: { order: 'asc' }
-    });
+      }
+    }
 
     return NextResponse.json({
-      status: "Database connected successfully!",
+      status: "Data loaded from JSON file!",
+      source: "public/data/curriculum.json",
       counts,
-      academicYears: academicYears.map(y => ({
-        code: y.code,
-        nameAr: y.nameAr,
-        nameEn: y.nameEn,
-        subjectsCount: y._count.Subject
-      })),
-      env: {
-        NODE_ENV: process.env.NODE_ENV,
-        DATABASE_URL: process.env.DATABASE_URL ? "SET" : "NOT SET",
-      }
+      specializations: data.specializations?.length || 0,
+      simulators: data.simulators?.length || 0,
+      badges: data.badges?.length || 0,
     });
   } catch (error: any) {
     return NextResponse.json({
-      status: "Database connection failed!",
+      status: "Error loading data!",
       error: error.message,
-      env: {
-        NODE_ENV: process.env.NODE_ENV,
-        DATABASE_URL: process.env.DATABASE_URL ? "SET" : "NOT SET",
-      }
     }, { status: 500 });
   }
 }

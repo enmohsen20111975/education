@@ -1,34 +1,12 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import { getAcademicYears, getSpecializations, getSemesters } from "@/lib/data";
 
 // GET /api/structure - جلب هيكل المنهج المصري
 export async function GET() {
   try {
-    // جلب السنوات الدراسية
-    const academicYears = await db.academicYear.findMany({
-      orderBy: { order: "asc" },
-      include: {
-        Subject: {
-          orderBy: { order: "asc" },
-          include: {
-            Specialization: true,
-            Unit: {
-              orderBy: { order: "asc" },
-            },
-          },
-        },
-      },
-    });
-
-    // جلب التخصصات
-    const specializations = await db.specialization.findMany({
-      orderBy: { order: "asc" },
-    });
-
-    // جلب الفصول الدراسية
-    const semesters = await db.semester.findMany({
-      orderBy: { order: "asc" },
-    });
+    const academicYears = getAcademicYears();
+    const specializations = getSpecializations();
+    const semesters = getSemesters();
 
     return NextResponse.json({
       academicYears,
