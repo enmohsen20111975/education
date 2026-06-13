@@ -1907,37 +1907,69 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 1",
-                  "introductionEn": "Introduction to Lesson 1",
-                  "summaryAr": "ملخص الدرس 1",
-                  "summaryEn": "Summary of Lesson 1",
+                  "introductionAr": "مرحباً بكم في درسنا الأول حول الوحدة النحوية في مادة اللغة الإنجليزية للصف الأول الثانوي. في هذا الدرس، سنستكشف أساسيات القواعد الإنجليزية التي تمثل حجر الزاوية في بناء جمل صحيحة وفهم اللغة بشكل أعمق. سنتناول أنواع الجمل المختلفة، أجزاء الكلمة، ودور كل جزء في تكوين المعنى. كما سنتعلم كيفية استخدام الأفعال بشكل صحيح، والتعامل مع الأزمنة المختلفة، وفهم العلاقات بين الكلمات في الجملة. هذا الدرس سيمهد الطريق لفهم أكثر تعقيداً للغة الإنجليزية في الدروس اللاحقة، ويوفر أساساً متيناً لتطوير مهاراتك في القراءة والكتابة والاستماع والتحليل اللغوي.",
+                  "introductionEn": "Welcome to our first lesson on the Grammar Unit in the English subject for First Year Secondary School. In this lesson, we will explore the fundamentals of English grammar that form the cornerstone of constructing correct sentences and understanding the language more deeply. We will cover different types of sentences, parts of speech, and the role of each part in meaning formation. We will also learn how to use verbs correctly, handle different tenses, and understand relationships between words in sentences. This lesson will pave the way for a more complex understanding of the English language in subsequent lessons, and provide a solid foundation for developing your reading, writing, listening, and analytical skills.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات القواعد الإنجليزية وأجزاء الكلمة الرئيسية. فهمت كيفية استخدام الأسماء والأفعال والصفات والظروف والحروف الجارة والحروف الربط والضمائر بشكل صحيح. تعلمنا أيضاً كيفية تكوين الجمل المختلفة واستخدام الأزمنة المناسبة. هذه المعرفة تمثل أساساً متيناً لمواصلة تعلم اللغة الإنجليزية وتطوير مهاراتك اللغوية.",
+                  "summaryEn": "In this lesson, we learned the fundamentals of English grammar and the main parts of speech. We understood how to use nouns, verbs, adjectives, adverbs, prepositions, conjunctions, and pronouns correctly. We also learned how to form different types of sentences and use appropriate tenses. This knowledge provides a solid foundation for continuing to learn the English language and developing your language skills.",
                   "createdAt": "2026-06-13T10:13:57.873Z",
                   "updatedAt": "2026-06-13T10:13:57.872Z",
                   "Objective": [
                     {
-                      "id": "id_8uikyop4x9r",
+                      "id": "obj-id_tsvlt0a0tua-0",
                       "lessonId": "id_tsvlt0a0tua",
-                      "textAr": "فهم محتوى الدرس 1",
-                      "textEn": "Understand lesson 1 content",
+                      "textAr": "أجزاء الكلمة الرئيسية وأدوارها",
+                      "textEn": "Main parts of speech and their roles",
                       "order": 1
                     },
                     {
-                      "id": "id_o7rqm1islq",
+                      "id": "obj-id_tsvlt0a0tua-1",
                       "lessonId": "id_tsvlt0a0tua",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "أنواع الجمل وتكوينها",
+                      "textEn": "Types of sentences and their formation",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_tsvlt0a0tua-2",
+                      "lessonId": "id_tsvlt0a0tua",
+                      "textAr": "الأزمنة الفعلية واستخداماتها",
+                      "textEn": "Verb tenses and their uses",
+                      "order": 3
+                    },
+                    {
+                      "id": "obj-id_tsvlt0a0tua-3",
+                      "lessonId": "id_tsvlt0a0tua",
+                      "textAr": "علاقات الكلمات في الجملة",
+                      "textEn": "Relationships between words in sentences",
+                      "order": 4
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_mfeq81nrr6",
+                      "id": "concept-id_tsvlt0a0tua-0",
                       "lessonId": "id_tsvlt0a0tua",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "أجزاء الكلمة الرئيسية وأدوارها",
+                      "termEn": "Main parts of speech and their roles",
+                      "definitionAr": "أجزاء الكلمة الرئيسية وأدوارها",
+                      "definitionEn": "Main parts of speech and their roles",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_tsvlt0a0tua-1",
+                      "lessonId": "id_tsvlt0a0tua",
+                      "termAr": "أنواع الجمل وتكوينها",
+                      "termEn": "Types of sentences and their formation",
+                      "definitionAr": "أنواع الجمل وتكوينها",
+                      "definitionEn": "Types of sentences and their formation",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_tsvlt0a0tua-2",
+                      "lessonId": "id_tsvlt0a0tua",
+                      "termAr": "الأزمنة الفعلية واستخداماتها",
+                      "termEn": "Verb tenses and their uses",
+                      "definitionAr": "الأزمنة الفعلية واستخداماتها",
+                      "definitionEn": "Verb tenses and their uses",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -1958,52 +1990,34 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_tsvlt0a0tua-0",
+                      "lessonId": "id_tsvlt0a0tua",
+                      "questionAr": "استخدام الأفعال في الزمن المضارع: الجملة: 'محمد يدرس اللغة الإنجليزية'. هنا، 'يدرس' هو فعل مضارع يعبر عن فعل مستمر في الحاضر.",
+                      "questionEn": "Using Verbs in Present Tense: Sentence: 'محمد يدرس اللغة الإنجليزية'. Here, 'يدرس' is a present tense verb expressing an ongoing action in the present.",
+                      "solutionAr": "1. تحديد الفعل الرئيسي في الجملة\\n2. التعرف على الزمن المستخدم (المضارع)\\n3. فهم كيفية استخدام حرف 'ي' للإشارة إلى الضمير 'هو'",
+                      "solutionEn": "1. Identify the main verb in the sentence\\n2. Recognize the tense used (present)\\n3. Understand how the letter 'ي' indicates the pronoun 'he'",
+                      "stepsAr": "1. تحديد الفعل الرئيسي في الجملة\\n2. التعرف على الزمن المستخدم (المضارع)\\n3. فهم كيفية استخدام حرف 'ي' للإشارة إلى الضمير 'هو'",
+                      "stepsEn": "1. Identify the main verb in the sentence\\n2. Recognize the tense used (present)\\n3. Understand how the letter 'ي' indicates the pronoun 'he'",
+                      "order": 1
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_vk0l41gs3jm",
+                      "id": "q-id_tsvlt0a0tua-0",
                       "lessonId": "id_tsvlt0a0tua",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 1؟",
-                      "questionEn": "What is the purpose of Lesson 1?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما نوع كلمة 'سريعة' في الجملة: 'السيارة سريعة جداً'؟",
+                      "questionEn": "What type of word is 'سريعة' in the sentence: 'السيارة سريعة جداً'؟",
+                      "optionsAr": "[\"اسم\",\"فعل\",\"صفة\",\"ظرف\"]",
+                      "optionsEn": "[\"Noun\",\"Verb\",\"Adjective\",\"Adverb\"]",
+                      "answer": "ج",
+                      "explanationAr": "'سريعة' هي صفة لأنها تصف اسم السيارة وتحدد صفة لها.",
+                      "explanationEn": "'سريعة' is an adjective because it describes the noun 'السيارة' and specifies a quality of it.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
-                    },
-                    {
-                      "id": "q-id_tsvlt0a0tua-add-0",
-                      "lessonId": "id_tsvlt0a0tua",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 1: Grammar Unit",
-                      "questionEn": "Application question on Lesson 1",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 2
-                    },
-                    {
-                      "id": "q-id_tsvlt0a0tua-add-1",
-                      "lessonId": "id_tsvlt0a0tua",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 1: Grammar Unit",
-                      "questionEn": "Conceptual question in Lesson 1",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -2021,37 +2035,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 2",
-                  "introductionEn": "Introduction to Lesson 2",
-                  "summaryAr": "ملخص الدرس 2",
-                  "summaryEn": "Summary of Lesson 2",
+                  "introductionAr": "مرحباً بطلابنا الكرام في درس اليوم حول الوحدة النحوية في اللغة الإنجليزية. هذا الدرس يمثل حجر الأساس في فهم بنية اللغة الإنجليزية وتطبيقها بشكل صحيح. سنتناول في هذا الدرس المفاهيم النحوية الأساسية التي تشكل إطاراً متيناً للغة الإنجليزية، بما في ذلك أنواع الجملة، وظائف الأسماء، والأفعال، والصفات، والحروف الجارة. سيركز الدرس على التطبيق العملي لهذه المفاهيم من خلال أمثلة متنوعة وتدريبات عملية تساعدكم على ترسيخ هذه المعلومات في أذهانكم وتطبيقها في سياقات لغوية مختلفة.",
+                  "introductionEn": "Welcome, dear students, to today's lesson on the Grammar Unit in English. This lesson represents the cornerstone of understanding the structure of the English language and applying it correctly. In this lesson, we will cover fundamental grammatical concepts that form a solid framework for the English language, including sentence types, functions of nouns, verbs, adjectives, and prepositions. The lesson will focus on the practical application of these concepts through various examples and exercises that help you internalize this information and apply it in different linguistic contexts.",
+                  "summaryAr": "في هذا الدرس، تعلمنا عن المفاهيم النحوية الأساسية في اللغة الإنجليزية. غطينا أنواع الجملة (الإيجابية، النافية، والاستفهامية) وكيفية تكوين كل منها بشكل صحيح. كما تعلمنا عن وظائف الأفعال المساعدة في تكوين الزمانات المختلفة، وأهمية استخدام الصفات في وصف الأسماء، وكيفية ترتيبها في الجملة. كما درسنا استخدام الحروف الجارة لربط الكلمات وتوضيح العلاقات الزمانية والمكانية. هذه المفاهيم تمثل الأساس الذي يبنى عليه فهم أعمق للغة الإنجليزية وقدرة على التعبير بشكل صحيح وواضح.",
+                  "summaryEn": "In this lesson, we learned about the fundamental grammatical concepts in the English language. We covered sentence types (affirmative, negative, and interrogative) and how to form each correctly. We also learned about the functions of helping verbs in forming different tenses, the importance of using adjectives to describe nouns, and how to order them in sentences. Additionally, we studied the use of prepositions to connect words and clarify temporal and spatial relationships. These concepts form the foundation for a deeper understanding of the English language and the ability to express oneself correctly and clearly.",
                   "createdAt": "2026-06-13T10:13:57.875Z",
                   "updatedAt": "2026-06-13T10:13:57.874Z",
                   "Objective": [
                     {
-                      "id": "id_7npyc2bn0j",
+                      "id": "obj-id_a1ixwaozej-0",
                       "lessonId": "id_a1ixwaozej",
-                      "textAr": "فهم محتوى الدرس 2",
-                      "textEn": "Understand lesson 2 content",
+                      "textAr": "أنواع الجملة الإنجليزية وإستخداماتها",
+                      "textEn": "Types of English sentences and their uses",
                       "order": 1
                     },
                     {
-                      "id": "id_iwaqnzxmi5",
+                      "id": "obj-id_a1ixwaozej-1",
                       "lessonId": "id_a1ixwaozej",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "وظائف الأفعال المساعدة في تكوين الزمانات المختلفة",
+                      "textEn": "Functions of helping verbs in forming different tenses",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_a1ixwaozej-2",
+                      "lessonId": "id_a1ixwaozej",
+                      "textAr": "استخدام الصفات والحروف الجارة بشكل صحيح في السياقات المختلفة",
+                      "textEn": "Correct use of adjectives and prepositions in different contexts",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_ejn16r0gbfn",
+                      "id": "concept-id_a1ixwaozej-0",
                       "lessonId": "id_a1ixwaozej",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "أنواع الجملة الإنجليزية وإستخداماتها",
+                      "termEn": "Types of English sentences and their uses",
+                      "definitionAr": "أنواع الجملة الإنجليزية وإستخداماتها",
+                      "definitionEn": "Types of English sentences and their uses",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_a1ixwaozej-1",
+                      "lessonId": "id_a1ixwaozej",
+                      "termAr": "وظائف الأفعال المساعدة في تكوين الزمانات المختلفة",
+                      "termEn": "Functions of helping verbs in forming different tenses",
+                      "definitionAr": "وظائف الأفعال المساعدة في تكوين الزمانات المختلفة",
+                      "definitionEn": "Functions of helping verbs in forming different tenses",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_a1ixwaozej-2",
+                      "lessonId": "id_a1ixwaozej",
+                      "termAr": "استخدام الصفات والحروف الجارة بشكل صحيح في السياقات المختلفة",
+                      "termEn": "Correct use of adjectives and prepositions in different contexts",
+                      "definitionAr": "استخدام الصفات والحروف الجارة بشكل صحيح في السياقات المختلفة",
+                      "definitionEn": "Correct use of adjectives and prepositions in different contexts",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2072,52 +2111,60 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_a1ixwaozej-0",
+                      "lessonId": "id_a1ixwaozej",
+                      "questionAr": "استخدام الأفعال المساعدة: لنحلل الجملة التالية: 'She has been studying English for three years.'",
+                      "questionEn": "Using Helping Verbs: Let's analyze the following sentence: 'She has been studying English for three years.'",
+                      "solutionAr": "1. تحديد الفعل الرئيسي: studying\\n2. تحديد الأفعال المساعدة: has (فعل مساعد للزمن التام) و been (فعل مساعد للزمن المستمر)\\n3. فهم الزمان: الزمن التام المستمر (Present Perfect Continuous) يشير إلى عمل بدأ في الماضي واستمر حتى الآن وربما سيستمر في المستقبل",
+                      "solutionEn": "1. Identify the main verb: studying\\n2. Identify the helping verbs: has (helping verb for perfect tense) and been (helping verb for continuous tense)\\n3. Understand the tense: Present Perfect Continuous indicates an action that started in the past, has continued until now, and may continue into the future",
+                      "stepsAr": "1. تحديد الفعل الرئيسي: studying\\n2. تحديد الأفعال المساعدة: has (فعل مساعد للزمن التام) و been (فعل مساعد للزمن المستمر)\\n3. فهم الزمان: الزمن التام المستمر (Present Perfect Continuous) يشير إلى عمل بدأ في الماضي واستمر حتى الآن وربما سيستمر في المستقبل",
+                      "stepsEn": "1. Identify the main verb: studying\\n2. Identify the helping verbs: has (helping verb for perfect tense) and been (helping verb for continuous tense)\\n3. Understand the tense: Present Perfect Continuous indicates an action that started in the past, has continued until now, and may continue into the future",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_a1ixwaozej-1",
+                      "lessonId": "id_a1ixwaozej",
+                      "questionAr": "استخدام الصفات: لنحلل الجملة التالية: 'The beautiful red car is parked outside the building.'",
+                      "questionEn": "Using Adjectives: Let's analyze the following sentence: 'The beautiful red car is parked outside the building.'",
+                      "solutionAr": "1. تحديد الاسم: car\\n2. تحديد الصفات: beautiful (وصف المظهر) و red (وصف اللون)\\n3. ملاحظة ترتيب الصفات: في اللغة الإنجليزية، تأتي الصفات بشكل عام بهذا الترتيب: رأي الحواس → الحجم → العمر → الشكل → اللون → الأصل → المادة",
+                      "solutionEn": "1. Identify the noun: car\\n2. Identify the adjectives: beautiful (describing appearance) and red (describing color)\\n3. Notice the adjective order: In English, adjectives generally follow this order: opinion → size → age → shape → color → origin → material",
+                      "stepsAr": "1. تحديد الاسم: car\\n2. تحديد الصفات: beautiful (وصف المظهر) و red (وصف اللون)\\n3. ملاحظة ترتيب الصفات: في اللغة الإنجليزية، تأتي الصفات بشكل عام بهذا الترتيب: رأي الحواس → الحجم → العمر → الشكل → اللون → الأصل → المادة",
+                      "stepsEn": "1. Identify the noun: car\\n2. Identify the adjectives: beautiful (describing appearance) and red (describing color)\\n3. Notice the adjective order: In English, adjectives generally follow this order: opinion → size → age → shape → color → origin → material",
+                      "order": 2
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_x4e960rnzko",
+                      "id": "q-id_a1ixwaozej-0",
                       "lessonId": "id_a1ixwaozej",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 2؟",
-                      "questionEn": "What is the purpose of Lesson 2?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "أي من الخيارات التالية يمثل جملة نافية صحيحة؟",
+                      "questionEn": "Which of the following options represents a correct negative sentence?",
+                      "optionsAr": "[\"أ. She likes apples\",\"ب. She don't like apples\",\"ج. She doesn't like apples\",\"د. She not like apples\"]",
+                      "optionsEn": "[\"A. She likes apples\",\"B. She don't like apples\",\"C. She doesn't like apples\",\"D. She not like apples\"]",
+                      "answer": "ج",
+                      "explanationAr": "الجملة النافية الصحيحة هي 'She doesn't like apples'. في الجملة النافية، نستخدم 'doesn't' مع الضمير 'she' لأن 'doesn't' هي شكل المفرد. الخيارات 'أ' و 'د' غير نافية، والخيار 'ب' خاطئ لأن استخدام 'don't' يكون مع الضمير 'I' أو 'you' أو 'we' أو 'they'.",
+                      "explanationEn": "The correct negative sentence is 'She doesn't like apples'. In a negative sentence, we use 'doesn't' with the pronoun 'she' because 'doesn't' is the singular form. Options 'A' and 'D' are not negative, and option 'B' is incorrect because 'don't' is used with the pronouns 'I', 'you', 'we', or 'they'.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_a1ixwaozej-add-0",
+                      "id": "q-id_a1ixwaozej-1",
                       "lessonId": "id_a1ixwaozej",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 2: Grammar Unit",
-                      "questionEn": "Application question on Lesson 2",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "أي حرف جارة مناسب لاستخدام في الجملة التالية: 'The book is _____ the table'؟",
+                      "questionEn": "Which preposition is appropriate to use in the following sentence: 'The book is _____ the table'?",
+                      "optionsAr": "[\"أ. in\",\"ب. on\",\"ج. at\",\"د. under\"]",
+                      "optionsEn": "[\"A. in\",\"B. on\",\"C. at\",\"D. under\"]",
+                      "answer": "ب",
+                      "explanationAr": "الحرف الجارة المناسب هو 'on' لأن الكتاب يقع على سطح الطاولة. 'in' يعني داخل شيء، 'at' يعني في مكان محدد، و 'under' يعني تحته. هذه العلاقة المكانية تتطلب استخدام 'on'.",
+                      "explanationEn": "The appropriate preposition is 'on' because the book is on the surface of the table. 'in' means inside something, 'at' means at a specific point, and 'under' means below. This spatial relationship requires the use of 'on'.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
-                    },
-                    {
-                      "id": "q-id_a1ixwaozej-add-1",
-                      "lessonId": "id_a1ixwaozej",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 2: Grammar Unit",
-                      "questionEn": "Conceptual question in Lesson 2",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -2135,37 +2182,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 3",
-                  "introductionEn": "Introduction to Lesson 3",
-                  "summaryAr": "ملخص الدرس 3",
-                  "summaryEn": "Summary of Lesson 3",
+                  "introductionAr": "مرحباً بكم في درس القواعد النحوية الثالث للصف الأول الثانوي. في هذا الدرس، سنتناول موضوعاً أساسياً في اللغة الإنجليزية وهو أنواع الجمل وأجزائها. سنتعلم كيفية تمييز الجملة الإنجليزية الصحيحة، وتحليل مكوناتها، وفهم العلاقة بين الموضوع والفعل وال complements. كما سنتناول أنواع الجملة من حيث الغرض (الخبرية، الإنشاءية، الاستفهامية، الأمرية) وكيفية تحويل الجملة من نوع إلى آخر. هذا الدرس يمثل حجر الزاوية في فهم بنية اللغة الإنجليزية وتطبيقها بشكل صحيح في الكتابة والنطق.",
+                  "introductionEn": "Welcome to Lesson 3 of the Grammar Unit for First Year Secondary School. In this lesson, we will cover a fundamental topic in English: types of sentences and their components. We will learn how to identify a correct English sentence, analyze its parts, and understand the relationship between the subject, verb, and complements. We will also discuss sentence types based on purpose (declarative, imperative, interrogative, exclamatory) and how to transform one type into another. This lesson forms the cornerstone of understanding English sentence structure and applying it correctly in writing and speaking.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أنواع الجمل الإنجليزية الأربعة: الخبرية، الاستفهامية، الأمرية، والتعجبية، وكيفية تمييزها بناءً على الغرض والنهاية. كما تعلمنا تحليل مكونات الجملة الإنجليزية، بما في ذلك الموضوع، الفعل، والم complements. من المهم فهم هذه المفاهيم الأساسية لبناء جمل صحيحة وتطبيقها في الكتابة والنطق. التدريب المستمر على تحليل الجمل وتحويلها بين الأنواع المختلفة سيساعدنا على إتقان اللغة الإنجليزية بشكل أفضل.",
+                  "summaryEn": "In this lesson, we learned about the four types of English sentences: declarative, interrogative, imperative, and exclamatory, and how to distinguish them based on purpose and punctuation. We also learned how to analyze the components of an English sentence, including the subject, verb, and complements. Understanding these fundamental concepts is crucial for constructing correct sentences and applying them in writing and speaking. Continuous practice in analyzing sentences and transforming them between different types will help us master the English language more effectively.",
                   "createdAt": "2026-06-13T10:13:57.876Z",
                   "updatedAt": "2026-06-13T10:13:57.876Z",
                   "Objective": [
                     {
-                      "id": "id_7kj21iy7yb6",
+                      "id": "obj-id_mbj5rd8raz-0",
                       "lessonId": "id_mbj5rd8raz",
-                      "textAr": "فهم محتوى الدرس 3",
-                      "textEn": "Understand lesson 3 content",
+                      "textAr": "أنواع الجمل في اللغة الإنجليزية وأغراضها",
+                      "textEn": "Types of English sentences and their purposes",
                       "order": 1
                     },
                     {
-                      "id": "id_e59fiy8h4v",
+                      "id": "obj-id_mbj5rd8raz-1",
                       "lessonId": "id_mbj5rd8raz",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "مكونات الجملة الإنجليزية (الموضوع، الفعل، الم complements)",
+                      "textEn": "Components of an English sentence (subject, verb, complements)",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_mbj5rd8raz-2",
+                      "lessonId": "id_mbj5rd8raz",
+                      "textAr": "طرق تحويل الجملة من نوع إلى آخر",
+                      "textEn": "Methods of transforming one sentence type into another",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_7lqflt95nf9",
+                      "id": "concept-id_mbj5rd8raz-0",
                       "lessonId": "id_mbj5rd8raz",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "أنواع الجمل في اللغة الإنجليزية وأغراضها",
+                      "termEn": "Types of English sentences and their purposes",
+                      "definitionAr": "أنواع الجمل في اللغة الإنجليزية وأغراضها",
+                      "definitionEn": "Types of English sentences and their purposes",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_mbj5rd8raz-1",
+                      "lessonId": "id_mbj5rd8raz",
+                      "termAr": "مكونات الجملة الإنجليزية (الموضوع",
+                      "termEn": "Components of an English sentence (subject",
+                      "definitionAr": "مكونات الجملة الإنجليزية (الموضوع، الفعل، الم complements)",
+                      "definitionEn": "Components of an English sentence (subject, verb, complements)",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_mbj5rd8raz-2",
+                      "lessonId": "id_mbj5rd8raz",
+                      "termAr": "طرق تحويل الجملة من نوع إلى آخر",
+                      "termEn": "Methods of transforming one sentence type into another",
+                      "definitionAr": "طرق تحويل الجملة من نوع إلى آخر",
+                      "definitionEn": "Methods of transforming one sentence type into another",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2186,49 +2258,72 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_mbj5rd8raz-0",
+                      "lessonId": "id_mbj5rd8raz",
+                      "questionAr": "تحليل الجملة الإنجليزية: دعنا نحلل الجملة التالية: 'The teacher gave the students an interesting assignment.'",
+                      "questionEn": "Analyzing an English Sentence: Let's analyze the following sentence: 'The teacher gave the students an interesting assignment.'",
+                      "solutionAr": "1. تحديد الفعل الرئيسي: 'gave'\\n2. تحديد الموضوع: 'The teacher'\\n3. تحديد المفعول به المباشر: 'the assignment'\\n4. تحديد المفعول به غير المباشر: 'the students'\\n5. تحديد الصفة: 'interesting'",
+                      "solutionEn": "1. Identify the main verb: 'gave'\\n2. Identify the subject: 'The teacher'\\n3. Identify the direct object: 'the assignment'\\n4. Identify the indirect object: 'the students'\\n5. Identify the adjective: 'interesting'",
+                      "stepsAr": "1. تحديد الفعل الرئيسي: 'gave'\\n2. تحديد الموضوع: 'The teacher'\\n3. تحديد المفعول به المباشر: 'the assignment'\\n4. تحديد المفعول به غير المباشر: 'the students'\\n5. تحديد الصفة: 'interesting'",
+                      "stepsEn": "1. Identify the main verb: 'gave'\\n2. Identify the subject: 'The teacher'\\n3. Identify the direct object: 'the assignment'\\n4. Identify the indirect object: 'the students'\\n5. Identify the adjective: 'interesting'",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_mbj5rd8raz-1",
+                      "lessonId": "id_mbj5rd8raz",
+                      "questionAr": "تحويل الجملة من الخبرية إلى الاستفهامية: لتحويل الجملة الخبرية 'She speaks French fluently' إلى جملة استفهامية:",
+                      "questionEn": "Transforming a Declarative to Interrogative Sentence: To transform the declarative sentence 'She speaks French fluently' into an interrogative:",
+                      "solutionAr": "1. نقل الفعل إلى بداية الجملة: 'Does speak she French fluently?'\\n2. إضافة الفعل المساعد 'does' قبل الموضوع: 'Does she speak French fluently?'\\n3. إضافة علامة الاستفهام في النهاية: 'Does she speak French fluently?'",
+                      "solutionEn": "1. Move the verb to the beginning of the sentence: 'Does speak she French fluently?'\\n2. Add the auxiliary verb 'does' before the subject: 'Does she speak French fluently?'\\n3. Add a question mark at the end: 'Does she speak French fluently?'",
+                      "stepsAr": "1. نقل الفعل إلى بداية الجملة: 'Does speak she French fluently?'\\n2. إضافة الفعل المساعد 'does' قبل الموضوع: 'Does she speak French fluently?'\\n3. إضافة علامة الاستفهام في النهاية: 'Does she speak French fluently?'",
+                      "stepsEn": "1. Move the verb to the beginning of the sentence: 'Does speak she French fluently?'\\n2. Add the auxiliary verb 'does' before the subject: 'Does she speak French fluently?'\\n3. Add a question mark at the end: 'Does she speak French fluently?'",
+                      "order": 2
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_rdg05xryuxh",
+                      "id": "q-id_mbj5rd8raz-0",
                       "lessonId": "id_mbj5rd8raz",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 3؟",
-                      "questionEn": "What is the purpose of Lesson 3?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما نوع الجملة التالية؟ 'What a beautiful sunset!'",
+                      "questionEn": "What type of sentence is the following? 'What a beautiful sunset!'",
+                      "optionsAr": "[\"أ. جملة خبرية\",\"ب. جملة استفهامية\",\"ج. جملة تعجبية\",\"د. جملة أمرية\"]",
+                      "optionsEn": "[\"A. Declarative\",\"B. Interrogative\",\"C. Exclamatory\",\"D. Imperative\"]",
+                      "answer": "ج",
+                      "explanationAr": "الجملة التعبيرية عن مشاعر قوية وتنتهي بعلامة تعجب، لذا هي جملة تعجبية.",
+                      "explanationEn": "The sentence expresses strong emotion and ends with an exclamation mark, making it an exclamatory sentence.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_mbj5rd8raz-add-0",
+                      "id": "q-id_mbj5rd8raz-1",
                       "lessonId": "id_mbj5rd8raz",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 3: Grammar Unit",
-                      "questionEn": "Application question on Lesson 3",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما الموضوع في الجملة التالية؟ 'The students completed their projects successfully.'",
+                      "questionEn": "What is the subject in the following sentence? 'The students completed their projects successfully.'",
+                      "optionsAr": "[\"أ. completed\",\"ب. their projects\",\"ج. The students\",\"د. successfully\"]",
+                      "optionsEn": "[\"A. completed\",\"B. their projects\",\"C. The students\",\"D. successfully\"]",
+                      "answer": "ج",
+                      "explanationAr": "الموضوع هو من يقوم بالفعل، في هذه الجملة الطلاب هم من قاموا بإنجاز المشاريع.",
+                      "explanationEn": "The subject is the one performing the action, in this case, the students who completed the projects.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
                     },
                     {
-                      "id": "q-id_mbj5rd8raz-add-1",
+                      "id": "q-id_mbj5rd8raz-2",
                       "lessonId": "id_mbj5rd8raz",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 3: Grammar Unit",
-                      "questionEn": "Conceptual question in Lesson 3",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما الفعل المساعد المناسب لتحويل الجملة التالية إلى سؤال؟ 'They have finished their homework.'",
+                      "questionEn": "What is the appropriate auxiliary verb to convert the following sentence into a question? 'They have finished their homework.'",
+                      "optionsAr": "[\"أ. Do\",\"ب. Does\",\"ج. Have\",\"د. Did\"]",
+                      "optionsEn": "[\"A. Do\",\"B. Does\",\"C. Have\",\"D. Did\"]",
+                      "answer": "ج",
+                      "explanationAr": "الفعل المساعد 'have' يأتي مع الفعل التام 'finished' عند تحويل الجملة إلى سؤال.",
+                      "explanationEn": "The auxiliary verb 'have' is used with the present perfect tense 'finished' when converting the sentence to a question.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 3
@@ -2262,37 +2357,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 1",
-                  "introductionEn": "Introduction to Lesson 1",
-                  "summaryAr": "ملخص الدرس 1",
-                  "summaryEn": "Summary of Lesson 1",
+                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا الأول حول مهارة القراءة في اللغة الإنجليزية. في هذا الدرس، سنتعلم كيفية تحسين مهارات القراءة لدينا وفهم النصوص الإنجليزية بشكل أفضل. سنتناول استراتيجيات القراءة الفعالة، وتحليل المفردات الجديدة، وفهم الأفكار الرئيسية والتفاصيل في النصوص. كما سنتدرب على استخراج المعلومات الصحيحة من النصوص وتجنب الأخطاء الشائعة في القراءة. هذه المهارة أساسية لنجاحكم في مادة اللغة الإنجليزية وستساعدكم في المواد الأخرى التي تتطلب فهم النصوص.",
+                  "introductionEn": "Welcome to first year secondary school students in our first lesson on reading skills in English. In this lesson, we will learn how to improve our reading skills and better understand English texts. We will cover effective reading strategies, analyzing new vocabulary, understanding main ideas and details in texts, and practicing extracting correct information from texts while avoiding common reading mistakes. This skill is essential for your success in English language studies and will help you in other subjects that require text comprehension.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أهمية مهارة القراءة في اللغة الإنجليزية واستراتيجياتها المختلفة. تعلمنا كيفية استخدام القراءة السريعة لاستخلاص الأفكار الرئيسية، والقراءة التفصيلية لفهم التفاصيل، والقراءة الانتقائية للبحث عن معلومات محددة. كما تعلمنا كيفية استنتاج معاني الكلمات الجديدة من السياق وتحديد الأفكار الرئيسية والفرعية. هذه المهارات ضرورية لفهم النصوص الإنجليزية بشكل فعال وتطوير مستواكم اللغوي.",
+                  "summaryEn": "In this lesson, we learned about the importance of reading skill in English and its different strategies. We learned how to use skimming for main ideas, intensive reading for details, and scanning for specific information. We also learned how to infer meanings of new words from context and identify main and supporting ideas. These skills are essential for effectively understanding English texts and improving your language proficiency.",
                   "createdAt": "2026-06-13T10:13:57.878Z",
                   "updatedAt": "2026-06-13T10:13:57.877Z",
                   "Objective": [
                     {
-                      "id": "id_vcu5nxptp0f",
+                      "id": "obj-id_kdajrgkm5le-0",
                       "lessonId": "id_kdajrgkm5le",
-                      "textAr": "فهم محتوى الدرس 1",
-                      "textEn": "Understand lesson 1 content",
+                      "textAr": "استراتيجيات القراءة الفعالة (القراءة السريعة والتفصيلية)",
+                      "textEn": "Effective reading strategies (skimming and scanning)",
                       "order": 1
                     },
                     {
-                      "id": "id_2ebjaba4bbn",
+                      "id": "obj-id_kdajrgkm5le-1",
                       "lessonId": "id_kdajrgkm5le",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "تحليل واستنتاج معاني الكلمات الجديدة من السياق",
+                      "textEn": "Analyzing and inferring meanings of new words from context",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_kdajrgkm5le-2",
+                      "lessonId": "id_kdajrgkm5le",
+                      "textAr": "تحديد الأفكار الرئيسية والفرعية في النصوص",
+                      "textEn": "Identifying main and supporting ideas in texts",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_w16q2w8zjxs",
+                      "id": "concept-id_kdajrgkm5le-0",
                       "lessonId": "id_kdajrgkm5le",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "استراتيجيات القراءة الفعالة (القراءة السريعة والتفصيلية)",
+                      "termEn": "Effective reading strategies (skimming and scanning)",
+                      "definitionAr": "استراتيجيات القراءة الفعالة (القراءة السريعة والتفصيلية)",
+                      "definitionEn": "Effective reading strategies (skimming and scanning)",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_kdajrgkm5le-1",
+                      "lessonId": "id_kdajrgkm5le",
+                      "termAr": "تحليل واستنتاج معاني الكلمات الجديدة من السياق",
+                      "termEn": "Analyzing and inferring meanings of new words from context",
+                      "definitionAr": "تحليل واستنتاج معاني الكلمات الجديدة من السياق",
+                      "definitionEn": "Analyzing and inferring meanings of new words from context",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_kdajrgkm5le-2",
+                      "lessonId": "id_kdajrgkm5le",
+                      "termAr": "تحديد الأفكار الرئيسية والفرعية في النصوص",
+                      "termEn": "Identifying main and supporting ideas in texts",
+                      "definitionAr": "تحديد الأفكار الرئيسية والفرعية في النصوص",
+                      "definitionEn": "Identifying main and supporting ideas in texts",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2313,52 +2433,34 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_kdajrgkm5le-0",
+                      "lessonId": "id_kdajrgkm5le",
+                      "questionAr": "مثال على استراتيجية القراءة السريعة: لنفترض أن لديك نصًا طويلاً عن تأثير التكنولوجيا على التعليم. هدفك هو معرفة الأفكار الرئيسية بسرعة دون قراءة كل التفاصيل.",
+                      "questionEn": "Example of Skimming Strategy: Imagine you have a long text about the impact of technology on education. Your goal is to quickly identify the main ideas without reading all the details.",
+                      "solutionAr": "اقرأ عنوان النص والفقرة الأولى والفقارة الأخيرة لفهم الموضوع العام\\nاقرأ أول جملة من كل فقرة لتحيد الأفكار الرئيسية\\nانتبه للكلمات المفتاحية والعناوين الفرعية\\nتجنب التوقف عند الكلمات غير المألوفة أو التفاصيل المعقدة",
+                      "solutionEn": "Read the title, first paragraph, and last paragraph to understand the general topic\\nRead the first sentence of each paragraph to identify main ideas\\nPay attention to keywords and subheadings\\nAvoid stopping at unfamiliar words or complex details",
+                      "stepsAr": "اقرأ عنوان النص والفقرة الأولى والفقارة الأخيرة لفهم الموضوع العام\\nاقرأ أول جملة من كل فقرة لتحيد الأفكار الرئيسية\\nانتبه للكلمات المفتاحية والعناوين الفرعية\\nتجنب التوقف عند الكلمات غير المألوفة أو التفاصيل المعقدة",
+                      "stepsEn": "Read the title, first paragraph, and last paragraph to understand the general topic\\nRead the first sentence of each paragraph to identify main ideas\\nPay attention to keywords and subheadings\\nAvoid stopping at unfamiliar words or complex details",
+                      "order": 1
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_m7uvv11tuh",
+                      "id": "q-id_kdajrgkm5le-0",
                       "lessonId": "id_kdajrgkm5le",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 1؟",
-                      "questionEn": "What is the purpose of Lesson 1?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي أفضل استراتيجية للبحث عن معلومة محددة في نص طويل؟",
+                      "questionEn": "What is the best strategy for finding specific information in a long text?",
+                      "optionsAr": "[\"القراءة التفصيلية\",\"القراءة السريعة\",\"القراءة الانتقائية\",\"القراءة المتكررة\"]",
+                      "optionsEn": "[\"Intensive reading\",\"Skimming\",\"Scanning\",\"Repeated reading\"]",
+                      "answer": "ج",
+                      "explanationAr": "القراءة الانتقائية (Scanning) هي الاستراتيجية الأفضل للبحث عن معلومة محددة في نص طويل، حيث يقوم القارئ بالمرور السريع على النص بحثًا عن الكلمات المفتاحية المتعلقة بالمعلومة المطلوبة دون قراءة النص بالكامل.",
+                      "explanationEn": "Scanning is the best strategy for finding specific information in a long text. The reader quickly moves through the text looking for keywords related to the specific information needed without reading the entire text.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
-                    },
-                    {
-                      "id": "q-id_kdajrgkm5le-add-0",
-                      "lessonId": "id_kdajrgkm5le",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 1: Reading Unit",
-                      "questionEn": "Application question on Lesson 1",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 2
-                    },
-                    {
-                      "id": "q-id_kdajrgkm5le-add-1",
-                      "lessonId": "id_kdajrgkm5le",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 1: Reading Unit",
-                      "questionEn": "Conceptual question in Lesson 1",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -2376,37 +2478,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 2",
-                  "introductionEn": "Introduction to Lesson 2",
-                  "summaryAr": "ملخص الدرس 2",
-                  "summaryEn": "Summary of Lesson 2",
+                  "introductionAr": "مرحباً بكم في درس القراءة الثاني للصف الأول الثانوي. في هذا الدرس، سنتعلم كيفية تحسين مهارات القراءة والفهم العميق للنصوص الإنجليزية. سنتناول استراتيجيات القراءة الفعالة، وتحليل المفردات، وفهم الأفكار الرئيسية والتفاصيل الداعمة. كما سنتعلم كيفية التعامل مع الكلمات غير المألوفة واستنتاج المعنى من السياق. هذه المهارات ضرورية ليس فقط لنجاحكم في مادة اللغة الإنجليزية، بل أيضاً لمساعدتكم في فهم المواد الأخرى باللغة الإنجليزية في المستقبل.",
+                  "introductionEn": "Welcome to the second reading lesson for First Secondary Grade. In this lesson, we will learn how to improve reading comprehension skills in English. We will cover effective reading strategies, vocabulary analysis, understanding main ideas and supporting details. We will also learn how to deal with unfamiliar words and infer meaning from context. These skills are essential not only for your success in English but also for helping you understand other subjects in English in the future.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أهمية القراءة الفعالة واستراتيجياتها الأساسية. تعلمنا كيفية تحديد الأفكار الرئيسية والتفاصيل الداعمة، وكيفية التعامل مع الكلمات غير المألوفة باستخدام السياق. هذه المهارات ضرورية لتحقيق فهم عميق للنصوص الإنجليزية، وهي أساس النجاح في مادة اللغة الإنجليزية والمواد الأخرى باللغة الإنجليزية.",
+                  "summaryEn": "In this lesson, we learned about the importance of effective reading and its basic strategies. We learned how to identify main ideas and supporting details, and how to deal with unfamiliar words using context. These skills are essential for achieving deep comprehension of English texts and form the foundation for success in English and other subjects taught in English.",
                   "createdAt": "2026-06-13T10:13:57.879Z",
                   "updatedAt": "2026-06-13T10:13:57.879Z",
                   "Objective": [
                     {
-                      "id": "id_b3v3za00tnb",
+                      "id": "obj-id_raybk2ww4hn-0",
                       "lessonId": "id_raybk2ww4hn",
-                      "textAr": "فهم محتوى الدرس 2",
-                      "textEn": "Understand lesson 2 content",
+                      "textAr": "استراتيجيات القراءة الفعالة",
+                      "textEn": "Effective reading strategies",
                       "order": 1
                     },
                     {
-                      "id": "id_71id35nnaw",
+                      "id": "obj-id_raybk2ww4hn-1",
                       "lessonId": "id_raybk2ww4hn",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "تحليل المفردات وفهم السياق",
+                      "textEn": "Vocabulary analysis and context comprehension",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_raybk2ww4hn-2",
+                      "lessonId": "id_raybk2ww4hn",
+                      "textAr": "تحديد الأفكار الرئيسية والتفاصيل الداعمة",
+                      "textEn": "Identifying main ideas and supporting details",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_b55yfob6spq",
+                      "id": "concept-id_raybk2ww4hn-0",
                       "lessonId": "id_raybk2ww4hn",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "استراتيجيات القراءة الفعالة",
+                      "termEn": "Effective reading strategies",
+                      "definitionAr": "استراتيجيات القراءة الفعالة",
+                      "definitionEn": "Effective reading strategies",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_raybk2ww4hn-1",
+                      "lessonId": "id_raybk2ww4hn",
+                      "termAr": "تحليل المفردات وفهم السياق",
+                      "termEn": "Vocabulary analysis and context comprehension",
+                      "definitionAr": "تحليل المفردات وفهم السياق",
+                      "definitionEn": "Vocabulary analysis and context comprehension",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_raybk2ww4hn-2",
+                      "lessonId": "id_raybk2ww4hn",
+                      "termAr": "تحديد الأفكار الرئيسية والتفاصيل الداعمة",
+                      "termEn": "Identifying main ideas and supporting details",
+                      "definitionAr": "تحديد الأفكار الرئيسية والتفاصيل الداعمة",
+                      "definitionEn": "Identifying main ideas and supporting details",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2427,52 +2554,34 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_raybk2ww4hn-0",
+                      "lessonId": "id_raybk2ww4hn",
+                      "questionAr": "مثال على تحليل النص: لنحلل النص التالي: 'Climate change is one of the most pressing issues of our time. It refers to long-term shifts in temperatures and weather patterns. These shifts could be natural, but since the 1800s, human activities have been the main driver of climate change.'",
+                      "questionEn": "Text analysis example: Let's analyze the following text: 'Climate change is one of the most pressing issues of our time. It refers to long-term shifts in temperatures and weather patterns. These shifts could be natural, but since the 1800s, human activities have been the main driver of climate change.'",
+                      "solutionAr": "1. حدد الفكرة الرئيسية: تغير المناخ هو أحد أكثر القضايا إلحاحاً في عصرنا.\\n2. لاحظ التفاصيل الداعمة: تغير المناخ يشير إلى تغييرات طويلة الأمد في درجات الحرارة وأنماط الطقس، وأن الأنشطة البشرية منذ القرن التاسع عشر هي الدافع الرئيسي.",
+                      "solutionEn": "1. Identify the main idea: Climate change is one of the most pressing issues of our time.\\n2. Notice supporting details: Climate change refers to long-term shifts in temperatures and weather patterns, and human activities since the 1800s have been the main driver.",
+                      "stepsAr": "1. حدد الفكرة الرئيسية: تغير المناخ هو أحد أكثر القضايا إلحاحاً في عصرنا.\\n2. لاحظ التفاصيل الداعمة: تغير المناخ يشير إلى تغييرات طويلة الأمد في درجات الحرارة وأنماط الطقس، وأن الأنشطة البشرية منذ القرن التاسع عشر هي الدافع الرئيسي.",
+                      "stepsEn": "1. Identify the main idea: Climate change is one of the most pressing issues of our time.\\n2. Notice supporting details: Climate change refers to long-term shifts in temperatures and weather patterns, and human activities since the 1800s have been the main driver.",
+                      "order": 1
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_g1khv0dh945",
+                      "id": "q-id_raybk2ww4hn-0",
                       "lessonId": "id_raybk2ww4hn",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 2؟",
-                      "questionEn": "What is the purpose of Lesson 2?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي أفضل استراتيجية للتعامل مع كلمة غير مألوفة أثناء القراءة؟",
+                      "questionEn": "What is the best strategy for dealing with an unfamiliar word while reading?",
+                      "optionsAr": "[\"النظر إلى الكلمات المجاورة لاستنتاج المعنى\",\"إيقاف القراءة فوراً والبحث عن الكلمة في القاموس\",\"تجاهل الكلمة واستمرار القراءة\",\"استخدام نفس الكلمة في جملة جديدة\"]",
+                      "optionsEn": "[\"Look at surrounding words to infer meaning\",\"Stop reading immediately and look up the word in a dictionary\",\"Ignore the word and continue reading\",\"Use the same word in a new sentence\"]",
+                      "answer": "أ",
+                      "explanationAr": "الخيار (أ) هو الأفضل لأنه يحافظ على تدفق القراءة ويساعد على تطوير مهارة استنتاج المعنى من السياق، وهو مهارة مهمة في تعلم اللغة.",
+                      "explanationEn": "Option (A) is the best because it maintains reading flow and helps develop the skill of inferring meaning from context, which is an important skill in language learning.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
-                    },
-                    {
-                      "id": "q-id_raybk2ww4hn-add-0",
-                      "lessonId": "id_raybk2ww4hn",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 2: Reading Unit",
-                      "questionEn": "Application question on Lesson 2",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 2
-                    },
-                    {
-                      "id": "q-id_raybk2ww4hn-add-1",
-                      "lessonId": "id_raybk2ww4hn",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 2: Reading Unit",
-                      "questionEn": "Conceptual question in Lesson 2",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -2490,37 +2599,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 3",
-                  "introductionEn": "Introduction to Lesson 3",
-                  "summaryAr": "ملخص الدرس 3",
-                  "summaryEn": "Summary of Lesson 3",
+                  "introductionAr": "مرحباً بكم في درس القراءة للصف الأول الثانوي. يهدف هذا الدرس إلى تنمية مهارات القراءة لدى الطلاب وتحسين قدرتهم على فهم النصوص الإنجليزية المختلفة. سنتعرف على استراتيجيات القراءة الفعالة، وكيفية استخراج المعلومات الرئيسية من النصوص، وتحليل الأفكار والاستدلالات. كما سنتدرب على القراءة السريعة والبطيئة حسب نوع النص ومتطلباته. هذا الدرس سيساعد الطلاب على بناء أساس متين لمهارات اللغة الإنجليزية الأكاديمية والاجتماعية.",
+                  "introductionEn": "Welcome to the Reading Unit for First Year Secondary. This lesson aims to develop students' reading skills and improve their ability to understand various English texts. We will explore effective reading strategies, how to extract main ideas from texts, and analyze ideas and inferences. We will also practice both fast and slow reading depending on the type of text and its requirements. This lesson will help students build a solid foundation for their English academic and social skills.",
+                  "summaryAr": "في هذا الدرس تعرفنا على مهارات القراءة الفعالة وأنواعها المختلفة واستراتيجيات كل نوع. تعلمنا كيفية استخدام القراءة السطحية للحصول على الفكرة العامة، والقراءة البحثية للعثور على معلومات محددة، والقراءة التحليلية لفهم التفاصيل الدقيقة. كما تعلمنا أهمية تنشيط الخلفية المعرفية قبل القراءة وتحديد الغرض من القراءة، ومراجعة المعلومات بعد القراءة. هذه المهارات أساسية للنجاح في دراسة اللغة الإنجليزية وتطبيقها في المواد الأكاديمية المختلفة.",
+                  "summaryEn": "In this lesson, we learned about effective reading skills and their different types, along with the strategies for each type. We learned how to use skimming to get the general idea, scanning to find specific information, and intensive reading to understand detailed information. We also learned the importance of activating background knowledge before reading, determining the purpose of reading, and reviewing information after reading. These skills are essential for success in studying English and applying it in various academic subjects.",
                   "createdAt": "2026-06-13T10:13:57.881Z",
                   "updatedAt": "2026-06-13T10:13:57.880Z",
                   "Objective": [
                     {
-                      "id": "id_0ox983flbcqn",
+                      "id": "obj-id_ym1vqy7hqx8-0",
                       "lessonId": "id_ym1vqy7hqx8",
-                      "textAr": "فهم محتوى الدرس 3",
-                      "textEn": "Understand lesson 3 content",
+                      "textAr": "استراتيجيات القراءة الفعالة",
+                      "textEn": "Effective reading strategies",
                       "order": 1
                     },
                     {
-                      "id": "id_wrpbdxiq12e",
+                      "id": "obj-id_ym1vqy7hqx8-1",
                       "lessonId": "id_ym1vqy7hqx8",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "أنماط القراءة المختلفة واستخداماتها",
+                      "textEn": "Different reading patterns and their applications",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_ym1vqy7hqx8-2",
+                      "lessonId": "id_ym1vqy7hqx8",
+                      "textAr": "تقنيات فكك رموز النصوص وفهم السياق",
+                      "textEn": "Text decoding techniques and context comprehension",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_wxhg293rvu",
+                      "id": "concept-id_ym1vqy7hqx8-0",
                       "lessonId": "id_ym1vqy7hqx8",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "استراتيجيات القراءة الفعالة",
+                      "termEn": "Effective reading strategies",
+                      "definitionAr": "استراتيجيات القراءة الفعالة",
+                      "definitionEn": "Effective reading strategies",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_ym1vqy7hqx8-1",
+                      "lessonId": "id_ym1vqy7hqx8",
+                      "termAr": "أنماط القراءة المختلفة واستخداماتها",
+                      "termEn": "Different reading patterns and their applications",
+                      "definitionAr": "أنماط القراءة المختلفة واستخداماتها",
+                      "definitionEn": "Different reading patterns and their applications",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_ym1vqy7hqx8-2",
+                      "lessonId": "id_ym1vqy7hqx8",
+                      "termAr": "تقنيات فكك رموز النصوص وفهم السياق",
+                      "termEn": "Text decoding techniques and context comprehension",
+                      "definitionAr": "تقنيات فكك رموز النصوص وفهم السياق",
+                      "definitionEn": "Text decoding techniques and context comprehension",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2541,52 +2675,49 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_ym1vqy7hqx8-0",
+                      "lessonId": "id_ym1vqy7hqx8",
+                      "questionAr": "استراتيجية القراءة السريعة (Skimming): قراءة سريعة للنص لاستخلاص الفكرة العامة دون التركيز على التفاصيل الدقيقة.",
+                      "questionEn": "Skimming Strategy: Quick reading of a text to extract the general idea without focusing on detailed information.",
+                      "solutionAr": "1. اقرأ العنوان والفقرات الأولى والأخيرة\\n2. ابحث عن الكلمات المفتاحية والعناوين الفرعية\\n3. ركز على الأفعال والأسماء الرئيسية\\n4. تجاهل الأرقام والتواريخ والتفاصيل الثانوية",
+                      "solutionEn": "1. Read the title, first and last paragraphs\\n2. Look for keywords and subheadings\\n3. Focus on main verbs and nouns\\n4. Ignore numbers, dates, and secondary details",
+                      "stepsAr": "1. اقرأ العنوان والفقرات الأولى والأخيرة\\n2. ابحث عن الكلمات المفتاحية والعناوين الفرعية\\n3. ركز على الأفعال والأسماء الرئيسية\\n4. تجاهل الأرقام والتواريخ والتفاصيل الثانوية",
+                      "stepsEn": "1. Read the title, first and last paragraphs\\n2. Look for keywords and subheadings\\n3. Focus on main verbs and nouns\\n4. Ignore numbers, dates, and secondary details",
+                      "order": 1
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_hpjtfadshsk",
+                      "id": "q-id_ym1vqy7hqx8-0",
                       "lessonId": "id_ym1vqy7hqx8",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 3؟",
-                      "questionEn": "What is the purpose of Lesson 3?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي أفضل استراتيجية للبحث عن معلومة محددة في نص طويل؟",
+                      "questionEn": "What is the best strategy for finding specific information in a long text?",
+                      "optionsAr": "[\"القراءة السطحية\",\"القراءة التحليلية\",\"القراءة البحثية (Scanning)\",\"القراءة النقدية\"]",
+                      "optionsEn": "[\"Skimming\",\"Intensive reading\",\"Scanning\",\"Critical reading\"]",
+                      "answer": "ج",
+                      "explanationAr": "القراءة البحثية (Scanning) هي الاستراتيجية الأفضل للبحث عن معلومة محددة في نص طويل، حيث يقارئ القارئ النص بسرعة بحثاً عن كلمة أو معلومة معينة دون الحاجة لفهم المحتوى كاملاً.",
+                      "explanationEn": "Scanning is the best strategy for finding specific information in a long text, as the reader quickly goes through the text looking for a particular word or piece of information without needing to understand the full content.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_ym1vqy7hqx8-add-0",
+                      "id": "q-id_ym1vqy7hqx8-1",
                       "lessonId": "id_ym1vqy7hqx8",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 3: Reading Unit",
-                      "questionEn": "Application question on Lesson 3",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما هو الهدف الرئيسي من القراءة التحليلية؟",
+                      "questionEn": "What is the main purpose of intensive reading?",
+                      "optionsAr": "[\"الحصول على الفكرة العامة\",\"فهم التفاصيل الدقيقة\",\"تقييم النقد للنص\",\"كل ما سبق\"]",
+                      "optionsEn": "[\"To get the general idea\",\"To understand detailed information\",\"To critically evaluate the text\",\"All of the above\"]",
+                      "answer": "د",
+                      "explanationAr": "القراءة التحليلية تهدف إلى تحقيق عدة أهداف منها الحصول على الفكرة العامة وفهم التفاصيل الدقيقة وتقييم النقد للنص، حيث تركز على فهم العلاقات بين الأفكار وتحليل بنية النص.",
+                      "explanationEn": "Intensive reading aims to achieve several goals including getting the general idea, understanding detailed information, and critically evaluating the text, as it focuses on understanding relationships between ideas and analyzing the text structure.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
-                    },
-                    {
-                      "id": "q-id_ym1vqy7hqx8-add-1",
-                      "lessonId": "id_ym1vqy7hqx8",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 3: Reading Unit",
-                      "questionEn": "Conceptual question in Lesson 3",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 }
@@ -2617,37 +2748,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 1",
-                  "introductionEn": "Introduction to Lesson 1",
-                  "summaryAr": "ملخص الدرس 1",
-                  "summaryEn": "Summary of Lesson 1",
+                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم حول Writing Unit. يعتبر الكتابة باللغة الإنجليزية مهارة أساسية لكل طالب، حيث تساعد في التعبير عن الأفكار والآراء بطريقة منظمة وفعالة. في هذا الدرس، سنتعلم أساسيات الكتابة الإبداعية والأكاديمية، وكيفية تطوير المقدمة والجسم والخاتمة للنصوص المختلفة. سنتناول أيضاً أساليب بناء الجمل والفقوب، وتحسين التدفق والاتساق في النصوص. سنساعدكم على بناء ثقة في قدرتكم على الكتابة بشكل فعال، وهو مهارة ستكونون بحاجة إليها في جميع المواد الدراسية وفي حياتكم المهنية المستقبلية.",
+                  "introductionEn": "Welcome to first secondary grade students in today's lesson on Writing Unit. Writing in English is a fundamental skill for every student, as it helps in expressing ideas and opinions in an organized and effective manner. In this lesson, we will learn the basics of creative and academic writing, and how to develop introductions, body paragraphs, and conclusions for different types of texts. We will also cover sentence and paragraph construction techniques, and improving flow and coherence in writing. We will help you build confidence in your ability to write effectively, a skill you will need in all your academic subjects and in your future professional life.",
+                  "summaryAr": "في هذا الدرس تعلمنا أساسيات الكتابة الفعالة في اللغة الإنجليزية، بما في ذلك تحديد الغرض من الكتابة، تنظيم الأفكار بشكل منطقي، وبناء المقدمة والجسم والخاتمة. كما تعلمنا أهمية تنويع الجمل واستخدام مفردات مناسبة لتحسين جودة النص. التدرب على هذه المهارات سيساعدكم على كتابة نصوص واضحة ومنظمة في جميع المواد الدراسية وفي حياتكم اليومية.",
+                  "summaryEn": "In this lesson, we learned the basics of effective writing in English, including determining the purpose of writing, organizing ideas logically, and constructing introductions, bodies, and conclusions. We also learned the importance of varying sentence structure and using appropriate vocabulary to improve text quality. Practicing these skills will help you write clear and organized texts in all your academic subjects and in your daily life.",
                   "createdAt": "2026-06-13T10:13:57.882Z",
                   "updatedAt": "2026-06-13T10:13:57.882Z",
                   "Objective": [
                     {
-                      "id": "id_ujrg07eml7",
+                      "id": "obj-id_amukzdox7nl-0",
                       "lessonId": "id_amukzdox7nl",
-                      "textAr": "فهم محتوى الدرس 1",
-                      "textEn": "Understand lesson 1 content",
+                      "textAr": "تحديد الغرض من الكتابة",
+                      "textEn": "Determining the purpose of writing",
                       "order": 1
                     },
                     {
-                      "id": "id_nqc2qd4fj8o",
+                      "id": "obj-id_amukzdox7nl-1",
                       "lessonId": "id_amukzdox7nl",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "تنظيم الأفكار في مقدمة وجسم وخاتمة",
+                      "textEn": "Organizing ideas into introduction, body, and conclusion",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_amukzdox7nl-2",
+                      "lessonId": "id_amukzdox7nl",
+                      "textAr": "تحسين التدفق والاتساق في النص",
+                      "textEn": "Improving flow and coherence in the text",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_acymrg15yg8",
+                      "id": "concept-id_amukzdox7nl-0",
                       "lessonId": "id_amukzdox7nl",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "تحديد الغرض من الكتابة",
+                      "termEn": "Determining the purpose of writing",
+                      "definitionAr": "تحديد الغرض من الكتابة",
+                      "definitionEn": "Determining the purpose of writing",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_amukzdox7nl-1",
+                      "lessonId": "id_amukzdox7nl",
+                      "termAr": "تنظيم الأفكار في مقدمة وجسم وخاتمة",
+                      "termEn": "Organizing ideas into introduction",
+                      "definitionAr": "تنظيم الأفكار في مقدمة وجسم وخاتمة",
+                      "definitionEn": "Organizing ideas into introduction, body, and conclusion",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_amukzdox7nl-2",
+                      "lessonId": "id_amukzdox7nl",
+                      "termAr": "تحسين التدفق والاتساق في النص",
+                      "termEn": "Improving flow and coherence in the text",
+                      "definitionAr": "تحسين التدفق والاتساق في النص",
+                      "definitionEn": "Improving flow and coherence in the text",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2668,52 +2824,34 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_amukzdox7nl-0",
+                      "lessonId": "id_amukzdox7nl",
+                      "questionAr": "كتابة مقال تعريفي: لنكتب مقالاً تعريفياً عن مدينة الإسكندرية المصرية.",
+                      "questionEn": "Writing a descriptive essay: Let's write a descriptive essay about Alexandria, Egypt.",
+                      "solutionAr": "ابدأ بمقدمة جذابة عن تاريخ المدينة وأهميتها\\nاكتب فقرة عن المعالم السياحية الشهيرة\\nاكتب فقرة عن الثقافة والحياة في المدينة\\nاختم بخاتمة تلخص لماذا زيارتها تجربة فريدة",
+                      "solutionEn": "Start with an engaging introduction about the city's history and importance\\nWrite a paragraph about famous tourist attractions\\nWrite a paragraph about the culture and life in the city\\nEnd with a conclusion summarizing why visiting it is a unique experience",
+                      "stepsAr": "ابدأ بمقدمة جذابة عن تاريخ المدينة وأهميتها\\nاكتب فقرة عن المعالم السياحية الشهيرة\\nاكتب فقرة عن الثقافة والحياة في المدينة\\nاختم بخاتمة تلخص لماذا زيارتها تجربة فريدة",
+                      "stepsEn": "Start with an engaging introduction about the city's history and importance\\nWrite a paragraph about famous tourist attractions\\nWrite a paragraph about the culture and life in the city\\nEnd with a conclusion summarizing why visiting it is a unique experience",
+                      "order": 1
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_orssivmu7jm",
+                      "id": "q-id_amukzdox7nl-0",
                       "lessonId": "id_amukzdox7nl",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 1؟",
-                      "questionEn": "What is the purpose of Lesson 1?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هو الجزء الأهم في أي نص كتابي؟",
+                      "questionEn": "What is the most important part of any written text?",
+                      "optionsAr": "[\"المقدمة\",\"الخاتمة\",\"الجسم الرئيسي\",\"العنوان\"]",
+                      "optionsEn": "[\"Introduction\",\"Conclusion\",\"Body\",\"Title\"]",
+                      "answer": "ج",
+                      "explanationAr": "الجسم الرئيسي هو الجزء الأهم لأنه يحتوي على الأفكار الرئيسية والدليل المدعوم لها، وهو ما يميز النص الجيد من السيئ.",
+                      "explanationEn": "The body is the most important part because it contains the main ideas and supporting evidence, which distinguishes a good text from a poor one.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
-                    },
-                    {
-                      "id": "q-id_amukzdox7nl-add-0",
-                      "lessonId": "id_amukzdox7nl",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 1: Writing Unit",
-                      "questionEn": "Application question on Lesson 1",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 2
-                    },
-                    {
-                      "id": "q-id_amukzdox7nl-add-1",
-                      "lessonId": "id_amukzdox7nl",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 1: Writing Unit",
-                      "questionEn": "Conceptual question in Lesson 1",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -2731,37 +2869,69 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 2",
-                  "introductionEn": "Introduction to Lesson 2",
-                  "summaryAr": "ملخص الدرس 2",
-                  "summaryEn": "Summary of Lesson 2",
+                  "introductionAr": "مرحباً بكم في درس الكتابة للصف الأول الثانوي. في هذا الدرس سنتعلم أساسيات الكتابة الإنجليزية الفعالة، بما في ذلك أنواع مختلفة من النصوص وكيفية تنظيم الأفكار بشكل منطقي. سنتناول كيفية كتابة المقالات الوصفية والسردية، وكيفية استخدام أدوات الربط المناسبة لتحسين تدفق النص. كما سنتعلم على أهمية المراجعة والتحرير لضمان جودة العمل الكتابي. هذا الدرس يمثل حجر الزاوية في تطوير مهارات الكتابة الإنجليزية اللازمة للنجاح في المرحلة الثانوية وما بعدها.",
+                  "introductionEn": "Welcome to the Writing Unit for First Secondary Grade. In this lesson, we will learn the fundamentals of effective English writing, including different types of texts and how to organize ideas logically. We will cover how to write descriptive and narrative essays, and how to use appropriate transition words to improve text flow. We will also learn about the importance of revision and editing to ensure written work quality. This lesson represents a cornerstone in developing the English writing skills necessary for success in secondary school and beyond.",
+                  "summaryAr": "في هذا الدرس تعلمنا أساسيات الكتابة الإنجليزية الفعالة. تعلمنا عن أنواع النصوص الرئيسية (الوصفي، السردي، الجدلي) وهيكل المقالة المنطقي الذي يتكون من مقدمة وجسم وخاتمة. كما تعلمنا أهمية استخدام أدوات الربط لتحسين تدفق الأفكار في النص. وتعرفنا على أهمية التنوع في الجمل والكلمات لجعل النص أكثر جاذبية. وأخيرًا، لقد أكدنا على ضرورة المراجعة والتحرير لضمان جودة العمل الكتابي. هذه المهارات تمثل أساسًا قويًا لتطوير قدراتنا الكتابية في اللغة الإنجليزية.",
+                  "summaryEn": "In this lesson, we learned the fundamentals of effective English writing. We covered the main types of texts (descriptive, narrative, argumentative) and the logical essay structure consisting of introduction, body, and conclusion. We also learned about the importance of using transition words to improve the flow of ideas in text. We recognized the value of varying sentence structures and vocabulary to make writing more engaging. Finally, we emphasized the necessity of revision and editing to ensure written work quality. These skills form a strong foundation for developing our English writing abilities.",
                   "createdAt": "2026-06-13T10:13:57.884Z",
                   "updatedAt": "2026-06-13T10:13:57.883Z",
                   "Objective": [
                     {
-                      "id": "id_c97e50z1ad5",
+                      "id": "obj-id_frlerysxmad-0",
                       "lessonId": "id_frlerysxmad",
-                      "textAr": "فهم محتوى الدرس 2",
-                      "textEn": "Understand lesson 2 content",
+                      "textAr": "أنواع النصوص الإنجليزية الرئيسية",
+                      "textEn": "Main types of English texts",
                       "order": 1
                     },
                     {
-                      "id": "id_e39oagzcmm",
+                      "id": "obj-id_frlerysxmad-1",
                       "lessonId": "id_frlerysxmad",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "هيكل المقالة المنطقي",
+                      "textEn": "Logical essay structure",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_frlerysxmad-2",
+                      "lessonId": "id_frlerysxmad",
+                      "textAr": "أدوات الربط بين الجمل والفقرات",
+                      "textEn": "Transition words between sentences and paragraphs",
+                      "order": 3
+                    },
+                    {
+                      "id": "obj-id_frlerysxmad-3",
+                      "lessonId": "id_frlerysxmad",
+                      "textAr": "المراجعة والتحرير لتحسين الجودة",
+                      "textEn": "Revision and editing to improve quality",
+                      "order": 4
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_lln08ajd0x",
+                      "id": "concept-id_frlerysxmad-0",
                       "lessonId": "id_frlerysxmad",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "أنواع النصوص الإنجليزية الرئيسية",
+                      "termEn": "Main types of English texts",
+                      "definitionAr": "أنواع النصوص الإنجليزية الرئيسية",
+                      "definitionEn": "Main types of English texts",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_frlerysxmad-1",
+                      "lessonId": "id_frlerysxmad",
+                      "termAr": "هيكل المقالة المنطقي",
+                      "termEn": "Logical essay structure",
+                      "definitionAr": "هيكل المقالة المنطقي",
+                      "definitionEn": "Logical essay structure",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_frlerysxmad-2",
+                      "lessonId": "id_frlerysxmad",
+                      "termAr": "أدوات الربط بين الجمل والفقرات",
+                      "termEn": "Transition words between sentences and paragraphs",
+                      "definitionAr": "أدوات الربط بين الجمل والفقرات",
+                      "definitionEn": "Transition words between sentences and paragraphs",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -2782,49 +2952,72 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_frlerysxmad-0",
+                      "lessonId": "id_frlerysxmad",
+                      "questionAr": "مقال وصفي: اكتب فقرة وصفية عن مدينتك المفضلة",
+                      "questionEn": "Descriptive Essay: Write a descriptive paragraph about your favorite city",
+                      "solutionAr": "ابدأ بجملة رئيسية تقدم الموضوع\\nاستخدم حواسك (الرؤية، السمع، الشم، الذوق، اللمس) لوصف المدينة\\nاستخدم صفات قوية وأفعالاً دقيقة\\nأنهي بجملة تلخص مشاعرك تجاه المدينة",
+                      "solutionEn": "Start with a topic sentence introducing the city\\nUse your senses (sight, hearing, smell, taste, touch) to describe the city\\nUse strong adjectives and precise verbs\\nEnd with a sentence summarizing your feelings about the city",
+                      "stepsAr": "ابدأ بجملة رئيسية تقدم الموضوع\\nاستخدم حواسك (الرؤية، السمع، الشم، الذوق، اللمس) لوصف المدينة\\nاستخدم صفات قوية وأفعالاً دقيقة\\nأنهي بجملة تلخص مشاعرك تجاه المدينة",
+                      "stepsEn": "Start with a topic sentence introducing the city\\nUse your senses (sight, hearing, smell, taste, touch) to describe the city\\nUse strong adjectives and precise verbs\\nEnd with a sentence summarizing your feelings about the city",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_frlerysxmad-1",
+                      "lessonId": "id_frlerysxmad",
+                      "questionAr": "مقال سردي: روي قصة قصيرة عن تجربة مهمة في حياتك",
+                      "questionEn": "Narrative Essay: Tell a short story about an important experience in your life",
+                      "solutionAr": "حدد بداية ونهاية القصة\\nاستخدم الزمن الماضي في معظم الجمل\\nأضف تفاصيل عن المشاعر والحواس\\nاستخدم الحوار لجعل القصة أكثر حياة",
+                      "solutionEn": "Identify the beginning and end of the story\\nUse past tense in most sentences\\nAdd details about feelings and senses\\nUse dialogue to make the story more alive",
+                      "stepsAr": "حدد بداية ونهاية القصة\\nاستخدم الزمن الماضي في معظم الجمل\\nأضف تفاصيل عن المشاعر والحواس\\nاستخدم الحوار لجعل القصة أكثر حياة",
+                      "stepsEn": "Identify the beginning and end of the story\\nUse past tense in most sentences\\nAdd details about feelings and senses\\nUse dialogue to make the story more alive",
+                      "order": 2
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_e6ele6kuxd",
+                      "id": "q-id_frlerysxmad-0",
                       "lessonId": "id_frlerysxmad",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 2؟",
-                      "questionEn": "What is the purpose of Lesson 2?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هو الهيكل الأساسي لأي مقال؟",
+                      "questionEn": "What is the basic structure of any essay?",
+                      "optionsAr": "[\"مقدمة، جسم المقال، خاتمة\",\"مقدمة، فقرات، خاتمة\",\"مقدمة، وسط، نهاية\",\"مقدمة، أفكار، خاتمة\"]",
+                      "optionsEn": "[\"Introduction, body, conclusion\",\"Introduction, paragraphs, conclusion\",\"Introduction, middle, end\",\"Introduction, ideas, conclusion\"]",
+                      "answer": "أ",
+                      "explanationAr": "الهيكل الأساسي لأي مقال يتكون من ثلاثة أجزاء رئيسية: المقدمة التي تقدم الموضوع، جسم المقال الذي يتناول الأفكار الرئيسية والداعمة، والخاتمة التي تلخص وتقدم رأيًا نهائيًا.",
+                      "explanationEn": "The basic structure of any essay consists of three main parts: the introduction that presents the topic, the body that discusses the main supporting ideas, and the conclusion that summarizes and offers a final opinion.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_frlerysxmad-add-0",
+                      "id": "q-id_frlerysxmad-1",
                       "lessonId": "id_frlerysxmad",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 2: Writing Unit",
-                      "questionEn": "Application question on Lesson 2",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "أي أدوات الربت التالية تستخدم لإضافة معلئة جديدة؟",
+                      "questionEn": "Which of the following transition words is used to add new information?",
+                      "optionsAr": "[\"However\",\"Therefore\",\"Furthermore\",\"Nevertheless\"]",
+                      "optionsEn": "[\"However\",\"Therefore\",\"Furthermore\",\"Nevertheless\"]",
+                      "answer": "ج",
+                      "explanationAr": "كلمة 'Furthermore' (أي 'بالإضافة إلى ذلك') تستخدم لإضافة معلئة جديدة أو دعم لنقطة تم ذكرها سابقًا، بينما الكلمات الأخرى تستخدم للإشارة إلى تباين أو نتيجة.",
+                      "explanationEn": "The word 'Furthermore' (meaning 'in addition') is used to add new information or support to a previously mentioned point, while the other words indicate contrast or result.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
                     },
                     {
-                      "id": "q-id_frlerysxmad-add-1",
+                      "id": "q-id_frlerysxmad-2",
                       "lessonId": "id_frlerysxmad",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 2: Writing Unit",
-                      "questionEn": "Conceptual question in Lesson 2",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما هو نوع النص الذي يركز على وصف شيء ما أو مكان؟",
+                      "questionEn": "What type of text focuses on describing something or a place?",
+                      "optionsAr": "[\"سرد\",\"وصفي\",\"جدلي\",\"توجيهي\"]",
+                      "optionsEn": "[\"Narrative\",\"Descriptive\",\"Argumentative\",\"Instructional\"]",
+                      "answer": "ب",
+                      "explanationAr": "النص الوصفي هو النوع الذي يركز على وصف شيء ما أو مكان أو شخص باستخدام حواس مختلفة وتفاصيل دقيقة لإعطاء القارئ صورة واضحة.",
+                      "explanationEn": "A descriptive text is one that focuses on describing something, a place, or a person using various senses and detailed information to give the reader a clear picture.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 3
