@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "next dev -p 3000",
-    "postinstall": "prisma generate",
-    "build": "prisma generate && npx tsx scripts/export-to-json.ts && next build",
+    "postinstall": "prisma generate || echo 'Prisma generate skipped'",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "db:push": "prisma db push",

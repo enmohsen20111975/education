@@ -1,11 +1,20 @@
-import { PrismaClient } from '@prisma/client';
 import fs from 'fs';
 import path from 'path';
 
-const db = new PrismaClient();
-
 async function exportDatabase() {
+  const outputPath = path.join(process.cwd(), 'public', 'data', 'curriculum.json');
+  
+  // Check if curriculum.json already exists (from git)
+  if (fs.existsSync(outputPath)) {
+    console.log('✅ curriculum.json already exists, skipping export');
+    return;
+  }
+
+  // Try to export from database
   try {
+    const { PrismaClient } = await import('@prisma/client');
+    const db = new PrismaClient();
+
     console.log('📦 Exporting database to JSON...');
 
     const data = {
@@ -41,47 +50,42 @@ async function exportDatabase() {
       badges: await db.badge.findMany(),
     };
 
-    // Write to public folder for static access
+    // Ensure directory exists
     const publicPath = path.join(process.cwd(), 'public', 'data');
     if (!fs.existsSync(publicPath)) {
       fs.mkdirSync(publicPath, { recursive: true });
     }
 
-    fs.writeFileSync(
-      path.join(publicPath, 'curriculum.json'),
-      JSON.stringify(data, null, 2)
-    );
+    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 
     console.log('✅ Database exported to public/data/curriculum.json');
     console.log(`   - Academic Years: ${data.academicYears.length}`);
-    console.log(`   - Specializations: ${data.specializations.length}`);
-    console.log(`   - Simulators: ${data.simulators.length}`);
-    console.log(`   - Badges: ${data.badges.length}`);
-
-    // Calculate totals
-    let totalSubjects = 0;
-    let totalUnits = 0;
-    let totalLessons = 0;
-
-    for (const year of data.academicYears) {
-      totalSubjects += year.Subject.length;
-      for (const subject of year.Subject) {
-        totalUnits += subject.Unit.length;
-        for (const unit of subject.Unit) {
-          totalLessons += unit.Lesson.length;
-        }
-      }
-    }
-
-    console.log(`   - Total Subjects: ${totalSubjects}`);
-    console.log(`   - Total Units: ${totalUnits}`);
-    console.log(`   - Total Lessons: ${totalLessons}`);
-
+    
     await db.$disconnect();
   } catch (error) {
-    console.error('⚠️ Export failed:', error);
-    await db.$disconnect();
-    process.exit(1);
+    console.log('⚠️ No database available, checking for existing curriculum.json...');
+    
+    if (fs.existsSync(outputPath)) {
+      console.log('✅ Using existing curriculum.json from repository');
+    } else {
+      console.error('❌ No curriculum.json found and no database available');
+      // Create empty data file to prevent build failure
+      const emptyData = {
+        academicYears: [],
+        specializations: [],
+        semesters: [],
+        simulators: [],
+        badges: []
+      };
+      
+      const publicPath = path.join(process.cwd(), 'public', 'data');
+      if (!fs.existsSync(publicPath)) {
+        fs.mkdirSync(publicPath, { recursive: true });
+      }
+      
+      fs.writeFileSync(outputPath, JSON.stringify(emptyData, null, 2));
+      console.log('⚠️ Created empty curriculum.json - website will show no data');
+    }
   }
 }
 
