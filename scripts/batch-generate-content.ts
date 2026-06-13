@@ -202,9 +202,9 @@ async function main() {
     console.log(`    Unit: ${lesson.unitName}`);
 
     try {
-      // Check if already has substantial content
-      if (lesson.introductionAr && lesson.introductionAr.length > 200) {
-        console.log(`    ⏭️  Already has content, skipping...`);
+      // Check if already has substantial content (more than 50 chars means real content)
+      if (lesson.introductionAr && lesson.introductionAr.length > 50) {
+        console.log(`    ⏭️  Already has content (${lesson.introductionAr.length} chars), skipping...`);
         continue;
       }
 
