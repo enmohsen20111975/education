@@ -6332,37 +6332,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 1",
+                  "introductionAr": "مقدمة شاملة (300 كلمة)",
                   "introductionEn": "Introduction to Lesson 1",
-                  "summaryAr": "ملخص الدرس 1",
+                  "summaryAr": "ملخص الدرس",
                   "summaryEn": "Summary of Lesson 1",
                   "createdAt": "2026-06-13T10:13:57.927Z",
                   "updatedAt": "2026-06-13T10:13:57.926Z",
                   "Objective": [
                     {
-                      "id": "id_fhgywqjjo4k",
+                      "id": "obj-id_4qr6kqgvsay-0",
                       "lessonId": "id_4qr6kqgvsay",
-                      "textAr": "فهم محتوى الدرس 1",
-                      "textEn": "Understand lesson 1 content",
+                      "textAr": "هدف1",
+                      "textEn": "هدف1",
                       "order": 1
                     },
                     {
-                      "id": "id_8p3e3cwsyzn",
+                      "id": "obj-id_4qr6kqgvsay-1",
                       "lessonId": "id_4qr6kqgvsay",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "هدف2",
+                      "textEn": "هدف2",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_4qr6kqgvsay-2",
+                      "lessonId": "id_4qr6kqgvsay",
+                      "textAr": "هدف3",
+                      "textEn": "هدف3",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_95lmsv3jx5e",
+                      "id": "con-id_4qr6kqgvsay-0",
                       "lessonId": "id_4qr6kqgvsay",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "مشتقة",
+                      "termEn": "مشتقة",
+                      "definitionAr": "معدل التغير اللحظي لدالة ما بالنسبة لمتغير مستقل",
+                      "definitionEn": "معدل التغير اللحظي لدالة ما بالنسبة لمتغير مستقل",
                       "order": 1
+                    },
+                    {
+                      "id": "con-id_4qr6kqgvsay-1",
+                      "lessonId": "id_4qr6kqgvsay",
+                      "termAr": "قاعدة القوة",
+                      "termEn": "قاعدة القوة",
+                      "definitionAr": "إذا كانت f(x) = x^n، فإن f'(x) = n*x^(n-1)",
+                      "definitionEn": "إذا كانت f(x) = x^n، فإن f'(x) = n*x^(n-1)",
+                      "order": 2
+                    },
+                    {
+                      "id": "con-id_4qr6kqgvsay-2",
+                      "lessonId": "id_4qr6kqgvsay",
+                      "termAr": "قاعدة الضرب",
+                      "termEn": "قاعدة الضرب",
+                      "definitionAr": "إذا كانت f(x) = u(x)*v(x)، فإن f'(x) = u'(x)*v(x) + u(x)*v'(x)",
+                      "definitionEn": "إذا كانت f(x) = u(x)*v(x)، فإن f'(x) = u'(x)*v(x) + u(x)*v'(x)",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -6458,37 +6483,80 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 2",
+                  "introductionAr": "مقدمة شاملة عن التفاضل (300 كلمة): التفاضل هو فرع أساسي في حساب التفاضل والتكامل، ويهتم بدراسة معدلات التغير ومفهوم المشتقة. في هذا الدرس، سنتعلم كيفية حساب المشتقات للدوال المختلفة وكيفية تطبيقها في حل المسائل العملية. سنتناول تعريف المشتقة كحد التغير في الدالة بالنسبة للتغير في المتغير المستقل، وسنتعلم قواعد التفاضل الأساسية مثل قاعدة الجمع والطرح، وقاعدة الضرب، وقاعدة القسمة، وقاعدة السلسلة. كما سنتناول مشتقات الدوال الأساسية مثل الدوال الخطية، الدوال الأسية، والدوال اللوغاريتمية. سنتناول أيضاً تطبيقات عملية للمشتقة في تحديد نقاط الزيادة والنقصان للدالة، ونقاط القيم القصوى والصغرى، ومعدلات التغير اللحظي. هذا الدرس يمهد الطريق لفهم مفاهيم أكثر تقدماً في التكامل والرياضيات التطبيقية.",
                   "introductionEn": "Introduction to Lesson 2",
-                  "summaryAr": "ملخص الدرس 2",
+                  "summaryAr": "ملخص الدرس: في هذا الدرس تعلمنا مفهوم التفاضل ومشتقات الدوال. تعلمنا كيفية حساب المشتقات باستخدام القواعد الأساسية وقاعدة السلسلة. كما تعلمنا تطبيقات المشتقة في تحليل سلوك الدالة وحل المسائل العملية المتعلقة بالمعدلات التغير والقيم القصوى والصغرى.",
                   "summaryEn": "Summary of Lesson 2",
                   "createdAt": "2026-06-13T10:13:57.928Z",
                   "updatedAt": "2026-06-13T10:13:57.927Z",
                   "Objective": [
                     {
-                      "id": "id_1gy5vi6p62r",
+                      "id": "obj-id_inlk66ppr3-0",
                       "lessonId": "id_inlk66ppr3",
-                      "textAr": "فهم محتوى الدرس 2",
-                      "textEn": "Understand lesson 2 content",
+                      "textAr": "تعريف المشتقة وشرح مفهومها هندسياً ورياضياً",
+                      "textEn": "تعريف المشتقة وشرح مفهومها هندسياً ورياضياً",
                       "order": 1
                     },
                     {
-                      "id": "id_kj53wzn91n",
+                      "id": "obj-id_inlk66ppr3-1",
                       "lessonId": "id_inlk66ppr3",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "تطبيق قواعد التفاضل الأساسية لحساب مشتقات الدوال المختلفة",
+                      "textEn": "تطبيق قواعد التفاضل الأساسية لحساب مشتقات الدوال المختلفة",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_inlk66ppr3-2",
+                      "lessonId": "id_inlk66ppr3",
+                      "textAr": "استخدام المشتقة في تحديد خصائص الدالة مثل الزيادة والنقصان والقيم القصوى والصغرى",
+                      "textEn": "استخدام المشتقة في تحديد خصائص الدالة مثل الزيادة والنقصان والقيم القصوى والصغرى",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_yyndh8xv51q",
+                      "id": "con-id_inlk66ppr3-0",
                       "lessonId": "id_inlk66ppr3",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "مشتقة الدالة",
+                      "termEn": "مشتقة الدالة",
+                      "definitionAr": "المشتقة هي مقياس لمعدل التغير اللحظي لدالة ما بالنسبة لمتغيرها المستقل، ويمثل ميل المماس للدالة عند نقطة معينة.",
+                      "definitionEn": "المشتقة هي مقياس لمعدل التغير اللحظي لدالة ما بالنسبة لمتغيرها المستقل، ويمثل ميل المماس للدالة عند نقطة معينة.",
                       "order": 1
+                    },
+                    {
+                      "id": "con-id_inlk66ppr3-1",
+                      "lessonId": "id_inlk66ppr3",
+                      "termAr": "قاعدة الجمع والطرح",
+                      "termEn": "قاعدة الجمع والطرح",
+                      "definitionAr": "مشتقة حاصل جمع أو طرح دالتين تساوي جمع أو طرح مشتكلتيهما على التوالي.",
+                      "definitionEn": "مشتقة حاصل جمع أو طرح دالتين تساوي جمع أو طرح مشتكلتيهما على التوالي.",
+                      "order": 2
+                    },
+                    {
+                      "id": "con-id_inlk66ppr3-2",
+                      "lessonId": "id_inlk66ppr3",
+                      "termAr": "قاعدة الضرب",
+                      "termEn": "قاعدة الضرب",
+                      "definitionAr": "مشتقة حاصل ضرب دالتين يساوي مشتقة الدالة الأولى مضروبة في الدالة الثانية زائد مشتقة الدالة الثانية مضروبة في الدالة الأولى.",
+                      "definitionEn": "مشتقة حاصل ضرب دالتين يساوي مشتقة الدالة الأولى مضروبة في الدالة الثانية زائد مشتقة الدالة الثانية مضروبة في الدالة الأولى.",
+                      "order": 3
+                    },
+                    {
+                      "id": "con-id_inlk66ppr3-3",
+                      "lessonId": "id_inlk66ppr3",
+                      "termAr": "قاعدة السلسلة",
+                      "termEn": "قاعدة السلسلة",
+                      "definitionAr": "تُستخدم لحساب مشتقة دالة مركبة، وتساوي مشتقة الدالة الخارجية مضروبة في مشتقة الدالة الداخلية.",
+                      "definitionEn": "تُستخدم لحساب مشتقة دالة مركبة، وتساوي مشتقة الدالة الخارجية مضروبة في مشتقة الدالة الداخلية.",
+                      "order": 4
+                    },
+                    {
+                      "id": "con-id_inlk66ppr3-4",
+                      "lessonId": "id_inlk66ppr3",
+                      "termAr": "نقاط القيم القصوى والصغرى",
+                      "termEn": "نقاط القيم القصوى والصغرى",
+                      "definitionAr": "هي النقاط التي تكون فيها المشتقة صفراً، وتحدد قيم الدالة القصوى والصغرى المحلية.",
+                      "definitionEn": "هي النقاط التي تكون فيها المشتقة صفراً، وتحدد قيم الدالة القصوى والصغرى المحلية.",
+                      "order": 5
                     }
                   ],
                   "Formula": [
