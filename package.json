@@ -10,7 +10,7 @@
     "postinstall": "prisma generate",
     "prebuild": "npx tsx scripts/export-to-json.ts || echo 'Export skipped'",
     "build": "prisma generate && next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
-    "start": "NODE_ENV=production node .next/standalone/server.js",
+    "start": "NODE_ENV=production UV_THREADPOOL_SIZE=1 node .next/standalone/server.js",
     "lint": "eslint .",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
