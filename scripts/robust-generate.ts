@@ -81,8 +81,8 @@ async function main() {
             console.log(`    ✅ Saved`);
             lessonsGenerated++;
 
-            // Wait 2 seconds between lessons
-            await new Promise(r => setTimeout(r, 2000));
+            // Wait 5 seconds between lessons to avoid rate limiting
+            await new Promise(r => setTimeout(r, 5000));
 
           } catch (error: any) {
             console.log(`    ❌ Error: ${error.message}`);
