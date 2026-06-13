@@ -5202,86 +5202,119 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 3",
-                  "introductionEn": "Introduction to Lesson 3",
-                  "summaryAr": "ملخص الدرس 3",
-                  "summaryEn": "Summary of Lesson 3",
+                  "introductionAr": "مرحباً بطلابنا الأعزاء في درسنا اليوم عن التعبير Expression في اللغة الفرنسية. التعبيرات اليومية هي جزء أساسي من أي لغة، حيث تمكننا من التواصل الفعال في مواقف مختلفة. في هذا الدرس، سنتعلم كيفية استخدام التعبيرات الشائعة في المحادثات اليومية، وكيفية التعبير عن المشاعر والآراء بطريقة صحيحة. سنتناول أيضاً الفروق بين التعبيرات الرسمية وغير الرسمية، وكيفية استخدامها حسب السياق. هذا الدرس سيساعدكم على تطوير مهاراتكم التواصلية وجعل محادثاتكم أكثر طبيعية ووضوحاً.",
+                  "introductionEn": "Welcome to our lesson on Expression in the French language. Daily expressions are a fundamental part of any language, enabling us to communicate effectively in various situations. In this lesson, we will learn how to use common expressions in daily conversations, and how to express feelings and opinions correctly. We will also cover the differences between formal and informal expressions, and how to use them according to context. This lesson will help you develop your communication skills and make your conversations more natural and clear.",
+                  "summaryAr": "في هذا الدرس تعلمنا عن أهمية التعبيرات Expression في اللغة الفرنسية وكيفية استخدامها في المحادثات اليومية. تعلمنا الفرق بين التعبيرات الرسمية وغير الرسمية، وكيفية اختيار التعبير المناسب حسب السياق. كما تعلمنا بعض التعبيرات الشائعة مثل التحيات والوداع، وتعبيرات الشكر، وكيفية استخدامها بشكل صحيح. من الممارسة المستمرة لهذه التعبيرات في سياقات مختلفة أن تصبح جزءاً طبيعياً من محادثاتكم.",
+                  "summaryEn": "In this lesson, we learned about the importance of Expression in the French language and how to use them in daily conversations. We learned the difference between formal and informal expressions, and how to choose the appropriate expression according to context. We also learned some common expressions such as greetings and farewells, expressions of thanks, and how to use them correctly. Through consistent practice of these expressions in different contexts, they will become a natural part of your conversations.",
                   "createdAt": "2026-06-13T10:13:57.913Z",
                   "updatedAt": "2026-06-13T10:13:57.912Z",
                   "Objective": [
                     {
-                      "id": "id_1vzatcoqujp",
+                      "id": "obj-id_i9azn0orfu-0",
                       "lessonId": "id_i9azn0orfu",
-                      "textAr": "فهم محتوى الدرس 3",
-                      "textEn": "Understand lesson 3 content",
+                      "textAr": "التعبيرات اليومية ضرورية للتواصل الفعال",
+                      "textEn": "Daily expressions are essential for effective communication",
                       "order": 1
                     },
                     {
-                      "id": "id_ar4a1zlmfe5",
+                      "id": "obj-id_i9azn0orfu-1",
                       "lessonId": "id_i9azn0orfu",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "الفرق بين التعبيرات الرسمية وغير الرسمية",
+                      "textEn": "Difference between formal and informal expressions",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_i9azn0orfu-2",
+                      "lessonId": "id_i9azn0orfu",
+                      "textAr": "فهم السياق المناسب لكل تعبير",
+                      "textEn": "Understanding the appropriate context for each expression",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_1uex50inyri",
+                      "id": "concept-id_i9azn0orfu-0",
                       "lessonId": "id_i9azn0orfu",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
-                      "order": 1
-                    }
-                  ],
-                  "Formula": [],
-                  "Example": [],
-                  "Question": [
-                    {
-                      "id": "id_a8nywadge5l",
-                      "lessonId": "id_i9azn0orfu",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 3؟",
-                      "questionEn": "What is the purpose of Lesson 3?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
+                      "termAr": "التعبيرات اليومية ضرورية للتواصل الفعال",
+                      "termEn": "Daily expressions are essential for effective communication",
+                      "definitionAr": "التعبيرات اليومية ضرورية للتواصل الفعال",
+                      "definitionEn": "Daily expressions are essential for effective communication",
                       "order": 1
                     },
                     {
-                      "id": "q-id_i9azn0orfu-add-0",
+                      "id": "concept-id_i9azn0orfu-1",
                       "lessonId": "id_i9azn0orfu",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 3: Expression",
-                      "questionEn": "Application question on Lesson 3",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
+                      "termAr": "الفرق بين التعبيرات الرسمية وغير الرسمية",
+                      "termEn": "Difference between formal and informal expressions",
+                      "definitionAr": "الفرق بين التعبيرات الرسمية وغير الرسمية",
+                      "definitionEn": "Difference between formal and informal expressions",
                       "order": 2
                     },
                     {
-                      "id": "q-id_i9azn0orfu-add-1",
+                      "id": "concept-id_i9azn0orfu-2",
+                      "lessonId": "id_i9azn0orfu",
+                      "termAr": "فهم السياق المناسب لكل تعبير",
+                      "termEn": "Understanding the appropriate context for each expression",
+                      "definitionAr": "فهم السياق المناسب لكل تعبير",
+                      "definitionEn": "Understanding the appropriate context for each expression",
+                      "order": 3
+                    }
+                  ],
+                  "Formula": [],
+                  "Example": [
+                    {
+                      "id": "example-id_i9azn0orfu-0",
+                      "lessonId": "id_i9azn0orfu",
+                      "questionAr": "تحيات وداع: تعلم كيفية التعبير عن التحيات والوداع في مواقف مختلفة",
+                      "questionEn": "Greetings and Farewells: Learn how to express greetings and farewells in different situations",
+                      "solutionAr": "استخدم 'Bonjour' للتحية الرسمية\\nاستخدم 'Salut' للتحية غير الرسمية\\nاستخدم 'Au revoir' للوداع\\nاستخدم 'Bonne journée' لتمنية يوم جيد",
+                      "solutionEn": "Use 'Bonjour' for formal greeting\\nUse 'Salut' for informal greeting\\nUse 'Au revoir' for farewell\\nUse 'Bonne journée' to wish a good day",
+                      "stepsAr": "استخدم 'Bonjour' للتحية الرسمية\\nاستخدم 'Salut' للتحية غير الرسمية\\nاستخدم 'Au revoir' للوداع\\nاستخدم 'Bonne journée' لتمنية يوم جيد",
+                      "stepsEn": "Use 'Bonjour' for formal greeting\\nUse 'Salut' for informal greeting\\nUse 'Au revoir' for farewell\\nUse 'Bonne journée' to wish a good day",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_i9azn0orfu-1",
+                      "lessonId": "id_i9azn0orfu",
+                      "questionAr": "تعبيرات الشكر: طرق مختلفة للشكر في الفرنسية حسب السيق",
+                      "questionEn": "Expressions of Thanks: Different ways to say thank you in French depending on context",
+                      "solutionAr": "استخدم 'Merci' للشكر العام\\nاستخدم 'Merci beaucoup' للشكر بشدة\\nاستخدم 'Je vous remercie' للشكر الرسمي\\nاستخدم 'Je te remercie' للشكر غير الرسمي",
+                      "solutionEn": "Use 'Merci' for general thanks\\nUse 'Merci beaucoup' for strong thanks\\nUse 'Je vous remercie' for formal thanks\\nUse 'Je te remercie' for informal thanks",
+                      "stepsAr": "استخدم 'Merci' للشكر العام\\nاستخدم 'Merci beaucoup' للشكر بشدة\\nاستخدم 'Je vous remercie' للشكر الرسمي\\nاستخدم 'Je te remercie' للشكر غير الرسمي",
+                      "stepsEn": "Use 'Merci' for general thanks\\nUse 'Merci beaucoup' for strong thanks\\nUse 'Je vous remercie' for formal thanks\\nUse 'Je te remercie' for informal thanks",
+                      "order": 2
+                    }
+                  ],
+                  "Question": [
+                    {
+                      "id": "q-id_i9azn0orfu-0",
                       "lessonId": "id_i9azn0orfu",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 3: Expression",
-                      "questionEn": "Conceptual question in Lesson 3",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما هو التعبير الفرنسي المناسب للتحية الرسمية؟",
+                      "questionEn": "What is the appropriate French expression for a formal greeting?",
+                      "optionsAr": "[\"Salut\",\"Bonjour\",\"Coucou\",\"Allô\"]",
+                      "optionsEn": "[\"Salut\",\"Bonjour\",\"Coucou\",\"Allô\"]",
+                      "answer": "ب",
+                      "explanationAr": "'Bonjour' هو التعبير الرسمي للتحية بينما 'Salut' غير رسمي، و 'Coucou' غير رسمي جداً، و 'Allô' يستخدم عادة في الهاتف.",
+                      "explanationEn": "'Bonjour' is the formal greeting expression while 'Salut' is informal, 'Coucou' is very informal, and 'Allô' is typically used on the phone.",
                       "points": 1,
                       "difficulty": "medium",
-                      "order": 3
+                      "order": 1
+                    },
+                    {
+                      "id": "q-id_i9azn0orfu-1",
+                      "lessonId": "id_i9azn0orfu",
+                      "type": "multiple-choice",
+                      "questionAr": "كيف تعبر عن الشكر بشدة في الفرنسية؟",
+                      "questionEn": "How do you express strong thanks in French?",
+                      "optionsAr": "[\"Merci\",\"Merci bien\",\"Merci beaucoup\",\"Je te remercie\"]",
+                      "optionsEn": "[\"Merci\",\"Merci bien\",\"Merci beaucoup\",\"Je te remercie\"]",
+                      "answer": "ج",
+                      "explanationAr": "'Merci beaucoup' يعني 'شكراً كثيراً' وهو التعبير المناسب للشكر بشدة. 'Merci' هو شكر بسيط، 'Merci bien' يعني 'شكراً جيداً'، و 'Je te remercie' يعني 'أنا أشكرك' (غير رسمي).",
+                      "explanationEn": "'Merci beaucoup' means 'thank you very much' and is the appropriate expression for strong thanks. 'Merci' is simple thanks, 'Merci bien' means 'thanks well', and 'Je te remercie' means 'I thank you' (informal).",
+                      "points": 1,
+                      "difficulty": "medium",
+                      "order": 2
                     }
                   ]
                 }
