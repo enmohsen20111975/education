@@ -1,0 +1,1605 @@
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fd21f88d709 - <unknown>
+   1:     0x7fd21f07611b - <unknown>
+   2:     0x7fd21f866002 - <unknown>
+   3:     0x7fd21f8922a8 - <unknown>
+   4:     0x7fd21f893168 - <unknown>
+   5:     0x7fd21f892c12 - <unknown>
+   6:     0x7fd21f892ba9 - <unknown>
+   7:     0x7fd21f892b94 - <unknown>
+   8:     0x7fd21ef3d394 - <unknown>
+   9:     0x7fd21ef3d3fc - <unknown>
+  10:     0x7fd21ef3d3a9 - <unknown>
+  11:     0x7fd21f3e0b27 - napi_register_module_v1
+  12:     0x7fd23ffbfc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fd23ffc3869 - <unknown>
+  14:     0x7fd23ff5ecbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fd23ffc29d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fd24082a717 - <unknown>
+  17:     0x7fd24082bca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fd240341df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f3ddd088709 - <unknown>
+   1:     0x7f3ddc87111b - <unknown>
+   2:     0x7f3ddd061002 - <unknown>
+   3:     0x7f3ddd08d2a8 - <unknown>
+   4:     0x7f3ddd08e168 - <unknown>
+   5:     0x7f3ddd08dc12 - <unknown>
+   6:     0x7f3ddd08dba9 - <unknown>
+   7:     0x7f3ddd08db94 - <unknown>
+   8:     0x7f3ddc738394 - <unknown>
+   9:     0x7f3ddc7383fc - <unknown>
+  10:     0x7f3ddc7383a9 - <unknown>
+  11:     0x7f3ddcbdbb27 - napi_register_module_v1
+  12:     0x7f3de8e0cc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f3de8e10869 - <unknown>
+  14:     0x7f3de8dabcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f3de8e0f9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f3de9677717 - <unknown>
+  17:     0x7f3de9678ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f3de918edf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f21c208a709 - <unknown>
+   1:     0x7f21c187311b - <unknown>
+   2:     0x7f21c2063002 - <unknown>
+   3:     0x7f21c208f2a8 - <unknown>
+   4:     0x7f21c2090168 - <unknown>
+   5:     0x7f21c208fc12 - <unknown>
+   6:     0x7f21c208fba9 - <unknown>
+   7:     0x7f21c208fb94 - <unknown>
+   8:     0x7f21c173a394 - <unknown>
+   9:     0x7f21c173a3fc - <unknown>
+  10:     0x7f21c173a3a9 - <unknown>
+  11:     0x7f21c1bddb27 - napi_register_module_v1
+  12:     0x7f21dddb4c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f21dddb8869 - <unknown>
+  14:     0x7f21ddd53cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f21dddb79d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f21de61f717 - <unknown>
+  17:     0x7f21de620ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f21de136df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f437a88b709 - <unknown>
+   1:     0x7f437a07411b - <unknown>
+   2:     0x7f437a864002 - <unknown>
+   3:     0x7f437a8902a8 - <unknown>
+   4:     0x7f437a891168 - <unknown>
+   5:     0x7f437a890c12 - <unknown>
+   6:     0x7f437a890ba9 - <unknown>
+   7:     0x7f437a890b94 - <unknown>
+   8:     0x7f4379f3b394 - <unknown>
+   9:     0x7f4379f3b3fc - <unknown>
+  10:     0x7f4379f3b3a9 - <unknown>
+  11:     0x7f437a3deb27 - napi_register_module_v1
+  12:     0x7f4396784c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f4396788869 - <unknown>
+  14:     0x7f4396723cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f43967879d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f4396fef717 - <unknown>
+  17:     0x7f4396ff0ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f4396b06df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fab7388d709 - <unknown>
+   1:     0x7fab7307611b - <unknown>
+   2:     0x7fab73866002 - <unknown>
+   3:     0x7fab738922a8 - <unknown>
+   4:     0x7fab73893168 - <unknown>
+   5:     0x7fab73892c12 - <unknown>
+   6:     0x7fab73892ba9 - <unknown>
+   7:     0x7fab73892b94 - <unknown>
+   8:     0x7fab72f3d394 - <unknown>
+   9:     0x7fab72f3d3fc - <unknown>
+  10:     0x7fab72f3d3a9 - <unknown>
+  11:     0x7fab733e0b27 - napi_register_module_v1
+  12:     0x7fab94541c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fab94545869 - <unknown>
+  14:     0x7fab944e0cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fab945449d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fab94dac717 - <unknown>
+  17:     0x7fab94dadca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fab948c3df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f99db88d709 - <unknown>
+   1:     0x7f99db07611b - <unknown>
+   2:     0x7f99db866002 - <unknown>
+   3:     0x7f99db8922a8 - <unknown>
+   4:     0x7f99db893168 - <unknown>
+   5:     0x7f99db892c12 - <unknown>
+   6:     0x7f99db892ba9 - <unknown>
+   7:     0x7f99db892b94 - <unknown>
+   8:     0x7f99daf3d394 - <unknown>
+   9:     0x7f99daf3d3fc - <unknown>
+  10:     0x7f99daf3d3a9 - <unknown>
+  11:     0x7f99db3e0b27 - napi_register_module_v1
+  12:     0x7f99fc698c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f99fc69c869 - <unknown>
+  14:     0x7f99fc637cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f99fc69b9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f99fcf03717 - <unknown>
+  17:     0x7f99fcf04ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f99fca1adf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f743b08c709 - <unknown>
+   1:     0x7f743a87511b - <unknown>
+   2:     0x7f743b065002 - <unknown>
+   3:     0x7f743b0912a8 - <unknown>
+   4:     0x7f743b092168 - <unknown>
+   5:     0x7f743b091c12 - <unknown>
+   6:     0x7f743b091ba9 - <unknown>
+   7:     0x7f743b091b94 - <unknown>
+   8:     0x7f743a73c394 - <unknown>
+   9:     0x7f743a73c3fc - <unknown>
+  10:     0x7f743a73c3a9 - <unknown>
+  11:     0x7f743abdfb27 - napi_register_module_v1
+  12:     0x7f7456ea8c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f7456eac869 - <unknown>
+  14:     0x7f7456e47cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f7456eab9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f7457713717 - <unknown>
+  17:     0x7f7457714ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f745722adf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f1fd5088709 - <unknown>
+   1:     0x7f1fd487111b - <unknown>
+   2:     0x7f1fd5061002 - <unknown>
+   3:     0x7f1fd508d2a8 - <unknown>
+   4:     0x7f1fd508e168 - <unknown>
+   5:     0x7f1fd508dc12 - <unknown>
+   6:     0x7f1fd508dba9 - <unknown>
+   7:     0x7f1fd508db94 - <unknown>
+   8:     0x7f1fd4738394 - <unknown>
+   9:     0x7f1fd47383fc - <unknown>
+  10:     0x7f1fd47383a9 - <unknown>
+  11:     0x7f1fd4bdbb27 - napi_register_module_v1
+  12:     0x7f1fe0e1cc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f1fe0e20869 - <unknown>
+  14:     0x7f1fe0dbbcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f1fe0e1f9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f1fe1687717 - <unknown>
+  17:     0x7f1fe1688ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f1fe119edf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fe6ca88b709 - <unknown>
+   1:     0x7fe6ca07411b - <unknown>
+   2:     0x7fe6ca864002 - <unknown>
+   3:     0x7fe6ca8902a8 - <unknown>
+   4:     0x7fe6ca891168 - <unknown>
+   5:     0x7fe6ca890c12 - <unknown>
+   6:     0x7fe6ca890ba9 - <unknown>
+   7:     0x7fe6ca890b94 - <unknown>
+   8:     0x7fe6c9f3b394 - <unknown>
+   9:     0x7fe6c9f3b3fc - <unknown>
+  10:     0x7fe6c9f3b3a9 - <unknown>
+  11:     0x7fe6ca3deb27 - napi_register_module_v1
+  12:     0x7fe6e6819c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fe6e681d869 - <unknown>
+  14:     0x7fe6e67b8cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fe6e681c9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fe6e7084717 - <unknown>
+  17:     0x7fe6e7085ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fe6e6b9bdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f32b308c709 - <unknown>
+   1:     0x7f32b287511b - <unknown>
+   2:     0x7f32b3065002 - <unknown>
+   3:     0x7f32b30912a8 - <unknown>
+   4:     0x7f32b3092168 - <unknown>
+   5:     0x7f32b3091c12 - <unknown>
+   6:     0x7f32b3091ba9 - <unknown>
+   7:     0x7f32b3091b94 - <unknown>
+   8:     0x7f32b273c394 - <unknown>
+   9:     0x7f32b273c3fc - <unknown>
+  10:     0x7f32b273c3a9 - <unknown>
+  11:     0x7f32b2bdfb27 - napi_register_module_v1
+  12:     0x7f32ceaf3c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f32ceaf7869 - <unknown>
+  14:     0x7f32cea92cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f32ceaf69d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f32cf35e717 - <unknown>
+  17:     0x7f32cf35fca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f32cee75df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2108099]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fbc395afa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fbc396323b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fbc3963251e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fbc39561904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fbc39562abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fbc36b9a7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2109364]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f0a876d7a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f0a8775a3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f0a8775a51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f0a87689904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f0a8768aabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f0a84cc27e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2111070]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fc4612cfa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fc4613523b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fc46135251e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fc461281904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fc461282abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fc45e8ba7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2112140]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f36d7efca80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f36d7f7f3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f36d7f7f51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f36d7eae904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f36d7eafabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f36d54e77e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f08dd088709 - <unknown>
+   1:     0x7f08dc87111b - <unknown>
+   2:     0x7f08dd061002 - <unknown>
+   3:     0x7f08dd08d2a8 - <unknown>
+   4:     0x7f08dd08e168 - <unknown>
+   5:     0x7f08dd08dc12 - <unknown>
+   6:     0x7f08dd08dba9 - <unknown>
+   7:     0x7f08dd08db94 - <unknown>
+   8:     0x7f08dc738394 - <unknown>
+   9:     0x7f08dc7383fc - <unknown>
+  10:     0x7f08dc7383a9 - <unknown>
+  11:     0x7f08dcbdbb27 - napi_register_module_v1
+  12:     0x7f08e8c04c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f08e8c08869 - <unknown>
+  14:     0x7f08e8ba3cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f08e8c079d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f08e946f717 - <unknown>
+  17:     0x7f08e9470ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f08e8f86df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fa15b88d709 - <unknown>
+   1:     0x7fa15b07611b - <unknown>
+   2:     0x7fa15b866002 - <unknown>
+   3:     0x7fa15b8922a8 - <unknown>
+   4:     0x7fa15b893168 - <unknown>
+   5:     0x7fa15b892c12 - <unknown>
+   6:     0x7fa15b892ba9 - <unknown>
+   7:     0x7fa15b892b94 - <unknown>
+   8:     0x7fa15af3d394 - <unknown>
+   9:     0x7fa15af3d3fc - <unknown>
+  10:     0x7fa15af3d3a9 - <unknown>
+  11:     0x7fa15b3e0b27 - napi_register_module_v1
+  12:     0x7fa17c55ec61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fa17c562869 - <unknown>
+  14:     0x7fa17c4fdcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fa17c5619d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fa17cdc9717 - <unknown>
+  17:     0x7fa17cdcaca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fa17c8e0df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fce6b88d709 - <unknown>
+   1:     0x7fce6b07611b - <unknown>
+   2:     0x7fce6b866002 - <unknown>
+   3:     0x7fce6b8922a8 - <unknown>
+   4:     0x7fce6b893168 - <unknown>
+   5:     0x7fce6b892c12 - <unknown>
+   6:     0x7fce6b892ba9 - <unknown>
+   7:     0x7fce6b892b94 - <unknown>
+   8:     0x7fce6af3d394 - <unknown>
+   9:     0x7fce6af3d3fc - <unknown>
+  10:     0x7fce6af3d3a9 - <unknown>
+  11:     0x7fce6b3e0b27 - napi_register_module_v1
+  12:     0x7fce8bcf4c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fce8bcf8869 - <unknown>
+  14:     0x7fce8bc93cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fce8bcf79d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fce8c55f717 - <unknown>
+  17:     0x7fce8c560ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fce8c076df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f159d088709 - <unknown>
+   1:     0x7f159c87111b - <unknown>
+   2:     0x7f159d061002 - <unknown>
+   3:     0x7f159d08d2a8 - <unknown>
+   4:     0x7f159d08e168 - <unknown>
+   5:     0x7f159d08dc12 - <unknown>
+   6:     0x7f159d08dba9 - <unknown>
+   7:     0x7f159d08db94 - <unknown>
+   8:     0x7f159c738394 - <unknown>
+   9:     0x7f159c7383fc - <unknown>
+  10:     0x7f159c7383a9 - <unknown>
+  11:     0x7f159cbdbb27 - napi_register_module_v1
+  12:     0x7f15a8f56c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f15a8f5a869 - <unknown>
+  14:     0x7f15a8ef5cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f15a8f599d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f15a97c1717 - <unknown>
+  17:     0x7f15a97c2ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f15a92d8df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f8eda88b709 - <unknown>
+   1:     0x7f8eda07411b - <unknown>
+   2:     0x7f8eda864002 - <unknown>
+   3:     0x7f8eda8902a8 - <unknown>
+   4:     0x7f8eda891168 - <unknown>
+   5:     0x7f8eda890c12 - <unknown>
+   6:     0x7f8eda890ba9 - <unknown>
+   7:     0x7f8eda890b94 - <unknown>
+   8:     0x7f8ed9f3b394 - <unknown>
+   9:     0x7f8ed9f3b3fc - <unknown>
+  10:     0x7f8ed9f3b3a9 - <unknown>
+  11:     0x7f8eda3deb27 - napi_register_module_v1
+  12:     0x7f8ef63b2c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f8ef63b6869 - <unknown>
+  14:     0x7f8ef6351cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f8ef63b59d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f8ef6c1d717 - <unknown>
+  17:     0x7f8ef6c1eca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f8ef6734df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f3f4288b709 - <unknown>
+   1:     0x7f3f4207411b - <unknown>
+   2:     0x7f3f42864002 - <unknown>
+   3:     0x7f3f428902a8 - <unknown>
+   4:     0x7f3f42891168 - <unknown>
+   5:     0x7f3f42890c12 - <unknown>
+   6:     0x7f3f42890ba9 - <unknown>
+   7:     0x7f3f42890b94 - <unknown>
+   8:     0x7f3f41f3b394 - <unknown>
+   9:     0x7f3f41f3b3fc - <unknown>
+  10:     0x7f3f41f3b3a9 - <unknown>
+  11:     0x7f3f423deb27 - napi_register_module_v1
+  12:     0x7f3f5e4cbc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f3f5e4cf869 - <unknown>
+  14:     0x7f3f5e46acbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f3f5e4ce9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f3f5ed36717 - <unknown>
+  17:     0x7f3f5ed37ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f3f5e84ddf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f0f2388d709 - <unknown>
+   1:     0x7f0f2307611b - <unknown>
+   2:     0x7f0f23866002 - <unknown>
+   3:     0x7f0f238922a8 - <unknown>
+   4:     0x7f0f23893168 - <unknown>
+   5:     0x7f0f23892c12 - <unknown>
+   6:     0x7f0f23892ba9 - <unknown>
+   7:     0x7f0f23892b94 - <unknown>
+   8:     0x7f0f22f3d394 - <unknown>
+   9:     0x7f0f22f3d3fc - <unknown>
+  10:     0x7f0f22f3d3a9 - <unknown>
+  11:     0x7f0f233e0b27 - napi_register_module_v1
+  12:     0x7f0f43eebc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f0f43eef869 - <unknown>
+  14:     0x7f0f43e8acbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f0f43eee9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f0f44756717 - <unknown>
+  17:     0x7f0f44757ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f0f4426ddf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7feb3688b709 - <unknown>
+   1:     0x7feb3607411b - <unknown>
+   2:     0x7feb36864002 - <unknown>
+   3:     0x7feb368902a8 - <unknown>
+   4:     0x7feb36891168 - <unknown>
+   5:     0x7feb36890c12 - <unknown>
+   6:     0x7feb36890ba9 - <unknown>
+   7:     0x7feb36890b94 - <unknown>
+   8:     0x7feb35f3b394 - <unknown>
+   9:     0x7feb35f3b3fc - <unknown>
+  10:     0x7feb35f3b3a9 - <unknown>
+  11:     0x7feb363deb27 - napi_register_module_v1
+  12:     0x7feb522e6c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7feb522ea869 - <unknown>
+  14:     0x7feb52285cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7feb522e99d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7feb52b51717 - <unknown>
+  17:     0x7feb52b52ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7feb52668df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fa85f08c709 - <unknown>
+   1:     0x7fa85e87511b - <unknown>
+   2:     0x7fa85f065002 - <unknown>
+   3:     0x7fa85f0912a8 - <unknown>
+   4:     0x7fa85f092168 - <unknown>
+   5:     0x7fa85f091c12 - <unknown>
+   6:     0x7fa85f091ba9 - <unknown>
+   7:     0x7fa85f091b94 - <unknown>
+   8:     0x7fa85e73c394 - <unknown>
+   9:     0x7fa85e73c3fc - <unknown>
+  10:     0x7fa85e73c3a9 - <unknown>
+  11:     0x7fa85ebdfb27 - napi_register_module_v1
+  12:     0x7fa877358c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fa87735c869 - <unknown>
+  14:     0x7fa8772f7cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fa87735b9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fa877bc3717 - <unknown>
+  17:     0x7fa877bc4ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fa8776dadf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1728908]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f8c563c7a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f8c5644a3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f8c5644a51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f8c56379904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f8c5637aabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f8c539b27e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1730525]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f647e90aa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f647e98d3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f647e98d51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f647e8bc904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f647e8bdabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f647bef57e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[133410]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fe1c87eea80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fe1c88713b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fe1c887151e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fe1c87a0904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fe1c87a1abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fe1c5dd97e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[134565]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f25320cda80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f25321503b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f253215051e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f253207f904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f2532080abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f252f6b87e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1057686]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f8a441b6a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f8a442393b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f8a4423951e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f8a44168904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f8a44169abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f8a417a17e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1058225]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f5b62772a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f5b627f53b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f5b627f551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f5b62724904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f5b62725abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f5b5fd5d7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1058949]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f4254fe6a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f42550693b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f425506951e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f4254f98904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f4254f99abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f42525d17e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1059502]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fa911c78a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fa911cfb3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fa911cfb51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fa911c2a904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fa911c2babe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fa90f2637e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3967024]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f016aabba80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f016ab3e3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f016ab3e51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f016aa6d904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f016aa6eabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f01680a67e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3968399]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f914a224a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f914a2a73b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f914a2a751e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f914a1d6904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f914a1d7abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f914780f7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f7e6f08c709 - <unknown>
+   1:     0x7f7e6e87511b - <unknown>
+   2:     0x7f7e6f065002 - <unknown>
+   3:     0x7f7e6f0912a8 - <unknown>
+   4:     0x7f7e6f092168 - <unknown>
+   5:     0x7f7e6f091c12 - <unknown>
+   6:     0x7f7e6f091ba9 - <unknown>
+   7:     0x7f7e6f091b94 - <unknown>
+   8:     0x7f7e6e73c394 - <unknown>
+   9:     0x7f7e6e73c3fc - <unknown>
+  10:     0x7f7e6e73c3a9 - <unknown>
+  11:     0x7f7e6ebdfb27 - napi_register_module_v1
+  12:     0x7f7e8b11ac61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f7e8b11e869 - <unknown>
+  14:     0x7f7e8b0b9cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f7e8b11d9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f7e8b985717 - <unknown>
+  17:     0x7f7e8b986ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f7e8b49cdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fb84d889709 - <unknown>
+   1:     0x7fb84d07211b - <unknown>
+   2:     0x7fb84d862002 - <unknown>
+   3:     0x7fb84d88e2a8 - <unknown>
+   4:     0x7fb84d88f168 - <unknown>
+   5:     0x7fb84d88ec12 - <unknown>
+   6:     0x7fb84d88eba9 - <unknown>
+   7:     0x7fb84d88eb94 - <unknown>
+   8:     0x7fb84cf39394 - <unknown>
+   9:     0x7fb84cf393fc - <unknown>
+  10:     0x7fb84cf393a9 - <unknown>
+  11:     0x7fb84d3dcb27 - napi_register_module_v1
+  12:     0x7fb8697b9c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fb8697bd869 - <unknown>
+  14:     0x7fb869758cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fb8697bc9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fb86a024717 - <unknown>
+  17:     0x7fb86a025ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fb869b3bdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f984f88d709 - <unknown>
+   1:     0x7f984f07611b - <unknown>
+   2:     0x7f984f866002 - <unknown>
+   3:     0x7f984f8922a8 - <unknown>
+   4:     0x7f984f893168 - <unknown>
+   5:     0x7f984f892c12 - <unknown>
+   6:     0x7f984f892ba9 - <unknown>
+   7:     0x7f984f892b94 - <unknown>
+   8:     0x7f984ef3d394 - <unknown>
+   9:     0x7f984ef3d3fc - <unknown>
+  10:     0x7f984ef3d3a9 - <unknown>
+  11:     0x7f984f3e0b27 - napi_register_module_v1
+  12:     0x7f98706f5c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f98706f9869 - <unknown>
+  14:     0x7f9870694cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f98706f89d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f9870f60717 - <unknown>
+  17:     0x7f9870f61ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f9870a77df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f63d5889709 - <unknown>
+   1:     0x7f63d507211b - <unknown>
+   2:     0x7f63d5862002 - <unknown>
+   3:     0x7f63d588e2a8 - <unknown>
+   4:     0x7f63d588f168 - <unknown>
+   5:     0x7f63d588ec12 - <unknown>
+   6:     0x7f63d588eba9 - <unknown>
+   7:     0x7f63d588eb94 - <unknown>
+   8:     0x7f63d4f39394 - <unknown>
+   9:     0x7f63d4f393fc - <unknown>
+  10:     0x7f63d4f393a9 - <unknown>
+  11:     0x7f63d53dcb27 - napi_register_module_v1
+  12:     0x7f63f14edc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f63f14f1869 - <unknown>
+  14:     0x7f63f148ccbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f63f14f09d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f63f1d58717 - <unknown>
+  17:     0x7f63f1d59ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f63f186fdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f987288b709 - <unknown>
+   1:     0x7f987207411b - <unknown>
+   2:     0x7f9872864002 - <unknown>
+   3:     0x7f98728902a8 - <unknown>
+   4:     0x7f9872891168 - <unknown>
+   5:     0x7f9872890c12 - <unknown>
+   6:     0x7f9872890ba9 - <unknown>
+   7:     0x7f9872890b94 - <unknown>
+   8:     0x7f9871f3b394 - <unknown>
+   9:     0x7f9871f3b3fc - <unknown>
+  10:     0x7f9871f3b3a9 - <unknown>
+  11:     0x7f98723deb27 - napi_register_module_v1
+  12:     0x7f988e7c9c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f988e7cd869 - <unknown>
+  14:     0x7f988e768cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f988e7cc9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f988f034717 - <unknown>
+  17:     0x7f988f035ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f988eb4bdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fe45608a709 - <unknown>
+   1:     0x7fe45587311b - <unknown>
+   2:     0x7fe456063002 - <unknown>
+   3:     0x7fe45608f2a8 - <unknown>
+   4:     0x7fe456090168 - <unknown>
+   5:     0x7fe45608fc12 - <unknown>
+   6:     0x7fe45608fba9 - <unknown>
+   7:     0x7fe45608fb94 - <unknown>
+   8:     0x7fe45573a394 - <unknown>
+   9:     0x7fe45573a3fc - <unknown>
+  10:     0x7fe45573a3a9 - <unknown>
+  11:     0x7fe455bddb27 - napi_register_module_v1
+  12:     0x7fe471ba4c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fe471ba8869 - <unknown>
+  14:     0x7fe471b43cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fe471ba79d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fe47240f717 - <unknown>
+  17:     0x7fe472410ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fe471f26df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1784416]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fd1b4638a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fd1b46bb3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fd1b46bb51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fd1b45ea904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fd1b45ebabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fd1b1c237e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2463525]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f43b1fb1a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f43b20343b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f43b203451e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f43b1f63904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f43b1f64abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f43af59c7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2466291]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f70f2bcea80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f70f2c513b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f70f2c5151e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f70f2b80904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f70f2b81abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f70f01b97e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2468119]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f032a09ca80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f032a11f3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f032a11f51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f032a04e904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f032a04fabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f03276877e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2469479]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fd4bb6b0a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fd4bb7333b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fd4bb73351e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fd4bb662904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fd4bb663abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fd4b8c9b7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2470995]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f42b85eba80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f42b866e3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f42b866e51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f42b859d904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f42b859eabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f42b5bd67e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[2472135]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f8b2247ca80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f8b224ff3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f8b224ff51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f8b2242e904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f8b2242fabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f8b1fa677e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3902735]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f3edd2bfa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f3edd3423b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f3edd34251e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f3edd271904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f3edd272abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f3eda8aa7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3904515]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f1d24e5ea80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f1d24ee13b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f1d24ee151e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f1d24e10904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f1d24e11abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f1d224497e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3911961]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f09c9b89a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f09c9c0c3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f09c9c0c51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f09c9b3b904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f09c9b3cabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f09c71747e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3914738]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7feed4d33a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7feed4db63b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7feed4db651e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7feed4ce5904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7feed4ce6abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7feed231e7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1827509]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f4a13d2aa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f4a13dad3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f4a13dad51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f4a13cdc904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f4a13cddabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f4a113157e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1833964]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7ff0f5596a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7ff0f56193b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7ff0f561951e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7ff0f5548904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7ff0f5549abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7ff0f2b817e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f6bc288b709 - <unknown>
+   1:     0x7f6bc207411b - <unknown>
+   2:     0x7f6bc2864002 - <unknown>
+   3:     0x7f6bc28902a8 - <unknown>
+   4:     0x7f6bc2891168 - <unknown>
+   5:     0x7f6bc2890c12 - <unknown>
+   6:     0x7f6bc2890ba9 - <unknown>
+   7:     0x7f6bc2890b94 - <unknown>
+   8:     0x7f6bc1f3b394 - <unknown>
+   9:     0x7f6bc1f3b3fc - <unknown>
+  10:     0x7f6bc1f3b3a9 - <unknown>
+  11:     0x7f6bc23deb27 - napi_register_module_v1
+  12:     0x7f6bde81ac61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f6bde81e869 - <unknown>
+  14:     0x7f6bde7b9cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f6bde81d9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f6bdf085717 - <unknown>
+  17:     0x7f6bdf086ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f6bdeb9cdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f338e08a709 - <unknown>
+   1:     0x7f338d87311b - <unknown>
+   2:     0x7f338e063002 - <unknown>
+   3:     0x7f338e08f2a8 - <unknown>
+   4:     0x7f338e090168 - <unknown>
+   5:     0x7f338e08fc12 - <unknown>
+   6:     0x7f338e08fba9 - <unknown>
+   7:     0x7f338e08fb94 - <unknown>
+   8:     0x7f338d73a394 - <unknown>
+   9:     0x7f338d73a3fc - <unknown>
+  10:     0x7f338d73a3a9 - <unknown>
+  11:     0x7f338dbddb27 - napi_register_module_v1
+  12:     0x7f33aa0a0c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f33aa0a4869 - <unknown>
+  14:     0x7f33aa03fcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f33aa0a39d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f33aa90b717 - <unknown>
+  17:     0x7f33aa90cca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f33aa422df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3924080]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f64c1c82a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f64c1d053b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f64c1d0551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f64c1c34904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f64c1c35abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f64bf26d7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[3925080]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7feda489ca80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7feda491f3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7feda491f51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7feda484e904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7feda484fabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7feda1e877e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+lscgid: execve():/opt/alt/alt-nodejs20/root/bin/node: Resource temporarily unavailable
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fcacf08c709 - <unknown>
+   1:     0x7fcace87511b - <unknown>
+   2:     0x7fcacf065002 - <unknown>
+   3:     0x7fcacf0912a8 - <unknown>
+   4:     0x7fcacf092168 - <unknown>
+   5:     0x7fcacf091c12 - <unknown>
+   6:     0x7fcacf091ba9 - <unknown>
+   7:     0x7fcacf091b94 - <unknown>
+   8:     0x7fcace73c394 - <unknown>
+   9:     0x7fcace73c3fc - <unknown>
+  10:     0x7fcace73c3a9 - <unknown>
+  11:     0x7fcacebdfb27 - napi_register_module_v1
+  12:     0x7fcae79f7c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fcae79fb869 - <unknown>
+  14:     0x7fcae7996cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fcae79fa9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fcae8262717 - <unknown>
+  17:     0x7fcae8263ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fcae7d79df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7ff94788d709 - <unknown>
+   1:     0x7ff94707611b - <unknown>
+   2:     0x7ff947866002 - <unknown>
+   3:     0x7ff9478922a8 - <unknown>
+   4:     0x7ff947893168 - <unknown>
+   5:     0x7ff947892c12 - <unknown>
+   6:     0x7ff947892ba9 - <unknown>
+   7:     0x7ff947892b94 - <unknown>
+   8:     0x7ff946f3d394 - <unknown>
+   9:     0x7ff946f3d3fc - <unknown>
+  10:     0x7ff946f3d3a9 - <unknown>
+  11:     0x7ff9473e0b27 - napi_register_module_v1
+  12:     0x7ff968157c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7ff96815b869 - <unknown>
+  14:     0x7ff9680f6cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7ff96815a9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7ff9689c2717 - <unknown>
+  17:     0x7ff9689c3ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7ff9684d9df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fdb79889709 - <unknown>
+   1:     0x7fdb7907211b - <unknown>
+   2:     0x7fdb79862002 - <unknown>
+   3:     0x7fdb7988e2a8 - <unknown>
+   4:     0x7fdb7988f168 - <unknown>
+   5:     0x7fdb7988ec12 - <unknown>
+   6:     0x7fdb7988eba9 - <unknown>
+   7:     0x7fdb7988eb94 - <unknown>
+   8:     0x7fdb78f39394 - <unknown>
+   9:     0x7fdb78f393fc - <unknown>
+  10:     0x7fdb78f393a9 - <unknown>
+  11:     0x7fdb793dcb27 - napi_register_module_v1
+  12:     0x7fdb95980c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fdb95984869 - <unknown>
+  14:     0x7fdb9591fcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fdb959839d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fdb961eb717 - <unknown>
+  17:     0x7fdb961ecca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fdb95d02df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f18e608a709 - <unknown>
+   1:     0x7f18e587311b - <unknown>
+   2:     0x7f18e6063002 - <unknown>
+   3:     0x7f18e608f2a8 - <unknown>
+   4:     0x7f18e6090168 - <unknown>
+   5:     0x7f18e608fc12 - <unknown>
+   6:     0x7f18e608fba9 - <unknown>
+   7:     0x7f18e608fb94 - <unknown>
+   8:     0x7f18e573a394 - <unknown>
+   9:     0x7f18e573a3fc - <unknown>
+  10:     0x7f18e573a3a9 - <unknown>
+  11:     0x7f18e5bddb27 - napi_register_module_v1
+  12:     0x7f1901f6dc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f1901f71869 - <unknown>
+  14:     0x7f1901f0ccbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f1901f709d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f19027d8717 - <unknown>
+  17:     0x7f19027d9ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f19022efdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fbf4388d709 - <unknown>
+   1:     0x7fbf4307611b - <unknown>
+   2:     0x7fbf43866002 - <unknown>
+   3:     0x7fbf438922a8 - <unknown>
+   4:     0x7fbf43893168 - <unknown>
+   5:     0x7fbf43892c12 - <unknown>
+   6:     0x7fbf43892ba9 - <unknown>
+   7:     0x7fbf43892b94 - <unknown>
+   8:     0x7fbf42f3d394 - <unknown>
+   9:     0x7fbf42f3d3fc - <unknown>
+  10:     0x7fbf42f3d3a9 - <unknown>
+  11:     0x7fbf433e0b27 - napi_register_module_v1
+  12:     0x7fbf646bdc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fbf646c1869 - <unknown>
+  14:     0x7fbf6465ccbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fbf646c09d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fbf64f28717 - <unknown>
+  17:     0x7fbf64f29ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fbf64a3fdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fd48e08a709 - <unknown>
+   1:     0x7fd48d87311b - <unknown>
+   2:     0x7fd48e063002 - <unknown>
+   3:     0x7fd48e08f2a8 - <unknown>
+   4:     0x7fd48e090168 - <unknown>
+   5:     0x7fd48e08fc12 - <unknown>
+   6:     0x7fd48e08fba9 - <unknown>
+   7:     0x7fd48e08fb94 - <unknown>
+   8:     0x7fd48d73a394 - <unknown>
+   9:     0x7fd48d73a3fc - <unknown>
+  10:     0x7fd48d73a3a9 - <unknown>
+  11:     0x7fd48dbddb27 - napi_register_module_v1
+  12:     0x7fd4aa08cc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fd4aa090869 - <unknown>
+  14:     0x7fd4aa02bcbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fd4aa08f9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fd4aa8f7717 - <unknown>
+  17:     0x7fd4aa8f8ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fd4aa40edf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7ff27b88d709 - <unknown>
+   1:     0x7ff27b07611b - <unknown>
+   2:     0x7ff27b866002 - <unknown>
+   3:     0x7ff27b8922a8 - <unknown>
+   4:     0x7ff27b893168 - <unknown>
+   5:     0x7ff27b892c12 - <unknown>
+   6:     0x7ff27b892ba9 - <unknown>
+   7:     0x7ff27b892b94 - <unknown>
+   8:     0x7ff27af3d394 - <unknown>
+   9:     0x7ff27af3d3fc - <unknown>
+  10:     0x7ff27af3d3a9 - <unknown>
+  11:     0x7ff27b3e0b27 - napi_register_module_v1
+  12:     0x7ff29ba39c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7ff29ba3d869 - <unknown>
+  14:     0x7ff29b9d8cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7ff29ba3c9d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7ff29c2a4717 - <unknown>
+  17:     0x7ff29c2a5ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7ff29bdbbdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7fc24a88b709 - <unknown>
+   1:     0x7fc24a07411b - <unknown>
+   2:     0x7fc24a864002 - <unknown>
+   3:     0x7fc24a8902a8 - <unknown>
+   4:     0x7fc24a891168 - <unknown>
+   5:     0x7fc24a890c12 - <unknown>
+   6:     0x7fc24a890ba9 - <unknown>
+   7:     0x7fc24a890b94 - <unknown>
+   8:     0x7fc249f3b394 - <unknown>
+   9:     0x7fc249f3b3fc - <unknown>
+  10:     0x7fc249f3b3a9 - <unknown>
+  11:     0x7fc24a3deb27 - napi_register_module_v1
+  12:     0x7fc2667edc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7fc2667f1869 - <unknown>
+  14:     0x7fc26678ccbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7fc2667f09d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7fc267058717 - <unknown>
+  17:     0x7fc267059ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7fc266b6fdf6 - <unknown>
+thread caused non-unwinding panic. aborting.
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[375400]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fcaff905a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fcaff9883b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fcaff98851e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fcaff8b7904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fcaff8b8abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fcafcef07e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[376384]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f43b81d2a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f43b82553b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f43b825551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f43b8184904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f43b8185abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f43b57bd7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[381774]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fb1e36b0a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fb1e37333b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fb1e373351e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fb1e3662904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fb1e3663abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fb1e0c9b7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[383394]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f1f6146ea80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f1f614f13b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f1f614f151e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f1f61420904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f1f61421abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f1f5ea597e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[384825]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f0d329b2a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f0d32a353b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f0d32a3551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f0d32964904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f0d32965abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f0d2ff9d7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[363697]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f35e756fa80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f35e75f23b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f35e75f251e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f35e7521904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f35e7522abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f35e4b5a7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[366262]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f0924a0da80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f0924a903b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f0924a9051e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f09249bf904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f09249c0abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f0921ff87e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[367120]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f101ba2ba80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f101baae3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f101baae51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f101b9dd904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f101b9deabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f10190167e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1558892]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f6d98759a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f6d987dc3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f6d987dc51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f6d9870b904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f6d9870cabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f6d95d447e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1564054]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f1632de2a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f1632e653b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f1632e6551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f1632d94904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f1632d95abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f16303cd7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1565419]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f953cc88a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f953cd0b3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f953cd0b51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f953cc3a904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f953cc3babe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f953a2737e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1577863]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f5bbf418a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f5bbf49b3b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f5bbf49b51e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f5bbf3ca904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f5bbf3cbabe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f5bbca037e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1579188]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7ff9861e4a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7ff9862673b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7ff98626751e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7ff986196904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7ff986197abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7ff9837cf7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1580932]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f2d68a65a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f2d68ae83b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f2d68ae851e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f2d68a17904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f2d68a18abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f2d660507e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1594670]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f338e026a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f338e0a93b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f338e0a951e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f338dfd8904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f338dfd9abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f338b6117e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1600182]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f40417c2a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f40418453b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f404184551e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f4041774904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f4041775abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f403edad7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1626302]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fa1608c5a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fa1609483b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fa16094851e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fa160877904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fa160878abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fa15deb07e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1626893]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fafdcf06a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fafdcf893b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fafdcf8951e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fafdceb8904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fafdceb9abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fafda4f17e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1817207]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7f6596390a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7f65964133b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7f659641351e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7f6596342904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7f6596343abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7f659397b7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+
+  #  /opt/alt/alt-nodejs20/root/bin/node[1818905]: std::unique_ptr<long unsigned int> node::WorkerThreadsTaskRunner::DelayedTaskScheduler::Start() at ../src/node_platform.cc:68
+  #  Assertion failed: (0) == (uv_thread_create(t.get(), start_thread, this))
+
+----- Native stack trace -----
+
+ 1: 0x7fd2e0220a80 node::Assert(node::AssertionInfo const&) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 2: 0x7fd2e02a33b2 node::WorkerThreadsTaskRunner::WorkerThreadsTaskRunner(int) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 3: 0x7fd2e02a351e node::NodePlatform::NodePlatform(int, v8::TracingController*, v8::PageAllocator*) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 4: 0x7fd2e01d2904  [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 5: 0x7fd2e01d3abe node::Start(int, char**) [/opt/alt/alt-nodejs20/root/usr/bin/../lib/libnode.so.115]
+ 6: 0x7fd2dd80b7e5 __libc_start_main [/lib64/libc.so.6]
+ 7: 0x40203e _start [/opt/alt/alt-nodejs20/root/bin/node]
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7ff2b1889709 - <unknown>
+   1:     0x7ff2b107211b - <unknown>
+   2:     0x7ff2b1862002 - <unknown>
+   3:     0x7ff2b188e2a8 - <unknown>
+   4:     0x7ff2b188f168 - <unknown>
+   5:     0x7ff2b188ec12 - <unknown>
+   6:     0x7ff2b188eba9 - <unknown>
+   7:     0x7ff2b188eb94 - <unknown>
+   8:     0x7ff2b0f39394 - <unknown>
+   9:     0x7ff2b0f393fc - <unknown>
+  10:     0x7ff2b0f393a9 - <unknown>
+  11:     0x7ff2b13dcb27 - napi_register_module_v1
+  12:     0x7ff2cd51fc61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7ff2cd523869 - <unknown>
+  14:     0x7ff2cd4becbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7ff2cd5229d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7ff2cdd8a717 - <unknown>
+  17:     0x7ff2cdd8bca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7ff2cd8a1df6 - <unknown>
+thread caused non-unwinding panic. aborting.
+thread '<unnamed>' panicked at /root/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tokio-1.38.1/src/runtime/scheduler/multi_thread/worker.rs:455:13:
+OS can't spawn worker thread: Resource temporarily unavailable (os error 11)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+thread '<unnamed>' panicked at core/src/panicking.rs:221:5:
+panic in a function that cannot unwind
+stack backtrace:
+   0:     0x7f82da08a709 - <unknown>
+   1:     0x7f82d987311b - <unknown>
+   2:     0x7f82da063002 - <unknown>
+   3:     0x7f82da08f2a8 - <unknown>
+   4:     0x7f82da090168 - <unknown>
+   5:     0x7f82da08fc12 - <unknown>
+   6:     0x7f82da08fba9 - <unknown>
+   7:     0x7f82da08fb94 - <unknown>
+   8:     0x7f82d973a394 - <unknown>
+   9:     0x7f82d973a3fc - <unknown>
+  10:     0x7f82d973a3a9 - <unknown>
+  11:     0x7f82d9bddb27 - napi_register_module_v1
+  12:     0x7f82f5c94c61 - _Z30napi_module_register_by_symbolN2v85LocalINS_6ObjectEEENS0_INS_5ValueEEENS0_INS_7ContextEEEPFP12napi_value__P10napi_env__S8_Ei
+  13:     0x7f82f5c98869 - <unknown>
+  14:     0x7f82f5c33cbd - _ZN4node11Environment12TryLoadAddonEPKciRKSt8functionIFbPNS_7binding4DLibEEE
+  15:     0x7f82f5c979d9 - _ZN4node7binding6DLOpenERKN2v820FunctionCallbackInfoINS1_5ValueEEE
+  16:     0x7f82f64ff717 - <unknown>
+  17:     0x7f82f6500ca5 - _ZN2v88internal21Builtin_HandleApiCallEiPmPNS0_7IsolateE
+  18:     0x7f82f6016df6 - <unknown>
+thread caused non-unwinding panic. aborting.
