@@ -3051,37 +3051,62 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 1",
-                  "introductionEn": "Introduction to Lesson 1",
-                  "summaryAr": "ملخص الدرس 1",
-                  "summaryEn": "Summary of Lesson 1",
+                  "introductionAr": "مرحباً بطلابنا الأعزاء في درسنا الأول من الوحدة المتخصصة في المفردات الإنجليزية. في هذا الدرس، سنستكشف مجموعة متنوعة من الكلمات الجديدة وطرق استخدامها بشكل صحيح في سياقات مختلفة. سنتعلم كيفية توسيع مدارك اللغة الإنجليزية من خلال فهم جذور الكلمات واللاحقات والبادئات، بالإضافة إلى استراتيجيات فعالة لتذكر واستخدام الكلمات الجديدة. سيركز الدرس على تطوير مهارات القراءة والكتابة والاستماع والتحدث من خلال زيادة حجم المفردات لدى الطلاب.",
+                  "introductionEn": "Welcome to our first lesson in the Vocabulary Unit. In this lesson, we will explore a variety of new words and learn how to use them correctly in different contexts. We will focus on expanding your English language skills by understanding word roots, prefixes, and suffixes, as well as effective strategies for remembering and using new vocabulary. The lesson emphasizes developing reading, writing, listening, and speaking skills through increasing students' vocabulary size.",
+                  "summaryAr": "في هذا الدرس، تعلمنا أهمية المفردات في اللغة الإنجليزية وكيفية تحليل الكلمات لفهم معناها من خلال مكوناتها الأساسية. درسنا البادئات التي تغير معنى الكلمات، واللاحقات التي تغير وظيفتها النحوية، والجذور التي تحمل المعنى الأساسي. تعلمنا أيضاً استراتيجيات فعالة لتعلم وتذكر المفردات واستخدامها في سياقات مختلفة. من خلال الأمثلة والتدريبات، طبقنا هذه المفاهيم لتحسين مهاراتنا في اللغة الإنجليزية.",
+                  "summaryEn": "In this lesson, we learned about the importance of vocabulary in the English language and how to analyze words to understand their meaning through their basic components. We studied prefixes that change word meanings, suffixes that change their grammatical function, and roots that carry the core meaning. We also learned effective strategies for learning, remembering, and using vocabulary in different contexts. Through examples and exercises, we applied these concepts to improve our English language skills.",
                   "createdAt": "2026-06-13T10:13:57.887Z",
                   "updatedAt": "2026-06-13T10:13:57.886Z",
                   "Objective": [
                     {
-                      "id": "id_o1mb6hzo1cj",
+                      "id": "obj-id_z1xpo7uoeg-0",
                       "lessonId": "id_z1xpo7uoeg",
-                      "textAr": "فهم محتوى الدرس 1",
-                      "textEn": "Understand lesson 1 content",
+                      "textAr": "فهم مكونات الكلمات (الجذور، البادئات، اللاحقات)",
+                      "textEn": "Understanding word components (roots, prefixes, suffixes)",
                       "order": 1
                     },
                     {
-                      "id": "id_rns818r11hp",
+                      "id": "obj-id_z1xpo7uoeg-1",
                       "lessonId": "id_z1xpo7uoeg",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "استراتيجيات فعالة لتعلم وتذكر المفردات",
+                      "textEn": "Effective strategies for learning and remembering vocabulary",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_z1xpo7uoeg-2",
+                      "lessonId": "id_z1xpo7uoeg",
+                      "textAr": "استخدام الكلمات في سياقات مختلفة",
+                      "textEn": "Using words in different contexts",
+                      "order": 3
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_v5bnes3fi2s",
+                      "id": "concept-id_z1xpo7uoeg-0",
                       "lessonId": "id_z1xpo7uoeg",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "فهم مكونات الكلمات (الجذور",
+                      "termEn": "Understanding word components (roots",
+                      "definitionAr": "فهم مكونات الكلمات (الجذور، البادئات، اللاحقات)",
+                      "definitionEn": "Understanding word components (roots, prefixes, suffixes)",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_z1xpo7uoeg-1",
+                      "lessonId": "id_z1xpo7uoeg",
+                      "termAr": "استراتيجيات فعالة لتعلم وتذكر المفردات",
+                      "termEn": "Effective strategies for learning and remembering vocabulary",
+                      "definitionAr": "استراتيجيات فعالة لتعلم وتذكر المفردات",
+                      "definitionEn": "Effective strategies for learning and remembering vocabulary",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_z1xpo7uoeg-2",
+                      "lessonId": "id_z1xpo7uoeg",
+                      "termAr": "استخدام الكلمات في سياقات مختلفة",
+                      "termEn": "Using words in different contexts",
+                      "definitionAr": "استخدام الكلمات في سياقات مختلفة",
+                      "definitionEn": "Using words in different contexts",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -3102,52 +3127,60 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_z1xpo7uoeg-0",
+                      "lessonId": "id_z1xpo7uoeg",
+                      "questionAr": "تحليل الكلمة باستخدام الجذر والبادئة واللاحقة: لنحل الكلمة 'unhappiness' لنفهم مكوناتها ومعناها:",
+                      "questionEn": "Analyzing a word using root, prefix, and suffix: Let's break down the word 'unhappiness' to understand its components and meaning:",
+                      "solutionAr": "1. تحديد البادئة 'un-' التي تعني النفي أو عدم الشيء\\n2. تحديد الجذر 'happy' الذي يعني السعادة\\n3. تحديد اللاحقة '-ness' التي تحول الصفة إلى اسم وتعني 'حالة' أو 'صفة'\\n4. دمج المكونات: 'un-' (نفي) + 'happy' (سعادة) + '-ness' (حالة) = حالة عدم السعادة أو الشقاء",
+                      "solutionEn": "1. Identify the prefix 'un-' which means negation or not\\n2. Identify the root 'happy' which means happiness\\n3. Identify the suffix '-ness' which changes an adjective to a noun meaning 'state' or 'quality'\\n4. Combine the components: 'un-' (negation) + 'happy' (happiness) + '-ness' (state) = state of not being happy or sadness",
+                      "stepsAr": "1. تحديد البادئة 'un-' التي تعني النفي أو عدم الشيء\\n2. تحديد الجذر 'happy' الذي يعني السعادة\\n3. تحديد اللاحقة '-ness' التي تحول الصفة إلى اسم وتعني 'حالة' أو 'صفة'\\n4. دمج المكونات: 'un-' (نفي) + 'happy' (سعادة) + '-ness' (حالة) = حالة عدم السعادة أو الشقاء",
+                      "stepsEn": "1. Identify the prefix 'un-' which means negation or not\\n2. Identify the root 'happy' which means happiness\\n3. Identify the suffix '-ness' which changes an adjective to a noun meaning 'state' or 'quality'\\n4. Combine the components: 'un-' (negation) + 'happy' (happiness) + '-ness' (state) = state of not being happy or sadness",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_z1xpo7uoeg-1",
+                      "lessonId": "id_z1xpo7uoeg",
+                      "questionAr": "استخدام الكلمة في سياق مختلف: استخدام الكلمة 'transport' في جملة تعبر عن وسيلة التنقل:",
+                      "questionEn": "Using a word in different contexts: Using the word 'transport' in a sentence expressing means of transportation:",
+                      "solutionAr": "1. تحديد السياق: وسيلة التنقل اليومي\\n2. استخدام الكلمة في جملة: 'I use public transport to go to school every day'\\n3. شرح المعنى: استخدام وسائل النقل العامة مثل الحافلات والقطارات للذهاب إلى المدرسة",
+                      "solutionEn": "1. Identify the context: daily commuting\\n2. Use the word in a sentence: 'I use public transport to go to school every day'\\n3. Explain the meaning: using public transportation like buses and trains to go to school",
+                      "stepsAr": "1. تحديد السياق: وسيلة التنقل اليومي\\n2. استخدام الكلمة في جملة: 'I use public transport to go to school every day'\\n3. شرح المعنى: استخدام وسائل النقل العامة مثل الحافلات والقطارات للذهاب إلى المدرسة",
+                      "stepsEn": "1. Identify the context: daily commuting\\n2. Use the word in a sentence: 'I use public transport to go to school every day'\\n3. Explain the meaning: using public transportation like buses and trains to go to school",
+                      "order": 2
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_bgufivbd9g",
+                      "id": "q-id_z1xpo7uoeg-0",
                       "lessonId": "id_z1xpo7uoeg",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 1؟",
-                      "questionEn": "What is the purpose of Lesson 1?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما هي وظيفة البادئة 're-' في الكلمة 'rewrite'؟",
+                      "questionEn": "What is the function of the prefix 're-' in the word 'rewrite'?",
+                      "optionsAr": "[\"تغيير نوع الكلمة\",\"تكرار فعل ما\",\"زيادة معنى الكلمة\",\"تقليل معنى الكلمة\"]",
+                      "optionsEn": "[\"To change the word type\",\"To repeat an action\",\"To increase the meaning\",\"To decrease the meaning\"]",
+                      "answer": "ب",
+                      "explanationAr": "البادئة 're-' تعني 'مرة أخرى' أو 'إعادة'، لذا فإن 'rewrite' تعني 'إعادة الكتابة'، مما يشير إلى تكرار فعل الكتابة.",
+                      "explanationEn": "The prefix 're-' means 'again' or 'back', so 'rewrite' means 'to write again', indicating the repetition of the action of writing.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_z1xpo7uoeg-add-0",
+                      "id": "q-id_z1xpo7uoeg-1",
                       "lessonId": "id_z1xpo7uoeg",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 1: Vocabulary Unit",
-                      "questionEn": "Application question on Lesson 1",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما هي الكلمة التي يمكن تشكيلها من الجذر 'port' مع اللاحقة '-er'؟",
+                      "questionEn": "Which word can be formed from the root 'port' with the suffix '-er'?",
+                      "optionsAr": "[\"import\",\"export\",\"porter\",\"transport\"]",
+                      "optionsEn": "[\"import\",\"export\",\"porter\",\"transport\"]",
+                      "answer": "ج",
+                      "explanationAr": "اللاحقة '-er' تضاف إلى الأفعال لتشكيل أسماء تدل على الشخص الذي يقوم بالفعل. الجذر 'port' يعني 'حمل'، لذا فإن 'porter' هو الشخص الذي يحمل الأشياء.",
+                      "explanationEn": "The suffix '-er' is added to verbs to form nouns indicating a person who performs the action. The root 'port' means 'to carry', so 'porter' is a person who carries things.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
-                    },
-                    {
-                      "id": "q-id_z1xpo7uoeg-add-1",
-                      "lessonId": "id_z1xpo7uoeg",
-                      "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 1: Vocabulary Unit",
-                      "questionEn": "Conceptual question in Lesson 1",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
-                      "points": 1,
-                      "difficulty": "medium",
-                      "order": 3
                     }
                   ]
                 },
@@ -3165,37 +3198,76 @@
                   "videoUrl": null,
                   "pdfUrl": null,
                   "thumbnailUrl": null,
-                  "introductionAr": "مقدمة الدرس 2",
-                  "introductionEn": "Introduction to Lesson 2",
-                  "summaryAr": "ملخص الدرس 2",
-                  "summaryEn": "Summary of Lesson 2",
+                  "introductionAr": "مرحباً بكم في درس المفردات الوحدة الثانية من مادة اللغة الإنجليزية للصف الأول الثانوي. في هذا الدرس، سنستكشف مجموعة متنوعة من الكلمات الجديدة والمفردات المفيدة التي تساعدكم على تحسين مهاراتكم اللغوية. سنتعلم كيفية استخدام هذه الكلمات في سياقات مختلفة، وكيفية التمييز بين الكلمات المتشابهة، وكيفية توسيع مدارككم اللغوية. هذا الدرس مهم جداً لأنه يضع الأساس القوي لمهارات التواصل الفعال في اللغة الإنجليزية، سوء في الكتابة أو في المحادثة. من خلال الممارسة والاستمرارية، ستتمكنون من استخدام هذه الكلمات بثقة ودقة في سياقات مختلفة.",
+                  "introductionEn": "Welcome to Lesson 2: Vocabulary Unit for First Year Secondary School English. In this lesson, we will explore a variety of new words and useful vocabulary that will help you improve your language skills. We will learn how to use these words in different contexts, how to distinguish between similar words, and how to expand your linguistic knowledge. This lesson is very important as it lays a strong foundation for effective communication skills in English, both in writing and speaking. Through practice and consistency, you will be able to use these words confidently and accurately in various contexts.",
+                  "summaryAr": "في هذا الدرس، تعلمنا مجموعة متنوعة من الكلمات الجديدة والمفردات المفيدة التي تساعدنا على تحسين مهاراتنا اللغوية. تعلمنا كيفية استخدام هذه الكلمات في سياقات مختلفة، وكيفية التمييز بين الكلمات المتشابهة، وكيفية توسيع مداركنا اللغوية. كما تعلمنا كيفية تكوين الكلمات المشتقة من الجذور اللغوية، وكيفية استخدام البادئات واللاحقات لتغيير معنى الكلمة. من خلال الأمثلة والتمارين، طبقنا هذه المفاهيم ورسخناها في أذهاننا. الاستمرار في استخدام هذه الكلمات في المحادثات اليومية والكتابة سيساعدنا على تثبيتها في ذاكرتنا وتحسين قدرتنا على التعبير عن أفكارنا بوضوح ودقة في اللغة الإنجليزية.",
+                  "summaryEn": "In this lesson, we learned a variety of new words and useful vocabulary that help us improve our language skills. We learned how to use these words in different contexts, how to distinguish between similar words, and how to expand our linguistic knowledge. We also learned how to form derivative words from linguistic roots, and how to use prefixes and suffixes to change the meaning of words. Through examples and exercises, we applied these concepts and reinforced them in our minds. Continuing to use these words in daily conversations and writing will help us solidify them in our memory and improve our ability to express our thoughts clearly and accurately in English.",
                   "createdAt": "2026-06-13T10:13:57.889Z",
                   "updatedAt": "2026-06-13T10:13:57.888Z",
                   "Objective": [
                     {
-                      "id": "id_087cx20r9mhk",
+                      "id": "obj-id_gln7sgmuto-0",
                       "lessonId": "id_gln7sgmuto",
-                      "textAr": "فهم محتوى الدرس 2",
-                      "textEn": "Understand lesson 2 content",
+                      "textAr": "فهم المعنى الدقيق لكلمة ما قبل استخدامها",
+                      "textEn": "Understanding the precise meaning of a word before using it",
                       "order": 1
                     },
                     {
-                      "id": "id_wh3ly0aougq",
+                      "id": "obj-id_gln7sgmuto-1",
                       "lessonId": "id_gln7sgmuto",
-                      "textAr": "تطبيق ما تم تعلمه",
-                      "textEn": "Apply what was learned",
+                      "textAr": "التمييز بين الكلمات المتشابهة في المعنى أو الصياغة",
+                      "textEn": "Distinguishing between words similar in meaning or form",
                       "order": 2
+                    },
+                    {
+                      "id": "obj-id_gln7sgmuto-2",
+                      "lessonId": "id_gln7sgmuto",
+                      "textAr": "استخدام الكلمات في سياقات متنوعة لتثبيت المعلومة",
+                      "textEn": "Using words in various contexts to reinforce learning",
+                      "order": 3
+                    },
+                    {
+                      "id": "obj-id_gln7sgmuto-3",
+                      "lessonId": "id_gln7sgmuto",
+                      "textAr": "توسيع المفردات اليومية لتحسين مهارات التواصل",
+                      "textEn": "Expanding daily vocabulary to improve communication skills",
+                      "order": 4
+                    },
+                    {
+                      "id": "obj-id_gln7sgmuto-4",
+                      "lessonId": "id_gln7sgmuto",
+                      "textAr": "تطبيق قواعد تكوين الكلمات المشتقة والجذور اللغوية",
+                      "textEn": "Applying rules for forming derivative words and linguistic roots",
+                      "order": 5
                     }
                   ],
                   "Concept": [
                     {
-                      "id": "id_o7lybd4hlln",
+                      "id": "concept-id_gln7sgmuto-0",
                       "lessonId": "id_gln7sgmuto",
-                      "termAr": "المفهوم الأساسي",
-                      "termEn": "Basic Concept",
-                      "definitionAr": "شرح المفهوم الأساسي للدرس",
-                      "definitionEn": "Explanation of the basic concept",
+                      "termAr": "فهم المعنى الدقيق لكلمة ما قبل استخدامها",
+                      "termEn": "Understanding the precise meaning of a word before using it",
+                      "definitionAr": "فهم المعنى الدقيق لكلمة ما قبل استخدامها",
+                      "definitionEn": "Understanding the precise meaning of a word before using it",
                       "order": 1
+                    },
+                    {
+                      "id": "concept-id_gln7sgmuto-1",
+                      "lessonId": "id_gln7sgmuto",
+                      "termAr": "التمييز بين الكلمات المتشابهة في المعنى أو الصياغة",
+                      "termEn": "Distinguishing between words similar in meaning or form",
+                      "definitionAr": "التمييز بين الكلمات المتشابهة في المعنى أو الصياغة",
+                      "definitionEn": "Distinguishing between words similar in meaning or form",
+                      "order": 2
+                    },
+                    {
+                      "id": "concept-id_gln7sgmuto-2",
+                      "lessonId": "id_gln7sgmuto",
+                      "termAr": "استخدام الكلمات في سياقات متنوعة لتثبيت المعلومة",
+                      "termEn": "Using words in various contexts to reinforce learning",
+                      "definitionAr": "استخدام الكلمات في سياقات متنوعة لتثبيت المعلومة",
+                      "definitionEn": "Using words in various contexts to reinforce learning",
+                      "order": 3
                     }
                   ],
                   "Formula": [
@@ -3216,49 +3288,72 @@
                       "order": 2
                     }
                   ],
-                  "Example": [],
+                  "Example": [
+                    {
+                      "id": "example-id_gln7sgmuto-0",
+                      "lessonId": "id_gln7sgmuto",
+                      "questionAr": "كلمة 'persuade': الكلمة تعني 'إقناع' وتستخدم عندما تتحدث عن جعل شخص ما يقبل فكرة أو رأي ما.",
+                      "questionEn": "The word 'persuade': This word means 'to convince' and is used when talking about making someone accept an idea or opinion.",
+                      "solutionAr": "1. حدد الشخص الذي تريد إقناعه\\n2. استخدم الحجج المنطقية والمنطقية لدعم وجهة نظرك\\n3. استخدم كلمة 'persuade' في جملة واضحة مثل: 'I need to persuade my parents to let me go to the party.'",
+                      "solutionEn": "1. Identify the person you want to persuade\\n2. Use logical and reasonable arguments to support your point of view\\n3. Use the word 'persuade' in a clear sentence like: 'I need to persuade my parents to let me go to the party.'",
+                      "stepsAr": "1. حدد الشخص الذي تريد إقناعه\\n2. استخدم الحجج المنطقية والمنطقية لدعم وجهة نظرك\\n3. استخدم كلمة 'persuade' في جملة واضحة مثل: 'I need to persuade my parents to let me go to the party.'",
+                      "stepsEn": "1. Identify the person you want to persuade\\n2. Use logical and reasonable arguments to support your point of view\\n3. Use the word 'persuade' in a clear sentence like: 'I need to persuade my parents to let me go to the party.'",
+                      "order": 1
+                    },
+                    {
+                      "id": "example-id_gln7sgmuto-1",
+                      "lessonId": "id_gln7sgmuto",
+                      "questionAr": "كلمة 'dilemma': الكلمة تعني 'معضلة' وتصف وضعاً صعباً حيث يكون لديك خياران صعبان.",
+                      "questionEn": "The word 'dilemma': This word means 'a dilemma' and describes a difficult situation where you have two difficult choices.",
+                      "solutionAr": "1. حدد الموقف الذي يواجه خيارين صعبين\\n2. استخدم كلمة 'dilemma' لوصف الموقف\\n3. اكتب جملة مثل: 'I am in a dilemma about whether to accept the job offer or continue my studies.'",
+                      "solutionEn": "1. Identify the situation where you face two difficult choices\\n2. Use the word 'dilemma' to describe the situation\\n3. Write a sentence like: 'I am in a dilemma about whether to accept the job offer or continue my studies.'",
+                      "stepsAr": "1. حدد الموقف الذي يواجه خيارين صعبين\\n2. استخدم كلمة 'dilemma' لوصف الموقف\\n3. اكتب جملة مثل: 'I am in a dilemma about whether to accept the job offer or continue my studies.'",
+                      "stepsEn": "1. Identify the situation where you face two difficult choices\\n2. Use the word 'dilemma' to describe the situation\\n3. Write a sentence like: 'I am in a dilemma about whether to accept the job offer or continue my studies.'",
+                      "order": 2
+                    }
+                  ],
                   "Question": [
                     {
-                      "id": "id_2ht5qz27811",
+                      "id": "q-id_gln7sgmuto-0",
                       "lessonId": "id_gln7sgmuto",
-                      "type": "mcq",
-                      "questionAr": "ما هو الهدف من الدرس 2؟",
-                      "questionEn": "What is the purpose of Lesson 2?",
-                      "optionsAr": "[\"الفهم\",\"الحفظ\",\"التكرار\",\"النسخ\"]",
-                      "optionsEn": "[\"Understanding\",\"Memorizing\",\"Repeating\",\"Copying\"]",
-                      "answer": "الفهم",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "type": "multiple-choice",
+                      "questionAr": "ما معنى كلمة 'ambiguous'؟",
+                      "questionEn": "What does the word 'ambiguous' mean?",
+                      "optionsAr": "[\"واضحة ومحددة\",\"غامضة وغير محددة\",\"مثيرة للإعجاب\",\"مضحكة ومسلية\"]",
+                      "optionsEn": "[\"Clear and specific\",\"Vague and unclear\",\"Impressive\",\"Funny and entertaining\"]",
+                      "answer": "ب",
+                      "explanationAr": "'Ambiguous' تعني غامضاً وغير محدد، وهي تشير إلى شيء له أكثر من تفسير واحد أو غير واضح المعنى.",
+                      "explanationEn": "'Ambiguous' means vague and unclear, referring to something that has more than one interpretation or is not clear in meaning.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 1
                     },
                     {
-                      "id": "q-id_gln7sgmuto-add-0",
+                      "id": "q-id_gln7sgmuto-1",
                       "lessonId": "id_gln7sgmuto",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال تطبيقي على الدرس 2: Vocabulary Unit",
-                      "questionEn": "Application question on Lesson 2",
-                      "optionsAr": "[\"الخيار أ\",\"الخيار ب\",\"الخيار ج\",\"الخيار د\"]",
-                      "optionsEn": "[\"Option A\",\"Option B\",\"Option C\",\"Option D\"]",
-                      "answer": "a",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "أي من الخيارات التالية يستخدم كلمة 'dilemma' بشكل صحيح؟",
+                      "questionEn": "Which of the following options uses the word 'dilemma' correctly?",
+                      "optionsAr": "[\"I have a dilemma about what to wear to the party\",\"The dilemma was very beautiful\",\"She dilemma me to change my mind\",\"I dilemma the situation\"]",
+                      "optionsEn": "[\"I have a dilemma about what to wear to the party\",\"The dilemma was very beautiful\",\"She dilemma me to change my mind\",\"I dilemma the situation\"]",
+                      "answer": "أ",
+                      "explanationAr": "'Dilemma' تُستخدم لوصف موقف صعب لديك خياران صعبان فيه، لذا فإن الجملة الأولى هي الاستخدام الصحيح للكلمة.",
+                      "explanationEn": "'Dilemma' is used to describe a difficult situation where you have two difficult choices, so the first sentence is the correct use of the word.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 2
                     },
                     {
-                      "id": "q-id_gln7sgmuto-add-1",
+                      "id": "q-id_gln7sgmuto-2",
                       "lessonId": "id_gln7sgmuto",
                       "type": "multiple-choice",
-                      "questionAr": "سؤال مفاهيمي في الدرس 2: Vocabulary Unit",
-                      "questionEn": "Conceptual question in Lesson 2",
-                      "optionsAr": "[\"إجابة أ\",\"إجابة ب\",\"إجابة ج\",\"إجابة د\"]",
-                      "optionsEn": "[\"Answer A\",\"Answer B\",\"Answer C\",\"Answer D\"]",
-                      "answer": "b",
-                      "explanationAr": null,
-                      "explanationEn": null,
+                      "questionAr": "ما الفرق بين 'affect' و'effect'؟",
+                      "questionEn": "What is the difference between 'affect' and 'effect'?",
+                      "optionsAr": "[\"لا يوجد فرق، يمكن استخدامها بالتبادل\",\"'Affect' تأثير، 'effect' يؤثر\",\"'Affect' يؤثر، 'effect' تأثير\",\"'Affect' دائمmente اسم، 'effect' دائمًا فعل\"]",
+                      "optionsEn": "[\"There is no difference, they can be used interchangeably\",\"'Affect' means influence, 'effect' means to influence\",\"'Affect' means to influence, 'effect' means influence\",\"'Affect' is always a noun, 'effect' is always a verb\"]",
+                      "answer": "ج",
+                      "explanationAr": "'Affect' تستخدم كفعل وتعني 'تؤثر'، بينما 'effect' تستخدم كاسم وتعني 'تأثير'. هذا هو الفرق الأساسي بينهما.",
+                      "explanationEn": "'Affect' is used as a verb meaning 'to influence', while 'effect' is used as a noun meaning 'influence'. This is the main difference between them.",
                       "points": 1,
                       "difficulty": "medium",
                       "order": 3
