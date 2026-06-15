@@ -1558,6 +1558,42 @@ export function getSimulationsByLessonId(lessonId: string): Simulation[] {
   );
 }
 
+// دالة للحصول على المحاكيات حسب المادة ورقم الوحدة
+export function getSimulationsBySubjectAndUnit(subjectName: string, unitOrder: number): Simulation[] {
+  // خريطة ربط المواد بأنواع المحاكيات
+  const subjectTypeMap: Record<string, string[]> = {
+    'الفيزياء': ['physics'],
+    'Physics': ['physics'],
+    'الكيمياء': ['chemistry'],
+    'Chemistry': ['chemistry'],
+    'الرياضيات': ['math'],
+    'الرياضيات (1)': ['math'],
+    'الرياضيات (2)': ['math'],
+    'Mathematics': ['math'],
+    'الأحياء': ['biology'],
+    'Biology': ['biology'],
+    'الجغرافيا': ['geography'],
+    'Geography': ['geography'],
+  };
+
+  const types = subjectTypeMap[subjectName] || [];
+  
+  // فلترة المحاكيات حسب النوع
+  let filtered = simulations.filter(sim => types.includes(sim.type));
+  
+  // ترتيب المحاكيات حسب الوحدة (كل وحدة ليها محاكيات معينة)
+  // الوحدة 1: المحاكيات الأولى، الوحدة 2: المحاكيات التالية، إلخ
+  const simsPerUnit = 5; // عدد المحاكيات لكل وحدة
+  const startIdx = Math.min((unitOrder - 1) * simsPerUnit, filtered.length - simsPerUnit);
+  const endIdx = Math.min(startIdx + simsPerUnit, filtered.length);
+  
+  if (startIdx >= 0 && filtered.length > 0) {
+    return filtered.slice(Math.max(0, startIdx), endIdx);
+  }
+  
+  return filtered.slice(0, simsPerUnit);
+}
+
 // دالة للحصول على المحاكيات حسب المادة
 export function getSimulationsBySubject(subjectName: string): Simulation[] {
   const typeMap: Record<string, string[]> = {

@@ -15,9 +15,10 @@ import {
   FileText, HelpCircle, Beaker, CheckCircle, FlaskConical
 } from "lucide-react";
 import { loadStaticData } from "@/lib/static-data";
-import { getSimulationsByLessonId, getSimulationsBySubject, Simulation } from "@/lib/simulations";
+import { getSimulationsByLessonId, getSimulationsBySubjectAndUnit, Simulation } from "@/lib/simulations";
 import { SimulationList } from "@/components/simulations/SimulationCard";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
+import { MathRenderer } from "@/components/ui/MathRenderer";
 
 interface Objective {
   id: string;
@@ -136,16 +137,11 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
                   Unit: { ...unit, Subject: subject }
                 };
                 
-                // Get related simulations
-                const simByLesson = getSimulationsByLessonId(lesson.id);
-                const simBySubject = getSimulationsBySubject(subject.nameAr);
-                const allSims = [...simByLesson];
-                simBySubject.forEach(sim => {
-                  if (!allSims.find(s => s.id === sim.id)) {
-                    allSims.push(sim);
-                  }
-                });
-                setRelatedSimulations(allSims);
+                // Get related simulations - based on subject and unit
+                const subjectName = subject.nameAr;
+                const unitOrder = unit.order || 1;
+                const simulationsForLesson = getSimulationsBySubjectAndUnit(subjectName, unitOrder);
+                setRelatedSimulations(simulationsForLesson);
                 
                 break;
               }
@@ -500,8 +496,8 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
                         <div className="grid gap-4">
                           {getFormulas().map((formula: any, i: number) => (
                             <div key={i} className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl">
-                              <div className="text-2xl font-mono font-bold text-purple-600 dark:text-purple-400 mb-2 text-center py-2">
-                                {formula.formula}
+                              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2 text-center py-2">
+                                <MathRenderer formula={formula.formula} displayMode={true} />
                               </div>
                               <p className="text-slate-600 dark:text-slate-300 text-center">
                                 {formula.explanation}
