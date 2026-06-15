@@ -1,0 +1,1637 @@
+     1→// التعريف بأنواع المحاكيات
+     2→export interface Simulation {
+     3→  id: string;
+     4→  lessonId: string;
+     5→  titleAr: string;
+     6→  titleEn: string;
+     7→  descriptionAr: string;
+     8→  descriptionEn: string;
+     9→  type: 'physics' | 'chemistry' | 'math' | 'biology' | 'geography' | 'interactive';
+    10→  category: 'experiment' | 'calculator' | 'visualization' | 'game';
+    11→  thumbnail: string;
+    12→  isFree: boolean;
+    13→}
+    14→
+    15→// قائمة المحاكيات التعليمية - 111 محاكي
+    16→export const simulations: Simulation[] = [
+    17→  // ==========================================
+    18→  // الفيزياء - الميكانيكا (25 محاكي)
+    19→  // ==========================================
+    20→  {
+    21→    id: 'sim-physics-motion-1',
+    22→    lessonId: 'motion-intro',
+    23→    titleAr: 'محاكاة الحركة المنتظمة',
+    24→    titleEn: 'Uniform Motion Simulation',
+    25→    descriptionAr: 'تجربة تفاعلية لفهم الحركة المنتظمة والعلاقة بين المسافة والزمن والسرعة',
+    26→    descriptionEn: 'Interactive experiment to understand uniform motion and the relationship between distance, time, and speed',
+    27→    type: 'physics',
+    28→    category: 'experiment',
+    29→    thumbnail: '/simulations/motion.png',
+    30→    isFree: true
+    31→  },
+    32→  {
+    33→    id: 'sim-physics-motion-2',
+    34→    lessonId: 'motion-intro',
+    35→    titleAr: 'رسم البيانات الحركية',
+    36→    titleEn: 'Motion Graphs Plotter',
+    37→    descriptionAr: 'أداة لرسم منحنيات الموضع والسرعة والتسارع versus الزمن',
+    38→    descriptionEn: 'Tool to plot position, velocity, and acceleration vs time curves',
+    39→    type: 'physics',
+    40→    category: 'visualization',
+    41→    thumbnail: '/simulations/graphs.png',
+    42→    isFree: true
+    43→  },
+    44→  {
+    45→    id: 'sim-physics-motion-3',
+    46→    lessonId: 'velocity-acceleration',
+    47→    titleAr: 'محاكاة السرعة والتسارع',
+    48→    titleEn: 'Velocity and Acceleration Simulation',
+    49→    descriptionAr: 'تجربة تفاعلية لفهم الفرق بين السرعة المتوسطة واللحظية والتسارع',
+    50→    descriptionEn: 'Interactive experiment to understand average vs instantaneous velocity and acceleration',
+    51→    type: 'physics',
+    52→    category: 'experiment',
+    53→    thumbnail: '/simulations/velocity.png',
+    54→    isFree: true
+    55→  },
+    56→  {
+    57→    id: 'sim-physics-motion-4',
+    58→    lessonId: 'equations-motion',
+    59→    titleAr: 'حاسبة معادلات الحركة',
+    60→    titleEn: 'Motion Equations Calculator',
+    61→    descriptionAr: 'حاسبة تفاعلية لمعادلات الحركة uniformly accelerated motion',
+    62→    descriptionEn: 'Interactive calculator for uniformly accelerated motion equations',
+    63→    type: 'physics',
+    64→    category: 'calculator',
+    65→    thumbnail: '/simulations/calculator.png',
+    66→    isFree: true
+    67→  },
+    68→  {
+    69→    id: 'sim-physics-freefall-1',
+    70→    lessonId: 'free-fall',
+    71→    titleAr: 'محاكاة السقوط الحر',
+    72→    titleEn: 'Free Fall Simulation',
+    73→    descriptionAr: 'تجربة تفاعلية لفهم السقوط الحر وتأثير الجاذبية',
+    74→    descriptionEn: 'Interactive experiment to understand free fall and gravity effects',
+    75→    type: 'physics',
+    76→    category: 'experiment',
+    77→    thumbnail: '/simulations/freefall.png',
+    78→    isFree: true
+    79→  },
+    80→  {
+    81→    id: 'sim-physics-freefall-2',
+    82→    lessonId: 'free-fall',
+    83→    titleAr: 'مقارنة السقوط على الكواكب',
+    84→    titleEn: 'Planetary Fall Comparison',
+    85→    descriptionAr: 'مقارنة السقوط الحر على مختلف الكواكب والقمر',
+    86→    descriptionEn: 'Compare free fall on different planets and the moon',
+    87→    type: 'physics',
+    88→    category: 'visualization',
+    89→    thumbnail: '/simulations/planets.png',
+    90→    isFree: false
+    91→  },
+    92→  {
+    93→    id: 'sim-physics-forces-1',
+    94→    lessonId: 'forces-intro',
+    95→    titleAr: 'محاكاة القوى والتوازن',
+    96→    titleEn: 'Forces and Equilibrium Simulation',
+    97→    descriptionAr: 'تجربة تفاعلية لفهم القوى والتوازن ومحصلة القوى',
+    98→    descriptionEn: 'Interactive experiment to understand forces, equilibrium, and net force',
+    99→    type: 'physics',
+   100→    category: 'experiment',
+   101→    thumbnail: '/simulations/forces.png',
+   102→    isFree: true
+   103→  },
+   104→  {
+   105→    id: 'sim-physics-forces-2',
+   106→    lessonId: 'forces-intro',
+   107→    titleAr: 'تحليل القوى المتجهة',
+   108→    titleEn: 'Vector Forces Analysis',
+   109→    descriptionAr: 'أداة لتحليل القوى إلى مركبات ودمج المتجهات',
+   110→    descriptionEn: 'Tool to resolve forces into components and combine vectors',
+   111→    type: 'physics',
+   112→    category: 'calculator',
+   113→    thumbnail: '/simulations/vectors.png',
+   114→    isFree: true
+   115→  },
+   116→  {
+   117→    id: 'sim-physics-newton-1',
+   118→    lessonId: 'newton-laws',
+   119→    titleAr: 'محاكاة قانون نيوتن الأول',
+   120→    titleEn: "Newton's First Law Simulation",
+   121→    descriptionAr: 'تجربة تفاعلية لفهم قانون القصور الذاتي',
+   122→    descriptionEn: 'Interactive experiment to understand the law of inertia',
+   123→    type: 'physics',
+   124→    category: 'experiment',
+   125→    thumbnail: '/simulations/newton1.png',
+   126→    isFree: true
+   127→  },
+   128→  {
+   129→    id: 'sim-physics-newton-2',
+   130→    lessonId: 'newton-laws',
+   131→    titleAr: 'محاكاة قانون نيوتن الثاني',
+   132→    titleEn: "Newton's Second Law Simulation",
+   133→    descriptionAr: 'تجربة تفاعلية لفهم العلاقة بين القوة والكتلة والتسارع',
+   134→    descriptionEn: 'Interactive experiment to understand F=ma relationship',
+   135→    type: 'physics',
+   136→    category: 'experiment',
+   137→    thumbnail: '/simulations/newton2.png',
+   138→    isFree: true
+   139→  },
+   140→  {
+   141→    id: 'sim-physics-newton-3',
+   142→    lessonId: 'newton-laws',
+   143→    titleAr: 'محاكاة قانون نيوتن الثالث',
+   144→    titleEn: "Newton's Third Law Simulation",
+   145→    descriptionAr: 'تجربة تفاعلية لفهم الفعل ورد الفعل',
+   146→    descriptionEn: 'Interactive experiment to understand action and reaction',
+   147→    type: 'physics',
+   148→    category: 'experiment',
+   149→    thumbnail: '/simulations/newton3.png',
+   150→    isFree: true
+   151→  },
+   152→  {
+   153→    id: 'sim-physics-newton-4',
+   154→    lessonId: 'newton-laws',
+   155→    titleAr: 'محاكاة الاحتكاك',
+   156→    titleEn: 'Friction Simulation',
+   157→    descriptionAr: 'تجربة تفاعلية لفهم قوة الاحتكاك وأنواعها',
+   158→    descriptionEn: 'Interactive experiment to understand friction force and its types',
+   159→    type: 'physics',
+   160→    category: 'experiment',
+   161→    thumbnail: '/simulations/friction.png',
+   162→    isFree: false
+   163→  },
+   164→  {
+   165→    id: 'sim-physics-projectile-1',
+   166→    lessonId: 'motion-intro',
+   167→    titleAr: 'محاكاة القذيفة',
+   168→    titleEn: 'Projectile Motion Simulation',
+   169→    descriptionAr: 'تجربة تفاعلية لفهم حركة المقذوفات ومسارها',
+   170→    descriptionEn: 'Interactive experiment to understand projectile motion and trajectory',
+   171→    type: 'physics',
+   172→    category: 'experiment',
+   173→    thumbnail: '/simulations/projectile.png',
+   174→    isFree: true
+   175→  },
+   176→  {
+   177→    id: 'sim-physics-projectile-2',
+   178→    lessonId: 'motion-intro',
+   179→    titleAr: 'مقذوفات بزوايا مختلفة',
+   180→    titleEn: 'Projectiles at Different Angles',
+   181→    descriptionAr: 'مقارنة مسارات المقذوفات عند زوايا إطلاق مختلفة',
+   182→    descriptionEn: 'Compare projectile trajectories at different launch angles',
+   183→    type: 'physics',
+   184→    category: 'visualization',
+   185→    thumbnail: '/simulations/angles.png',
+   186→    isFree: true
+   187→  },
+   188→  {
+   189→    id: 'sim-physics-energy-1',
+   190→    lessonId: 'energy-intro',
+   191→    titleAr: 'محاكاة الطاقة الحركية والكامنة',
+   192→    titleEn: 'Kinetic and Potential Energy Simulation',
+   193→    descriptionAr: 'تجربة تفاعلية لفهم الطاقة الحركية والكامنة وتحولاتهما',
+   194→    descriptionEn: 'Interactive experiment to understand kinetic and potential energy transformation',
+   195→    type: 'physics',
+   196→    category: 'experiment',
+   197→    thumbnail: '/simulations/energy.png',
+   198→    isFree: true
+   199→  },
+   200→  {
+   201→    id: 'sim-physics-energy-2',
+   202→    lessonId: 'energy-intro',
+   203→    titleAr: 'محاكاة حفظ الطاقة',
+   204→    titleEn: 'Energy Conservation Simulation',
+   205→    descriptionAr: 'تجربة تفاعلية لإثبات قانون حفظ الطاقة الميكانيكية',
+   206→    descriptionEn: 'Interactive experiment to prove mechanical energy conservation',
+   207→    type: 'physics',
+   208→    category: 'experiment',
+   209→    thumbnail: '/simulations/conservation.png',
+   210→    isFree: true
+   211→  },
+   212→  {
+   213→    id: 'sim-physics-energy-3',
+   214→    lessonId: 'energy-intro',
+   215→    titleAr: 'محاكاة البندول البسيط',
+   216→    titleEn: 'Simple Pendulum Simulation',
+   217→    descriptionAr: 'تجربة تفاعلية لدراسة البندول البسيط وتحولات الطاقة',
+   218→    descriptionEn: 'Interactive experiment to study simple pendulum and energy transformation',
+   219→    type: 'physics',
+   220→    category: 'experiment',
+   221→    thumbnail: '/simulations/pendulum.png',
+   222→    isFree: true
+   223→  },
+   224→  {
+   225→    id: 'sim-physics-energy-4',
+   226→    lessonId: 'energy-intro',
+   227→    titleAr: 'محاكاة الزنبرك',
+   228→    titleEn: 'Spring Oscillation Simulation',
+   229→    descriptionAr: 'تجربة تفاعلية لدراسة الحركة التوافقية البسيطة للزنبرك',
+   230→    descriptionEn: 'Interactive experiment to study simple harmonic motion of a spring',
+   231→    type: 'physics',
+   232→    category: 'experiment',
+   233→    thumbnail: '/simulations/spring.png',
+   234→    isFree: false
+   235→  },
+   236→  {
+   237→    id: 'sim-physics-momentum-1',
+   238→    lessonId: 'newton-laws',
+   239→    titleAr: 'محاكاة الزخم والتصادم',
+   240→    titleEn: 'Momentum and Collision Simulation',
+   241→    descriptionAr: 'تجربة تفاعلية لفهم الزخم وحفظه في التصادمات',
+   242→    descriptionEn: 'Interactive experiment to understand momentum and its conservation in collisions',
+   243→    type: 'physics',
+   244→    category: 'experiment',
+   245→    thumbnail: '/simulations/momentum.png',
+   246→    isFree: true
+   247→  },
+   248→  {
+   249→    id: 'sim-physics-momentum-2',
+   250→    lessonId: 'newton-laws',
+   251→    titleAr: 'تصادمات مرنة وغير مرنة',
+   252→    titleEn: 'Elastic and Inelastic Collisions',
+   253→    descriptionAr: 'مقارنة بين التصادمات المرنة وغير المرنة',
+   254→    descriptionEn: 'Compare elastic and inelastic collisions',
+   255→    type: 'physics',
+   256→    category: 'experiment',
+   257→    thumbnail: '/simulations/collision.png',
+   258→    isFree: true
+   259→  },
+   260→  {
+   261→    id: 'sim-physics-work-1',
+   262→    lessonId: 'energy-intro',
+   263→    titleAr: 'محاكاة الشغل والقدرة',
+   264→    titleEn: 'Work and Power Simulation',
+   265→    descriptionAr: 'تجربة تفاعلية لفهم مفهومي الشغل والقدرة',
+   266→    descriptionEn: 'Interactive experiment to understand work and power concepts',
+   267→    type: 'physics',
+   268→    category: 'experiment',
+   269→    thumbnail: '/simulations/work.png',
+   270→    isFree: true
+   271→  },
+   272→  {
+   273→    id: 'sim-physics-circular-1',
+   274→    lessonId: 'velocity-acceleration',
+   275→    titleAr: 'محاكاة الحركة الدائرية',
+   276→    titleEn: 'Circular Motion Simulation',
+   277→    descriptionAr: 'تجربة تفاعلية لفهم الحركة الدائرية المنتظمة والقوة المركزية',
+   278→    descriptionEn: 'Interactive experiment to understand uniform circular motion and centripetal force',
+   279→    type: 'physics',
+   280→    category: 'experiment',
+   281→    thumbnail: '/simulations/circular.png',
+   282→    isFree: false
+   283→  },
+   284→  {
+   285→    id: 'sim-physics-gravity-1',
+   286→    lessonId: 'forces-intro',
+   287→    titleAr: 'محاكاة الجاذبية',
+   288→    titleEn: 'Gravity Simulation',
+   289→    descriptionAr: 'تجربة تفاعلية لفهم قانون الجاذبية العام لنيوتن',
+   290→    descriptionEn: 'Interactive experiment to understand Newton\'s law of universal gravitation',
+   291→    type: 'physics',
+   292→    category: 'experiment',
+   293→    thumbnail: '/simulations/gravity.png',
+   294→    isFree: true
+   295→  },
+   296→  {
+   297→    id: 'sim-physics-satellite-1',
+   298→    lessonId: 'forces-intro',
+   299→    titleAr: 'محاكاة الأقمار الصناعية',
+   300→    titleEn: 'Satellite Motion Simulation',
+   301→    descriptionAr: 'تجربة تفاعلية لفهم حركة الأقمار الصناعية والسرعات المدارية',
+   302→    descriptionEn: 'Interactive experiment to understand satellite motion and orbital velocities',
+   303→    type: 'physics',
+   304→    category: 'visualization',
+   305→    thumbnail: '/simulations/satellite.png',
+   306→    isFree: false
+   307→  },
+   308→
+   309→  // ==========================================
+   310→  // الفيزياء - الموجات (15 محاكي)
+   311→  // ==========================================
+   312→  {
+   313→    id: 'sim-physics-wave-1',
+   314→    lessonId: 'wave-properties',
+   315→    titleAr: 'محاكاة الموجات المستعرضة',
+   316→    titleEn: 'Transverse Waves Simulation',
+   317→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الموجات المستعرضة',
+   318→    descriptionEn: 'Interactive experiment to understand transverse wave properties',
+   319→    type: 'physics',
+   320→    category: 'experiment',
+   321→    thumbnail: '/simulations/wave.png',
+   322→    isFree: true
+   323→  },
+   324→  {
+   325→    id: 'sim-physics-wave-2',
+   326→    lessonId: 'wave-properties',
+   327→    titleAr: 'محاكاة الموجات الطولية',
+   328→    titleEn: 'Longitudinal Waves Simulation',
+   329→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الموجات الطولية',
+   330→    descriptionEn: 'Interactive experiment to understand longitudinal wave properties',
+   331→    type: 'physics',
+   332→    category: 'experiment',
+   333→    thumbnail: '/simulations/longitudinal.png',
+   334→    isFree: true
+   335→  },
+   336→  {
+   337→    id: 'sim-physics-wave-3',
+   338→    lessonId: 'wave-properties',
+   339→    titleAr: 'محاكاة تداخل الموجات',
+   340→    titleEn: 'Wave Interference Simulation',
+   341→    descriptionAr: 'تجربة تفاعلية لفهم ظاهرة التداخل والبناء والهدم',
+   342→    descriptionEn: 'Interactive experiment to understand interference, constructive and destructive',
+   343→    type: 'physics',
+   344→    category: 'experiment',
+   345→    thumbnail: '/simulations/interference.png',
+   346→    isFree: true
+   347→  },
+   348→  {
+   349→    id: 'sim-physics-wave-4',
+   350→    lessonId: 'wave-properties',
+   351→    titleAr: 'محاكاة انعكاس الموجات',
+   352→    titleEn: 'Wave Reflection Simulation',
+   353→    descriptionAr: 'تجربة تفاعلية لفهم انعكاس الموجات من الأطراف الثابتة والمتحركة',
+   354→    descriptionEn: 'Interactive experiment to understand wave reflection from fixed and free ends',
+   355→    type: 'physics',
+   356→    category: 'experiment',
+   357→    thumbnail: '/simulations/reflection.png',
+   358→    isFree: true
+   359→  },
+   360→  {
+   361→    id: 'sim-physics-wave-5',
+   362→    lessonId: 'wave-properties',
+   363→    titleAr: 'محاكاة الموجات الواقفة',
+   364→    titleEn: 'Standing Waves Simulation',
+   365→    descriptionAr: 'تجربة تفاعلية لتكوين الموجات الواقفة والعقد والبطون',
+   366→    descriptionEn: 'Interactive experiment to form standing waves, nodes, and antinodes',
+   367→    type: 'physics',
+   368→    category: 'experiment',
+   369→    thumbnail: '/simulations/standing.png',
+   370→    isFree: false
+   371→  },
+   372→  {
+   373→    id: 'sim-physics-sound-1',
+   374→    lessonId: 'sound-waves',
+   375→    titleAr: 'محاكاة الموجات الصوتية',
+   376→    titleEn: 'Sound Waves Simulation',
+   377→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الصوت وسرعته',
+   378→    descriptionEn: 'Interactive experiment to understand sound properties and speed',
+   379→    type: 'physics',
+   380→    category: 'experiment',
+   381→    thumbnail: '/simulations/sound.png',
+   382→    isFree: true
+   383→  },
+   384→  {
+   385→    id: 'sim-physics-sound-2',
+   386→    lessonId: 'sound-waves',
+   387→    titleAr: 'محاكاة دوبلر',
+   388→    titleEn: 'Doppler Effect Simulation',
+   389→    descriptionAr: 'تجربة تفاعلية لفهم تأثير دوبلر',
+   390→    descriptionEn: 'Interactive experiment to understand the Doppler effect',
+   391→    type: 'physics',
+   392→    category: 'experiment',
+   393→    thumbnail: '/simulations/doppler.png',
+   394→    isFree: true
+   395→  },
+   396→  {
+   397→    id: 'sim-physics-sound-3',
+   398→    lessonId: 'sound-waves',
+   399→    titleAr: 'محاكاة الرنين الصوتي',
+   400→    titleEn: 'Acoustic Resonance Simulation',
+   401→    descriptionAr: 'تجربة تفاعلية لفهم الرنين في الأنابيب المهتزة',
+   402→    descriptionEn: 'Interactive experiment to understand resonance in vibrating tubes',
+   403→    type: 'physics',
+   404→    category: 'experiment',
+   405→    thumbnail: '/simulations/resonance.png',
+   406→    isFree: true
+   407→  },
+   408→  {
+   409→    id: 'sim-physics-sound-4',
+   410→    lessonId: 'sound-waves',
+   411→    titleAr: 'محاكاة النغمات وطبقات الصوت',
+   412→    titleEn: 'Pitch and Frequency Simulation',
+   413→    descriptionAr: 'تجربة تفاعلية لفهم العلاقة بين التردد وطبقة الصوت',
+   414→    descriptionEn: 'Interactive experiment to understand the relationship between frequency and pitch',
+   415→    type: 'physics',
+   416→    category: 'visualization',
+   417→    thumbnail: '/simulations/pitch.png',
+   418→    isFree: true
+   419→  },
+   420→  {
+   421→    id: 'sim-physics-light-1',
+   422→    lessonId: 'light-waves',
+   423→    titleAr: 'محاكاة انعكاس الضوء',
+   424→    titleEn: 'Light Reflection Simulation',
+   425→    descriptionAr: 'تجربة تفاعلية لفهم قانون الانعكاس والمرايا',
+   426→    descriptionEn: 'Interactive experiment to understand reflection law and mirrors',
+   427→    type: 'physics',
+   428→    category: 'experiment',
+   429→    thumbnail: '/simulations/reflection-light.png',
+   430→    isFree: true
+   431→  },
+   432→  {
+   433→    id: 'sim-physics-light-2',
+   434→    lessonId: 'light-waves',
+   435→    titleAr: 'محاكاة انكسار الضوء',
+   436→    titleEn: 'Light Refraction Simulation',
+   437→    descriptionAr: 'تجربة تفاعلية لفهم قانون سنيل والانكسار',
+   438→    descriptionEn: 'Interactive experiment to understand Snell\'s law and refraction',
+   439→    type: 'physics',
+   440→    category: 'experiment',
+   441→    thumbnail: '/simulations/refraction.png',
+   442→    isFree: true
+   443→  },
+   444→  {
+   445→    id: 'sim-physics-light-3',
+   446→    lessonId: 'light-waves',
+   447→    titleAr: 'محاكاة العدسات',
+   448→    titleEn: 'Lenses Simulation',
+   449→    descriptionAr: 'تجربة تفاعلية لتكوين الصور بالعدسات المحدبة والمقعرة',
+   450→    descriptionEn: 'Interactive experiment to form images with convex and concave lenses',
+   451→    type: 'physics',
+   452→    category: 'experiment',
+   453→    thumbnail: '/simulations/lenses.png',
+   454→    isFree: true
+   455→  },
+   456→  {
+   457→    id: 'sim-physics-light-4',
+   458→    lessonId: 'light-waves',
+   459→    titleAr: 'محاكاة حيود الضوء',
+   460→    titleEn: 'Light Diffraction Simulation',
+   461→    descriptionAr: 'تجربة تفاعلية لفهم ظاهرة الحيود والشقوق',
+   462→    descriptionEn: 'Interactive experiment to understand diffraction and slits',
+   463→    type: 'physics',
+   464→    category: 'experiment',
+   465→    thumbnail: '/simulations/diffraction.png',
+   466→    isFree: false
+   467→  },
+   468→  {
+   469→    id: 'sim-physics-light-5',
+   470→    lessonId: 'light-waves',
+   471→    titleAr: 'محاكاة تجربة الشق المزدوج',
+   472→    titleEn: 'Double Slit Experiment Simulation',
+   473→    descriptionAr: 'محاكاة لتجربة يونج للشق المزدوج والتداخل',
+   474→    descriptionEn: 'Simulation of Young\'s double slit experiment and interference',
+   475→    type: 'physics',
+   476→    category: 'experiment',
+   477→    thumbnail: '/simulations/doubleslit.png',
+   478→    isFree: true
+   479→  },
+   480→  {
+   481→    id: 'sim-physics-optics-1',
+   482→    lessonId: 'light-waves',
+   483→    titleAr: 'محاكاة المرايا الكروية',
+   484→    titleEn: 'Spherical Mirrors Simulation',
+   485→    descriptionAr: 'تجربة تفاعلية لتكوين الصور بالمرايا المقعرة والمحدبة',
+   486→    descriptionEn: 'Interactive experiment to form images with concave and convex mirrors',
+   487→    type: 'physics',
+   488→    category: 'experiment',
+   489→    thumbnail: '/simulations/mirrors.png',
+   490→    isFree: true
+   491→  },
+   492→
+   493→  // ==========================================
+   494→  // الفيزياء - الكهرباء والمغناطيسية (16 محاكي)
+   495→  // ==========================================
+   496→  {
+   497→    id: 'sim-physics-electricity-1',
+   498→    lessonId: 'electric-charge',
+   499→    titleAr: 'محاكاة الشحنة الكهربائية',
+   500→    titleEn: 'Electric Charge Simulation',
+   501→    descriptionAr: 'تجربة تفاعلية لفهم الشحنة الكهربائية وقانون كولوم',
+   502→    descriptionEn: 'Interactive experiment to understand electric charge and Coulomb\'s law',
+   503→    type: 'physics',
+   504→    category: 'experiment',
+   505→    thumbnail: '/simulations/charge.png',
+   506→    isFree: true
+   507→  },
+   508→  {
+   509→    id: 'sim-physics-electricity-2',
+   510→    lessonId: 'electric-charge',
+   511→    titleAr: 'محاكاة المجال الكهربائي',
+   512→    titleEn: 'Electric Field Simulation',
+   513→    descriptionAr: 'تجربة تفاعلية لرسم وتحليل المجالات الكهربائية',
+   514→    descriptionEn: 'Interactive experiment to plot and analyze electric fields',
+   515→    type: 'physics',
+   516→    category: 'visualization',
+   517→    thumbnail: '/simulations/efield.png',
+   518→    isFree: true
+   519→  },
+   520→  {
+   521→    id: 'sim-physics-electricity-3',
+   522→    lessonId: 'electric-charge',
+   523→    titleAr: 'محاكاة الجهد الكهربائي',
+   524→    titleEn: 'Electric Potential Simulation',
+   525→    descriptionAr: 'تجربة تفاعلية لفهم الجهد الكهربائي والطاقة الكامنة',
+   526→    descriptionEn: 'Interactive experiment to understand electric potential and potential energy',
+   527→    type: 'physics',
+   528→    category: 'experiment',
+   529→    thumbnail: '/simulations/potential.png',
+   530→    isFree: false
+   531→  },
+   532→  {
+   533→    id: 'sim-physics-circuit-1',
+   534→    lessonId: 'electric-current',
+   535→    titleAr: 'محاكاة الدوائر الكهربائية البسيطة',
+   536→    titleEn: 'Simple Circuits Simulation',
+   537→    descriptionAr: 'تجربة تفاعلية لبناء دوائر كهربائية بسيطة',
+   538→    descriptionEn: 'Interactive experiment to build simple electric circuits',
+   539→    type: 'physics',
+   540→    category: 'experiment',
+   541→    thumbnail: '/simulations/circuit.png',
+   542→    isFree: true
+   543→  },
+   544→  {
+   545→    id: 'sim-physics-circuit-2',
+   546→    lessonId: 'simple-circuits',
+   547→    titleAr: 'محاكاة التوالي والتوازي',
+   548→    titleEn: 'Series and Parallel Circuits Simulation',
+   549→    descriptionAr: 'تجربة تفاعلية لفهم دوائر التوالي والتوازي',
+   550→    descriptionEn: 'Interactive experiment to understand series and parallel circuits',
+   551→    type: 'physics',
+   552→    category: 'experiment',
+   553→    thumbnail: '/simulations/series-parallel.png',
+   554→    isFree: true
+   555→  },
+   556→  {
+   557→    id: 'sim-physics-circuit-3',
+   558→    lessonId: 'simple-circuits',
+   559→    titleAr: 'محاكاة قانون أوم',
+   560→    titleEn: "Ohm's Law Simulation",
+   561→    descriptionAr: 'تجربة تفاعلية لإثبات قانون أوم والعلاقة بين V, I, R',
+   562→    descriptionEn: 'Interactive experiment to prove Ohm\'s law and V, I, R relationship',
+   563→    type: 'physics',
+   564→    category: 'experiment',
+   565→    thumbnail: '/simulations/ohm.png',
+   566→    isFree: true
+   567→  },
+   568→  {
+   569→    id: 'sim-physics-circuit-4',
+   570→    lessonId: 'electric-power',
+   571→    titleAr: 'محاكاة القدرة الكهربائية',
+   572→    titleEn: 'Electric Power Simulation',
+   573→    descriptionAr: 'تجربة تفاعلية لفهم القدرة الكهربائية وحسابها',
+   574→    descriptionEn: 'Interactive experiment to understand electric power and its calculation',
+   575→    type: 'physics',
+   576→    category: 'experiment',
+   577→    thumbnail: '/simulations/power.png',
+   578→    isFree: true
+   579→  },
+   580→  {
+   581→    id: 'sim-physics-circuit-5',
+   582→    lessonId: 'simple-circuits',
+   583→    titleAr: 'محاكاة المقاومات',
+   584→    titleEn: 'Resistors Simulation',
+   585→    descriptionAr: 'تجربة تفاعلية لحساب المقاومات المكافئة',
+   586→    descriptionEn: 'Interactive experiment to calculate equivalent resistance',
+   587→    type: 'physics',
+   588→    category: 'calculator',
+   589→    thumbnail: '/simulations/resistors.png',
+   590→    isFree: true
+   591→  },
+   592→  {
+   593→    id: 'sim-physics-magnetism-1',
+   594→    lessonId: 'magnetism-intro',
+   595→    titleAr: 'محاكاة المغناطيسية',
+   596→    titleEn: 'Magnetism Simulation',
+   597→    descriptionAr: 'تجربة تفاعلية لفهم المغناطيس والمجال المغناطيسي',
+   598→    descriptionEn: 'Interactive experiment to understand magnets and magnetic fields',
+   599→    type: 'physics',
+   600→    category: 'experiment',
+   601→    thumbnail: '/simulations/magnet.png',
+   602→    isFree: true
+   603→  },
+   604→  {
+   605→    id: 'sim-physics-magnetism-2',
+   606→    lessonId: 'magnetism-intro',
+   607→    titleAr: 'محاكاة خطوط المجال المغناطيسي',
+   608→    titleEn: 'Magnetic Field Lines Simulation',
+   609→    descriptionAr: 'تجربة تفاعلية لرسم خطوط المجال المغناطيسي',
+   610→    descriptionEn: 'Interactive experiment to plot magnetic field lines',
+   611→    type: 'physics',
+   612→    category: 'visualization',
+   613→    thumbnail: '/simulations/mfield.png',
+   614→    isFree: true
+   615→  },
+   616→  {
+   617→    id: 'sim-physics-electromagnetism-1',
+   618→    lessonId: 'electromagnetism',
+   619→    titleAr: 'محاكاة المغناطيس الكهربائي',
+   620→    titleEn: 'Electromagnet Simulation',
+   621→    descriptionAr: 'تجربة تفاعلية لصنع مغناطيس كهربائي',
+   622→    descriptionEn: 'Interactive experiment to build an electromagnet',
+   623→    type: 'physics',
+   624→    category: 'experiment',
+   625→    thumbnail: '/simulations/electromagnet.png',
+   626→    isFree: true
+   627→  },
+   628→  {
+   629→    id: 'sim-physics-electromagnetism-2',
+   630→    lessonId: 'electromagnetism',
+   631→    titleAr: 'محاكاة الحث الكهرومغناطيسي',
+   632→    titleEn: 'Electromagnetic Induction Simulation',
+   633→    descriptionAr: 'تجربة تفاعلية لفهم قانون فاراداي والحث',
+   634→    descriptionEn: 'Interactive experiment to understand Faraday\'s law and induction',
+   635→    type: 'physics',
+   636→    category: 'experiment',
+   637→    thumbnail: '/simulations/induction.png',
+   638→    isFree: true
+   639→  },
+   640→  {
+   641→    id: 'sim-physics-electromagnetism-3',
+   642→    lessonId: 'electromagnetism',
+   643→    titleAr: 'محاكاة المحول الكهربائي',
+   644→    titleEn: 'Transformer Simulation',
+   645→    descriptionAr: 'تجربة تفاعلية لفهم عمل المحولات الكهربائية',
+   646→    descriptionEn: 'Interactive experiment to understand electric transformers',
+   647→    type: 'physics',
+   648→    category: 'experiment',
+   649→    thumbnail: '/simulations/transformer.png',
+   650→    isFree: false
+   651→  },
+   652→  {
+   653→    id: 'sim-physics-electromagnetism-4',
+   654→    lessonId: 'electromagnetism',
+   655→    titleAr: 'محاكاة المحرك الكهربائي',
+   656→    titleEn: 'Electric Motor Simulation',
+   657→    descriptionAr: 'تجربة تفاعلية لفهم مبدأ عمل المحرك الكهربائي',
+   658→    descriptionEn: 'Interactive experiment to understand electric motor principle',
+   659→    type: 'physics',
+   660→    category: 'experiment',
+   661→    thumbnail: '/simulations/motor.png',
+   662→    isFree: true
+   663→  },
+   664→  {
+   665→    id: 'sim-physics-electromagnetism-5',
+   666→    lessonId: 'electromagnetism',
+   667→    titleAr: 'محاكاة الموجات الكهرومغناطيسية',
+   668→    titleEn: 'Electromagnetic Waves Simulation',
+   669→    descriptionAr: 'تجربة تفاعلية لفهم الطيف الكهرومغناطيسي',
+   670→    descriptionEn: 'Interactive experiment to understand the electromagnetic spectrum',
+   671→    type: 'physics',
+   672→    category: 'visualization',
+   673→    thumbnail: '/simulations/emwaves.png',
+   674→    isFree: true
+   675→  },
+   676→  {
+   677→    id: 'sim-physics-thermodynamics-1',
+   678→    lessonId: 'energy-intro',
+   679→    titleAr: 'محاكاة الديناميكا الحرارية',
+   680→    titleEn: 'Thermodynamics Simulation',
+   681→    descriptionAr: 'تجربة تفاعلية لفهم قوانين الديناميكا الحرارية',
+   682→    descriptionEn: 'Interactive experiment to understand thermodynamics laws',
+   683→    type: 'physics',
+   684→    category: 'experiment',
+   685→    thumbnail: '/simulations/thermo.png',
+   686→    isFree: true
+   687→  },
+   688→
+   689→  // ==========================================
+   690→  // الكيمياء - البنية الذرية والجدول الدوري (15 محاكي)
+   691→  // ==========================================
+   692→  {
+   693→    id: 'sim-chemistry-atom-1',
+   694→    lessonId: 'atom-components',
+   695→    titleAr: 'محاكاة البناء الذري',
+   696→    titleEn: 'Atomic Structure Simulation',
+   697→    descriptionAr: 'تجربة تفاعلية لفهم تركيب الذرة والجسيمات دون الذرية',
+   698→    descriptionEn: 'Interactive experiment to understand atomic structure and subatomic particles',
+   699→    type: 'chemistry',
+   700→    category: 'visualization',
+   701→    thumbnail: '/simulations/atom.png',
+   702→    isFree: true
+   703→  },
+   704→  {
+   705→    id: 'sim-chemistry-atom-2',
+   706→    lessonId: 'atom-components',
+   707→    titleAr: 'محاكاة النموذج الذري',
+   708→    titleEn: 'Atomic Models Simulation',
+   709→    descriptionAr: 'تطور النماذج الذرية من دالتون إلى بور',
+   710→    descriptionEn: 'Evolution of atomic models from Dalton to Bohr',
+   711→    type: 'chemistry',
+   712→    category: 'visualization',
+   713→    thumbnail: '/simulations/models.png',
+   714→    isFree: true
+   715→  },
+   716→  {
+   717→    id: 'sim-chemistry-atom-3',
+   718→    lessonId: 'electronic-configuration',
+   719→    titleAr: 'محاكاة التوزيع الإلكتروني',
+   720→    titleEn: 'Electron Configuration Simulation',
+   721→    descriptionAr: 'تجربة تفاعلية لفهم التوزيع الإلكتروني في مستويات الطاقة',
+   722→    descriptionEn: 'Interactive experiment to understand electron configuration in energy levels',
+   723→    type: 'chemistry',
+   724→    category: 'experiment',
+   725→    thumbnail: '/simulations/electron.png',
+   726→    isFree: true
+   727→  },
+   728→  {
+   729→    id: 'sim-chemistry-atom-4',
+   730→    lessonId: 'electronic-configuration',
+   731→    titleAr: 'محاكاة الأفلاك الإلكترونية',
+   732→    titleEn: 'Orbitals Simulation',
+   733→    descriptionAr: 'تجربة تفاعلية لفهم أشكال الأفلاك s, p, d, f',
+   734→    descriptionEn: 'Interactive experiment to understand shapes of s, p, d, f orbitals',
+   735→    type: 'chemistry',
+   736→    category: 'visualization',
+   737→    thumbnail: '/simulations/orbitals.png',
+   738→    isFree: false
+   739→  },
+   740→  {
+   741→    id: 'sim-chemistry-periodic-1',
+   742→    lessonId: 'periodic-table',
+   743→    titleAr: 'الجدول الدوري التفاعلي',
+   744→    titleEn: 'Interactive Periodic Table',
+   745→    descriptionAr: 'استكشف الجدول الدوري وتعرف على خصائص العناصر',
+   746→    descriptionEn: 'Explore the periodic table and learn about element properties',
+   747→    type: 'chemistry',
+   748→    category: 'visualization',
+   749→    thumbnail: '/simulations/periodic.png',
+   750→    isFree: true
+   751→  },
+   752→  {
+   753→    id: 'sim-chemistry-periodic-2',
+   754→    lessonId: 'periodic-trends',
+   755→    titleAr: 'محاكاة الاتجاهات الدورية',
+   756→    titleEn: 'Periodic Trends Simulation',
+   757→    descriptionAr: 'تجربة تفاعلية لفهم نصف القطر الذري وطاقة التأين',
+   758→    descriptionEn: 'Interactive experiment to understand atomic radius and ionization energy trends',
+   759→    type: 'chemistry',
+   760→    category: 'visualization',
+   761→    thumbnail: '/simulations/trends.png',
+   762→    isFree: true
+   763→  },
+   764→  {
+   765→    id: 'sim-chemistry-periodic-3',
+   766→    lessonId: 'periodic-trends',
+   767→    titleAr: 'محاكاة السالبية الكهربائية',
+   768→    titleEn: 'Electronegativity Simulation',
+   769→    descriptionAr: 'تجربة تفاعلية لفهم السالبية الكهربائية واتجاهاتها',
+   770→    descriptionEn: 'Interactive experiment to understand electronegativity and its trends',
+   771→    type: 'chemistry',
+   772→    category: 'visualization',
+   773→    thumbnail: '/simulations/electronegativity.png',
+   774→    isFree: true
+   775→  },
+   776→  {
+   777→    id: 'sim-chemistry-periodic-4',
+   778→    lessonId: 'periodic-table',
+   779→    titleAr: 'محاكاة المجموعات والدورات',
+   780→    titleEn: 'Groups and Periods Simulation',
+   781→    descriptionAr: 'تجربة تفاعلية لفهم تصنيف العناصر في المجموعات والدورات',
+   782→    descriptionEn: 'Interactive experiment to understand element classification in groups and periods',
+   783→    type: 'chemistry',
+   784→    category: 'visualization',
+   785→    thumbnail: '/simulations/groups.png',
+   786→    isFree: true
+   787→  },
+   788→  {
+   789→    id: 'sim-chemistry-bond-1',
+   790→    lessonId: 'ionic-bonding',
+   791→    titleAr: 'محاكاة الرابطة الأيونية',
+   792→    titleEn: 'Ionic Bond Simulation',
+   793→    descriptionAr: 'تجربة تفاعلية لفهم تكوين الرابطة الأيونية',
+   794→    descriptionEn: 'Interactive experiment to understand ionic bond formation',
+   795→    type: 'chemistry',
+   796→    category: 'experiment',
+   797→    thumbnail: '/simulations/ionic.png',
+   798→    isFree: true
+   799→  },
+   800→  {
+   801→    id: 'sim-chemistry-bond-2',
+   802→    lessonId: 'covalent-bonding',
+   803→    titleAr: 'محاكاة الرابطة التساهمية',
+   804→    titleEn: 'Covalent Bond Simulation',
+   805→    descriptionAr: 'تجربة تفاعلية لفهم تكوين الرابطة التساهمية',
+   806→    descriptionEn: 'Interactive experiment to understand covalent bond formation',
+   807→    type: 'chemistry',
+   808→    category: 'experiment',
+   809→    thumbnail: '/simulations/covalent.png',
+   810→    isFree: true
+   811→  },
+   812→  {
+   813→    id: 'sim-chemistry-bond-3',
+   814→    lessonId: 'metallic-bonding',
+   815→    titleAr: 'محاكاة الرابطة الفلزية',
+   816→    titleEn: 'Metallic Bond Simulation',
+   817→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الروابط الفلزية',
+   818→    descriptionEn: 'Interactive experiment to understand metallic bond properties',
+   819→    type: 'chemistry',
+   820→    category: 'experiment',
+   821→    thumbnail: '/simulations/metallic.png',
+   822→    isFree: true
+   823→  },
+   824→  {
+   825→    id: 'sim-chemistry-bond-4',
+   826→    lessonId: 'intermolecular-forces',
+   827→    titleAr: 'محاكاة قوى التجاذب الجزيئية',
+   828→    titleEn: 'Intermolecular Forces Simulation',
+   829→    descriptionAr: 'تجربة تفاعلية لفهم قوى فان دير فالس والروابط الهيدروجينية',
+   830→    descriptionEn: 'Interactive experiment to understand Van der Waals forces and hydrogen bonds',
+   831→    type: 'chemistry',
+   832→    category: 'experiment',
+   833→    thumbnail: '/simulations/imf.png',
+   834→    isFree: false
+   835→  },
+   836→  {
+   837→    id: 'sim-chemistry-bond-5',
+   838→    lessonId: 'covalent-bonding',
+   839→    titleAr: 'محاكاة هندسة الجزيئات',
+   840→    titleEn: 'Molecular Geometry Simulation',
+   841→    descriptionAr: 'تجربة تفاعلية لفهم الأشكال الهندسية للجزيئات (VSEPR)',
+   842→    descriptionEn: 'Interactive experiment to understand molecular geometry (VSEPR)',
+   843→    type: 'chemistry',
+   844→    category: 'visualization',
+   845→    thumbnail: '/simulations/geometry-chem.png',
+   846→    isFree: true
+   847→  },
+   848→  {
+   849→    id: 'sim-chemistry-bond-6',
+   850→    lessonId: 'covalent-bonding',
+   851→    titleAr: 'محاكاة قطبية الجزيئات',
+   852→    titleEn: 'Molecular Polarity Simulation',
+   853→    descriptionAr: 'تجربة تفاعلية لفهم قطبية الجزيئات',
+   854→    descriptionEn: 'Interactive experiment to understand molecular polarity',
+   855→    type: 'chemistry',
+   856→    category: 'experiment',
+   857→    thumbnail: '/simulations/polarity.png',
+   858→    isFree: true
+   859→  },
+   860→  {
+   861→    id: 'sim-chemistry-nomenclature-1',
+   862→    lessonId: 'types-of-reactions',
+   863→    titleAr: 'محاكاة تسمية المركبات',
+   864→    titleEn: 'Compound Nomenclature Simulation',
+   865→    descriptionAr: 'تعلم كيفية تسمية المركبات الأيونية والتساهمية',
+   866→    descriptionEn: 'Learn how to name ionic and covalent compounds',
+   867→    type: 'chemistry',
+   868→    category: 'game',
+   869→    thumbnail: '/simulations/nomenclature.png',
+   870→    isFree: true
+   871→  },
+   872→
+   873→  // ==========================================
+   874→  // الكيمياء - التفاعلات الكيميائية (10 محاكي)
+   875→  // ==========================================
+   876→  {
+   877→    id: 'sim-chemistry-reaction-1',
+   878→    lessonId: 'types-of-reactions',
+   879→    titleAr: 'محاكاة أنواع التفاعلات',
+   880→    titleEn: 'Types of Reactions Simulation',
+   881→    descriptionAr: 'تجربة تفاعلية لفهم أنواع التفاعلات الكيميائية',
+   882→    descriptionEn: 'Interactive experiment to understand types of chemical reactions',
+   883→    type: 'chemistry',
+   884→    category: 'experiment',
+   885→    thumbnail: '/simulations/reactions.png',
+   886→    isFree: true
+   887→  },
+   888→  {
+   889→    id: 'sim-chemistry-reaction-2',
+   890→    lessonId: 'balancing-equations',
+   891→    titleAr: 'محاكاة موازنة المعادلات',
+   892→    titleEn: 'Balancing Equations Simulation',
+   893→    descriptionAr: 'تجربة تفاعلية لموازنة المعادلات الكيميائية',
+   894→    descriptionEn: 'Interactive experiment to balance chemical equations',
+   895→    type: 'chemistry',
+   896→    category: 'game',
+   897→    thumbnail: '/simulations/balance.png',
+   898→    isFree: true
+   899→  },
+   900→  {
+   901→    id: 'sim-chemistry-reaction-3',
+   902→    lessonId: 'reaction-rate',
+   903→    titleAr: 'محاكاة سرعة التفاعل',
+   904→    titleEn: 'Reaction Rate Simulation',
+   905→    descriptionAr: 'تجربة تفاعلية لفهم العوامل المؤثرة على سرعة التفاعل',
+   906→    descriptionEn: 'Interactive experiment to understand factors affecting reaction rate',
+   907→    type: 'chemistry',
+   908→    category: 'experiment',
+   909→    thumbnail: '/simulations/rate.png',
+   910→    isFree: true
+   911→  },
+   912→  {
+   913→    id: 'sim-chemistry-reaction-4',
+   914→    lessonId: 'reaction-rate',
+   915→    titleAr: 'محاكاة طاقة التنشيط',
+   916→    titleEn: 'Activation Energy Simulation',
+   917→    descriptionAr: 'تجربة تفاعلية لفهم طاقة التنشيط والعوامل الحفازة',
+   918→    descriptionEn: 'Interactive experiment to understand activation energy and catalysts',
+   919→    type: 'chemistry',
+   920→    category: 'experiment',
+   921→    thumbnail: '/simulations/activation.png',
+   922→    isFree: true
+   923→  },
+   924→  {
+   925→    id: 'sim-chemistry-reaction-5',
+   926→    lessonId: 'chemical-equilibrium',
+   927→    titleAr: 'محاكاة التوازن الكيميائي',
+   928→    titleEn: 'Chemical Equilibrium Simulation',
+   929→    descriptionAr: 'تجربة تفاعلية لفهم التوازن الكيميائي ومبدأ لوشاتيليه',
+   930→    descriptionEn: 'Interactive experiment to understand chemical equilibrium and Le Chatelier\'s principle',
+   931→    type: 'chemistry',
+   932→    category: 'experiment',
+   933→    thumbnail: '/simulations/equilibrium.png',
+   934→    isFree: true
+   935→  },
+   936→  {
+   937→    id: 'sim-chemistry-reaction-6',
+   938→    lessonId: 'chemical-equilibrium',
+   939→    titleAr: 'محاكاة ثابت التوازن',
+   940→    titleEn: 'Equilibrium Constant Simulation',
+   941→    descriptionAr: 'حاسبة تفاعلية لحساب ثابت التوازن Kc و Kp',
+   942→    descriptionEn: 'Interactive calculator for equilibrium constant Kc and Kp',
+   943→    type: 'chemistry',
+   944→    category: 'calculator',
+   945→    thumbnail: '/simulations/kc.png',
+   946→    isFree: true
+   947→  },
+   948→  {
+   949→    id: 'sim-chemistry-solution-1',
+   950→    lessonId: 'types-of-reactions',
+   951→    titleAr: 'محاكاة المحاليل',
+   952→    titleEn: 'Solutions Simulation',
+   953→    descriptionAr: 'تجربة تفاعلية لفهم تركيز المحاليل والتخفيف',
+   954→    descriptionEn: 'Interactive experiment to understand solution concentration and dilution',
+   955→    type: 'chemistry',
+   956→    category: 'experiment',
+   957→    thumbnail: '/simulations/solutions.png',
+   958→    isFree: true
+   959→  },
+   960→  {
+   961→    id: 'sim-chemistry-solution-2',
+   962→    lessonId: 'types-of-reactions',
+   963→    titleAr: 'محاكاة المولارية',
+   964→    titleEn: 'Molarity Simulation',
+   965→    descriptionAr: 'حاسبة تفاعلية لحساب المولارية والتخفيف',
+   966→    descriptionEn: 'Interactive calculator for molarity and dilution',
+   967→    type: 'chemistry',
+   968→    category: 'calculator',
+   969→    thumbnail: '/simulations/molarity.png',
+   970→    isFree: true
+   971→  },
+   972→  {
+   973→    id: 'sim-chemistry-acid-1',
+   974→    lessonId: 'types-of-reactions',
+   975→    titleAr: 'محاكاة الأحماض والقواعد',
+   976→    titleEn: 'Acids and Bases Simulation',
+   977→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الأحماض والقواعد',
+   978→    descriptionEn: 'Interactive experiment to understand acids and bases properties',
+   979→    type: 'chemistry',
+   980→    category: 'experiment',
+   981→    thumbnail: '/simulations/acidbase.png',
+   982→    isFree: true
+   983→  },
+   984→  {
+   985→    id: 'sim-chemistry-acid-2',
+   986→    lessonId: 'types-of-reactions',
+   987→    titleAr: 'محاكاة الرقم الهيدروجيني pH',
+   988→    titleEn: 'pH Scale Simulation',
+   989→    descriptionAr: 'تجربة تفاعلية لقياس وفهم مقياس pH',
+   990→    descriptionEn: 'Interactive experiment to measure and understand pH scale',
+   991→    type: 'chemistry',
+   992→    category: 'experiment',
+   993→    thumbnail: '/simulations/ph.png',
+   994→    isFree: true
+   995→  },
+   996→
+   997→  // ==========================================
+   998→  // الرياضيات - الجبر والمعادلات (15 محاكي)
+   999→  // ==========================================
+  1000→  {
+  1001→    id: 'sim-math-equations-1',
+  1002→    lessonId: 'linear-equations',
+  1003→    titleAr: 'محاكاة المعادلات الخطية',
+  1004→    titleEn: 'Linear Equations Simulation',
+  1005→    descriptionAr: 'تجربة تفاعلية لحل المعادلات الخطية',
+  1006→    descriptionEn: 'Interactive experiment to solve linear equations',
+  1007→    type: 'math',
+  1008→    category: 'calculator',
+  1009→    thumbnail: '/simulations/linear.png',
+  1010→    isFree: true
+  1011→  },
+  1012→  {
+  1013→    id: 'sim-math-equations-2',
+  1014→    lessonId: 'linear-equations',
+  1015→    titleAr: 'راسم الخط المستقيم',
+  1016→    titleEn: 'Line Graph Plotter',
+  1017→    descriptionAr: 'أداة تفاعلية لرسم المعادلات الخطية',
+  1018→    descriptionEn: 'Interactive tool to plot linear equations',
+  1019→    type: 'math',
+  1020→    category: 'visualization',
+  1021→    thumbnail: '/simulations/line.png',
+  1022→    isFree: true
+  1023→  },
+  1024→  {
+  1025→    id: 'sim-math-equations-3',
+  1026→    lessonId: 'linear-equations',
+  1027→    titleAr: 'محاكاة تقاطع المستقيمات',
+  1028→    titleEn: 'Line Intersection Simulation',
+  1029→    descriptionAr: 'تجربة تفاعلية لإيجاد نقطة تقاطع خطين',
+  1030→    descriptionEn: 'Interactive experiment to find intersection point of two lines',
+  1031→    type: 'math',
+  1032→    category: 'calculator',
+  1033→    thumbnail: '/simulations/intersection.png',
+  1034→    isFree: true
+  1035→  },
+  1036→  {
+  1037→    id: 'sim-math-quadratic-1',
+  1038→    lessonId: 'quadratic-equations',
+  1039→    titleAr: 'محاكاة المعادلات التربيعية',
+  1040→    titleEn: 'Quadratic Equations Simulation',
+  1041→    descriptionAr: 'تجربة تفاعلية لحل المعادلات التربيعية',
+  1042→    descriptionEn: 'Interactive experiment to solve quadratic equations',
+  1043→    type: 'math',
+  1044→    category: 'calculator',
+  1045→    thumbnail: '/simulations/quadratic.png',
+  1046→    isFree: true
+  1047→  },
+  1048→  {
+  1049→    id: 'sim-math-quadratic-2',
+  1050→    lessonId: 'quadratic-equations',
+  1051→    titleAr: 'راسم القطع المكافئ',
+  1052→    titleEn: 'Parabola Graph Plotter',
+  1053→    descriptionAr: 'أداة تفاعلية لرسم القطوع المكافئة',
+  1054→    descriptionEn: 'Interactive tool to plot parabolas',
+  1055→    type: 'math',
+  1056→    category: 'visualization',
+  1057→    thumbnail: '/simulations/parabola.png',
+  1058→    isFree: true
+  1059→  },
+  1060→  {
+  1061→    id: 'sim-math-quadratic-3',
+  1062→    lessonId: 'quadratic-equations',
+  1063→    titleAr: 'محاكاة الصيغة العامة',
+  1064→    titleEn: 'Quadratic Formula Simulation',
+  1065→    descriptionAr: 'تجربة تفاعلية لتطبيق الصيغة العامة',
+  1066→    descriptionEn: 'Interactive experiment to apply the quadratic formula',
+  1067→    type: 'math',
+  1068→    category: 'calculator',
+  1069→    thumbnail: '/simulations/formula.png',
+  1070→    isFree: true
+  1071→  },
+  1072→  {
+  1073→    id: 'sim-math-systems-1',
+  1074→    lessonId: 'systems-equations',
+  1075→    titleAr: 'محاكاة أنظمة المعادلات',
+  1076→    titleEn: 'Systems of Equations Simulation',
+  1077→    descriptionAr: 'تجربة تفاعلية لحل أنظمة المعادلات الخطية',
+  1078→    descriptionEn: 'Interactive experiment to solve systems of linear equations',
+  1079→    type: 'math',
+  1080→    category: 'calculator',
+  1081→    thumbnail: '/simulations/systems.png',
+  1082→    isFree: true
+  1083→  },
+  1084→  {
+  1085→    id: 'sim-math-systems-2',
+  1086→    lessonId: 'systems-equations',
+  1087→    titleAr: 'محاكاة طريقة الحذف',
+  1088→    titleEn: 'Elimination Method Simulation',
+  1089→    descriptionAr: 'تجربة تفاعلية لحل أنظمة بطريقة الحذف',
+  1090→    descriptionEn: 'Interactive experiment to solve systems by elimination',
+  1091→    type: 'math',
+  1092→    category: 'calculator',
+  1093→    thumbnail: '/simulations/elimination.png',
+  1094→    isFree: true
+  1095→  },
+  1096→  {
+  1097→    id: 'sim-math-systems-3',
+  1098→    lessonId: 'systems-equations',
+  1099→    titleAr: 'محاكاة طريقة التعويض',
+  1100→    titleEn: 'Substitution Method Simulation',
+  1101→    descriptionAr: 'تجربة تفاعلية لحل أنظمة بطريقة التعويض',
+  1102→    descriptionEn: 'Interactive experiment to solve systems by substitution',
+  1103→    type: 'math',
+  1104→    category: 'calculator',
+  1105→    thumbnail: '/simulations/substitution.png',
+  1106→    isFree: true
+  1107→  },
+  1108→  {
+  1109→    id: 'sim-math-log-1',
+  1110→    lessonId: 'logarithms',
+  1111→    titleAr: 'محاكاة اللوغاريتمات',
+  1112→    titleEn: 'Logarithms Simulation',
+  1113→    descriptionAr: 'تجربة تفاعلية لفهم اللوغاريتمات وخواصها',
+  1114→    descriptionEn: 'Interactive experiment to understand logarithms and their properties',
+  1115→    type: 'math',
+  1116→    category: 'calculator',
+  1117→    thumbnail: '/simulations/log.png',
+  1118→    isFree: true
+  1119→  },
+  1120→  {
+  1121→    id: 'sim-math-log-2',
+  1122→    lessonId: 'logarithms',
+  1123→    titleAr: 'راسم الدوال اللوغاريتمية',
+  1124→    titleEn: 'Logarithmic Functions Plotter',
+  1125→    descriptionAr: 'أداة تفاعلية لرسم الدوال اللوغاريتمية والأسية',
+  1126→    descriptionEn: 'Interactive tool to plot logarithmic and exponential functions',
+  1127→    type: 'math',
+  1128→    category: 'visualization',
+  1129→    thumbnail: '/simulations/loggraph.png',
+  1130→    isFree: true
+  1131→  },
+  1132→  {
+  1133→    id: 'sim-math-functions-1',
+  1134→    lessonId: 'linear-equations',
+  1135→    titleAr: 'راسم الدوال البياني',
+  1136→    titleEn: 'Function Graph Plotter',
+  1137→    descriptionAr: 'أداة تفاعلية لرسم وتحليل الدوال الرياضية',
+  1138→    descriptionEn: 'Interactive tool to plot and analyze mathematical functions',
+  1139→    type: 'math',
+  1140→    category: 'calculator',
+  1141→    thumbnail: '/simulations/graphs.png',
+  1142→    isFree: true
+  1143→  },
+  1144→  {
+  1145→    id: 'sim-math-functions-2',
+  1146→    lessonId: 'linear-equations',
+  1147→    titleAr: 'محاكاة تحويلات الدوال',
+  1148→    titleEn: 'Function Transformations Simulation',
+  1149→    descriptionAr: 'تجربة تفاعلية لفهم انزياح وتمدد الدوال',
+  1150→    descriptionEn: 'Interactive experiment to understand function shifts and stretches',
+  1151→    type: 'math',
+  1152→    category: 'visualization',
+  1153→    thumbnail: '/simulations/transform.png',
+  1154→    isFree: true
+  1155→  },
+  1156→  {
+  1157→    id: 'sim-matrices-1',
+  1158→    lessonId: 'systems-equations',
+  1159→    titleAr: 'محاكاة المصفوفات',
+  1160→    titleEn: 'Matrices Simulation',
+  1161→    descriptionAr: 'تجربة تفاعلية للعمليات على المصفوفات',
+  1162→    descriptionEn: 'Interactive experiment for matrix operations',
+  1163→    type: 'math',
+  1164→    category: 'calculator',
+  1165→    thumbnail: '/simulations/matrices.png',
+  1166→    isFree: true
+  1167→  },
+  1168→  {
+  1169→    id: 'sim-matrices-2',
+  1170→    lessonId: 'systems-equations',
+  1171→    titleAr: 'حاسبة محدد المصفوفة',
+  1172→    titleEn: 'Matrix Determinant Calculator',
+  1173→    descriptionAr: 'حاسبة تفاعلية لحساب محدد المصفوفة',
+  1174→    descriptionEn: 'Interactive calculator for matrix determinant',
+  1175→    type: 'math',
+  1176→    category: 'calculator',
+  1177→    thumbnail: '/simulations/determinant.png',
+  1178→    isFree: true
+  1179→  },
+  1180→
+  1181→  // ==========================================
+  1182→  // الرياضيات - الهندسة وعلم المثلثات (15 محاكي)
+  1183→  // ==========================================
+  1184→  {
+  1185→    id: 'sim-math-geometry-1',
+  1186→    lessonId: 'angles-measurement',
+  1187→    titleAr: 'محاكاة الزوايا',
+  1188→    titleEn: 'Angles Simulation',
+  1189→    descriptionAr: 'تجربة تفاعلية لقياس وتصنيف الزوايا',
+  1190→    descriptionEn: 'Interactive experiment to measure and classify angles',
+  1191→    type: 'math',
+  1192→    category: 'experiment',
+  1193→    thumbnail: '/simulations/angles.png',
+  1194→    isFree: true
+  1195→  },
+  1196→  {
+  1197→    id: 'sim-math-geometry-2',
+  1198→    lessonId: 'angles-measurement',
+  1199→    titleAr: 'محاكاة المضلعات',
+  1200→    titleEn: 'Polygons Simulation',
+  1201→    descriptionAr: 'تجربة تفاعلية لفهم خصائص المضلعات',
+  1202→    descriptionEn: 'Interactive experiment to understand polygon properties',
+  1203→    type: 'math',
+  1204→    category: 'visualization',
+  1205→    thumbnail: '/simulations/polygons.png',
+  1206→    isFree: true
+  1207→  },
+  1208→  {
+  1209→    id: 'sim-math-geometry-3',
+  1210→    lessonId: 'angles-measurement',
+  1211→    titleAr: 'محاكاة الدائرة',
+  1212→    titleEn: 'Circle Simulation',
+  1213→    descriptionAr: 'تجربة تفاعلية لفهم خصائص الدائرة',
+  1214→    descriptionEn: 'Interactive experiment to understand circle properties',
+  1215→    type: 'math',
+  1216→    category: 'experiment',
+  1217→    thumbnail: '/simulations/circle.png',
+  1218→    isFree: true
+  1219→  },
+  1220→  {
+  1221→    id: 'sim-math-geometry-4',
+  1222→    lessonId: 'angles-measurement',
+  1223→    titleAr: 'محاكاة المساحة والحجم',
+  1224→    titleEn: 'Area and Volume Simulation',
+  1225→    descriptionAr: 'حاسبة تفاعلية للمساحات والأحجام',
+  1226→    descriptionEn: 'Interactive calculator for areas and volumes',
+  1227→    type: 'math',
+  1228→    category: 'calculator',
+  1229→    thumbnail: '/simulations/area.png',
+  1230→    isFree: true
+  1231→  },
+  1232→  {
+  1233→    id: 'sim-math-geometry-5',
+  1234→    lessonId: 'angles-measurement',
+  1235→    titleAr: 'محاكاة فيثاغورس',
+  1236→    titleEn: 'Pythagorean Theorem Simulation',
+  1237→    descriptionAr: 'تجربة تفاعلية لإثبات نظرية فيثاغورس',
+  1238→    descriptionEn: 'Interactive experiment to prove the Pythagorean theorem',
+  1239→    type: 'math',
+  1240→    category: 'experiment',
+  1241→    thumbnail: '/simulations/pythagoras.png',
+  1242→    isFree: true
+  1243→  },
+  1244→  {
+  1245→    id: 'sim-math-trig-1',
+  1246→    lessonId: 'trigonometric-functions',
+  1247→    titleAr: 'محاكاة الدوال المثلثية',
+  1248→    titleEn: 'Trigonometric Functions Simulation',
+  1249→    descriptionAr: 'تجربة تفاعلية لفهم sine, cosine, tangent',
+  1250→    descriptionEn: 'Interactive experiment to understand sine, cosine, tangent',
+  1251→    type: 'math',
+  1252→    category: 'experiment',
+  1253→    thumbnail: '/simulations/trig.png',
+  1254→    isFree: true
+  1255→  },
+  1256→  {
+  1257→    id: 'sim-math-trig-2',
+  1258→    lessonId: 'trigonometric-functions',
+  1259→    titleAr: 'دائرة الوحدة التفاعلية',
+  1260→    titleEn: 'Interactive Unit Circle',
+  1261→    descriptionAr: 'أداة تفاعلية لفهم الدوال المثلثية ودائرة الوحدة',
+  1262→    descriptionEn: 'Interactive tool to understand trigonometric functions and the unit circle',
+  1263→    type: 'math',
+  1264→    category: 'visualization',
+  1265→    thumbnail: '/simulations/unitcircle.png',
+  1266→    isFree: true
+  1267→  },
+  1268→  {
+  1269→    id: 'sim-math-trig-3',
+  1270→    lessonId: 'trigonometric-functions',
+  1271→    titleAr: 'راسم المنحنيات المثلثية',
+  1272→    titleEn: 'Trigonometric Curves Plotter',
+  1273→    descriptionAr: 'أداة تفاعلية لرسم منحنيات sine و cosine',
+  1274→    descriptionEn: 'Interactive tool to plot sine and cosine curves',
+  1275→    type: 'math',
+  1276→    category: 'visualization',
+  1277→    thumbnail: '/simulations/sincurve.png',
+  1278→    isFree: true
+  1279→  },
+  1280→  {
+  1281→    id: 'sim-math-trig-4',
+  1282→    lessonId: 'trigonometric-identities',
+  1283→    titleAr: 'محاكاة المتطابقات المثلثية',
+  1284→    titleEn: 'Trigonometric Identities Simulation',
+  1285→    descriptionAr: 'تجربة تفاعلية لفهم المتطابقات المثلثية الأساسية',
+  1286→    descriptionEn: 'Interactive experiment to understand basic trigonometric identities',
+  1287→    type: 'math',
+  1288→    category: 'calculator',
+  1289→    thumbnail: '/simulations/identities.png',
+  1290→    isFree: true
+  1291→  },
+  1292→  {
+  1293→    id: 'sim-math-trig-5',
+  1294→    lessonId: 'sine-cosine-laws',
+  1295→    titleAr: 'محاكاة قانون الجيب',
+  1296→    titleEn: 'Law of Sines Simulation',
+  1297→    descriptionAr: 'تجربة تفاعلية لتطبيق قانون الجيب',
+  1298→    descriptionEn: 'Interactive experiment to apply the law of sines',
+  1299→    type: 'math',
+  1300→    category: 'calculator',
+  1301→    thumbnail: '/simulations/sinelaw.png',
+  1302→    isFree: true
+  1303→  },
+  1304→  {
+  1305→    id: 'sim-math-trig-6',
+  1306→    lessonId: 'sine-cosine-laws',
+  1307→    titleAr: 'محاكاة قانون جيب التمام',
+  1308→    titleEn: 'Law of Cosines Simulation',
+  1309→    descriptionAr: 'تجربة تفاعلية لتطبيق قانون جيب التمام',
+  1310→    descriptionEn: 'Interactive experiment to apply the law of cosines',
+  1311→    type: 'math',
+  1312→    category: 'calculator',
+  1313→    thumbnail: '/simulations/cosinelaw.png',
+  1314→    isFree: true
+  1315→  },
+  1316→  {
+  1317→    id: 'sim-math-trig-7',
+  1318→    lessonId: 'sine-cosine-laws',
+  1319→    titleAr: 'محاكاة حل المثلثات',
+  1320→    titleEn: 'Solving Triangles Simulation',
+  1321→    descriptionAr: 'تجربة تفاعلية لحل المثلثات باستخدام قوانين الجيب وجيب التمام',
+  1322→    descriptionEn: 'Interactive experiment to solve triangles using sine and cosine laws',
+  1323→    type: 'math',
+  1324→    category: 'calculator',
+  1325→    thumbnail: '/simulations/triangles.png',
+  1326→    isFree: true
+  1327→  },
+  1328→  {
+  1329→    id: 'sim-math-vectors-1',
+  1330→    lessonId: 'angles-measurement',
+  1331→    titleAr: 'محاكاة المتجهات',
+  1332→    titleEn: 'Vectors Simulation',
+  1333→    descriptionAr: 'تجربة تفاعلية للعمليات على المتجهات',
+  1334→    descriptionEn: 'Interactive experiment for vector operations',
+  1335→    type: 'math',
+  1336→    category: 'experiment',
+  1337→    thumbnail: '/simulations/vectors.png',
+  1338→    isFree: true
+  1339→  },
+  1340→  {
+  1341→    id: 'sim-math-vectors-2',
+  1342→    lessonId: 'angles-measurement',
+  1343→    titleAr: 'محاكاة حاصل الضرب الاتجاهي',
+  1344→    titleEn: 'Dot Product Simulation',
+  1345→    descriptionAr: 'تجربة تفاعلية لحساب حاصل الضرب الاتجاهي',
+  1346→    descriptionEn: 'Interactive experiment to calculate dot product',
+  1347→    type: 'math',
+  1348→    category: 'calculator',
+  1349→    thumbnail: '/simulations/dotproduct.png',
+  1350→    isFree: true
+  1351→  },
+  1352→  {
+  1353→    id: 'sim-math-vectors-3',
+  1354→    lessonId: 'angles-measurement',
+  1355→    titleAr: 'محاكاة حاصل الضرب المتجهي',
+  1356→    titleEn: 'Cross Product Simulation',
+  1357→    descriptionAr: 'تجربة تفاعلية لحساب حاصل الضرب المتجهي',
+  1358→    descriptionEn: 'Interactive experiment to calculate cross product',
+  1359→    type: 'math',
+  1360→    category: 'calculator',
+  1361→    thumbnail: '/simulations/crossproduct.png',
+  1362→    isFree: true
+  1363→  },
+  1364→
+  1365→  // ==========================================
+  1366→  // الرياضيات - التفاضل والتكامل (10 محاكي)
+  1367→  // ==========================================
+  1368→  {
+  1369→    id: 'sim-math-calculus-1',
+  1370→    lessonId: 'limits',
+  1371→    titleAr: 'محاكاة النهايات',
+  1372→    titleEn: 'Limits Simulation',
+  1373→    descriptionAr: 'تجربة تفاعلية لفهم مفهوم النهاية',
+  1374→    descriptionEn: 'Interactive experiment to understand the concept of limits',
+  1375→    type: 'math',
+  1376→    category: 'visualization',
+  1377→    thumbnail: '/simulations/limits.png',
+  1378→    isFree: true
+  1379→  },
+  1380→  {
+  1381→    id: 'sim-math-calculus-2',
+  1382→    lessonId: 'limits',
+  1383→    titleAr: 'حاسبة النهايات',
+  1384→    titleEn: 'Limits Calculator',
+  1385→    descriptionAr: 'حاسبة تفاعلية لإيجاد نهايات الدوال',
+  1386→    descriptionEn: 'Interactive calculator to find limits of functions',
+  1387→    type: 'math',
+  1388→    category: 'calculator',
+  1389→    thumbnail: '/simulations/limcalc.png',
+  1390→    isFree: true
+  1391→  },
+  1392→  {
+  1393→    id: 'sim-math-calculus-3',
+  1394→    lessonId: 'derivatives',
+  1395→    titleAr: 'محاكاة الاشتقاق',
+  1396→    titleEn: 'Differentiation Simulation',
+  1397→    descriptionAr: 'تجربة تفاعلية لفهم مفهوم المشتقة',
+  1398→    descriptionEn: 'Interactive experiment to understand the concept of derivatives',
+  1399→    type: 'math',
+  1400→    category: 'visualization',
+  1401→    thumbnail: '/simulations/derivative.png',
+  1402→    isFree: true
+  1403→  },
+  1404→  {
+  1405→    id: 'sim-math-calculus-4',
+  1406→    lessonId: 'derivatives',
+  1407→    titleAr: 'حاسبة المشتقات',
+  1408→    titleEn: 'Derivatives Calculator',
+  1409→    descriptionAr: 'حاسبة تفاعلية لإيجاد مشتقات الدوال',
+  1410→    descriptionEn: 'Interactive calculator to find derivatives of functions',
+  1411→    type: 'math',
+  1412→    category: 'calculator',
+  1413→    thumbnail: '/simulations/derivcalc.png',
+  1414→    isFree: true
+  1415→  },
+  1416→  {
+  1417→    id: 'sim-math-calculus-5',
+  1418→    lessonId: 'derivatives-applications',
+  1419→    titleAr: 'محاكاة معدل التغير',
+  1420→    titleEn: 'Rate of Change Simulation',
+  1421→    descriptionAr: 'تجربة تفاعلية لفهم معدل التغير اللحظي',
+  1422→    descriptionEn: 'Interactive experiment to understand instantaneous rate of change',
+  1423→    type: 'math',
+  1424→    category: 'experiment',
+  1425→    thumbnail: '/simulations/rateofchange.png',
+  1426→    isFree: true
+  1427→  },
+  1428→  {
+  1429→    id: 'sim-math-calculus-6',
+  1430→    lessonId: 'derivatives-applications',
+  1431→    titleAr: 'محاكاة القيم العظمى والدنيا',
+  1432→    titleEn: 'Maxima and Minima Simulation',
+  1433→    descriptionAr: 'تجربة تفاعلية لإيجاد القيم العظمى والدنيا المحلية',
+  1434→    descriptionEn: 'Interactive experiment to find local maxima and minima',
+  1435→    type: 'math',
+  1436→    category: 'experiment',
+  1437→    thumbnail: '/simulations/maxmin.png',
+  1438→    isFree: true
+  1439→  },
+  1440→  {
+  1441→    id: 'sim-math-calculus-7',
+  1442→    lessonId: 'derivatives-applications',
+  1443→    titleAr: 'محاكاة رسم المنحنيات',
+  1444→    titleEn: 'Curve Sketching Simulation',
+  1445→    descriptionAr: 'تجربة تفاعلية لرسم المنحنيات باستخدام الاشتقاق',
+  1446→    descriptionEn: 'Interactive experiment to sketch curves using differentiation',
+  1447→    type: 'math',
+  1448→    category: 'visualization',
+  1449→    thumbnail: '/simulations/sketching.png',
+  1450→    isFree: true
+  1451→  },
+  1452→  {
+  1453→    id: 'sim-math-calculus-8',
+  1454→    lessonId: 'integration',
+  1455→    titleAr: 'محاكاة التكامل',
+  1456→    titleEn: 'Integration Simulation',
+  1457→    descriptionAr: 'تجربة تفاعلية لفهم مفهوم التكامل',
+  1458→    descriptionEn: 'Interactive experiment to understand the concept of integration',
+  1459→    type: 'math',
+  1460→    category: 'visualization',
+  1461→    thumbnail: '/simulations/integral.png',
+  1462→    isFree: true
+  1463→  },
+  1464→  {
+  1465→    id: 'sim-math-calculus-9',
+  1466→    lessonId: 'integration',
+  1467→    titleAr: 'حاسبة التكاملات',
+  1468→    titleEn: 'Integrals Calculator',
+  1469→    descriptionAr: 'حاسبة تفاعلية لإيجاد تكاملات الدوال',
+  1470→    descriptionEn: 'Interactive calculator to find integrals of functions',
+  1471→    type: 'math',
+  1472→    category: 'calculator',
+  1473→    thumbnail: '/simulations/intcalc.png',
+  1474→    isFree: true
+  1475→  },
+  1476→  {
+  1477→    id: 'sim-math-calculus-10',
+  1478→    lessonId: 'integration',
+  1479→    titleAr: 'محاكاة المساحة تحت المنحنى',
+  1480→    titleEn: 'Area Under Curve Simulation',
+  1481→    descriptionAr: 'تجربة تفاعلية لحساب المساحة تحت المنحنى',
+  1482→    descriptionEn: 'Interactive experiment to calculate area under the curve',
+  1483→    type: 'math',
+  1484→    category: 'experiment',
+  1485→    thumbnail: '/simulations/areacurve.png',
+  1486→    isFree: true
+  1487→  },
+  1488→
+  1489→  // ==========================================
+  1490→  // محاكيات عامة وأدوات (5 محاكي)
+  1491→  // ==========================================
+  1492→  {
+  1493→    id: 'sim-calc-scientific',
+  1494→    lessonId: 'any',
+  1495→    titleAr: 'الآلة الحاسبة العلمية',
+  1496→    titleEn: 'Scientific Calculator',
+  1497→    descriptionAr: 'آلة حاسبة علمية متقدمة لجميع العمليات الرياضية',
+  1498→    descriptionEn: 'Advanced scientific calculator for all mathematical operations',
+  1499→    type: 'math',
+  1500→    category: 'calculator',
+  1501→    thumbnail: '/simulations/calculator.png',
+  1502→    isFree: true
+  1503→  },
+  1504→  {
+  1505→    id: 'sim-unit-converter',
+  1506→    lessonId: 'any',
+  1507→    titleAr: 'محول الوحدات',
+  1508→    titleEn: 'Unit Converter',
+  1509→    descriptionAr: 'أداة لتحويل الوحدات المختلفة (طول، كتلة، درجة حرارة...)',
+  1510→    descriptionEn: 'Tool to convert various units (length, mass, temperature...)',
+  1511→    type: 'interactive',
+  1512→    category: 'calculator',
+  1513→    thumbnail: '/simulations/converter.png',
+  1514→    isFree: true
+  1515→  },
+  1516→  {
+  1517→    id: 'sim-graphing-tool',
+  1518→    lessonId: 'any',
+  1519→    titleAr: 'أداة الرسم البياني',
+  1520→    titleEn: 'Graphing Tool',
+  1521→    descriptionAr: 'أداة متقدمة لرسم الدوال والمنحنيات',
+  1522→    descriptionEn: 'Advanced tool for plotting functions and curves',
+  1523→    type: 'math',
+  1524→    category: 'visualization',
+  1525→    thumbnail: '/simulations/graphing.png',
+  1526→    isFree: true
+  1527→  },
+  1528→  {
+  1529→    id: 'sim-statistics-1',
+  1530→    lessonId: 'any',
+  1531→    titleAr: 'محاكاة الإحصاء',
+  1532→    titleEn: 'Statistics Simulation',
+  1533→    descriptionAr: 'تجربة تفاعلية لحساب المتوسط والانحراف المعياري',
+  1534→    descriptionEn: 'Interactive experiment to calculate mean and standard deviation',
+  1535→    type: 'math',
+  1536→    category: 'calculator',
+  1537→    thumbnail: '/simulations/statistics.png',
+  1538→    isFree: true
+  1539→  },
+  1540→  {
+  1541→    id: 'sim-probability-1',
+  1542→    lessonId: 'any',
+  1543→    titleAr: 'محاكاة الاحتمالات',
+  1544→    titleEn: 'Probability Simulation',
+  1545→    descriptionAr: 'تجربة تفاعلية لفهم مفاهيم الاحتمالات',
+  1546→    descriptionEn: 'Interactive experiment to understand probability concepts',
+  1547→    type: 'math',
+  1548→    category: 'experiment',
+  1549→    thumbnail: '/simulations/probability.png',
+  1550→    isFree: true
+  1551→  }
+  1552→];
+  1553→
+  1554→// دالة للحصول على المحاكيات المرتبطة بدرس معين
+  1555→export function getSimulationsByLessonId(lessonId: string): Simulation[] {
+  1556→  return simulations.filter(
+  1557→    sim => sim.lessonId === lessonId || sim.lessonId === 'any'
+  1558→  );
+  1559→}
+  1560→
+  1561→// دالة للحصول على المحاكيات حسب المادة ورقم الوحدة
+  1562→export function getSimulationsBySubjectAndUnit(subjectName: string, unitOrder: number): Simulation[] {
+  1563→  // خريطة ربط المواد بأنواع المحاكيات
+  1564→  const subjectTypeMap: Record<string, string[]> = {
+  1565→    'الفيزياء': ['physics'],
+  1566→    'Physics': ['physics'],
+  1567→    'الكيمياء': ['chemistry'],
+  1568→    'Chemistry': ['chemistry'],
+  1569→    'الرياضيات': ['math'],
+  1570→    'الرياضيات (1)': ['math'],
+  1571→    'الرياضيات (2)': ['math'],
+  1572→    'Mathematics': ['math'],
+  1573→    'الأحياء': ['biology'],
+  1574→    'Biology': ['biology'],
+  1575→    'الجغرافيا': ['geography'],
+  1576→    'Geography': ['geography'],
+  1577→  };
+  1578→
+  1579→  const types = subjectTypeMap[subjectName] || [];
+  1580→  
+  1581→  // فلترة المحاكيات حسب النوع
+  1582→  let filtered = simulations.filter(sim => types.includes(sim.type));
+  1583→  
+  1584→  // ترتيب المحاكيات حسب الوحدة (كل وحدة ليها محاكيات معينة)
+  1585→  // الوحدة 1: المحاكيات الأولى، الوحدة 2: المحاكيات التالية، إلخ
+  1586→  const simsPerUnit = 5; // عدد المحاكيات لكل وحدة
+  1587→  const startIdx = Math.min((unitOrder - 1) * simsPerUnit, filtered.length - simsPerUnit);
+  1588→  const endIdx = Math.min(startIdx + simsPerUnit, filtered.length);
+  1589→  
+  1590→  if (startIdx >= 0 && filtered.length > 0) {
+  1591→    return filtered.slice(Math.max(0, startIdx), endIdx);
+  1592→  }
+  1593→  
+  1594→  return filtered.slice(0, simsPerUnit);
+  1595→}
+  1596→
+  1597→// دالة للحصول على المحاكيات حسب المادة
+  1598→export function getSimulationsBySubject(subjectName: string): Simulation[] {
+  1599→  const typeMap: Record<string, string[]> = {
+  1600→    'الفيزياء': ['physics'],
+  1601→    'Physics': ['physics'],
+  1602→    'الكيمياء': ['chemistry'],
+  1603→    'Chemistry': ['chemistry'],
+  1604→    'الرياضيات': ['math'],
+  1605→    'Mathematics': ['math'],
+  1606→    'الرياضيات (1)': ['math'],
+  1607→    'الرياضيات (2)': ['math'],
+  1608→    'الأحياء': ['biology'],
+  1609→    'Biology': ['biology']
+  1610→  };
+  1611→
+  1612→  const types = typeMap[subjectName] || [];
+  1613→  return simulations.filter(sim => types.includes(sim.type));
+  1614→}
+  1615→
+  1616→// دالة للحصول على جميع المحاكيات المجانية
+  1617→export function getFreeSimulations(): Simulation[] {
+  1618→  return simulations.filter(sim => sim.isFree);
+  1619→}
+  1620→
+  1621→// دالة للحصول على محاكي بالـ ID
+  1622→export function getSimulationById(id: string): Simulation | undefined {
+  1623→  return simulations.find(sim => sim.id === id);
+  1624→}
+  1625→
+  1626→// إحصائيات المحاكيات
+  1627→export function getSimulationsStats() {
+  1628→  return {
+  1629→    total: simulations.length,
+  1630→    physics: simulations.filter(s => s.type === 'physics').length,
+  1631→    chemistry: simulations.filter(s => s.type === 'chemistry').length,
+  1632→    math: simulations.filter(s => s.type === 'math').length,
+  1633→    biology: simulations.filter(s => s.type === 'biology').length,
+  1634→    free: simulations.filter(s => s.isFree).length
+  1635→  };
+  1636→}
+  1637→

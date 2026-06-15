@@ -1,0 +1,2002 @@
+     1→{
+     2→  "academicYears": [
+     3→    {
+     4→      "id": "year-1",
+     5→      "nameAr": "الصف الأول الثانوي",
+     6→      "nameEn": "First Year Secondary",
+     7→      "code": "first-year",
+     8→      "order": 1,
+     9→      "createdAt": "2026-06-13T10:13:57.831Z",
+    10→      "updatedAt": "2026-06-13T10:13:57.831Z",
+    11→      "Subject": [
+    12→        {
+    13→          "id": "id_azlhpdzv3oq",
+    14→          "nameAr": "اللغة العربية",
+    15→          "nameEn": "Arabic Language",
+    16→          "slug": "arabic-language-first-year",
+    17→          "icon": "BookOpen",
+    18→          "color": "#6366F1",
+    19→          "order": 1,
+    20→          "yearId": "year-1",
+    21→          "specializationId": null,
+    22→          "isCommon": true,
+    23→          "createdAt": "2026-06-13T10:13:57.847Z",
+    24→          "updatedAt": "2026-06-13T10:13:57.847Z",
+    25→          "Specialization": null,
+    26→          "Unit": [
+    27→            {
+    28→              "id": "id_z4td8ozh8jd",
+    29→              "subjectId": "id_azlhpdzv3oq",
+    30→              "semesterId": null,
+    31→              "nameAr": "وحدة النحو",
+    32→              "nameEn": "Unit 1",
+    33→              "slug": "unit-1-id_azlhpdzv3oq",
+    34→              "order": 1,
+    35→              "createdAt": "2026-06-13T10:13:57.849Z",
+    36→              "updatedAt": "2026-06-13T10:13:57.848Z",
+    37→              "Lesson": [
+    38→                {
+    39→                  "id": "id_m0g4ytd8fv",
+    40→                  "unitId": "id_z4td8ozh8jd",
+    41→                  "titleAr": "الدرس 1: وحدة النحو",
+    42→                  "titleEn": "Lesson 1",
+    43→                  "slug": "lesson-1-id_z4td8ozh8jd",
+    44→                  "descriptionAr": "شرح وحدة النحو - الدرس 1",
+    45→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 1",
+    46→                  "duration": 45,
+    47→                  "order": 1,
+    48→                  "isFree": false,
+    49→                  "videoUrl": null,
+    50→                  "pdfUrl": null,
+    51→                  "thumbnailUrl": null,
+    52→                  "introductionAr": "مرحباً بطلابنا في الصف الأول الثانوي. في درسنا اليوم، سنبدأ رحلتنا مع وحدة النحو، وهي من أهم الوحدات في مادة اللغة العربية. النحو هو علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل وتناسيبها، وهو أساس فهم اللغة وتطبيقها بشكل صحيح. في هذا الدرس، سنتعرف على المبادئ الأساسية للنحو العربي، وأهمية دراسته، وكيف يساعدنا في فهم القرآن الكريم والأدب العربي بشكل أعمق. سنبدأ بتعريف علم النحو وأهدافه، ثم ننتقل إلى مفاهيمه الأساسية مثل الاسم والفعل والحرف، ونختم ببعض الأمثلة التطبيقية التي تساعدنا على فهم هذه المفاهيم بشكل أفضل.",
+    53→                  "introductionEn": "Welcome to our first-year secondary school students. In today's lesson, we begin our journey with the grammar unit, which is one of the most important units in the Arabic language subject. Grammar is the science that studies the rules of the Arabic language in word and sentence construction and their relationships, and it is the foundation for understanding and correctly applying the language. In this lesson, we will learn about the basic principles of Arabic grammar, the importance of studying it, and how it helps us understand the Quran and Arabic literature more deeply. We will start by defining grammar and its objectives, then move to its basic concepts such as noun, verb, and particle, and conclude with some practical examples that help us understand these concepts better.",
+    54→                  "summaryAr": "في هذا الدرس، تعرفنا على علم النحو وأهميته في دراسة اللغة العربية. علم النحو هو علم يدرس قواعد تركيب الكلمات والجمل وتناسيبها، ويعود أصل إلى العصر العباسي بسبب الحاجة لفهم القرآن الكريم. قسمنا النحو إلى عدة فروع رئيسية: الصرف والإعراب والنحو التطبيقي. كما تعرفنا على المفاهيم الأساسية الثلاثة: الاسم وهو كل كلمة تدل على معنى قائم بنفسها، والفعل وهو كل كلمة تدل على حدث أو حالة، والحرف وهو كل كلمة لا تدل على معنى قائم بنفسها ولكنها تربط الكلمات وتفيد معاني. الأمثلة التي قمنا بتحليلها ساعدتنا على تطبيق هذه المفاهيم على الجمل العربية. فهم هذه المفاهيم الأساسية سيساعدنا في دراسة الدروس القادمة بشكل أفضل وتطبيق قواعد النحو في كتابة وتحليل النصوص العربية.",
+    55→                  "summaryEn": "In this lesson, we learned about grammar and its importance in studying the Arabic language. Grammar is the science that studies the rules of word and sentence construction and their relationships, and its origin dates back to the Abbasid era due to the need to understand the Quran. We divided grammar into several main branches: morphology, syntax, and applied grammar. We also learned about the three basic concepts: noun which is any word that refers to a meaning that exists in itself, verb which is any word that refers to an event or state, and particle which is any word that does not refer to a meaning in itself but connects words and conveys meanings. The examples we analyzed helped us apply these concepts to Arabic sentences. Understanding these basic concepts will help us study the following lessons better and apply grammar rules in writing and analyzing Arabic texts.",
+    56→                  "createdAt": "2026-06-13T10:13:57.850Z",
+    57→                  "updatedAt": "2026-06-13T10:13:57.849Z",
+    58→                  "Objective": [
+    59→                    {
+    60→                      "id": "obj-id_m0g4ytd8fv-0",
+    61→                      "lessonId": "id_m0g4ytd8fv",
+    62→                      "textAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    63→                      "textEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    64→                      "order": 1
+    65→                    },
+    66→                    {
+    67→                      "id": "obj-id_m0g4ytd8fv-1",
+    68→                      "lessonId": "id_m0g4ytd8fv",
+    69→                      "textAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+    70→                      "textEn": "Noun, verb, and particle are the basic concepts in grammar",
+    71→                      "order": 2
+    72→                    },
+    73→                    {
+    74→                      "id": "obj-id_m0g4ytd8fv-2",
+    75→                      "lessonId": "id_m0g4ytd8fv",
+    76→                      "textAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+    77→                      "textEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+    78→                      "order": 3
+    79→                    },
+    80→                    {
+    81→                      "id": "obj-id_m0g4ytd8fv-3",
+    82→                      "lessonId": "id_m0g4ytd8fv",
+    83→                      "textAr": "النحو ينقسم إلى عدة فروع رئيسية: الصرف والإعراب والنحو التطبيقي",
+    84→                      "textEn": "Grammar is divided into several main branches: morphology, syntax, and applied grammar",
+    85→                      "order": 4
+    86→                    }
+    87→                  ],
+    88→                  "Concept": [
+    89→                    {
+    90→                      "id": "concept-id_m0g4ytd8fv-0",
+    91→                      "lessonId": "id_m0g4ytd8fv",
+    92→                      "termAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    93→                      "termEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    94→                      "definitionAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    95→                      "definitionEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    96→                      "order": 1
+    97→                    },
+    98→                    {
+    99→                      "id": "concept-id_m0g4ytd8fv-1",
+   100→                      "lessonId": "id_m0g4ytd8fv",
+   101→                      "termAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+   102→                      "termEn": "Noun",
+   103→                      "definitionAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+   104→                      "definitionEn": "Noun, verb, and particle are the basic concepts in grammar",
+   105→                      "order": 2
+   106→                    },
+   107→                    {
+   108→                      "id": "concept-id_m0g4ytd8fv-2",
+   109→                      "lessonId": "id_m0g4ytd8fv",
+   110→                      "termAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+   111→                      "termEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+   112→                      "definitionAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+   113→                      "definitionEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+   114→                      "order": 3
+   115→                    }
+   116→                  ],
+   117→                  "Formula": [
+   118→                    {
+   119→                      "id": "form-id_m0g4ytd8fv-0",
+   120→                      "lessonId": "id_m0g4ytd8fv",
+   121→                      "formula": "الفاعل + المفعول به + الفعل",
+   122→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   123→                      "explanationEn": "Arabic verbal sentence structure",
+   124→                      "order": 1
+   125→                    },
+   126→                    {
+   127→                      "id": "form-id_m0g4ytd8fv-1",
+   128→                      "lessonId": "id_m0g4ytd8fv",
+   129→                      "formula": "المبتدأ + الخبر",
+   130→                      "explanationAr": "ترتيب الجملة الاسمية",
+   131→                      "explanationEn": "Arabic nominal sentence structure",
+   132→                      "order": 2
+   133→                    }
+   134→                  ],
+   135→                  "Example": [
+   136→                    {
+   137→                      "id": "example-id_m0g4ytd8fv-0",
+   138→                      "lessonId": "id_m0g4ytd8fv",
+   139→                      "questionAr": "مثال على الاسم: الطالب يقرأ الكتاب بتركيز.",
+   140→                      "questionEn": "Example of a Noun: The student reads the book carefully.",
+   141→                      "solutionAr": "1. تحديد الكلمات: الطالب، يقرأ، الكتاب، ب، تركيز.\\n2. تحديد نوع كل كلمة: الطاسم (الطالب)، فعل مضارع (يقرأ)، اسم (الكتاب)، حرف (ب)، اسم (تركيز).",
+   142→                      "solutionEn": "1. Identify the words: The, student, reads, the, book, carefully.\\n2. Determine the type of each word: Article (the), noun (student), verb (reads), article (the), noun (book), adverb (carefully).",
+   143→                      "stepsAr": "1. تحديد الكلمات: الطالب، يقرأ، الكتاب، ب، تركيز.\\n2. تحديد نوع كل كلمة: الطاسم (الطالب)، فعل مضارع (يقرأ)، اسم (الكتاب)، حرف (ب)، اسم (تركيز).",
+   144→                      "stepsEn": "1. Identify the words: The, student, reads, the, book, carefully.\\n2. Determine the type of each word: Article (the), noun (student), verb (reads), article (the), noun (book), adverb (carefully).",
+   145→                      "order": 1
+   146→                    },
+   147→                    {
+   148→                      "id": "example-id_m0g4ytd8fv-1",
+   149→                      "lessonId": "id_m0g4ytd8fv",
+   150→                      "questionAr": "مثال على الفعل: المدرس يعلم الطلاب.",
+   151→                      "questionEn": "Example of a Verb: The teacher teaches the students.",
+   152→                      "solutionAr": "1. تحديد الكلمات: المدرس، يعلم، الطلاب.\\n2. تحديد نوع كل كلمة: اسم (المدرس)، فعل مضارع (يعلم)، اسم (الطلاب).\\n3. ملاحظة أن الفعل يعبر عن حدث (تعليم).",
+   153→                      "solutionEn": "1. Identify the words: The, teacher, teaches, the, students.\\n2. Determine the type of each word: Article (the), noun (teacher), verb (teaches), article (the), noun (students).\\n3. Notice that the verb expresses an action (teaching).",
+   154→                      "stepsAr": "1. تحديد الكلمات: المدرس، يعلم، الطلاب.\\n2. تحديد نوع كل كلمة: اسم (المدرس)، فعل مضارع (يعلم)، اسم (الطلاب).\\n3. ملاحظة أن الفعل يعبر عن حدث (تعليم).",
+   155→                      "stepsEn": "1. Identify the words: The, teacher, teaches, the, students.\\n2. Determine the type of each word: Article (the), noun (teacher), verb (teaches), article (the), noun (students).\\n3. Notice that the verb expresses an action (teaching).",
+   156→                      "order": 2
+   157→                    },
+   158→                    {
+   159→                      "id": "example-id_m0g4ytd8fv-2",
+   160→                      "lessonId": "id_m0g4ytd8fv",
+   161→                      "questionAr": "مثال على الحرف: ذهبت إلى المدرسة.",
+   162→                      "questionEn": "Example of a Particle: I went to the school.",
+   163→                      "solutionAr": "1. تحديد الكلمات: ذهبت، إلى، المدرسة.\\n2. تحديد نوع كل كلمة: فعل ماضي (ذهبت)، حرف (إلى)، اسم (المدرسة).\\n3. ملاحظة أن الحرف 'إلى' يربط بين الفعل والاسم ويشير إلى اتجاه.",
+   164→                      "solutionEn": "1. Identify the words: I, went, to, the, school.\\n2. Determine the type of each word: Pronoun (I), verb (went), preposition (to), article (the), noun (school).\\n3. Notice that the preposition 'to' connects the verb and the noun and indicates direction.",
+   165→                      "stepsAr": "1. تحديد الكلمات: ذهبت، إلى، المدرسة.\\n2. تحديد نوع كل كلمة: فعل ماضي (ذهبت)، حرف (إلى)، اسم (المدرسة).\\n3. ملاحظة أن الحرف 'إلى' يربط بين الفعل والاسم ويشير إلى اتجاه.",
+   166→                      "stepsEn": "1. Identify the words: I, went, to, the, school.\\n2. Determine the type of each word: Pronoun (I), verb (went), preposition (to), article (the), noun (school).\\n3. Notice that the preposition 'to' connects the verb and the noun and indicates direction.",
+   167→                      "order": 3
+   168→                    }
+   169→                  ],
+   170→                  "Question": [
+   171→                    {
+   172→                      "id": "q-id_m0g4ytd8fv-0",
+   173→                      "lessonId": "id_m0g4ytd8fv",
+   174→                      "type": "multiple-choice",
+   175→                      "questionAr": "ما هو تعريف علم النحو؟",
+   176→                      "questionEn": "What is the definition of grammar?",
+   177→                      "optionsAr": "[\"علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل\",\"علم يدرس تاريخ اللغة العربية\",\"علم يدرس الأدب العربي فقط\",\"علم يدرس البلاغة العربية\"]",
+   178→                      "optionsEn": "[\"The science that studies the rules of Arabic language in word and sentence construction\",\"The science that studies the history of Arabic language\",\"The science that studies Arabic literature only\",\"The science that studies Arabic rhetoric\"]",
+   179→                      "answer": "أ",
+   180→                      "explanationAr": "علم النحو هو علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل وتناسيبها، وهو ليس مجدر دراسة تاريخ اللغة أو الأدب فقط.",
+   181→                      "explanationEn": "Grammar is the science that studies the rules of Arabic language in word and sentence construction and their relationships, it is not just the study of language history or literature only.",
+   182→                      "points": 1,
+   183→                      "difficulty": "medium",
+   184→                      "order": 1
+   185→                    },
+   186→                    {
+   187→                      "id": "q-id_m0g4ytd8fv-1",
+   188→                      "lessonId": "id_m0g4ytd8fv",
+   189→                      "type": "multiple-choice",
+   190→                      "questionAr": "ما هي أنواع الكلمات الرئيسية في اللغة العربية؟",
+   191→                      "questionEn": "What are the main types of words in Arabic language?",
+   192→                      "optionsAr": "[\"اسم وفعل وحرف\",\"مفرد وجمع\",\"مذكر ومؤنث\",\"معجمي ووصفي\"]",
+   193→                      "optionsEn": "[\"Noun, verb, and particle\",\"Singular and plural\",\"Masculine and feminine\",\"Lexical and descriptive\"]",
+   194→                      "answer": "أ",
+   195→                      "explanationAr": "الاسم والفعل والحرف هي الأنواع الرئيسية للكلمات في اللغة العربية، حيث كل كلمة تنتمي إلى أحد هذه الأنواع الثلاثة.",
+   196→                      "explanationEn": "Noun, verb, and particle are the main types of words in Arabic language, where each word belongs to one of these three types.",
+   197→                      "points": 1,
+   198→                      "difficulty": "medium",
+   199→                      "order": 2
+   200→                    },
+   201→                    {
+   202→                      "id": "q-id_m0g4ytd8fv-2",
+   203→                      "lessonId": "id_m0g4ytd8fv",
+   204→                      "type": "multiple-choice",
+   205→                      "questionAr": "ما هو الفعل؟",
+   206→                      "questionEn": "What is a verb?",
+   207→                      "optionsAr": "[\"كل كلمة تدل على معنى قائم بنفسها\",\"كل كلمة تدل على حدث أو حالة\",\"كل كلمة تربط الكلمات وتفيد معاني\",\"كل كلمة لها صيغة خاصة\"]",
+   208→                      "optionsEn": "[\"Any word that refers to a meaning that exists in itself\",\"Any word that refers to an event or state\",\"Any word that connects words and conveys meanings\",\"Any word that has a special form\"]",
+   209→                      "answer": "ب",
+   210→                      "explanationAr": "الفعل هو كل كلمة تدل على حدث أو حالة مثل 'يكتب' و'يقرأ'، وهو ليس مجرد كلمة لها معنى قائم بنفسها أو كلمة تربط الكلمات.",
+   211→                      "explanationEn": "A verb is any word that refers to an event or state such as 'writes' and 'reads', it is not just a word that has a meaning in itself or a word that connects words.",
+   212→                      "points": 1,
+   213→                      "difficulty": "medium",
+   214→                      "order": 3
+   215→                    }
+   216→                  ]
+   217→                },
+   218→                {
+   219→                  "id": "id_klfewn4zjli",
+   220→                  "unitId": "id_z4td8ozh8jd",
+   221→                  "titleAr": "الدرس 2: وحدة النحو",
+   222→                  "titleEn": "Lesson 2",
+   223→                  "slug": "lesson-2-id_z4td8ozh8jd",
+   224→                  "descriptionAr": "شرح وحدة النحو - الدرس 2",
+   225→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 2",
+   226→                  "duration": 58,
+   227→                  "order": 2,
+   228→                  "isFree": false,
+   229→                  "videoUrl": null,
+   230→                  "pdfUrl": null,
+   231→                  "thumbnailUrl": null,
+   232→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا الثاني حول وحدة النحو. في هذا الدرس، سنستكشف أساسيات النحو العربي التي تشكل العمود الفقري للغة العربية. النحو ليس مجرد قواعد جافة، بل هو أداة تمكننا من التعبير عن أفكارنا بدقة ووضوح. سنتناول مفاهيم أساسية مثل المبتدأ والخبر، والفاعل والمفعول به، والجملة الاسمية والفعلية. هذه المفاهيم ضرورية لفهم بنية الجملة العربية وتحليلها بشكل صحيح. من خلال هذا الدرس، ستتمكنون من تطوير مهاراتكم في تحليل النصوص والكتابة الواضحة والمنظمة. لنبدأ رحلتنا في عالم النحو العربي الممتع والمفيد.",
+   233→                  "introductionEn": "Welcome to Grade 11 students for our second lesson on the grammar unit. In this lesson, we will explore the fundamentals of Arabic grammar that form the backbone of the Arabic language. Grammar is not just dry rules; it is a tool that enables us to express our ideas accurately and clearly. We will cover essential concepts such as the subject and predicate, the doer and the object, and the nominal and verbal sentences. These concepts are crucial for understanding and analyzing Arabic sentence structure correctly. Through this lesson, you will develop your skills in analyzing texts and writing clearly and organized. Let's begin our journey in the fascinating and useful world of Arabic grammar.",
+   234→                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات النحو العربي، خاصة الجملة الاسمية والفعلية. الجملة الاسمية تتكون من مبتدء وخبر، بينما الجملة الفعلية تتكون من فعل وفاعل ومفعول به. فهم هذه المفاهيم الأساسية ضروري لتحليل الجمل العربية بشكل صحيح وتطوير مهارات الكتابة. من خلال الأمثلة والتطبيقات العملية، تمكنا من تطبيق هذه المفاهيم على جمل مختلفة وتحليل مكوناتها. يجب على الطلاب ممارسة هذه المفاهيم بانتظام لتثبيتها في أذهانهم وتطبيقها في قراءاتهم وكتاباتهم المستقبلية.",
+   235→                  "summaryEn": "In this lesson, we learned the basics of Arabic grammar, particularly nominal and verbal sentences. A nominal sentence consists of a subject and a predicate, while a verbal sentence consists of a verb, a doer, and an object. Understanding these basic concepts is essential for analyzing Arabic sentences correctly and developing writing skills. Through examples and practical applications, we were able to apply these concepts to different sentences and analyze their components. Students should practice these concepts regularly to reinforce them in their minds and apply them in their future reading and writing.",
+   236→                  "createdAt": "2026-06-13T10:13:57.852Z",
+   237→                  "updatedAt": "2026-06-13T10:13:57.851Z",
+   238→                  "Objective": [
+   239→                    {
+   240→                      "id": "obj-id_klfewn4zjli-0",
+   241→                      "lessonId": "id_klfewn4zjli",
+   242→                      "textAr": "المبتدأ والخبر في الجملة الاسمية",
+   243→                      "textEn": "The subject and predicate in nominal sentences",
+   244→                      "order": 1
+   245→                    },
+   246→                    {
+   247→                      "id": "obj-id_klfewn4zjli-1",
+   248→                      "lessonId": "id_klfewn4zjli",
+   249→                      "textAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   250→                      "textEn": "The verb, doer, and object in verbal sentences",
+   251→                      "order": 2
+   252→                    },
+   253→                    {
+   254→                      "id": "obj-id_klfewn4zjli-2",
+   255→                      "lessonId": "id_klfewn4zjli",
+   256→                      "textAr": "أنواع المفعول به وأحكامه",
+   257→                      "textEn": "Types of objects and their rules",
+   258→                      "order": 3
+   259→                    }
+   260→                  ],
+   261→                  "Concept": [
+   262→                    {
+   263→                      "id": "concept-id_klfewn4zjli-0",
+   264→                      "lessonId": "id_klfewn4zjli",
+   265→                      "termAr": "المبتدأ والخبر في الجملة الاسمية",
+   266→                      "termEn": "The subject and predicate in nominal sentences",
+   267→                      "definitionAr": "المبتدأ والخبر في الجملة الاسمية",
+   268→                      "definitionEn": "The subject and predicate in nominal sentences",
+   269→                      "order": 1
+   270→                    },
+   271→                    {
+   272→                      "id": "concept-id_klfewn4zjli-1",
+   273→                      "lessonId": "id_klfewn4zjli",
+   274→                      "termAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   275→                      "termEn": "The verb",
+   276→                      "definitionAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   277→                      "definitionEn": "The verb, doer, and object in verbal sentences",
+   278→                      "order": 2
+   279→                    },
+   280→                    {
+   281→                      "id": "concept-id_klfewn4zjli-2",
+   282→                      "lessonId": "id_klfewn4zjli",
+   283→                      "termAr": "أنواع المفعول به وأحكامه",
+   284→                      "termEn": "Types of objects and their rules",
+   285→                      "definitionAr": "أنواع المفعول به وأحكامه",
+   286→                      "definitionEn": "Types of objects and their rules",
+   287→                      "order": 3
+   288→                    }
+   289→                  ],
+   290→                  "Formula": [
+   291→                    {
+   292→                      "id": "form-id_klfewn4zjli-0",
+   293→                      "lessonId": "id_klfewn4zjli",
+   294→                      "formula": "الفاعل + المفعول به + الفعل",
+   295→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   296→                      "explanationEn": "Arabic verbal sentence structure",
+   297→                      "order": 1
+   298→                    },
+   299→                    {
+   300→                      "id": "form-id_klfewn4zjli-1",
+   301→                      "lessonId": "id_klfewn4zjli",
+   302→                      "formula": "المبتدأ + الخبر",
+   303→                      "explanationAr": "ترتيب الجملة الاسمية",
+   304→                      "explanationEn": "Arabic nominal sentence structure",
+   305→                      "order": 2
+   306→                    }
+   307→                  ],
+   308→                  "Example": [
+   309→                    {
+   310→                      "id": "example-id_klfewn4zjli-0",
+   311→                      "lessonId": "id_klfewn4zjli",
+   312→                      "questionAr": "مثال على الجملة الاسمية: الطالب مجتهد",
+   313→                      "questionEn": "Example of a nominal sentence: The student is diligent",
+   314→                      "solutionAr": "1. تحديد المبتدأ: الطالب\\n2. تحديد الخبر: مجتهد",
+   315→                      "solutionEn": "1. Identify the subject: The student\\n2. Identify the predicate: diligent",
+   316→                      "stepsAr": "1. تحديد المبتدأ: الطالب\\n2. تحديد الخبر: مجتهد",
+   317→                      "stepsEn": "1. Identify the subject: The student\\n2. Identify the predicate: diligent",
+   318→                      "order": 1
+   319→                    },
+   320→                    {
+   321→                      "id": "example-id_klfewn4zjli-1",
+   322→                      "lessonId": "id_klfewn4zjli",
+   323→                      "questionAr": "مثال على الجملة الفعلية: يقرأ الطالب الكتاب",
+   324→                      "questionEn": "Example of a verbal sentence: The student reads the book",
+   325→                      "solutionAr": "1. تحديد الفعل: يقرأ\\n2. تحديد الفاعل: الطالب\\n3. تحديد المفعول به: الكتاب",
+   326→                      "solutionEn": "1. Identify the verb: reads\\n2. Identify the doer: The student\\n3. Identify the object: the book",
+   327→                      "stepsAr": "1. تحديد الفعل: يقرأ\\n2. تحديد الفاعل: الطالب\\n3. تحديد المفعول به: الكتاب",
+   328→                      "stepsEn": "1. Identify the verb: reads\\n2. Identify the doer: The student\\n3. Identify the object: the book",
+   329→                      "order": 2
+   330→                    }
+   331→                  ],
+   332→                  "Question": [
+   333→                    {
+   334→                      "id": "q-id_klfewn4zjli-0",
+   335→                      "lessonId": "id_klfewn4zjli",
+   336→                      "type": "multiple-choice",
+   337→                      "questionAr": "في الجملة 'المدرسة كبيرة'، ما هو المبتدأ؟",
+   338→                      "questionEn": "In the sentence 'The school is big', what is the subject?",
+   339→                      "optionsAr": "[\"المدرسة\",\"كبيرة\",\"جملة اسمية\",\"لا شيء مما ذكر\"]",
+   340→                      "optionsEn": "[\"The school\",\"Big\",\"Nominal sentence\",\"None of the above\"]",
+   341→                      "answer": "أ",
+   342→                      "explanationAr": "المبتدأ هو 'المدرسة' وهو المسمى الذي نريد الحديث عنه، بينما 'كبيرة' هو الخبر الذي يثبت به.",
+   343→                      "explanationEn": "The subject is 'The school' which is the noun we want to talk about, while 'big' is the predicate that affirms it.",
+   344→                      "points": 1,
+   345→                      "difficulty": "medium",
+   346→                      "order": 1
+   347→                    },
+   348→                    {
+   349→                      "id": "q-id_klfewn4zjli-1",
+   350→                      "lessonId": "id_klfewn4zjli",
+   351→                      "type": "multiple-choice",
+   352→                      "questionAr": "في الجملة 'كتب الطالب الدرس'، ما هو المفعول به؟",
+   353→                      "questionEn": "In the sentence 'The student wrote the lesson', what is the object?",
+   354→                      "optionsAr": "[\"كتب\",\"الطالب\",\"الدرس\",\"جملة فعلية\"]",
+   355→                      "optionsEn": "[\"Wrote\",\"The student\",\"The lesson\",\"Verbal sentence\"]",
+   356→                      "answer": "ج",
+   357→                      "explanationAr": "المفعول به هو 'الدرس' وهو ما وقع عليه الفعل 'كتب'، بينما 'الطالب' هو الفاعل.",
+   358→                      "explanationEn": "The object is 'The lesson' which receives the action of the verb 'wrote', while 'The student' is the doer.",
+   359→                      "points": 1,
+   360→                      "difficulty": "medium",
+   361→                      "order": 2
+   362→                    }
+   363→                  ]
+   364→                },
+   365→                {
+   366→                  "id": "id_p5i90a688np",
+   367→                  "unitId": "id_z4td8ozh8jd",
+   368→                  "titleAr": "الدرس 3: وحدة النحو",
+   369→                  "titleEn": "Lesson 3",
+   370→                  "slug": "lesson-3-id_z4td8ozh8jd",
+   371→                  "descriptionAr": "شرح وحدة النحو - الدرس 3",
+   372→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 3",
+   373→                  "duration": 49,
+   374→                  "order": 3,
+   375→                  "isFree": false,
+   376→                  "videoUrl": null,
+   377→                  "pdfUrl": null,
+   378→                  "thumbnailUrl": null,
+   379→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة النحو. النحو هو علم يدرس قواعد اللغة العربية في بن الجملة وتنظيمها، وهو أساس الفصاحة والبلاغة في اللغة. في هذا الدرس، سنتناول المفاهيم الأساسية للنحو العربي مثل الاسم والفعل والحرف، وأنواعها، وأحكام الإعراب. سنتعلم كيفية تحديد المفعول به والمفعول فيه والمفعول مكاناً، وكيفية التعرف على الخبر والخبرة في الجملة. كما سنتناول قواعد الإعراب الرئيسية مثل العطف والجزم والنصب. هذا الدرس يعتبر حجر الزاوية في فهم اللغة العربية بشكل صحيح، وسيساعدكم على تحسين مهاراتكم الكتابية والشفهية.",
+   380→                  "introductionEn": "Welcome to today's lesson on the Grammar Unit for first-year secondary school students. Grammar is the science that studies the rules of the Arabic language in constructing and organizing sentences, and it is the foundation of eloquence and rhetoric in the language. In this lesson, we will cover the basic concepts of Arabic grammar such as nouns, verbs, and particles, their types, and the rules of grammatical inflection (i'rab). We will learn how to identify the direct object, the indirect object, and the object of place, as well as how to recognize the predicate and its subject in a sentence. We will also discuss the main rules of grammatical inflection such as conjunction, jussive case, and accusative case. This lesson is considered the cornerstone of understanding the Arabic language correctly and will help you improve your written and verbal skills.",
+   381→                  "summaryAr": "في هذا الدرس تعلمنا أساسيات النحو العربي، حيث تعرفنا على مفهوم النحو وأهميته في فهم اللغة العربية بشكل صحيح. تعلمنا أنواع الكلمات الرئيسية: الاسم الذي يدل على شيء بذاته، والفعل الذي يدل على حدث أو حالة، والحرف الذي لا يدل على شيء بذاته. كما تعلمنا أنواع الجمل: الاسمية التي تبدأ باسم وخبر، والفعلية التي تبدأ بفعل. وتعلمنا أحكام الإعراب الثلاثة: رفع للاسم الذي دل عليه ضمير أو هو المبتدأ أو الخبر، نصب للاسم الذي دل عليه فعل مضارع أو نون جازم، وجر للاسم الذي دل عليه حرف جر. هذه المبادئ الأساسية تمثل حجر الزاوية في فهم اللغة العربية وتطبيق قواعدها بشكل صحيح.",
+   382→                  "summaryEn": "In this lesson, we learned the basics of Arabic grammar, where we became familiar with the concept of grammar and its importance in understanding the Arabic language correctly. We learned about the main types of words: nouns that refer to something in themselves, verbs that indicate an event or a state, and particles that do not refer to something in themselves. We also learned about the types of sentences: nominal sentences that begin with a noun and a predicate, and verbal sentences that begin with a verb. We learned the three rules of inflection: nominative for nouns indicated by a pronoun or that are the subject or predicate, accusative for nouns indicated by a present tense verb or a jussive nun, and genitive for nouns indicated by a preposition. These basic principles represent the cornerstone of understanding the Arabic language and applying its rules correctly.",
+   383→                  "createdAt": "2026-06-13T10:13:57.854Z",
+   384→                  "updatedAt": "2026-06-13T10:13:57.853Z",
+   385→                  "Objective": [
+   386→                    {
+   387→                      "id": "obj-id_p5i90a688np-0",
+   388→                      "lessonId": "id_p5i90a688np",
+   389→                      "textAr": "مفهوم النحو وأهميته في اللغة العربية",
+   390→                      "textEn": "Concept of grammar and its importance in the Arabic language",
+   391→                      "order": 1
+   392→                    },
+   393→                    {
+   394→                      "id": "obj-id_p5i90a688np-1",
+   395→                      "lessonId": "id_p5i90a688np",
+   396→                      "textAr": "أنواع الكلمات: الاسم، الفعل، والحرف",
+   397→                      "textEn": "Types of words: noun, verb, and particle",
+   398→                      "order": 2
+   399→                    },
+   400→                    {
+   401→                      "id": "obj-id_p5i90a688np-2",
+   402→                      "lessonId": "id_p5i90a688np",
+   403→                      "textAr": "أنواع الجمل: الاسمية والفعلية",
+   404→                      "textEn": "Types of sentences: nominal and verbal",
+   405→                      "order": 3
+   406→                    },
+   407→                    {
+   408→                      "id": "obj-id_p5i90a688np-3",
+   409→                      "lessonId": "id_p5i90a688np",
+   410→                      "textAr": "أحكام الإعراب: رفع، نصب، وجر",
+   411→                      "textEn": "Rules of inflection: nominative, accusative, and genitive",
+   412→                      "order": 4
+   413→                    }
+   414→                  ],
+   415→                  "Concept": [
+   416→                    {
+   417→                      "id": "concept-id_p5i90a688np-0",
+   418→                      "lessonId": "id_p5i90a688np",
+   419→                      "termAr": "مفهوم النحو وأهميته في اللغة العربية",
+   420→                      "termEn": "Concept of grammar and its importance in the Arabic language",
+   421→                      "definitionAr": "مفهوم النحو وأهميته في اللغة العربية",
+   422→                      "definitionEn": "Concept of grammar and its importance in the Arabic language",
+   423→                      "order": 1
+   424→                    },
+   425→                    {
+   426→                      "id": "concept-id_p5i90a688np-1",
+   427→                      "lessonId": "id_p5i90a688np",
+   428→                      "termAr": "أنواع الكلمات: الاسم",
+   429→                      "termEn": "Types of words: noun",
+   430→                      "definitionAr": "أنواع الكلمات: الاسم، الفعل، والحرف",
+   431→                      "definitionEn": "Types of words: noun, verb, and particle",
+   432→                      "order": 2
+   433→                    },
+   434→                    {
+   435→                      "id": "concept-id_p5i90a688np-2",
+   436→                      "lessonId": "id_p5i90a688np",
+   437→                      "termAr": "أنواع الجمل: الاسمية والفعلية",
+   438→                      "termEn": "Types of sentences: nominal and verbal",
+   439→                      "definitionAr": "أنواع الجمل: الاسمية والفعلية",
+   440→                      "definitionEn": "Types of sentences: nominal and verbal",
+   441→                      "order": 3
+   442→                    }
+   443→                  ],
+   444→                  "Formula": [
+   445→                    {
+   446→                      "id": "form-id_p5i90a688np-0",
+   447→                      "lessonId": "id_p5i90a688np",
+   448→                      "formula": "الفاعل + المفعول به + الفعل",
+   449→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   450→                      "explanationEn": "Arabic verbal sentence structure",
+   451→                      "order": 1
+   452→                    },
+   453→                    {
+   454→                      "id": "form-id_p5i90a688np-1",
+   455→                      "lessonId": "id_p5i90a688np",
+   456→                      "formula": "المبتدأ + الخبر",
+   457→                      "explanationAr": "ترتيب الجملة الاسمية",
+   458→                      "explanationEn": "Arabic nominal sentence structure",
+   459→                      "order": 2
+   460→                    }
+   461→                  ],
+   462→                  "Example": [
+   463→                    {
+   464→                      "id": "example-id_p5i90a688np-0",
+   465→                      "lessonId": "id_p5i90a688np",
+   466→                      "questionAr": "تحليل الجملة الاسمية: لنحلل الجملة: \"محمد طالب مجتهد\"",
+   467→                      "questionEn": "Analyzing the Nominal Sentence: Let's analyze the sentence: \"Muhammad is a diligent student\"",
+   468→                      "solutionAr": "1. \"محمد\" هو المبتدأ لأنه اسم مجرد مبني على الضمة في محل رفع مبتدأ.\\n2. \"طالب\" هو الخبر لأنه اسم مجرد مبني على الضمة في محل رفع خبر.\\n3. \"مجتهد\" هو صفة لطالب لأنه اسم مجرد مبني على الضمة في محل رفع خبر ثان.",
+   469→                      "solutionEn": "1. \"Muhammad\" is the subject (mubtada') because it is an abstract noun in the nominative case with a damma.\\n2. \"Student\" is the predicate (khabar) because it is an abstract noun in the nominative case with a damma.\\n3. \"Diligent\" is an adjective for \"student\" because it is an abstract noun in the nominative case with a damma, serving as a second predicate.",
+   470→                      "stepsAr": "1. \"محمد\" هو المبتدأ لأنه اسم مجرد مبني على الضمة في محل رفع مبتدأ.\\n2. \"طالب\" هو الخبر لأنه اسم مجرد مبني على الضمة في محل رفع خبر.\\n3. \"مجتهد\" هو صفة لطالب لأنه اسم مجرد مبني على الضمة في محل رفع خبر ثان.",
+   471→                      "stepsEn": "1. \"Muhammad\" is the subject (mubtada') because it is an abstract noun in the nominative case with a damma.\\n2. \"Student\" is the predicate (khabar) because it is an abstract noun in the nominative case with a damma.\\n3. \"Diligent\" is an adjective for \"student\" because it is an abstract noun in the nominative case with a damma, serving as a second predicate.",
+   472→                      "order": 1
+   473→                    },
+   474→                    {
+   475→                      "id": "example-id_p5i90a688np-1",
+   476→                      "lessonId": "id_p5i90a688np",
+   477→                      "questionAr": "تحليل الجملة الفعلية: لنحلل الجملة: \"يقرأ الطالب الدرس بجد\"",
+   478→                      "questionEn": "Analyzing the Verbal Sentence: Let's analyze the sentence: \"The student reads the lesson diligently\"",
+   479→                      "solutionAr": "1. \"يقرأ\" فعل مضارع مرفوع بالضمة لأنه ماضي مبني على الضمة.\\n2. \"الطالب\" فاعل مرفوع بالضمة لأنه اسم معرفة مبني على الضمة.\\n3. \"الدرس\" مفعول به منصب بالفتة لأنه معرفة نكرة.\\n4. \"ب\" حجر جر مجزوم بالسكون لأنه حرف جر.\\n5. \"جد\" مجرور بالكسرة لأنه اسم مجرد مجرور بحرف الجر.",
+   480→                      "solutionEn": "1. \"Reads\" is a present tense verb in the nominative case with a damma because it is a past tense verb built on a damma.\\n2. \"The student\" is the doer (fa'il) in the nominative case with a damma because it is a definite noun built on a damma.\\n3. \"The lesson\" is the direct object (maf'ul bihi) in the accusative case with a fatha because it is a definite indefinite noun.\\n4. \"With\" is a preposition particle in the jussive case with sukun because it is a preposition.\\n5. \"Diligently\" is in the genitive case with a kasra because it is an abstract noun governed by the preposition.",
+   481→                      "stepsAr": "1. \"يقرأ\" فعل مضارع مرفوع بالضمة لأنه ماضي مبني على الضمة.\\n2. \"الطالب\" فاعل مرفوع بالضمة لأنه اسم معرفة مبني على الضمة.\\n3. \"الدرس\" مفعول به منصب بالفتة لأنه معرفة نكرة.\\n4. \"ب\" حجر جر مجزوم بالسكون لأنه حرف جر.\\n5. \"جد\" مجرور بالكسرة لأنه اسم مجرد مجرور بحرف الجر.",
+   482→                      "stepsEn": "1. \"Reads\" is a present tense verb in the nominative case with a damma because it is a past tense verb built on a damma.\\n2. \"The student\" is the doer (fa'il) in the nominative case with a damma because it is a definite noun built on a damma.\\n3. \"The lesson\" is the direct object (maf'ul bihi) in the accusative case with a fatha because it is a definite indefinite noun.\\n4. \"With\" is a preposition particle in the jussive case with sukun because it is a preposition.\\n5. \"Diligently\" is in the genitive case with a kasra because it is an abstract noun governed by the preposition.",
+   483→                      "order": 2
+   484→                    }
+   485→                  ],
+   486→                  "Question": [
+   487→                    {
+   488→                      "id": "q-id_p5i90a688np-0",
+   489→                      "lessonId": "id_p5i90a688np",
+   490→                      "type": "multiple-choice",
+   491→                      "questionAr": "ما نوع الجملة التالية؟ \"الطالب يحفظ الدرس\"",
+   492→                      "questionEn": "What type of sentence is the following? \"The student memorizes the lesson\"",
+   493→                      "optionsAr": "[\"أ. جملة اسمية\",\"ب. جملة فعلية\",\"ج. جملة شرطية\",\"د. جملة استفهامية\"]",
+   494→                      "optionsEn": "[\"A. Nominal sentence\",\"B. Verbal sentence\",\"C. Conditional sentence\",\"D. Interrogative sentence\"]",
+   495→                      "answer": "ب",
+   496→                      "explanationAr": "الجملة فعلية لأنها تبدأ بفعل مضارع (يحفظ)، والفاعل (الطالب) والفاعل (الدرس) هما متممات للفعل.",
+   497→                      "explanationEn": "The sentence is verbal because it begins with a present tense verb (memorizes), and the subject (the student) and the object (the lesson) are complements to the verb.",
+   498→                      "points": 1,
+   499→                      "difficulty": "medium",
+   500→                      "order": 1
+   501→                    },
+   502→                    {
+   503→                      "id": "q-id_p5i90a688np-1",
+   504→                      "lessonId": "id_p5i90a688np",
+   505→                      "type": "multiple-choice",
+   506→                      "questionAr": "ما حرف الإعراب في كلمة \"في\" في الجملة: \"يذاكر الطالب في المدرسة\"؟",
+   507→                      "questionEn": "What is the grammatical case of the word \"in\" in the sentence: \"The student studies in the school\"?",
+   508→                      "optionsAr": "[\"أ. مرفوع\",\"ب. منصوب\",\"ج. مجزوم\",\"د. مجرور\"]",
+   509→                      "optionsEn": "[\"A. Nominative\",\"B. Accusative\",\"C. Jussive\",\"D. Genitive\"]",
+   510→                      "answer": "د",
+   511→                      "explanationAr": "كلمة \"في\" حرف جر، وهي تجزم ما بعدها من الأسماء، وتجرها، لذا فهي مجرور.",
+   512→                      "explanationEn": "The word \"in\" is a preposition particle, which governs the following nouns, making them genitive.",
+   513→                      "points": 1,
+   514→                      "difficulty": "medium",
+   515→                      "order": 2
+   516→                    },
+   517→                    {
+   518→                      "id": "q-id_p5i90a688np-2",
+   519→                      "lessonId": "id_p5i90a688np",
+   520→                      "type": "multiple-choice",
+   521→                      "questionAr": "ما نوع كلمة \"سعيد\" في الجملة: \"سعيد ذهب إلى المدرسة\"؟",
+   522→                      "questionEn": "What type of word is \"happy\" in the sentence: \"Happy went to school\"?",
+   523→                      "optionsAr": "[\"أ. فعل مضارع\",\"ب. اسم\",\"ج. حرف\",\"د. فعل ماضي\"]",
+   524→                      "optionsEn": "[\"A. Present tense verb\",\"B. Noun\",\"C. Particle\",\"D. Past tense verb\"]",
+   525→                      "answer": "ب",
+   526→                      "explanationAr": "كلمة \"سعيد\" اسم لأنها تدل على شخص بذاته، وهي هنا مبتدأ للجملة.",
+   527→                      "explanationEn": "The word \"happy\" is a noun because it refers to a person in themselves, and here it is the subject of the sentence.",
+   528→                      "points": 1,
+   529→                      "difficulty": "medium",
+   530→                      "order": 3
+   531→                    }
+   532→                  ]
+   533→                }
+   534→              ]
+   535→            },
+   536→            {
+   537→              "id": "id_tldrww0xts",
+   538→              "subjectId": "id_azlhpdzv3oq",
+   539→              "semesterId": null,
+   540→              "nameAr": "وحدة البلاغة",
+   541→              "nameEn": "Unit 2",
+   542→              "slug": "unit-2-id_azlhpdzv3oq",
+   543→              "order": 2,
+   544→              "createdAt": "2026-06-13T10:13:57.855Z",
+   545→              "updatedAt": "2026-06-13T10:13:57.855Z",
+   546→              "Lesson": [
+   547→                {
+   548→                  "id": "id_6zcexsrjr0v",
+   549→                  "unitId": "id_tldrww0xts",
+   550→                  "titleAr": "الدرس 1: وحدة البلاغة",
+   551→                  "titleEn": "Lesson 1",
+   552→                  "slug": "lesson-1-id_tldrww0xts",
+   553→                  "descriptionAr": "شرح وحدة البلاغة - الدرس 1",
+   554→                  "descriptionEn": "Explanation of وحدة البلاغة - Lesson 1",
+   555→                  "duration": 37,
+   556→                  "order": 1,
+   557→                  "isFree": false,
+   558→                  "videoUrl": null,
+   559→                  "pdfUrl": null,
+   560→                  "thumbnailUrl": null,
+   561→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة البلاغة. البلاغة هي فن البيان وتحسين الكلام، وتعتبر من أهم أركان اللغة العربية. في هذا الدرس، سنتعرف على مفهوم البلاغة وأهميتها في فهم النصوص الأدبية وتحليلها، بالإضافة إلى أنواعها الرئيسية: البيان، والبديع، والمعاني. سنتناول أمثلة تطبيقية من القرآن الكريم والشعر العربي لتوضيح هذه المفاهيم. سنساعدكم على تطوير مهارات التحليل الأدبي وفهم الأدوات البلاغية واستخدامها في كتابتكم اليومية.",
+   562→                  "introductionEn": "Welcome to first-year secondary school students in today's lesson on the Rhetoric Unit. Rhetoric is the art of expression and speech enhancement, considered one of the most important pillars of the Arabic language. In this lesson, we will learn about the concept of rhetoric and its importance in understanding and analyzing literary texts, in addition to its main types: clarity, metaphorical expressions, and meanings. We will discuss practical examples from the Quran and Arabic poetry to clarify these concepts. We will help you develop literary analysis skills and understand rhetorical devices and use them in your daily writing.",
+   563→                  "summaryAr": "في هذا الدرس تعرفنا على مفهوم البلاغة وفنونها الرئيسية الثلاثة: المعاني، والبيان، والبديع. تعلمنا كيفية تحديد واستخدام الأدوات البلاغية مثل المجاز، والكناية، والاستعارة، والتشبيه، والطباق، والجناس. فهمت كيف تساعد هذه الأدوات في تحليل النصوص الأدبية وفهمها بعمق، وكيف يمكن استخدامها لتحسين جودة الكتابة. تذكر أن البلاغة ليست مجرد قواعد، بل هي فن يتطلب الممارسة والدراسة المستمرة لتطوير مهاراتك في التعبير الفني.",
+   564→                  "summaryEn": "In this lesson, we learned about the concept of rhetoric and its three main types: meanings, clarity, and metaphorical expressions. We learned how to identify and use rhetorical devices such as metaphor, metonymy, simile, antithesis, and pun. We understood how these devices help in analyzing and understanding literary texts deeply, and how they can be used to improve the quality of writing. Remember that rhetoric is not just rules, but an art that requires continuous practice and study to develop your expressive skills.",
+   565→                  "createdAt": "2026-06-13T10:13:57.856Z",
+   566→                  "updatedAt": "2026-06-13T10:13:57.855Z",
+   567→                  "Objective": [
+   568→                    {
+   569→                      "id": "obj-id_6zcexsrjr0v-0",
+   570→                      "lessonId": "id_6zcexsrjr0v",
+   571→                      "textAr": "مفهوم البلاغة وأهميتها",
+   572→                      "textEn": "Concept of rhetoric and its importance",
+   573→                      "order": 1
+   574→                    },
+   575→                    {
+   576→                      "id": "obj-id_6zcexsrjr0v-1",
+   577→                      "lessonId": "id_6zcexsrjr0v",
+   578→                      "textAr": "أنواع البلاغة: المعاني، البيان، البديع",
+   579→                      "textEn": "Types of rhetoric: meanings, clarity, metaphorical expressions",
+   580→                      "order": 2
+   581→                    },
+   582→                    {
+   583→                      "id": "obj-id_6zcexsrjr0v-2",
+   584→                      "lessonId": "id_6zcexsrjr0v",
+   585→                      "textAr": "الأدوات البلاغية الرئيسية ومفاهيمها",
+   586→                      "textEn": "Main rhetorical devices and their concepts",
+   587→                      "order": 3
+   588→                    },
+   589→                    {
+   590→                      "id": "obj-id_6zcexsrjr0v-3",
+   591→                      "lessonId": "id_6zcexsrjr0v",
+   592→                      "textAr": "تطبيق الأدوات البلاغية في تحليل النصوص",
+   593→                      "textEn": "Applying rhetorical devices in text analysis",
+   594→                      "order": 4
+   595→                    }
+   596→                  ],
+   597→                  "Concept": [
+   598→                    {
+   599→                      "id": "concept-id_6zcexsrjr0v-0",
+   600→                      "lessonId": "id_6zcexsrjr0v",
+   601→                      "termAr": "مفهوم البلاغة وأهميتها",
+   602→                      "termEn": "Concept of rhetoric and its importance",
+   603→                      "definitionAr": "مفهوم البلاغة وأهميتها",
+   604→                      "definitionEn": "Concept of rhetoric and its importance",
+   605→                      "order": 1
+   606→                    },
+   607→                    {
+   608→                      "id": "concept-id_6zcexsrjr0v-1",
+   609→                      "lessonId": "id_6zcexsrjr0v",
+   610→                      "termAr": "أنواع البلاغة: المعاني",
+   611→                      "termEn": "Types of rhetoric: meanings",
+   612→                      "definitionAr": "أنواع البلاغة: المعاني، البيان، البديع",
+   613→                      "definitionEn": "Types of rhetoric: meanings, clarity, metaphorical expressions",
+   614→                      "order": 2
+   615→                    },
+   616→                    {
+   617→                      "id": "concept-id_6zcexsrjr0v-2",
+   618→                      "lessonId": "id_6zcexsrjr0v",
+   619→                      "termAr": "الأدوات البلاغية الرئيسية ومفاهيمها",
+   620→                      "termEn": "Main rhetorical devices and their concepts",
+   621→                      "definitionAr": "الأدوات البلاغية الرئيسية ومفاهيمها",
+   622→                      "definitionEn": "Main rhetorical devices and their concepts",
+   623→                      "order": 3
+   624→                    }
+   625→                  ],
+   626→                  "Formula": [
+   627→                    {
+   628→                      "id": "form-id_6zcexsrjr0v-0",
+   629→                      "lessonId": "id_6zcexsrjr0v",
+   630→                      "formula": "الفاعل + المفعول به + الفعل",
+   631→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   632→                      "explanationEn": "Arabic verbal sentence structure",
+   633→                      "order": 1
+   634→                    },
+   635→                    {
+   636→                      "id": "form-id_6zcexsrjr0v-1",
+   637→                      "lessonId": "id_6zcexsrjr0v",
+   638→                      "formula": "المبتدأ + الخبر",
+   639→                      "explanationAr": "ترتيب الجملة الاسمية",
+   640→                      "explanationEn": "Arabic nominal sentence structure",
+   641→                      "order": 2
+   642→                    }
+   643→                  ],
+   644→                  "Example": [
+   645→                    {
+   646→                      "id": "example-id_6zcexsrjr0v-0",
+   647→                      "lessonId": "id_6zcexsrjr0v",
+   648→                      "questionAr": "المجاز في القرآن الكريم: قال تعالى: \"وَجَاءَتْ سَكْرَىٰ الْجَمْعُ\" (الانشقاق: 5). هنا لم يقصد الله أن الجميع كانوا سكارى، بل استخدم المجاز للتعبير عن شدة الحيرة والارتباك الذي كانوا فيه.",
+   649→                      "questionEn": "Metaphor in the Quran: Allah says: \"And the crowd came drunkenness\" (Al-Inshiqaq: 5). Here, Allah does not mean that they were literally drunk, but uses metaphor to express the extreme confusion and bewilderment they were experiencing.",
+   650→                      "solutionAr": "التعرف على اللفظ المستخدم: 'سَكْرَىٰ' التي تعني السكر عادة.\\nفهم المعنى الحقيقي للآية: الحيرة والارتباك.\\nتطبيق مفهوم المجاز: استخدام كلمة في غير معناها الحقيقي للتعبير عن معنى آخر.",
+   651→                      "solutionEn": "Identify the word used: 'drunkenness' which usually means alcohol intoxication.\\nUnderstand the real meaning of the verse: confusion and bewilderment.\\nApply the concept of metaphor: using a word in its non-literal sense to express another meaning.",
+   652→                      "stepsAr": "التعرف على اللفظ المستخدم: 'سَكْرَىٰ' التي تعني السكر عادة.\\nفهم المعنى الحقيقي للآية: الحيرة والارتباك.\\nتطبيق مفهوم المجاز: استخدام كلمة في غير معناها الحقيقي للتعبير عن معنى آخر.",
+   653→                      "stepsEn": "Identify the word used: 'drunkenness' which usually means alcohol intoxication.\\nUnderstand the real meaning of the verse: confusion and bewilderment.\\nApply the concept of metaphor: using a word in its non-literal sense to express another meaning.",
+   654→                      "order": 1
+   655→                    },
+   656→                    {
+   657→                      "id": "example-id_6zcexsrjr0v-1",
+   658→                      "lessonId": "id_6zcexsrjr0v",
+   659→                      "questionAr": "الاستعارة في الشعر العربي: قال المتنبي:\n\"وَالرِّمَاحُ لَوْ تَدْرِي أَيْنَ تُصْبِحُ ... تَرْكَبُ مِنْهَا الظَّمْآنُ كَالْبَحْرِ الْجَارِي\"\nهنا استعار الرماح للبحار الجارية للتعبير عن كثرتها وانتشارها.",
+   660→                      "questionEn": "Simile in Arabic Poetry: Al-Mutanabbi said:\n\"And if the spears knew where they would end up ... the thirsty would ride them like the flowing sea\"\nHere, he metaphorically compares the spears to flowing seas to express their abundance and widespread distribution.",
+   661→                      "solutionAr": "تحديد المشبه به: البحار الجارية.\\nتحديد المشبه: الرماح.\\nفهم وجه الشبه: كثرة وانتشار الرماح كالبحار.\\nتطبيق مفهوم الاستعارة: تشبيه شيء بآخر بشكل ضمني.",
+   662→                      "solutionEn": "Identify the thing being compared: flowing seas.\\nIdentify the thing being compared to: spears.\\nUnderstand the point of similarity: abundance and widespread distribution of spears like seas.\\nApply the concept of metaphor: implicitly comparing one thing to another.",
+   663→                      "stepsAr": "تحديد المشبه به: البحار الجارية.\\nتحديد المشبه: الرماح.\\nفهم وجه الشبه: كثرة وانتشار الرماح كالبحار.\\nتطبيق مفهوم الاستعارة: تشبيه شيء بآخر بشكل ضمني.",
+   664→                      "stepsEn": "Identify the thing being compared: flowing seas.\\nIdentify the thing being compared to: spears.\\nUnderstand the point of similarity: abundance and widespread distribution of spears like seas.\\nApply the concept of metaphor: implicitly comparing one thing to another.",
+   665→                      "order": 2
+   666→                    }
+   667→                  ],
+   668→                  "Question": [
+   669→                    {
+   670→                      "id": "q-id_6zcexsrjr0v-0",
+   671→                      "lessonId": "id_6zcexsrjr0v",
+   672→                      "type": "multiple-choice",
+   673→                      "questionAr": "ما هو التعريف الصحيح للبلاغة؟",
+   674→                      "questionEn": "What is the correct definition of rhetoric?",
+   675→                      "optionsAr": "[\"فن الكلام الفني المؤثر\",\"علم النحو والصرف\",\"فن الخطابة فقط\",\"علم التاريخ الأدبي\"]",
+   676→                      "optionsEn": "[\"The art of effective eloquent speech\",\"The science of grammar and morphology\",\"The art of oratory only\",\"The science of literary history\"]",
+   677→                      "answer": "أ",
+   678→                      "explanationAr": "البلاغة هي فن الكلام الفني الذي يهدف إلى إيصال المعنى بشكل مؤثر وجذاب، وهي تختلف عن النحو والصرف الذي يهما بقواعد اللغة، وعن الخطابة التي هي نوع من أنواع البيانات.",
+   679→                      "explanationEn": "Rhetoric is the art of eloquent speech that aims to convey meaning effectively and attractively. It differs from grammar and morphology which deal with the rules of language, and from oratory which is a type of speech.",
+   680→                      "points": 1,
+   681→                      "difficulty": "medium",
+   682→                      "order": 1
+   683→                    },
+   684→                    {
+   685→                      "id": "q-id_6zcexsrjr0v-1",
+   686→                      "lessonId": "id_6zcexsrjr0v",
+   687→                      "type": "multiple-choice",
+   688→                      "questionAr": "ما هو نوع البلاغة الذي يركز على كيفية تنظيم الأفكار وتقديمها بشكل مؤثر؟",
+   689→                      "questionEn": "Which type of rhetoric focuses on how to organize ideas and present them effectively?",
+   690→                      "optionsAr": "[\"البيان\",\"المعاني\",\"البديع\",\"النحو\"]",
+   691→                      "optionsEn": "[\"Clarity\",\"Meanings\",\"Metaphorical expressions\",\"Grammar\"]",
+   692→                      "answer": "ب",
+   693→                      "explanationAr": "البلاغة المعنوية (المعاني) هي التي تركز على كيفية تنظيم الأفكار وتقديمها بشكل مؤثر، وتشمل المجاز، والكناية، والاستعارة، والطباق، والجناس.",
+   694→                      "explanationEn": "Semantic rhetoric (Meanings) focuses on how to organize ideas and present them effectively, including metaphor, metonymy, simile, antithesis, and pun.",
+   695→                      "points": 1,
+   696→                      "difficulty": "medium",
+   697→                      "order": 2
+   698→                    },
+   699→                    {
+   700→                      "id": "q-id_6zcexsrjr0v-2",
+   701→                      "lessonId": "id_6zcexsrjr0v",
+   702→                      "type": "multiple-choice",
+   703→                      "questionAr": "ما هي الأداة البلاغية المستخدمة في قول الشاعر:\n\"الدموعُ في العينينِ كالجَمْرِ الحَرِيرِ\"؟",
+   704→                      "questionEn": "What rhetorical device is used in the poet's saying:\n\"Tears in the eyes like the burning charcoal\"?",
+   705→                      "optionsAr": "[\"المجاز\",\"الكناية\",\"التشبيه\",\"الاستعارة\"]",
+   706→                      "optionsEn": "[\"Metaphor\",\"Metonymy\",\"Simile\",\"Metaphorical expression\"]",
+   707→                      "answer": "ج",
+   708→                      "explanationAr": "التشبيه هو المقارنة بين شيئين باستخدام حرف التشبيه (ك، كأن، مثلا، إلخ)، وهو ما ورد في البيت حيث قدم الدموع على أنها الجمر الحرير باستخدام حرف التشبيه 'ك'.",
+   709→                      "explanationEn": "Simile is the comparison between two things using the simile particle (like, as, for example, etc.), which is what appears in the verse where tears are presented as burning charcoal using the simile particle 'like'.",
+   710→                      "points": 1,
+   711→                      "difficulty": "medium",
+   712→                      "order": 3
+   713→                    }
+   714→                  ]
+   715→                },
+   716→                {
+   717→                  "id": "id_dyk1tfshig",
+   718→                  "unitId": "id_tldrww0xts",
+   719→                  "titleAr": "الدرس 2: وحدة البلاغة",
+   720→                  "titleEn": "Lesson 2",
+   721→                  "slug": "lesson-2-id_tldrww0xts",
+   722→                  "descriptionAr": "شرح وحدة البلاغة - الدرس 2",
+   723→                  "descriptionEn": "Explanation of وحدة البلاغة - Lesson 2",
+   724→                  "duration": 41,
+   725→                  "order": 2,
+   726→                  "isFree": false,
+   727→                  "videoUrl": null,
+   728→                  "pdfUrl": null,
+   729→                  "thumbnailUrl": null,
+   730→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة البلاغة. البلاغة هي فن البيان والفصاحة في اللغة العربية، وتعتبر من أهم الدروس في مادة اللغة العربية لأنها تساعدنا على فهم الجمال اللغوي وتحسين أسلوبنا في الكتابة والخطابة. في هذا الدرس، سنتعرف على أنواع البلاغة الرئيسية مثل الطباق، المجاز، الكناية، والاستعارة، وكيفية استخدامها في النصوص الأدبية. سنتناول أيضاً أمثلة تطبيقية من القرآن الكريم والشعر العربي لتوضيح هذه الأنواع. فهم البلاغة لا يساعدنا فقط في تحليل النصوص الأدبية، بل يعزز قدرتنا على التعبير عن الأفكار بشكل أكثر فصاحة وجاذبية.",
+   731→                  "introductionEn": "Welcome to today's lesson on Rhetoric Unit for first secondary grade students. Rhetoric is the art of eloquence and expression in the Arabic language, and it's considered one of the most important lessons in Arabic language subject as it helps us understand linguistic beauty and improve our style in writing and speech. In this lesson, we will learn about the main types of rhetoric such as antithesis, metaphor, metonymy, and simile, and how to use them in literary texts. We will also take practical examples from the Quran and Arabic poetry to clarify these types. Understanding rhetoric not only helps us in analyzing literary texts but also enhances our ability to express ideas more eloquently and attractively.",
+   732→                  "summaryAr": "تناول هذا الدرس أنواع البلاغة الرئيسية في اللغة العربية: المعاني، البيان، والبديع. تعلمنا عن أهم أنواع البلاغة مثل الطباق، الجناس، الاستعارة، الكناية، والمجاز، وكيفية استخدامها في النصوص الأدبية والقرآنية. كما درسنا أمثلة تطبيقية توضح استخدام هذه الأنواع في الشعر والنثر. فهم البلاغة يساعدنا على تحليل النصوص الأدبية بشكل أعمق وتحسين أسلوبنا في الكتابة والخطابة.",
+   733→                  "summaryEn": "This lesson covered the main types of rhetoric in the Arabic language: Meanings, Expression, and Embellishment. We learned about the most important types of rhetoric such as antithesis, pun, metaphor, metonymy, and metaphor, and how to use them in literary and Quranic texts. We also studied practical examples that illustrate the use of these types in poetry and prose. Understanding rhetoric helps us to analyze literary texts more deeply and improve our style in writing and speech.",
+   734→                  "createdAt": "2026-06-13T10:13:57.858Z",
+   735→                  "updatedAt": "2026-06-13T10:13:57.858Z",
+   736→                  "Objective": [
+   737→                    {
+   738→                      "id": "obj-id_dyk1tfshig-0",
+   739→                      "lessonId": "id_dyk1tfshig",
+   740→                      "textAr": "أنواع البلاغة الثلاثة: المعاني، البيان، البديع",
+   741→                      "textEn": "The three types of rhetoric: Meanings, Expression, Embellishment",
+   742→                      "order": 1
+   743→                    },
+   744→                    {
+   745→                      "id": "obj-id_dyk1tfshig-1",
+   746→                      "lessonId": "id_dyk1tfshig",
+   747→                      "textAr": "أشهر أنواع البلاغة: الطباق، الجناس، الاستعارة، الكناية، المجاز",
+   748→                      "textEn": "The most famous types of rhetoric: Antithesis, Pun, Metaphor, Metonymy, Metaphor",
+   749→                      "order": 2
+   750→                    },
+   751→                    {
+   752→                      "id": "obj-id_dyk1tfshig-2",
+   753→                      "lessonId": "id_dyk1tfshig",
+   754→                      "textAr": "تطبيق البلاغة في النصوص الأدبية والقرآنية",
+   755→                      "textEn": "Applying rhetoric in literary and Quranic texts",
+   756→                      "order": 3
+   757→                    }
+   758→                  ],
+   759→                  "Concept": [
+   760→                    {
+   761→                      "id": "concept-id_dyk1tfshig-0",
+   762→                      "lessonId": "id_dyk1tfshig",
+   763→                      "termAr": "أنواع البلاغة الثلاثة: المعاني",
+   764→                      "termEn": "The three types of rhetoric: Meanings",
+   765→                      "definitionAr": "أنواع البلاغة الثلاثة: المعاني، البيان، البديع",
+   766→                      "definitionEn": "The three types of rhetoric: Meanings, Expression, Embellishment",
+   767→                      "order": 1
+   768→                    },
+   769→                    {
+   770→                      "id": "concept-id_dyk1tfshig-1",
+   771→                      "lessonId": "id_dyk1tfshig",
+   772→                      "termAr": "أشهر أنواع البلاغة: الطباق",
+   773→                      "termEn": "The most famous types of rhetoric: Antithesis",
+   774→                      "definitionAr": "أشهر أنواع البلاغة: الطباق، الجناس، الاستعارة، الكناية، المجاز",
+   775→                      "definitionEn": "The most famous types of rhetoric: Antithesis, Pun, Metaphor, Metonymy, Metaphor",
+   776→                      "order": 2
+   777→                    },
+   778→                    {
+   779→                      "id": "concept-id_dyk1tfshig-2",
+   780→                      "lessonId": "id_dyk1tfshig",
+   781→                      "termAr": "تطبيق البلاغة في النصوص الأدبية والقرآنية",
+   782→                      "termEn": "Applying rhetoric in literary and Quranic texts",
+   783→                      "definitionAr": "تطبيق البلاغة في النصوص الأدبية والقرآنية",
+   784→                      "definitionEn": "Applying rhetoric in literary and Quranic texts",
+   785→                      "order": 3
+   786→                    }
+   787→                  ],
+   788→                  "Formula": [
+   789→                    {
+   790→                      "id": "form-id_dyk1tfshig-0",
+   791→                      "lessonId": "id_dyk1tfshig",
+   792→                      "formula": "الفاعل + المفعول به + الفعل",
+   793→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   794→                      "explanationEn": "Arabic verbal sentence structure",
+   795→                      "order": 1
+   796→                    },
+   797→                    {
+   798→                      "id": "form-id_dyk1tfshig-1",
+   799→                      "lessonId": "id_dyk1tfshig",
+   800→                      "formula": "المبتدأ + الخبر",
+   801→                      "explanationAr": "ترتيب الجملة الاسمية",
+   802→                      "explanationEn": "Arabic nominal sentence structure",
+   803→                      "order": 2
+   804→                    }
+   805→                  ],
+   806→                  "Example": [
+   807→                    {
+   808→                      "id": "example-id_dyk1tfshig-0",
+   809→                      "lessonId": "id_dyk1tfshig",
+   810→                      "questionAr": "طباق في القرآن الكريم: قال تعالى: \"وَمِنَ النَّاسِ مَن يَشْتَرِي لَهْوَ الْحَدِيثِ لِيُضِلَّ عَن سَبِيلِ اللَّهِ بِغَيْرِ عِلْمٍ وَيَتَّخِذَهَا هُزُوًا أُولَٰئِكَ لَهُمْ عَذَابٌ مُّهِينٌ\"",
+   811→                      "questionEn": "Antithesis in the Quran: Allah says: \"And of the people is he who buys the amusement of speech to mislead [others] from the way of Allah without knowledge and takes it in ridicule. Those will have a humiliating punishment.\"",
+   812→                      "solutionAr": "1. تضاد بين مشتري لهو الحديث وبين من يضل عن سبيل الله\\n2. تضاد بين عدم العلم وبين الهزو",
+   813→                      "solutionEn": "1. Contrast between the buyer of speech amusement and the one who misleads from Allah's way\\n2. Contrast between lack of knowledge and taking it as ridicule",
+   814→                      "stepsAr": "1. تضاد بين مشتري لهو الحديث وبين من يضل عن سبيل الله\\n2. تضاد بين عدم العلم وبين الهزو",
+   815→                      "stepsEn": "1. Contrast between the buyer of speech amusement and the one who misleads from Allah's way\\n2. Contrast between lack of knowledge and taking it as ridicule",
+   816→                      "order": 1
+   817→                    },
+   818→                    {
+   819→                      "id": "example-id_dyk1tfshig-1",
+   820→                      "lessonId": "id_dyk1tfshig",
+   821→                      "questionAr": "استعارة في الشعر: قال المتنبي: \"وَقَفْتُ بِالرَّمْلِ كَأَنَّمَا أَنَا مِنْهَا وَالرَّمْلُ لَيْسَ يَدْرِي مَنْ أَنَا\"",
+   822→                      "questionEn": "Metaphor in Poetry: Al-Mutanabbi said: \"I stood in the sand as if I were from it and the sand does not know who I am\"",
+   823→                      "solutionAr": "1. تشبيه المتنبي بالرمل\\n2. استعارة مستترة لأنه لم يذكر كلمة كأن",
+   824→                      "solutionEn": "1. Comparing Al-Mutanabbi to the sand\\n2. It's an implied metaphor because he didn't use the word 'as if'",
+   825→                      "stepsAr": "1. تشبيه المتنبي بالرمل\\n2. استعارة مستترة لأنه لم يذكر كلمة كأن",
+   826→                      "stepsEn": "1. Comparing Al-Mutanabbi to the sand\\n2. It's an implied metaphor because he didn't use the word 'as if'",
+   827→                      "order": 2
+   828→                    }
+   829→                  ],
+   830→                  "Question": [
+   831→                    {
+   832→                      "id": "q-id_dyk1tfshig-0",
+   833→                      "lessonId": "id_dyk1tfshig",
+   834→                      "type": "multiple-choice",
+   835→                      "questionAr": "ما نوع البلاغة في قول الشاعر: \"الصَّبَا يَذُوبُ مِنْهُ الْجَمْرُ وَالْبَرْدُ يَذُوبُ مِنْهُ الْجَمْرُ\"",
+   836→                      "questionEn": "What type of rhetoric is in the poet's saying: \"Passion melts the embers from it and cold melts the embers from it\"",
+   837→                      "optionsAr": "[\"أ. طباق\",\"ب. جناس\",\"ج. استعارة\",\"د. كناية\"]",
+   838→                      "optionsEn": "[\"A. Antithesis\",\"B. Pun\",\"C. Metaphor\",\"D. Metonymy\"]",
+   839→                      "answer": "أ",
+   840→                      "explanationAr": "الإجابة (أ) طباق، لأن هناك تضاداً بين الصبا والبرد في الذوبان من الجمر.",
+   841→                      "explanationEn": "The answer is A. Antithesis, because there is a contrast between passion and cold in melting the embers.",
+   842→                      "points": 1,
+   843→                      "difficulty": "medium",
+   844→                      "order": 1
+   845→                    },
+   846→                    {
+   847→                      "id": "q-id_dyk1tfshig-1",
+   848→                      "lessonId": "id_dyk1tfshig",
+   849→                      "type": "multiple-choice",
+   850→                      "questionAr": "ما نوع البلاغة في قول الشاعر: \"أَلاَ قِفْ بِالدَّهْرِ لَوْلاَ أَنَّكَ لَنْ تَدْرِي مَا يَكْسِبُ\"",
+   851→                      "questionEn": "What type of rhetoric is in the poet's saying: \"O, stop with time if only you knew what would be earned\"",
+   852→                      "optionsAr": "[\"أ. طباق\",\"ب. جناس\",\"ج. استعارة\",\"د. كناية\"]",
+   853→                      "optionsEn": "[\"A. Antithesis\",\"B. Pun\",\"C. Metaphor\",\"D. Metonymy\"]",
+   854→                      "answer": "ب",
+   855→                      "explanationAr": "الإجابة (ب) جناس، لأن هناك تكراراً لحرف اللام في كلمتي \"لولا\" و\"لن\".",
+   856→                      "explanationEn": "The answer is B. Pun, because there is a repetition of the letter 'l' in the words 'if only' and 'you will not'.",
+   857→                      "points": 1,
+   858→                      "difficulty": "medium",
+   859→                      "order": 2
+   860→                    },
+   861→                    {
+   862→                      "id": "q-id_dyk1tfshig-2",
+   863→                      "lessonId": "id_dyk1tfshig",
+   864→                      "type": "multiple-choice",
+   865→                      "questionAr": "ما نوع البلاغة في قول الشاعر: \"عَيْنَاكِ حَرَارَتَانِ وَقَلْبُكِ بَارِدٌ\"",
+   866→                      "questionEn": "What type of rhetoric is in the poet's saying: \"Your eyes are two hot things and your heart is cold\"",
+   867→                      "optionsAr": "[\"أ. طباق\",\"ب. جناس\",\"ج. استعارة\",\"د. كناية\"]",
+   868→                      "optionsEn": "[\"A. Antithesis\",\"B. Pun\",\"C. Metaphor\",\"D. Metonymy\"]",
+   869→                      "answer": "ج",
+   870→                      "explanationAr": "الإجابة (ج) استعارة، لأن هناك تشبيهاً مستتراً بين العينين والنار.",
+   871→                      "explanationEn": "The answer is C. Metaphor, because there is an implied comparison between the eyes and fire.",
+   872→                      "points": 1,
+   873→                      "difficulty": "medium",
+   874→                      "order": 3
+   875→                    }
+   876→                  ]
+   877→                },
+   878→                {
+   879→                  "id": "id_lldgsx9n1rn",
+   880→                  "unitId": "id_tldrww0xts",
+   881→                  "titleAr": "الدرس 3: وحدة البلاغة",
+   882→                  "titleEn": "Lesson 3",
+   883→                  "slug": "lesson-3-id_tldrww0xts",
+   884→                  "descriptionAr": "شرح وحدة البلاغة - الدرس 3",
+   885→                  "descriptionEn": "Explanation of وحدة البلاغة - Lesson 3",
+   886→                  "duration": 30,
+   887→                  "order": 3,
+   888→                  "isFree": false,
+   889→                  "videoUrl": null,
+   890→                  "pdfUrl": null,
+   891→                  "thumbnailUrl": null,
+   892→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة البلاغة. تعتبر البلاغة من أهم فروع علم البيان في اللغة العربية، حيث تهتم بدراسة الأساليب الفنية التي يستخدمها الكاتب للتأثير في المتلقي وتحقيق الأثر المرجو في النص الأدبي. في هذا الدرس، سنستعرض أنواع البلاغة الرئيسية مثل الطباق، المجاز، الكناية، الاستعارة، والطباق، وسنحلل كيفية استخدامها في النصوص الأدبية المختلفة. كما سنتعرف على وظائف البلاغة في النص وتأثيرها في فهم المعنى وتقديره. سنتناول أمثلة متنوعة من القرآن الكريم والشعر العربي والنثر الفني لتوضيح هذه المفاهيم بشكل عملي.",
+   893→                  "introductionEn": "Welcome to today's lesson on the Rhetoric Unit for first-year secondary school students. Rhetoric is one of the most important branches of Arabic rhetoric, focusing on studying the stylistic techniques used by writers to influence the audience and achieve the desired effect in literary texts. In this lesson, we will review the main types of rhetoric such as antithesis, metaphor, metonymy, simile, and paradox, and analyze how they are used in different literary texts. We will also explore the functions of rhetoric in text understanding and appreciation. We will examine diverse examples from the Quran, Arabic poetry, and literary prose to clarify these concepts practically.",
+   894→                  "summaryAr": "في هذا الدرس تعرفنا على وحدة البلاغة وأهميتها في فهم النصوص الأدبية وتقديرها. تعرفنا على أنواع البلاغة الرئيسية مثل الطباق، المجاز، الكناية، والاستعارة، وتعرفنا على وظائفها في النص الأدبي. تعلمنا كيفية تحليل هذه الأساليب وتأثيرها في توصيل المعنى وتحقيق الأثر الفني. كما تعرفنا على أمثلة تطبيقية من القرآن الكريم والشعر العربي والنثر الفني توضح استخدام هذه الأساليب. يعتبر فهم البلاغة مهارة أساسية لكل طالب لغوي تساعده على فهم النصوص الأدبية بشكل أعمق وتقدير جمالها وفنيتها.",
+   895→                  "summaryEn": "In this lesson, we learned about the Rhetoric Unit and its importance in understanding and appreciating literary texts. We explored the main types of rhetoric such as antithesis, metaphor, metonymy, and simile, and learned about their functions in literary texts. We learned how to analyze these techniques and their effect on conveying meaning and achieving artistic impact. We also examined practical examples from the Quran, Arabic poetry, and literary prose that illustrate the use of these techniques. Understanding rhetoric is an essential skill for every language student, helping them to understand literary texts more deeply and appreciate their beauty and artistry.",
+   896→                  "createdAt": "2026-06-13T10:13:57.860Z",
+   897→                  "updatedAt": "2026-06-13T10:13:57.859Z",
+   898→                  "Objective": [
+   899→                    {
+   900→                      "id": "obj-id_lldgsx9n1rn-0",
+   901→                      "lessonId": "id_lldgsx9n1rn",
+   902→                      "textAr": "أنواع البلاغة الرئيسية: الطباق، المجاز، الكناية، الاستعارة",
+   903→                      "textEn": "Main types of rhetoric: antithesis, metaphor, metonymy, simile",
+   904→                      "order": 1
+   905→                    },
+   906→                    {
+   907→                      "id": "obj-id_lldgsx9n1rn-1",
+   908→                      "lessonId": "id_lldgsx9n1rn",
+   909→                      "textAr": "وظائف البلاغة في النص الأدبي: التأثير في المتلقي، توضيح المعنى، إضفاء الجمال",
+   910→                      "textEn": "Functions of rhetoric in literary texts: influencing the audience, clarifying meaning, adding beauty",
+   911→                      "order": 2
+   912→                    },
+   913→                    {
+   914→                      "id": "obj-id_lldgsx9n1rn-2",
+   915→                      "lessonId": "id_lldgsx9n1rn",
+   916→                      "textAr": "أمثلة تطبيقية من القرآن الكريم والشعر العربي والنثر الفني",
+   917→                      "textEn": "Practical examples from the Quran, Arabic poetry, and literary prose",
+   918→                      "order": 3
+   919→                    },
+   920→                    {
+   921→                      "id": "obj-id_lldgsx9n1rn-3",
+   922→                      "lessonId": "id_lldgsx9n1rn",
+   923→                      "textAr": "تحليل الأساليب البلاغية وتأثيرها في فهم النص وتقديره",
+   924→                      "textEn": "Analysis of rhetorical techniques and their effect on text understanding and appreciation",
+   925→                      "order": 4
+   926→                    }
+   927→                  ],
+   928→                  "Concept": [
+   929→                    {
+   930→                      "id": "concept-id_lldgsx9n1rn-0",
+   931→                      "lessonId": "id_lldgsx9n1rn",
+   932→                      "termAr": "أنواع البلاغة الرئيسية: الطباق",
+   933→                      "termEn": "Main types of rhetoric: antithesis",
+   934→                      "definitionAr": "أنواع البلاغة الرئيسية: الطباق، المجاز، الكناية، الاستعارة",
+   935→                      "definitionEn": "Main types of rhetoric: antithesis, metaphor, metonymy, simile",
+   936→                      "order": 1
+   937→                    },
+   938→                    {
+   939→                      "id": "concept-id_lldgsx9n1rn-1",
+   940→                      "lessonId": "id_lldgsx9n1rn",
+   941→                      "termAr": "وظائف البلاغة في النص الأدبي: التأثير في المتلقي",
+   942→                      "termEn": "Functions of rhetoric in literary texts: influencing the audience",
+   943→                      "definitionAr": "وظائف البلاغة في النص الأدبي: التأثير في المتلقي، توضيح المعنى، إضفاء الجمال",
+   944→                      "definitionEn": "Functions of rhetoric in literary texts: influencing the audience, clarifying meaning, adding beauty",
+   945→                      "order": 2
+   946→                    },
+   947→                    {
+   948→                      "id": "concept-id_lldgsx9n1rn-2",
+   949→                      "lessonId": "id_lldgsx9n1rn",
+   950→                      "termAr": "أمثلة تطبيقية من القرآن الكريم والشعر العربي والنثر الفني",
+   951→                      "termEn": "Practical examples from the Quran",
+   952→                      "definitionAr": "أمثلة تطبيقية من القرآن الكريم والشعر العربي والنثر الفني",
+   953→                      "definitionEn": "Practical examples from the Quran, Arabic poetry, and literary prose",
+   954→                      "order": 3
+   955→                    }
+   956→                  ],
+   957→                  "Formula": [
+   958→                    {
+   959→                      "id": "form-id_lldgsx9n1rn-0",
+   960→                      "lessonId": "id_lldgsx9n1rn",
+   961→                      "formula": "الفاعل + المفعول به + الفعل",
+   962→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   963→                      "explanationEn": "Arabic verbal sentence structure",
+   964→                      "order": 1
+   965→                    },
+   966→                    {
+   967→                      "id": "form-id_lldgsx9n1rn-1",
+   968→                      "lessonId": "id_lldgsx9n1rn",
+   969→                      "formula": "المبتدأ + الخبر",
+   970→                      "explanationAr": "ترتيب الجملة الاسمية",
+   971→                      "explanationEn": "Arabic nominal sentence structure",
+   972→                      "order": 2
+   973→                    }
+   974→                  ],
+   975→                  "Example": [
+   976→                    {
+   977→                      "id": "example-id_lldgsx9n1rn-0",
+   978→                      "lessonId": "id_lldgsx9n1rn",
+   979→                      "questionAr": "طباق في الشعر: مثال على الطباق من قصيدة لأمية بن الصلت: 'ألا يا ليل الصبِّ إن طال فلا تَمْلِ، فإنَّ النَّاسَ في النَّومِ مُتَى يُوقَظُون؟'",
+   980→                      "questionEn": "Antithesis in Poetry: Example of antithesis from a poem by Umaya b. al-Salt: 'O night of dawn, if prolonged, don't be tedious, for when will people wake from sleep?'",
+   981→                      "solutionAr": "1. تحليل أبيات الشعر: يقارب الشاعر بين طول الليل وإمهال الناس في النوم\\n2. توضيح تأثير الطباق: يخلق تباينًا بين الرغبة في طول الليل والرغبة في الاستيقاظ",
+   982→                      "solutionEn": "1. Analysis of the poem: The poet contrasts the length of night with people's desire to sleep longer\\n2. Explanation of antithesis effect: Creates contrast between desire for long night and desire to wake up",
+   983→                      "stepsAr": "1. تحليل أبيات الشعر: يقارب الشاعر بين طول الليل وإمهال الناس في النوم\\n2. توضيح تأثير الطباق: يخلق تباينًا بين الرغبة في طول الليل والرغبة في الاستيقاظ",
+   984→                      "stepsEn": "1. Analysis of the poem: The poet contrasts the length of night with people's desire to sleep longer\\n2. Explanation of antithesis effect: Creates contrast between desire for long night and desire to wake up",
+   985→                      "order": 1
+   986→                    },
+   987→                    {
+   988→                      "id": "example-id_lldgsx9n1rn-1",
+   989→                      "lessonId": "id_lldgsx9n1rn",
+   990→                      "questionAr": "استعارة في القرآن الكريم: مثال على الاستعارة من القرآن الكريم: 'وَجَاءَتْ سَكْرَى الْوَحْشَاءُ' (سورة الإسراء: 72)",
+   991→                      "questionEn": "Simile in the Quran: Example of simile from the Quran: 'And intoxication of wild beasts' (Surah Al-Isra: 72)",
+   992→                      "solutionAr": "1. تحليل الآية: وصف الكافرين بأنهم سكارى بسبب الهوى\\n2. توضيح الاستعارة: تشبيه حالة الغفلة بسبب الهوى بالسكر",
+   993→                      "solutionEn": "1. Analysis of the verse: Describes disbelievers as intoxicated due to their desires\\n2. Explanation of the simile: Compares the state of ignorance due to desires with intoxication",
+   994→                      "stepsAr": "1. تحليل الآية: وصف الكافرين بأنهم سكارى بسبب الهوى\\n2. توضيح الاستعارة: تشبيه حالة الغفلة بسبب الهوى بالسكر",
+   995→                      "stepsEn": "1. Analysis of the verse: Describes disbelievers as intoxicated due to their desires\\n2. Explanation of the simile: Compares the state of ignorance due to desires with intoxication",
+   996→                      "order": 2
+   997→                    }
+   998→                  ],
+   999→                  "Question": [
+  1000→                    {
+  1001→                      "id": "q-id_lldgsx9n1rn-0",
+  1002→                      "lessonId": "id_lldgsx9n1rn",
+  1003→                      "type": "multiple-choice",
+  1004→                      "questionAr": "ما نوع الأسلوب البلاغي في قول الشاعر: 'السيفُ يَزْدَرِي بِهِ الجَبَّارُ'؟",
+  1005→                      "questionEn": "What type of rhetorical device is used in the poet's saying: 'The sword despises the tyrant'?",
+  1006→                      "optionsAr": "[\"أ. كناية\",\"ب. استعارة\",\"ج. مجاز\",\"د. طباق\"]",
+  1007→                      "optionsEn": "[\"A. Metonymy\",\"B. Simile\",\"C. Metaphor\",\"D. Antithesis\"]",
+  1008→                      "answer": "ب",
+  1009→                      "explanationAr": "الجواب هو ب. استعارة، لأن السيف وصف بصفة التزدري التي لا توجد في السيف في الواقع، بل هي صفة الإنسان، وهذا هو الاستعارة.",
+  1010→                      "explanationEn": "The answer is B. Simile, because the sword is described with the quality of despising, which doesn't actually apply to swords but to humans, which is the definition of simile.",
+  1011→                      "points": 1,
+  1012→                      "difficulty": "medium",
+  1013→                      "order": 1
+  1014→                    },
+  1015→                    {
+  1016→                      "id": "q-id_lldgsx9n1rn-1",
+  1017→                      "lessonId": "id_lldgsx9n1rn",
+  1018→                      "type": "multiple-choice",
+  1019→                      "questionAr": "ما نوع الأسلوب البلاغي في قول الله تعالى: 'وَمَن يَعْصِ اللَّهَ وَرَسُولَهُ فَإِنَّ لَهُ عَذَابًا عَظِيمًا'؟",
+  1020→                      "questionEn": "What type of rhetorical device is used in Allah's saying: 'And whoever disobeys Allah and His Messenger, for him is a severe punishment'?",
+  1021→                      "optionsAr": "[\"أ. مجاز\",\"ب. كناية\",\"ج. استعارة\",\"د. طباق\"]",
+  1022→                      "optionsEn": "[\"A. Metaphor\",\"B. Metonymy\",\"C. Simile\",\"D. Antithesis\"]",
+  1023→                      "answer": "أ",
+  1024→                      "explanationAr": "الجواب هو أ. مجاز، لأن العقاب وصف بالعظمة وهي صفة لا تناسب العقاب في الواقع، بل تناسب شيئًا آخر، وهذا هو المجاز.",
+  1025→                      "explanationEn": "The answer is A. Metaphor, because punishment is described as severe, which is a quality that doesn't actually suit punishment but something else, which is the definition of metaphor.",
+  1026→                      "points": 1,
+  1027→                      "difficulty": "medium",
+  1028→                      "order": 2
+  1029→                    }
+  1030→                  ]
+  1031→                }
+  1032→              ]
+  1033→            },
+  1034→            {
+  1035→              "id": "id_sx3rovigny",
+  1036→              "subjectId": "id_azlhpdzv3oq",
+  1037→              "semesterId": null,
+  1038→              "nameAr": "وحدة الأدب",
+  1039→              "nameEn": "Unit 3",
+  1040→              "slug": "unit-3-id_azlhpdzv3oq",
+  1041→              "order": 3,
+  1042→              "createdAt": "2026-06-13T10:13:57.861Z",
+  1043→              "updatedAt": "2026-06-13T10:13:57.861Z",
+  1044→              "Lesson": [
+  1045→                {
+  1046→                  "id": "id_c0bydw1l2n6",
+  1047→                  "unitId": "id_sx3rovigny",
+  1048→                  "titleAr": "الدرس 1: وحدة الأدب",
+  1049→                  "titleEn": "Lesson 1",
+  1050→                  "slug": "lesson-1-id_sx3rovigny",
+  1051→                  "descriptionAr": "شرح وحدة الأدب - الدرس 1",
+  1052→                  "descriptionEn": "Explanation of وحدة الأدب - Lesson 1",
+  1053→                  "duration": 44,
+  1054→                  "order": 1,
+  1055→                  "isFree": false,
+  1056→                  "videoUrl": null,
+  1057→                  "pdfUrl": null,
+  1058→                  "thumbnailUrl": null,
+  1059→                  "introductionAr": "يُعد درس وحدة الأدب من الدروس الأساسية في مادة اللغة العربية للصف الأول الثانوي، حيث يُعد بوابة الطلاب إلى عالم الأدب العربي الغني. يهدف هذا الدرس إلى تعريف الطلاب بمفهوم الأدب وأنواعه الرئيسية (الشعر والنثر)، بالإضافة إلى استعراض أهم العصور الأدبية في التاريخ العربي. كما يركز على تطوير مهارات الطلاب في التحليل الأدبي والقدرة على فهم واستيعاب النصوص الأدبية المختلفة. من خلال هذا الدرس، سيتمكن الطلاب من التعرف على أساسيات النقد الأدبي وتطبيقاته العملية، مما يساعدهم على تنمية ذوقهم الأدبي وقدرتهم على التعبير عن آرائهم بشكل منظم ومفهوم.",
+  1060→                  "introductionEn": "The Literature Unit lesson is a fundamental part of the Arabic language curriculum for first-year secondary school students, serving as their gateway to the rich world of Arabic literature. This lesson aims to introduce students to the concept of literature and its main types (poetry and prose), in addition to reviewing the most important literary periods in Arab history. It also focuses on developing students' skills in literary analysis and their ability to understand and comprehend various literary texts. Through this lesson, students will be able to learn the basics of literary criticism and its practical applications, helping them develop their literary taste and their ability to express their opinions in an organized and understandable manner.",
+  1061→                  "summaryAr": "يُعد درس وحدة الأدب أساسياً لفهم وتقدير الإنتاج الأدبي العربي. من خلال هذا الدرس، تعرف الطلاب على مفهوم الأدب وأنواعه الرئيسية (الشعر والنثر)، واستعرضوا أهم العصور الأدبية في التاريخ العربي، وتعلموا أساليب النقد الأدبي وتطبيقاتها العملية. كما تمكن الطلاب من تطوير مهاراتهم في التحليل الأدبي والقدرة على فهم واستيعاب النصوص الأدبية المختلفة، مما يساعدهم على تنمية ذوقهم الأدبي وقدرتهم على التعبير عن آرائهم بشكل منظم ومفهوم.",
+  1062→                  "summaryEn": "The Literature Unit lesson is fundamental for understanding and appreciating Arabic literary production. Through this lesson, students learn about the concept of literature and its main types (poetry and prose), review the most important literary periods in Arab history, and learn methods of literary criticism and their practical applications. Students also develop their skills in literary analysis and their ability to understand and comprehend various literary texts, helping them develop their literary taste and their ability to express their opinions in an organized and understandable manner.",
+  1063→                  "createdAt": "2026-06-13T10:13:57.862Z",
+  1064→                  "updatedAt": "2026-06-13T10:13:57.861Z",
+  1065→                  "Objective": [
+  1066→                    {
+  1067→                      "id": "obj-id_c0bydw1l2n6-0",
+  1068→                      "lessonId": "id_c0bydw1l2n6",
+  1069→                      "textAr": "مفهوم الأدب وأنواعه الرئيسية (الشعر والنثر)",
+  1070→                      "textEn": "The concept of literature and its main types (poetry and prose)",
+  1071→                      "order": 1
+  1072→                    },
+  1073→                    {
+  1074→                      "id": "obj-id_c0bydw1l2n6-1",
+  1075→                      "lessonId": "id_c0bydw1l2n6",
+  1076→                      "textAr": "العصور الأدبية الرئيسية في التاريخ العربي",
+  1077→                      "textEn": "The main literary periods in Arab history",
+  1078→                      "order": 2
+  1079→                    },
+  1080→                    {
+  1081→                      "id": "obj-id_c0bydw1l2n6-2",
+  1082→                      "lessonId": "id_c0bydw1l2n6",
+  1083→                      "textAr": "أساليب النقد الأدبي وتطبيقاته العملية",
+  1084→                      "textEn": "Methods of literary criticism and their practical applications",
+  1085→                      "order": 3
+  1086→                    }
+  1087→                  ],
+  1088→                  "Concept": [
+  1089→                    {
+  1090→                      "id": "concept-id_c0bydw1l2n6-0",
+  1091→                      "lessonId": "id_c0bydw1l2n6",
+  1092→                      "termAr": "مفهوم الأدب وأنواعه الرئيسية (الشعر والنثر)",
+  1093→                      "termEn": "The concept of literature and its main types (poetry and prose)",
+  1094→                      "definitionAr": "مفهوم الأدب وأنواعه الرئيسية (الشعر والنثر)",
+  1095→                      "definitionEn": "The concept of literature and its main types (poetry and prose)",
+  1096→                      "order": 1
+  1097→                    },
+  1098→                    {
+  1099→                      "id": "concept-id_c0bydw1l2n6-1",
+  1100→                      "lessonId": "id_c0bydw1l2n6",
+  1101→                      "termAr": "العصور الأدبية الرئيسية في التاريخ العربي",
+  1102→                      "termEn": "The main literary periods in Arab history",
+  1103→                      "definitionAr": "العصور الأدبية الرئيسية في التاريخ العربي",
+  1104→                      "definitionEn": "The main literary periods in Arab history",
+  1105→                      "order": 2
+  1106→                    },
+  1107→                    {
+  1108→                      "id": "concept-id_c0bydw1l2n6-2",
+  1109→                      "lessonId": "id_c0bydw1l2n6",
+  1110→                      "termAr": "أساليب النقد الأدبي وتطبيقاته العملية",
+  1111→                      "termEn": "Methods of literary criticism and their practical applications",
+  1112→                      "definitionAr": "أساليب النقد الأدبي وتطبيقاته العملية",
+  1113→                      "definitionEn": "Methods of literary criticism and their practical applications",
+  1114→                      "order": 3
+  1115→                    }
+  1116→                  ],
+  1117→                  "Formula": [
+  1118→                    {
+  1119→                      "id": "form-id_c0bydw1l2n6-0",
+  1120→                      "lessonId": "id_c0bydw1l2n6",
+  1121→                      "formula": "الفاعل + المفعول به + الفعل",
+  1122→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1123→                      "explanationEn": "Arabic verbal sentence structure",
+  1124→                      "order": 1
+  1125→                    },
+  1126→                    {
+  1127→                      "id": "form-id_c0bydw1l2n6-1",
+  1128→                      "lessonId": "id_c0bydw1l2n6",
+  1129→                      "formula": "المبتدأ + الخبر",
+  1130→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1131→                      "explanationEn": "Arabic nominal sentence structure",
+  1132→                      "order": 2
+  1133→                    }
+  1134→                  ],
+  1135→                  "Example": [
+  1136→                    {
+  1137→                      "id": "example-id_c0bydw1l2n6-0",
+  1138→                      "lessonId": "id_c0bydw1l2n6",
+  1139→                      "questionAr": "تحليل قصيدة: دراسة قصيدة 'لا تنهك نفسك' للشاعر المتنبي لفهم الأسلوب البياني والمعاني العميقة",
+  1140→                      "questionEn": "Poem Analysis: Studying the poem 'Do not exhaust yourself' by the poet Al-Mutanabbi to understand the rhetorical style and deep meanings",
+  1141→                      "solutionAr": "التعرف على مكانة الشاعر والسياق التاريخي للقصيدة\\nتحليل الوزن والقافية والبيان المستخدم\\nاستخلاص المعاني والرسائل الرئيسية في القصيدة\\nتقييم الأثر الفني للقصيدة",
+  1142→                      "solutionEn": "Getting to know the poet's status and the historical context of the poem\\nAnalyzing the rhythm, rhyme, and rhetoric used\\nExtracting the main meanings and messages in the poem\\nEvaluating the artistic impact of the poem",
+  1143→                      "stepsAr": "التعرف على مكانة الشاعر والسياق التاريخي للقصيدة\\nتحليل الوزن والقافية والبيان المستخدم\\nاستخلاص المعاني والرسائل الرئيسية في القصيدة\\nتقييم الأثر الفني للقصيدة",
+  1144→                      "stepsEn": "Getting to know the poet's status and the historical context of the poem\\nAnalyzing the rhythm, rhyme, and rhetoric used\\nExtracting the main meanings and messages in the poem\\nEvaluating the artistic impact of the poem",
+  1145→                      "order": 1
+  1146→                    }
+  1147→                  ],
+  1148→                  "Question": [
+  1149→                    {
+  1150→                      "id": "q-id_c0bydw1l2n6-0",
+  1151→                      "lessonId": "id_c0bydw1l2n6",
+  1152→                      "type": "multiple-choice",
+  1153→                      "questionAr": "ما هو التعريف الدقيق للأدب؟",
+  1154→                      "questionEn": "What is the precise definition of literature?",
+  1155→                      "optionsAr": "[\"أ) فن التعبير بالكلمات فقط\",\"ب) فن التعبير بالكلمات مع الوزن والقافية\",\"ج) فن التعبير بالكلمات الذي يتجاوز الغرض الوظيفي للغة\",\"د) فن التعبير بالكلمات لغرض ترفيهي فقط\"]",
+  1156→                      "optionsEn": "[\"A) Art of expression with words only\",\"B) Art of expression with words, rhythm, and rhyme\",\"C) Art of expression with words that transcends the functional purpose of language\",\"D) Art of expression with words for entertainment purposes only\"]",
+  1157→                      "answer": "ج",
+  1158→                      "explanationAr": "التعريف الدقيق للأدب هو فن التعبير بالكلمات الذي يتجاوز الغرض الوظيفي للغة ليصل إلى التعبير عن المشاعر والأفكار والتجارب الإنسانية.",
+  1159→                      "explanationEn": "The precise definition of literature is the art of expression with words that transcends the functional purpose of language to express emotions, ideas, and human experiences.",
+  1160→                      "points": 1,
+  1161→                      "difficulty": "medium",
+  1162→                      "order": 1
+  1163→                    }
+  1164→                  ]
+  1165→                },
+  1166→                {
+  1167→                  "id": "id_ry6yyuuyklq",
+  1168→                  "unitId": "id_sx3rovigny",
+  1169→                  "titleAr": "الدرس 2: وحدة الأدب",
+  1170→                  "titleEn": "Lesson 2",
+  1171→                  "slug": "lesson-2-id_sx3rovigny",
+  1172→                  "descriptionAr": "شرح وحدة الأدب - الدرس 2",
+  1173→                  "descriptionEn": "Explanation of وحدة الأدب - Lesson 2",
+  1174→                  "duration": 49,
+  1175→                  "order": 2,
+  1176→                  "isFree": false,
+  1177→                  "videoUrl": null,
+  1178→                  "pdfUrl": null,
+  1179→                  "thumbnailUrl": null,
+  1180→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا الثاني ضمن وحدة الأدب. في هذا الدرس، سنتناول بشكل مفصل فنون الأدب المختلفة وأهميتها في حياتنا اليومية. سنتعرف على أنواع النصوص الأدبية مثل الشعر والنثر، وسنحلل عناصر كل نوع وفروقاته. كما سنتناول دور الأدب في تعزيز الهوية الثقافية وتطور اللغة العربية عبر العصور. هذا الدرس يمهد لفهم أعمق للنصوص الأدبية التي ستواجهونها في المرحلة الثانوية ويساعدكم على تطوير مهارات التحليل والتفسير الأدبي.",
+  1181→                  "introductionEn": "Welcome to Grade 11 students for our second lesson in the Literature Unit. In this lesson, we will explore in detail various literary arts and their importance in our daily lives. We will learn about different types of literary texts such as poetry and prose, analyzing the elements and differences of each type. We will also discuss the role of literature in enhancing cultural identity and the evolution of the Arabic language throughout history. This lesson lays the foundation for a deeper understanding of literary texts you will encounter in high school and helps develop your analysis and interpretation skills.",
+  1182→                  "summaryAr": "في هذا الدرس تعرفنا على فنون الأدب المختلفة وأنواعها الرئيسية (الشعر والنثر)، والعناصر الأساسية لأي نص أدبي. كما فهما دور الأدب في الحفاظ على الهوية الثقافية وتوثيق التاريخ. الأدب ليس مجرد تعبير عن المشاعر، بل هو مرآة تعكس واقع المجتمع وتطوره عبر الزمن. من خلال دراسة الأدب، يمكننا فهم سياقات تاريخية واجتماعية مختلفة وتطوير القدرة على التعبير عن الأفكار والمشاعر بغنى اللغة.",
+  1183→                  "summaryEn": "In this lesson, we explored different literary arts and their main types (poetry and prose), as well as the essential elements of any literary text. We also understood literature's role in preserving cultural identity and documenting history. Literature is not just an expression of emotions, but a mirror reflecting society and its development over time. Through studying literature, we can understand different historical and social contexts and develop the ability to express ideas and emotions with linguistic richness.",
+  1184→                  "createdAt": "2026-06-13T10:13:57.863Z",
+  1185→                  "updatedAt": "2026-06-13T10:13:57.862Z",
+  1186→                  "Objective": [
+  1187→                    {
+  1188→                      "id": "obj-id_ry6yyuuyklq-0",
+  1189→                      "lessonId": "id_ry6yyuuyklq",
+  1190→                      "textAr": "أنواع الأدب الرئيسية: الشعر والنثر",
+  1191→                      "textEn": "Main types of literature: Poetry and prose",
+  1192→                      "order": 1
+  1193→                    },
+  1194→                    {
+  1195→                      "id": "obj-id_ry6yyuuyklq-1",
+  1196→                      "lessonId": "id_ry6yyuuyklq",
+  1197→                      "textAr": "عناصر النص الأدبي: الشخصيات، الزمان، المكان، الحبكة",
+  1198→                      "textEn": "Elements of literary text: Characters, time, place, plot",
+  1199→                      "order": 2
+  1200→                    },
+  1201→                    {
+  1202→                      "id": "obj-id_ry6yyuuyklq-2",
+  1203→                      "lessonId": "id_ry6yyuuyklq",
+  1204→                      "textAr": "دور الأدب في الحفاظ على الهوية الثقافية",
+  1205→                      "textEn": "Literature's role in preserving cultural identity",
+  1206→                      "order": 3
+  1207→                    }
+  1208→                  ],
+  1209→                  "Concept": [
+  1210→                    {
+  1211→                      "id": "concept-id_ry6yyuuyklq-0",
+  1212→                      "lessonId": "id_ry6yyuuyklq",
+  1213→                      "termAr": "أنواع الأدب الرئيسية: الشعر والنثر",
+  1214→                      "termEn": "Main types of literature: Poetry and prose",
+  1215→                      "definitionAr": "أنواع الأدب الرئيسية: الشعر والنثر",
+  1216→                      "definitionEn": "Main types of literature: Poetry and prose",
+  1217→                      "order": 1
+  1218→                    },
+  1219→                    {
+  1220→                      "id": "concept-id_ry6yyuuyklq-1",
+  1221→                      "lessonId": "id_ry6yyuuyklq",
+  1222→                      "termAr": "عناصر النص الأدبي: الشخصيات",
+  1223→                      "termEn": "Elements of literary text: Characters",
+  1224→                      "definitionAr": "عناصر النص الأدبي: الشخصيات، الزمان، المكان، الحبكة",
+  1225→                      "definitionEn": "Elements of literary text: Characters, time, place, plot",
+  1226→                      "order": 2
+  1227→                    },
+  1228→                    {
+  1229→                      "id": "concept-id_ry6yyuuyklq-2",
+  1230→                      "lessonId": "id_ry6yyuuyklq",
+  1231→                      "termAr": "دور الأدب في الحفاظ على الهوية الثقافية",
+  1232→                      "termEn": "Literature's role in preserving cultural identity",
+  1233→                      "definitionAr": "دور الأدب في الحفاظ على الهوية الثقافية",
+  1234→                      "definitionEn": "Literature's role in preserving cultural identity",
+  1235→                      "order": 3
+  1236→                    }
+  1237→                  ],
+  1238→                  "Formula": [
+  1239→                    {
+  1240→                      "id": "form-id_ry6yyuuyklq-0",
+  1241→                      "lessonId": "id_ry6yyuuyklq",
+  1242→                      "formula": "الفاعل + المفعول به + الفعل",
+  1243→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1244→                      "explanationEn": "Arabic verbal sentence structure",
+  1245→                      "order": 1
+  1246→                    },
+  1247→                    {
+  1248→                      "id": "form-id_ry6yyuuyklq-1",
+  1249→                      "lessonId": "id_ry6yyuuyklq",
+  1250→                      "formula": "المبتدأ + الخبر",
+  1251→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1252→                      "explanationEn": "Arabic nominal sentence structure",
+  1253→                      "order": 2
+  1254→                    }
+  1255→                  ],
+  1256→                  "Example": [
+  1257→                    {
+  1258→                      "id": "example-id_ry6yyuuyklq-0",
+  1259→                      "lessonId": "id_ry6yyuuyklq",
+  1260→                      "questionAr": "تحليل نص شعري: لنحلل قصيدة 'الصبا' لخليل مطران:",
+  1261→                      "questionEn": "Poetry text analysis: Let's analyze Khalil Gibran's poem 'Youth':",
+  1262→                      "solutionAr": "1. التعرف على البناء الفني: القصيدة من بحر الكامل\\n2. تحليل الصور الشعرية: استخدام الصور الطبيعية للتعبير عن المشاعر\\n3. تحديد الفكرة المحورية: الحنين إلى الطفولة والبراءة",
+  1263→                      "solutionEn": "1. Identify the poetic structure: The poem is written in free verse\\n2. Analyze poetic images: Use of natural imagery to express emotions\\n3. Determine the central theme: Nostalgia for innocence and childhood",
+  1264→                      "stepsAr": "1. التعرف على البناء الفني: القصيدة من بحر الكامل\\n2. تحليل الصور الشعرية: استخدام الصور الطبيعية للتعبير عن المشاعر\\n3. تحديد الفكرة المحورية: الحنين إلى الطفولة والبراءة",
+  1265→                      "stepsEn": "1. Identify the poetic structure: The poem is written in free verse\\n2. Analyze poetic images: Use of natural imagery to express emotions\\n3. Determine the central theme: Nostalgia for innocence and childhood",
+  1266→                      "order": 1
+  1267→                    }
+  1268→                  ],
+  1269→                  "Question": [
+  1270→                    {
+  1271→                      "id": "q-id_ry6yyuuyklq-0",
+  1272→                      "lessonId": "id_ry6yyuuyklq",
+  1273→                      "type": "multiple-choice",
+  1274→                      "questionAr": "ما هي الصفة الأساسية التي تميز الشعر عن النثر؟",
+  1275→                      "questionEn": "What is the main characteristic that distinguishes poetry from prose?",
+  1276→                      "optionsAr": "[\"السلاسة اللغوية\",\"الوزن والقافية\",\"الطول\",\"الوضوح\"]",
+  1277→                      "optionsEn": "[\"Linguistic fluency\",\"Rhythm and rhyme\",\"Length\",\"Clarity\"]",
+  1278→                      "answer": "ب",
+  1279→                      "explanationAr": "الشعر يتميز عن النثر بشكل أساسي بالوزن والقافية، حيث يعتمد على الإيقاع الموسيقي للكلمات.",
+  1280→                      "explanationEn": "Poetry is primarily distinguished from prose by its rhythm and rhyme, as it relies on the musical rhythm of words.",
+  1281→                      "points": 1,
+  1282→                      "difficulty": "medium",
+  1283→                      "order": 1
+  1284→                    },
+  1285→                    {
+  1286→                      "id": "q-id_ry6yyuuyklq-1",
+  1287→                      "lessonId": "id_ry6yyuuyklq",
+  1288→                      "type": "multiple-choice",
+  1289→                      "questionAr": "ما هو العنصر الذي لا يمكن الاستغناء عنه في أي عمل درامي؟",
+  1290→                      "questionEn": "Which element is indispensable in any dramatic work?",
+  1291→                      "optionsAr": "[\"الحوار\",\"الشخصيات\",\"المكان\",\"الزمان\"]",
+  1292→                      "optionsEn": "[\"Dialogue\",\"Characters\",\"Setting\",\"Time\"]",
+  1293→                      "answer": "ب",
+  1294→                      "explanationAr": "الشخصيات هي عنصر أساسي في أي عمل درامي، حيث من خلالها تتحرك الأحداث وتتطور الأفكار.",
+  1295→                      "explanationEn": "Characters are essential in any dramatic work, as through them events unfold and ideas develop.",
+  1296→                      "points": 1,
+  1297→                      "difficulty": "medium",
+  1298→                      "order": 2
+  1299→                    }
+  1300→                  ]
+  1301→                },
+  1302→                {
+  1303→                  "id": "id_3207h8024sm",
+  1304→                  "unitId": "id_sx3rovigny",
+  1305→                  "titleAr": "الدرس 3: وحدة الأدب",
+  1306→                  "titleEn": "Lesson 3",
+  1307→                  "slug": "lesson-3-id_sx3rovigny",
+  1308→                  "descriptionAr": "شرح وحدة الأدب - الدرس 3",
+  1309→                  "descriptionEn": "Explanation of وحدة الأدب - Lesson 3",
+  1310→                  "duration": 54,
+  1311→                  "order": 3,
+  1312→                  "isFree": false,
+  1313→                  "videoUrl": null,
+  1314→                  "pdfUrl": null,
+  1315→                  "thumbnailUrl": null,
+  1316→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم حول وحدة الأدب. في هذا الدرس، سنستكشف عالم الأدب العربي بشكل أعمق، حيث سنتعرف على مفهوم الأدب وأنواعه المختلفة، وخصائص كل نوع، وأهميته في حياتنا. سنتناول أيضاً تطور الأدب عبر العصور، وأشهر الكتاب والمؤلفين الذين أثروا في المشهد الأدبي العربي. هذا الدرس سيساعدكم على فهم كيفية تحليل النصوص الأدبية وتقدير الجماليات اللغوية، كما سيعزز قدرتكم على التعبير عن الأفكار والمشاعر بطريقة أدبية. من خلال أمثلة عملية وتطبيقات متنوعة، سنكتشف سحر الأدب وقوته في التأثير على الفكر والوجدان.",
+  1317→                  "introductionEn": "Welcome to today's lesson on the Literature Unit for first-year secondary school students. In this lesson, we will explore the world of Arabic literature more deeply, where we will learn about the concept of literature, its different types, and the characteristics of each type, as well as its importance in our lives. We will also cover the evolution of literature through different eras and the most famous authors who influenced the Arabic literary scene. This lesson will help you understand how to analyze literary texts and appreciate linguistic aesthetics, while also enhancing your ability to express ideas and feelings in a literary way. Through practical examples and various applications, we will discover the magic of literature and its power to influence thought and emotion.",
+  1318→                  "summaryAr": "في هذا الدرس، تعرفنا على مفهوم الأدب وأنواعه الرئيسية (النثر والشعر)، وخصائص كل نوع، وتطور الأدب العربي عبر العصور. كما استعرضنا دور الأدب في الحفاظ على الهوية الثقافية ونقل التراث. تعلمنا أيضاً كيفية تحليل النصوص الأدبية وتقدير الجماليات اللغوية، مما يعزز قدرتنا على التعبير عن الأفكار والمشاعر بطريقة أدبية. من خلال الأمثلة العملية والتطبيقات، اكتشفنا سحر الأدب وقوته في التأثير على الفكر والوجدان.",
+  1319→                  "summaryEn": "In this lesson, we learned about the concept of literature and its main types (prose and poetry), the characteristics of each type, and the evolution of Arabic literature through different eras. We also reviewed the role of literature in preserving cultural identity and transmitting heritage. We also learned how to analyze literary texts and appreciate linguistic aesthetics, which enhances our ability to express ideas and feelings in a literary way. Through practical examples and applications, we discovered the magic of literature and its power to influence thought and emotion.",
+  1320→                  "createdAt": "2026-06-13T10:13:57.865Z",
+  1321→                  "updatedAt": "2026-06-13T10:13:57.864Z",
+  1322→                  "Objective": [
+  1323→                    {
+  1324→                      "id": "obj-id_3207h8024sm-0",
+  1325→                      "lessonId": "id_3207h8024sm",
+  1326→                      "textAr": "مفهوم الأدب وأنواعه الرئيسية (نثر وشعر)",
+  1327→                      "textEn": "Concept of literature and its main types (prose and poetry)",
+  1328→                      "order": 1
+  1329→                    },
+  1330→                    {
+  1331→                      "id": "obj-id_3207h8024sm-1",
+  1332→                      "lessonId": "id_3207h8024sm",
+  1333→                      "textAr": "خصائص كل نوع أدبي ومميزاته",
+  1334→                      "textEn": "Characteristics and features of each literary type",
+  1335→                      "order": 2
+  1336→                    },
+  1337→                    {
+  1338→                      "id": "obj-id_3207h8024sm-2",
+  1339→                      "lessonId": "id_3207h8024sm",
+  1340→                      "textAr": "تطور الأدب العربي عبر العصور",
+  1341→                      "textEn": "Evolution of Arabic literature through different eras",
+  1342→                      "order": 3
+  1343→                    },
+  1344→                    {
+  1345→                      "id": "obj-id_3207h8024sm-3",
+  1346→                      "lessonId": "id_3207h8024sm",
+  1347→                      "textAr": "دور الأدب في الحفاظ على الهوية الثقافية",
+  1348→                      "textEn": "The role of literature in preserving cultural identity",
+  1349→                      "order": 4
+  1350→                    }
+  1351→                  ],
+  1352→                  "Concept": [
+  1353→                    {
+  1354→                      "id": "concept-id_3207h8024sm-0",
+  1355→                      "lessonId": "id_3207h8024sm",
+  1356→                      "termAr": "مفهوم الأدب وأنواعه الرئيسية (نثر وشعر)",
+  1357→                      "termEn": "Concept of literature and its main types (prose and poetry)",
+  1358→                      "definitionAr": "مفهوم الأدب وأنواعه الرئيسية (نثر وشعر)",
+  1359→                      "definitionEn": "Concept of literature and its main types (prose and poetry)",
+  1360→                      "order": 1
+  1361→                    },
+  1362→                    {
+  1363→                      "id": "concept-id_3207h8024sm-1",
+  1364→                      "lessonId": "id_3207h8024sm",
+  1365→                      "termAr": "خصائص كل نوع أدبي ومميزاته",
+  1366→                      "termEn": "Characteristics and features of each literary type",
+  1367→                      "definitionAr": "خصائص كل نوع أدبي ومميزاته",
+  1368→                      "definitionEn": "Characteristics and features of each literary type",
+  1369→                      "order": 2
+  1370→                    },
+  1371→                    {
+  1372→                      "id": "concept-id_3207h8024sm-2",
+  1373→                      "lessonId": "id_3207h8024sm",
+  1374→                      "termAr": "تطور الأدب العربي عبر العصور",
+  1375→                      "termEn": "Evolution of Arabic literature through different eras",
+  1376→                      "definitionAr": "تطور الأدب العربي عبر العصور",
+  1377→                      "definitionEn": "Evolution of Arabic literature through different eras",
+  1378→                      "order": 3
+  1379→                    }
+  1380→                  ],
+  1381→                  "Formula": [
+  1382→                    {
+  1383→                      "id": "form-id_3207h8024sm-0",
+  1384→                      "lessonId": "id_3207h8024sm",
+  1385→                      "formula": "الفاعل + المفعول به + الفعل",
+  1386→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1387→                      "explanationEn": "Arabic verbal sentence structure",
+  1388→                      "order": 1
+  1389→                    },
+  1390→                    {
+  1391→                      "id": "form-id_3207h8024sm-1",
+  1392→                      "lessonId": "id_3207h8024sm",
+  1393→                      "formula": "المبتدأ + الخبر",
+  1394→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1395→                      "explanationEn": "Arabic nominal sentence structure",
+  1396→                      "order": 2
+  1397→                    }
+  1398→                  ],
+  1399→                  "Example": [
+  1400→                    {
+  1401→                      "id": "example-id_3207h8024sm-0",
+  1402→                      "lessonId": "id_3207h8024sm",
+  1403→                      "questionAr": "تحليل نص شعري: لنحلق معاً في قصيدة 'الرحييل' للشاعر أحمد شوقي: 'يا قلبي لا تحزن على الزمان فإن الزمان كالسحاب يزول'. هذه القصيدة تعبر عن مواجهة الصعاب والتحديات بروح متفائلة.",
+  1404→                      "questionEn": "Analyzing a poetic text: Let's analyze together the poem 'Al-Rahil' by the poet Ahmed Shawqi: 'O my heart, don't grieve for time, for time is like clouds that disappear'. This poem expresses facing difficulties and challenges with an optimistic spirit.",
+  1405→                      "solutionAr": "الخطوة الأولى: تحديد القافية والوزن في القصيدة\\nالخطوة الثانية: تحليل المعاني والمشاعر المستخدمة\\nالخطوة الثالثة: استخلاص الفكرة الرئيسية للقصيدة",
+  1406→                      "solutionEn": "Step 1: Identify the rhyme and meter in the poem\\nStep 2: Analyze the meanings and emotions used\\nStep 3: Extract the main idea of the poem",
+  1407→                      "stepsAr": "الخطوة الأولى: تحديد القافية والوزن في القصيدة\\nالخطوة الثانية: تحليل المعاني والمشاعر المستخدمة\\nالخطوة الثالثة: استخلاص الفكرة الرئيسية للقصيدة",
+  1408→                      "stepsEn": "Step 1: Identify the rhyme and meter in the poem\\nStep 2: Analyze the meanings and emotions used\\nStep 3: Extract the main idea of the poem",
+  1409→                      "order": 1
+  1410→                    }
+  1411→                  ],
+  1412→                  "Question": [
+  1413→                    {
+  1414→                      "id": "q-id_3207h8024sm-0",
+  1415→                      "lessonId": "id_3207h8024sm",
+  1416→                      "type": "multiple-choice",
+  1417→                      "questionAr": "ما هو تعريف الأدب بشكل دقيق؟",
+  1418→                      "questionEn": "What is the precise definition of literature?",
+  1419→                      "optionsAr": "[\"فن التعبير عن المشاعر فقط\",\"فن التعبير عن الأفكار والمشاعر بطريقة جمالية\",\"فن الكتابة فقط\",\"فن المحاكاة\"]",
+  1420→                      "optionsEn": "[\"The art of expressing emotions only\",\"The art of expressing ideas and emotions in an aesthetic way\",\"The art of writing only\",\"The art of imitation\"]",
+  1421→                      "answer": "ب",
+  1422→                      "explanationAr": "التعريف الدقيق للأدب هو فن التعبير عن الأفكار والمشاعر الإنسانية بطريقة جمالية تلامس وجدان المتلقي، وليس مجرد تعبير عن المشاعر فقط أو الكتابة العادية.",
+  1423→                      "explanationEn": "The precise definition of literature is the art of expressing human ideas and emotions in an aesthetic way that touches the reader's consciousness, not just expressing emotions or ordinary writing.",
+  1424→                      "points": 1,
+  1425→                      "difficulty": "medium",
+  1426→                      "order": 1
+  1427→                    },
+  1428→                    {
+  1429→                      "id": "q-id_3207h8024sm-1",
+  1430→                      "lessonId": "id_3207h8024sm",
+  1431→                      "type": "multiple-choice",
+  1432→                      "questionAr": "ما هو الفرق بين النثر والشعر؟",
+  1433→                      "questionEn": "What is the difference between prose and poetry?",
+  1434→                      "optionsAr": "[\"لا يوجد فرق\",\"النثر موزون والشعر غير موزون\",\"النثر غير موزون والشعر موزون\",\"النثر للرجال والشعر للنساء\"]",
+  1435→                      "optionsEn": "[\"There is no difference\",\"Prose is rhythmic and poetry is not\",\"Prose is not rhythmic and poetry is\",\"Prose is for men and poetry is for women\"]",
+  1436→                      "answer": "ج",
+  1437→                      "explanationAr": "الفرق الأساسي بين النثر والشعر هو أن النثر يكتب بأسلوب عادي غير موزون، بينما الشعر يتميز بوزن وقافية محددة.",
+  1438→                      "explanationEn": "The main difference between prose and poetry is that prose is written in an ordinary non-rhythmic style, while poetry is characterized by a specific meter and rhyme.",
+  1439→                      "points": 1,
+  1440→                      "difficulty": "medium",
+  1441→                      "order": 2
+  1442→                    }
+  1443→                  ]
+  1444→                },
+  1445→                {
+  1446→                  "id": "id_0q41pju0eyp",
+  1447→                  "unitId": "id_sx3rovigny",
+  1448→                  "titleAr": "الدرس 4: وحدة الأدب",
+  1449→                  "titleEn": "Lesson 4",
+  1450→                  "slug": "lesson-4-id_sx3rovigny",
+  1451→                  "descriptionAr": "شرح وحدة الأدب - الدرس 4",
+  1452→                  "descriptionEn": "Explanation of وحدة الأدب - Lesson 4",
+  1453→                  "duration": 33,
+  1454→                  "order": 4,
+  1455→                  "isFree": false,
+  1456→                  "videoUrl": null,
+  1457→                  "pdfUrl": null,
+  1458→                  "thumbnailUrl": null,
+  1459→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة الأدب. في هذا الدرس، سنتناول مفهوم الأدب وأهميته في حياتنا، وسنستكشف أنواع الأدب المختلفة مثل الشعر والنثر، وسنركز على التحليل الأدبي للنصوص الأدبية. كما سنتعرف على مفاهيم أساسية مثل البنية الأدبية والأسلوب واللغة الأدبية. هذا الدرس سيساعدكم على فهم كيفية تقييم النصوص الأدبية وتحليلها، وهو مهارة أساسية في رحلتكم التعليمية في مادة اللغة العربية.",
+  1460→                  "introductionEn": "Welcome to today's lesson on the Literature Unit for first-year secondary school students. In this lesson, we will explore the concept of literature and its importance in our lives, and we will delve into different types of literature such as poetry and prose. We will focus on the literary analysis of literary texts, and we will get acquainted with fundamental concepts like literary structure, style, and literary language. This lesson will help you understand how to evaluate and analyze literary texts, which is an essential skill in your educational journey in the Arabic language subject.",
+  1461→                  "summaryAr": "في هذا الدرس، تعرفنا على مفهوم الأدب وأهميته في حياتنا، وتعرفنا على أنواع الأدب الرئيسية: الشعر والنثر. كما تعلمنا كيفية تحليل النصوص الأدبية من خلال دراسة عناصر مثل الموضوع والفكرة والبنية والأسلوب واللغة الأدبية. هذه المهارات تمكننا من ف和理解 النصوص الأدبية بشكل أعمق وتقييم جودتها الأدبية.",
+  1462→                  "summaryEn": "In this lesson, we learned about the concept of literature and its importance in our lives, and we became acquainted with the main types of literature: poetry and prose. We also learned how to analyze literary texts by studying elements such as theme, idea, structure, style, and literary language. These skills enable us to understand literary texts more deeply and evaluate their literary quality.",
+  1463→                  "createdAt": "2026-06-13T10:13:57.867Z",
+  1464→                  "updatedAt": "2026-06-13T10:13:57.866Z",
+  1465→                  "Objective": [
+  1466→                    {
+  1467→                      "id": "obj-id_0q41pju0eyp-0",
+  1468→                      "lessonId": "id_0q41pju0eyp",
+  1469→                      "textAr": "مفهوم الأدب وأهميته",
+  1470→                      "textEn": "Concept of literature and its importance",
+  1471→                      "order": 1
+  1472→                    },
+  1473→                    {
+  1474→                      "id": "obj-id_0q41pju0eyp-1",
+  1475→                      "lessonId": "id_0q41pju0eyp",
+  1476→                      "textAr": "أنواع الأدب: الشعر والنثر",
+  1477→                      "textEn": "Types of literature: poetry and prose",
+  1478→                      "order": 2
+  1479→                    },
+  1480→                    {
+  1481→                      "id": "obj-id_0q41pju0eyp-2",
+  1482→                      "lessonId": "id_0q41pju0eyp",
+  1483→                      "textAr": "عناصر تحليل النص الأدبي",
+  1484→                      "textEn": "Elements of literary text analysis",
+  1485→                      "order": 3
+  1486→                    }
+  1487→                  ],
+  1488→                  "Concept": [
+  1489→                    {
+  1490→                      "id": "concept-id_0q41pju0eyp-0",
+  1491→                      "lessonId": "id_0q41pju0eyp",
+  1492→                      "termAr": "مفهوم الأدب وأهميته",
+  1493→                      "termEn": "Concept of literature and its importance",
+  1494→                      "definitionAr": "مفهوم الأدب وأهميته",
+  1495→                      "definitionEn": "Concept of literature and its importance",
+  1496→                      "order": 1
+  1497→                    },
+  1498→                    {
+  1499→                      "id": "concept-id_0q41pju0eyp-1",
+  1500→                      "lessonId": "id_0q41pju0eyp",
+  1501→                      "termAr": "أنواع الأدب: الشعر والنثر",
+  1502→                      "termEn": "Types of literature: poetry and prose",
+  1503→                      "definitionAr": "أنواع الأدب: الشعر والنثر",
+  1504→                      "definitionEn": "Types of literature: poetry and prose",
+  1505→                      "order": 2
+  1506→                    },
+  1507→                    {
+  1508→                      "id": "concept-id_0q41pju0eyp-2",
+  1509→                      "lessonId": "id_0q41pju0eyp",
+  1510→                      "termAr": "عناصر تحليل النص الأدبي",
+  1511→                      "termEn": "Elements of literary text analysis",
+  1512→                      "definitionAr": "عناصر تحليل النص الأدبي",
+  1513→                      "definitionEn": "Elements of literary text analysis",
+  1514→                      "order": 3
+  1515→                    }
+  1516→                  ],
+  1517→                  "Formula": [
+  1518→                    {
+  1519→                      "id": "form-id_0q41pju0eyp-0",
+  1520→                      "lessonId": "id_0q41pju0eyp",
+  1521→                      "formula": "الفاعل + المفعول به + الفعل",
+  1522→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1523→                      "explanationEn": "Arabic verbal sentence structure",
+  1524→                      "order": 1
+  1525→                    },
+  1526→                    {
+  1527→                      "id": "form-id_0q41pju0eyp-1",
+  1528→                      "lessonId": "id_0q41pju0eyp",
+  1529→                      "formula": "المبتدأ + الخبر",
+  1530→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1531→                      "explanationEn": "Arabic nominal sentence structure",
+  1532→                      "order": 2
+  1533→                    }
+  1534→                  ],
+  1535→                  "Example": [
+  1536→                    {
+  1537→                      "id": "example-id_0q41pju0eyp-0",
+  1538→                      "lessonId": "id_0q41pju0eyp",
+  1539→                      "questionAr": "تحليل قصيدة: دعونا نحلل قصيدة 'الصبر جميل' للشاعر أحمد شوقي:",
+  1540→                      "questionEn": "Poem Analysis: Let's analyze the poem 'Patience is Beautiful' by the poet Ahmed Shawqi:",
+  1541→                      "solutionAr": "1. حدد الموضوع الرئيسي للقصيدة: الصبر وجماله\\n2. لاحظ البنية الخارجية للقصيدة: قافية موحدة (الميم)\\n3. لاحظ الأوزان المستخدمة: بحر الكامل\\n4. تحليل الصور البيانية: الاستعارة في 'الصبر مفتاح الفرج'\\n5. فهم الرسالة العامة: قيمة الصبر في مواجهة الصعوبات",
+  1542→                      "solutionEn": "1. Identify the main theme of the poem: Patience and its beauty\\n2. Notice the external structure of the poem: unified rhyme (Mim)\\n3. Observe the used meters: Kamil meter\\n4. Analyze the poetic images: Metaphor in 'Patience is the key to relief'\\n5. Understand the general message: The value of patience in facing difficulties",
+  1543→                      "stepsAr": "1. حدد الموضوع الرئيسي للقصيدة: الصبر وجماله\\n2. لاحظ البنية الخارجية للقصيدة: قافية موحدة (الميم)\\n3. لاحظ الأوزان المستخدمة: بحر الكامل\\n4. تحليل الصور البيانية: الاستعارة في 'الصبر مفتاح الفرج'\\n5. فهم الرسالة العامة: قيمة الصبر في مواجهة الصعوبات",
+  1544→                      "stepsEn": "1. Identify the main theme of the poem: Patience and its beauty\\n2. Notice the external structure of the poem: unified rhyme (Mim)\\n3. Observe the used meters: Kamil meter\\n4. Analyze the poetic images: Metaphor in 'Patience is the key to relief'\\n5. Understand the general message: The value of patience in facing difficulties",
+  1545→                      "order": 1
+  1546→                    }
+  1547→                  ],
+  1548→                  "Question": [
+  1549→                    {
+  1550→                      "id": "q-id_0q41pju0eyp-0",
+  1551→                      "lessonId": "id_0q41pju0eyp",
+  1552→                      "type": "multiple-choice",
+  1553→                      "questionAr": "ما هو التعريف الأدق للشعر؟",
+  1554→                      "questionEn": "What is the most accurate definition of poetry?",
+  1555→                      "optionsAr": "[\"أ. الكتابة التي تخضع لقواعد اللغة\",\"ب. الكتابة التي تتميز بوزنها وقافيتها\",\"ج. الكتابة التي تهدف للتعبير عن الأفكار\",\"د. الكتابة التي تستخدم لغة عادية\"]",
+  1556→                      "optionsEn": "[\"A. Writing that follows language rules\",\"B. Writing characterized by rhythm and rhyme\",\"C. Writing aimed at expressing ideas\",\"D. Writing using ordinary language\"]",
+  1557→                      "answer": "ب",
+  1558→                      "explanationAr": "الشعر هو الكتابة التي تتميز بوزنها وقافيتها، وهو ما يميزه عن النثر. الخيارات الأخرى لا تصف الشعر بشكل دقيق.",
+  1559→                      "explanationEn": "Poetry is writing characterized by rhythm and rhyme, which distinguishes it from prose. The other options do not accurately describe poetry.",
+  1560→                      "points": 1,
+  1561→                      "difficulty": "medium",
+  1562→                      "order": 1
+  1563→                    },
+  1564→                    {
+  1565→                      "id": "q-id_0q41pju0eyp-1",
+  1566→                      "lessonId": "id_0q41pju0eyp",
+  1567→                      "type": "multiple-choice",
+  1568→                      "questionAr": "ما هو العنصر الأهم في تحليل النص الأدبي؟",
+  1569→                      "questionEn": "What is the most important element in literary text analysis?",
+  1570→                      "optionsAr": "[\"أ. الموضوع\",\"ب. البنية\",\"ج. اللغة\",\"د. كل ما سبق\"]",
+  1571→                      "optionsEn": "[\"A. Theme\",\"B. Structure\",\"C. Language\",\"D. All of the above\"]",
+  1572→                      "answer": "د",
+  1573→                      "explanationAr": "كل من الموضوع والبنية واللغة عناصر مهمة في تحليل النص الأدبي، ويجب الأخذ في الاعتبار جميعها للحصول على فهم شامل للنص.",
+  1574→                      "explanationEn": "Theme, structure, and language are all important elements in literary text analysis, and all should be considered to gain a comprehensive understanding of the text.",
+  1575→                      "points": 1,
+  1576→                      "difficulty": "medium",
+  1577→                      "order": 2
+  1578→                    }
+  1579→                  ]
+  1580→                }
+  1581→              ]
+  1582→            },
+  1583→            {
+  1584→              "id": "id_p3kqqcgfik",
+  1585→              "subjectId": "id_azlhpdzv3oq",
+  1586→              "semesterId": null,
+  1587→              "nameAr": "وحدة القراءة",
+  1588→              "nameEn": "Unit 4",
+  1589→              "slug": "unit-4-id_azlhpdzv3oq",
+  1590→              "order": 4,
+  1591→              "createdAt": "2026-06-13T10:13:57.868Z",
+  1592→              "updatedAt": "2026-06-13T10:13:57.868Z",
+  1593→              "Lesson": [
+  1594→                {
+  1595→                  "id": "id_bssch47pov9",
+  1596→                  "unitId": "id_p3kqqcgfik",
+  1597→                  "titleAr": "الدرس 1: وحدة القراءة",
+  1598→                  "titleEn": "Lesson 1",
+  1599→                  "slug": "lesson-1-id_p3kqqcgfik",
+  1600→                  "descriptionAr": "شرح وحدة القراءة - الدرس 1",
+  1601→                  "descriptionEn": "Explanation of وحدة القراءة - Lesson 1",
+  1602→                  "duration": 31,
+  1603→                  "order": 1,
+  1604→                  "isFree": false,
+  1605→                  "videoUrl": null,
+  1606→                  "pdfUrl": null,
+  1607→                  "thumbnailUrl": null,
+  1608→                  "introductionAr": "مرحباً بكم في درسنا الأول للصف الأول الثانوي، وهو درس وحدة القراءة. في هذا الدرس، سنتعرف على أساسيات القراءة الفعالة وتحليل النصوص الأدبية. القراءة ليست مجرد قراءة الكلمات، بل هي فهم عميق للمعاني واستنتاج الأفكار والتفاعل مع النص. سنستكشف أنواعاً مختلفة من النصوص، منها النصوص الأدبية والنصوص العلمية، ونتعلم كيفية استخراج الأفكار الرئيسية والتفاصيل الداعمة. كما سنتعرف على أهمية القراءة في تطوير القدرة على التفكير النقدي وتوسيع المدارك اللغوية والثقافية.",
+  1609→                  "introductionEn": "Welcome to our first lesson for the first secondary grade, which is the Reading Unit lesson. In this lesson, we will learn about the basics of effective reading and literary text analysis. Reading is not just about reading words, but about understanding meanings deeply, inferring ideas, and interacting with the text. We will explore different types of texts, including literary and scientific texts, and learn how to extract main ideas and supporting details. We will also understand the importance of reading in developing critical thinking skills and expanding linguistic and cultural horizons.",
+  1610→                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات القراءة الفعالة وتحليل النصوص الأدبية. تعلمنا أنواع النصوص المختلفة واستراتيجيات القراءة الفعالة، بما في ذلك التنبؤ بالمحتوى والطرح الأسئلة وتلخيص النص. كما تعلمنا كيفية تحليل النصوص من خلال تحديد الفكرة الرئيسية والتفاصيل الداعمة، وكيفية التعامل مع الكلمات المجهولة. أهمية القراءة في بناء المفردات وتطوير القدرة على التفكير النقدي والتعبير عن الأفكار بوضوح ودقة. تطبيق هذه المهارات سيساعدنا على فهم النصوص بشكل أفضل وتطوير قدراتنا اللغوية.",
+  1611→                  "summaryEn": "In this lesson, we learned the basics of effective reading and literary text analysis. We learned about different types of texts and effective reading strategies, including predicting content, asking questions, and summarizing the text. We also learned how to analyze texts by identifying the main idea and supporting details, and how to deal with unknown words. The importance of reading in building vocabulary and developing the ability to think critically and express ideas clearly and accurately. Applying these skills will help us better understand texts and develop our linguistic abilities.",
+  1612→                  "createdAt": "2026-06-13T10:13:57.869Z",
+  1613→                  "updatedAt": "2026-06-13T10:13:57.868Z",
+  1614→                  "Objective": [
+  1615→                    {
+  1616→                      "id": "obj-id_bssch47pov9-0",
+  1617→                      "lessonId": "id_bssch47pov9",
+  1618→                      "textAr": "أنواع النصوص الأدبية والعلمية",
+  1619→                      "textEn": "Types of literary and scientific texts",
+  1620→                      "order": 1
+  1621→                    },
+  1622→                    {
+  1623→                      "id": "obj-id_bssch47pov9-1",
+  1624→                      "lessonId": "id_bssch47pov9",
+  1625→                      "textAr": "استراتيجيات القراءة الفعالة",
+  1626→                      "textEn": "Effective reading strategies",
+  1627→                      "order": 2
+  1628→                    },
+  1629→                    {
+  1630→                      "id": "obj-id_bssch47pov9-2",
+  1631→                      "lessonId": "id_bssch47pov9",
+  1632→                      "textAr": "تحليل النصوص واستخراج الأفكار الرئيسية",
+  1633→                      "textEn": "Text analysis and extracting main ideas",
+  1634→                      "order": 3
+  1635→                    }
+  1636→                  ],
+  1637→                  "Concept": [
+  1638→                    {
+  1639→                      "id": "concept-id_bssch47pov9-0",
+  1640→                      "lessonId": "id_bssch47pov9",
+  1641→                      "termAr": "أنواع النصوص الأدبية والعلمية",
+  1642→                      "termEn": "Types of literary and scientific texts",
+  1643→                      "definitionAr": "أنواع النصوص الأدبية والعلمية",
+  1644→                      "definitionEn": "Types of literary and scientific texts",
+  1645→                      "order": 1
+  1646→                    },
+  1647→                    {
+  1648→                      "id": "concept-id_bssch47pov9-1",
+  1649→                      "lessonId": "id_bssch47pov9",
+  1650→                      "termAr": "استراتيجيات القراءة الفعالة",
+  1651→                      "termEn": "Effective reading strategies",
+  1652→                      "definitionAr": "استراتيجيات القراءة الفعالة",
+  1653→                      "definitionEn": "Effective reading strategies",
+  1654→                      "order": 2
+  1655→                    },
+  1656→                    {
+  1657→                      "id": "concept-id_bssch47pov9-2",
+  1658→                      "lessonId": "id_bssch47pov9",
+  1659→                      "termAr": "تحليل النصوص واستخراج الأفكار الرئيسية",
+  1660→                      "termEn": "Text analysis and extracting main ideas",
+  1661→                      "definitionAr": "تحليل النصوص واستخراج الأفكار الرئيسية",
+  1662→                      "definitionEn": "Text analysis and extracting main ideas",
+  1663→                      "order": 3
+  1664→                    }
+  1665→                  ],
+  1666→                  "Formula": [
+  1667→                    {
+  1668→                      "id": "form-id_bssch47pov9-0",
+  1669→                      "lessonId": "id_bssch47pov9",
+  1670→                      "formula": "الفاعل + المفعول به + الفعل",
+  1671→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1672→                      "explanationEn": "Arabic verbal sentence structure",
+  1673→                      "order": 1
+  1674→                    },
+  1675→                    {
+  1676→                      "id": "form-id_bssch47pov9-1",
+  1677→                      "lessonId": "id_bssch47pov9",
+  1678→                      "formula": "المبتدأ + الخبر",
+  1679→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1680→                      "explanationEn": "Arabic nominal sentence structure",
+  1681→                      "order": 2
+  1682→                    }
+  1683→                  ],
+  1684→                  "Example": [
+  1685→                    {
+  1686→                      "id": "example-id_bssch47pov9-0",
+  1687→                      "lessonId": "id_bssch47pov9",
+  1688→                      "questionAr": "تحليل نص سردي: لنتناول مثالاً على نص سردي قصير: 'خرج أحمد من بيته مبكراً ليلاً. كان الهواء بارداً والنجوم تلمع في السماء. مشى ببطء نحو الغابة، حيث كان ينتظر أصدقاءه ليلاً من أجل رحلة استكشافية. عند وصوله، وجد الجميع قد جمعوا المتطلبات اللازمة للرحلة، وأخذوا يجهزون معداتهم بفرح وحماس.'",
+  1689→                      "questionEn": "Analyzing a narrative text: Let's take an example of a short narrative text: 'Ahmed left his house early at night. The air was cold and the stars were shining in the sky. He walked slowly towards the forest, where his friends were waiting for him at night for an exploratory trip. Upon his arrival, he found that everyone had gathered the necessary requirements for the trip, and they were preparing their equipment with joy and enthusiasm.'",
+  1690→                      "solutionAr": "تحديد الفكرة الرئيسية: اجتماع مجموعة من الأصدقاء للقيام برحلة استكشافية ليلاً\\nاستخراج التفاصيل الداعمة: خروج أحمد مبكراً، برودة الهواء، تلمع النجوم، تجهيز المتطلبات للرحلة\\nتحليل الشخصيات: أحمد وأصدقاءه\\nتحديد الزمان والمكان: الليل، الغابة",
+  1691→                      "solutionEn": "Identify the main idea: A group of friends meeting to go on an exploratory trip at night\\nExtract supporting details: Ahmed leaving early, cold air, shining stars, preparing trip requirements\\nAnalyze characters: Ahmed and his friends\\nIdentify time and place: Night, forest",
+  1692→                      "stepsAr": "تحديد الفكرة الرئيسية: اجتماع مجموعة من الأصدقاء للقيام برحلة استكشافية ليلاً\\nاستخراج التفاصيل الداعمة: خروج أحمد مبكراً، برودة الهواء، تلمع النجوم، تجهيز المتطلبات للرحلة\\nتحليل الشخصيات: أحمد وأصدقاءه\\nتحديد الزمان والمكان: الليل، الغابة",
+  1693→                      "stepsEn": "Identify the main idea: A group of friends meeting to go on an exploratory trip at night\\nExtract supporting details: Ahmed leaving early, cold air, shining stars, preparing trip requirements\\nAnalyze characters: Ahmed and his friends\\nIdentify time and place: Night, forest",
+  1694→                      "order": 1
+  1695→                    }
+  1696→                  ],
+  1697→                  "Question": [
+  1698→                    {
+  1699→                      "id": "q-id_bssch47pov9-0",
+  1700→                      "lessonId": "id_bssch47pov9",
+  1701→                      "type": "multiple-choice",
+  1702→                      "questionAr": "ما هي الفكرة الرئيسية للنص التالي؟ 'القراءة هي بوابة المعرفة والثقافة. من خلال القراءة، نتعرف على أفكار الآخرين ونوسع مداركنا. كما تساعدنا القراءة على تطوير قدرتنا على التفكير النقدي والتحليلي.'",
+  1703→                      "questionEn": "What is the main idea of the following text? 'Reading is the gateway to knowledge and culture. Through reading, we learn about others' ideas and expand our horizons. Reading also helps us develop our critical and analytical thinking skills.'",
+  1704→                      "optionsAr": "[\"أ. فوائد القراءة\",\"ب. أنواع الكتب\",\"ج. أساليب القراءة\",\"د. تاريخ القراءة\"]",
+  1705→                      "optionsEn": "[\"A. Benefits of reading\",\"B. Types of books\",\"C. Reading methods\",\"D. History of reading\"]",
+  1706→                      "answer": "أ",
+  1707→                      "explanationAr": "الفكرة الرئيسية للنص هي فوائد القراءة، حيث يذكر النص أن القراءة بوابة للمعرفة، تساعد على توسيع المدارك، وتطور القدرة على التفكير النقدي والتحليلي.",
+  1708→                      "explanationEn": "The main idea of the text is the benefits of reading, as the text mentions that reading is a gateway to knowledge, helps expand horizons, and develops critical and analytical thinking skills.",
+  1709→                      "points": 1,
+  1710→                      "difficulty": "medium",
+  1711→                      "order": 1
+  1712→                    },
+  1713→                    {
+  1714→                      "id": "q-id_bssch47pov9-1",
+  1715→                      "lessonId": "id_bssch47pov9",
+  1716→                      "type": "multiple-choice",
+  1717→                      "questionAr": "ما هي استراتيجية القراءة الفعالة التي تتمثل في التنبؤ بمحتوى النص قبل قراءته؟",
+  1718→                      "questionEn": "What is the effective reading strategy that involves predicting the content of the text before reading it?",
+  1719→                      "optionsAr": "[\"أ. التلخيص\",\"ب. التنبؤ\",\"ج. الاستنباط\",\"د. التحليل\"]",
+  1720→                      "optionsEn": "[\"A. Summarizing\",\"B. Predicting\",\"C. Inferring\",\"D. Analyzing\"]",
+  1721→                      "answer": "ب",
+  1722→                      "explanationAr": "التنبؤ هي استراتيجية قراءة فعالة يتم فيها التنبؤ بمحتوى النص قبل قراءته بناءً على العنوان والافتتاحية، مما يساعد على تنشيط المعرفة السابقة وتحسين الفهم.",
+  1723→                      "explanationEn": "Predicting is an effective reading strategy where the reader predicts the content of the text before reading it based on the title and introduction, which helps activate prior knowledge and improve comprehension.",
+  1724→                      "points": 1,
+  1725→                      "difficulty": "medium",
+  1726→                      "order": 2
+  1727→                    }
+  1728→                  ]
+  1729→                },
+  1730→                {
+  1731→                  "id": "id_3fzgq46c9st",
+  1732→                  "unitId": "id_p3kqqcgfik",
+  1733→                  "titleAr": "الدرس 2: وحدة القراءة",
+  1734→                  "titleEn": "Lesson 2",
+  1735→                  "slug": "lesson-2-id_p3kqqcgfik",
+  1736→                  "descriptionAr": "شرح وحدة القراءة - الدرس 2",
+  1737→                  "descriptionEn": "Explanation of وحدة القراءة - Lesson 2",
+  1738→                  "duration": 59,
+  1739→                  "order": 2,
+  1740→                  "isFree": false,
+  1741→                  "videoUrl": null,
+  1742→                  "pdfUrl": null,
+  1743→                  "thumbnailUrl": null,
+  1744→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم حول وحدة القراءة. القراءة مهارة أساسية في حياتنا الأكاديمية والاجتماعية، فهي لا تساعدنا فقط على فهم النصوص وتحليلها، بل تنمي قدرتنا على التفكير النقدي والتعبير عن الأفكار بوضوح. في هذه الوحدة، سنتعلم أساسيات القراءة الفعالة، وتقنيات فهم النصوص، واستراتيجيات استيعاب المعلومات المختلفة. كما سنتناول أنواعاً متنوعة من النصوص الأدبية والواقعية، ونتدرب على تحليلها واستخلاص الأفكار الرئيسية والفرعية. من خلال هذه الوحدة، سيرتقي مستوى قراءتكم ويتطور تفكيركم النقدي، مما يساعدكم في مواجهة التحديات الأكاديمية في المرحلة الثانوية وما بعدها.",
+  1745→                  "introductionEn": "Welcome to today's lesson on the Reading Unit for first-year secondary school students. Reading is a fundamental skill in our academic and social lives, not only helping us understand and analyze texts but also developing our critical thinking and clear expression abilities. In this unit, we will learn the basics of effective reading, techniques for text comprehension, and strategies for absorbing different types of information. We will also explore various literary and real-world texts, practicing analysis and extraction of main and supporting ideas. Through this unit, your reading level will improve and your critical thinking will develop, helping you face academic challenges in secondary school and beyond.",
+  1746→                  "summaryAr": "في هذه الوحدة، تعلمنا أساسيات القراءة الفعالة، وتقنيات فهم وتحليل النصوص المختلفة. تعلمنا كيفية تحديد الغرض من القراءة، واختيار استراتيجية القراءة المناسبة لنوع النص، واستخدام تقنيات مثل تحديد الأفكار الرئيسية والفرعية، وفهم العلاقات بين الأفكار. كما تعلمنا كيفية التعامل مع المصطلحات الجديدة، وتحليل الأنواع المختلفة من النصوص الأدبية والعلمية والخبرية. هذه المهارات ضرورية لنجاح الطلاب في المرحلة الثانوية وفي حياتهم الأكاديمية والمهنية المستقبلية.",
+  1747→                  "summaryEn": "In this unit, we learned the basics of effective reading, and techniques for understanding and analyzing different types of texts. We learned how to determine the purpose of reading, choose the appropriate reading strategy for the type of text, and use techniques such as identifying main and supporting ideas, and understanding relationships between ideas. We also learned how to deal with new terminology, and analyze various types of literary, scientific, and news texts. These skills are essential for students' success in secondary school and in their future academic and professional lives.",
+  1748→                  "createdAt": "2026-06-13T10:13:57.871Z",
+  1749→                  "updatedAt": "2026-06-13T10:13:57.870Z",
+  1750→                  "Objective": [
+  1751→                    {
+  1752→                      "id": "obj-id_3fzgq46c9st-0",
+  1753→                      "lessonId": "id_3fzgq46c9st",
+  1754→                      "textAr": "تحديد الغرض من القراءة",
+  1755→                      "textEn": "Determining the purpose of reading",
+  1756→                      "order": 1
+  1757→                    },
+  1758→                    {
+  1759→                      "id": "obj-id_3fzgq46c9st-1",
+  1760→                      "lessonId": "id_3fzgq46c9st",
+  1761→                      "textAr": "تقنيات القراءة الفعالة",
+  1762→                      "textEn": "Effective reading techniques",
+  1763→                      "order": 2
+  1764→                    },
+  1765→                    {
+  1766→                      "id": "obj-id_3fzgq46c9st-2",
+  1767→                      "lessonId": "id_3fzgq46c9st",
+  1768→                      "textAr": "استراتيجيات فهم وتحليل النصوص",
+  1769→                      "textEn": "Strategies for understanding and analyzing texts",
+  1770→                      "order": 3
+  1771→                    }
+  1772→                  ],
+  1773→                  "Concept": [
+  1774→                    {
+  1775→                      "id": "concept-id_3fzgq46c9st-0",
+  1776→                      "lessonId": "id_3fzgq46c9st",
+  1777→                      "termAr": "تحديد الغرض من القراءة",
+  1778→                      "termEn": "Determining the purpose of reading",
+  1779→                      "definitionAr": "تحديد الغرض من القراءة",
+  1780→                      "definitionEn": "Determining the purpose of reading",
+  1781→                      "order": 1
+  1782→                    },
+  1783→                    {
+  1784→                      "id": "concept-id_3fzgq46c9st-1",
+  1785→                      "lessonId": "id_3fzgq46c9st",
+  1786→                      "termAr": "تقنيات القراءة الفعالة",
+  1787→                      "termEn": "Effective reading techniques",
+  1788→                      "definitionAr": "تقنيات القراءة الفعالة",
+  1789→                      "definitionEn": "Effective reading techniques",
+  1790→                      "order": 2
+  1791→                    },
+  1792→                    {
+  1793→                      "id": "concept-id_3fzgq46c9st-2",
+  1794→                      "lessonId": "id_3fzgq46c9st",
+  1795→                      "termAr": "استراتيجيات فهم وتحليل النصوص",
+  1796→                      "termEn": "Strategies for understanding and analyzing texts",
+  1797→                      "definitionAr": "استراتيجيات فهم وتحليل النصوص",
+  1798→                      "definitionEn": "Strategies for understanding and analyzing texts",
+  1799→                      "order": 3
+  1800→                    }
+  1801→                  ],
+  1802→                  "Formula": [
+  1803→                    {
+  1804→                      "id": "form-id_3fzgq46c9st-0",
+  1805→                      "lessonId": "id_3fzgq46c9st",
+  1806→                      "formula": "الفاعل + المفعول به + الفعل",
+  1807→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+  1808→                      "explanationEn": "Arabic verbal sentence structure",
+  1809→                      "order": 1
+  1810→                    },
+  1811→                    {
+  1812→                      "id": "form-id_3fzgq46c9st-1",
+  1813→                      "lessonId": "id_3fzgq46c9st",
+  1814→                      "formula": "المبتدأ + الخبر",
+  1815→                      "explanationAr": "ترتيب الجملة الاسمية",
+  1816→                      "explanationEn": "Arabic nominal sentence structure",
+  1817→                      "order": 2
+  1818→                    }
+  1819→                  ],
+  1820→                  "Example": [
+  1821→                    {
+  1822→                      "id": "example-id_3fzgq46c9st-0",
+  1823→                      "lessonId": "id_3fzgq46c9st",
+  1824→                      "questionAr": "تحليل نص أدبي: لنتدرب على تحليل قصيدة قصيرة من الشعر العربي القديم. سنحدد القافية، البحر الشعري، والمعاني المجازية في النص.",
+  1825→                      "questionEn": "Analyzing a literary text: Let's practice analyzing a short poem from classical Arabic poetry. We will identify the rhyme scheme, poetic meter, and metaphorical meanings in the text.",
+  1826→                      "solutionAr": "قراءة القصيدة مرة واحدة بتركيز\\nتحديد القافية والبحر الشعري\\nاستخلاص الأفكار الرئيسية\\nتحليل الصور البيانية والمعاني المجازية",
+  1827→                      "solutionEn": "Read the poem once with focus\\nIdentify the rhyme scheme and poetic meter\\nExtract the main ideas\\nAnalyze figurative language and metaphorical meanings",
+  1828→                      "stepsAr": "قراءة القصيدة مرة واحدة بتركيز\\nتحديد القافية والبحر الشعري\\nاستخلاص الأفكار الرئيسية\\nتحليل الصور البيانية والمعاني المجازية",
+  1829→                      "stepsEn": "Read the poem once with focus\\nIdentify the rhyme scheme and poetic meter\\nExtract the main ideas\\nAnalyze figurative language and metaphorical meanings",
+  1830→                      "order": 1
+  1831→                    }
+  1832→                  ],
+  1833→                  "Question": [
+  1834→                    {
+  1835→                      "id": "q-id_3fzgq46c9st-0",
+  1836→                      "lessonId": "id_3fzgq46c9st",
+  1837→                      "type": "multiple-choice",
+  1838→                      "questionAr": "ما هي أفضل استراتيجية لفهم النص العلمي؟",
+  1839→                      "questionEn": "What is the best strategy for understanding a scientific text?",
+  1840→                      "optionsAr": "[\"القراءة السريعة فقط\",\"القراءة التفصيلية مع التوقف عند المصطلحات\",\"القراءة العشوائية\",\"قراءة العنوان فقط\"]",
+  1841→                      "optionsEn": "[\"Speed reading only\",\"Detailed reading with pauses at terminology\",\"Random reading\",\"Reading only the title\"]",
+  1842→                      "answer": "ب",
+  1843→                      "explanationAr": "القراءة التفصيلية مع التوقف عند المصطلحات هي الاستراتيجية الأفضل للنصوص العلمية لأنها تسمح بالاستيعاب الدقيق للمعلومات والمفاهيم الجديدة.",
+  1844→                      "explanationEn": "Detailed reading with pauses at terminology is the best strategy for scientific texts as it allows for a thorough understanding of information and new concepts.",
+  1845→                      "points": 1,
+  1846→                      "difficulty": "medium",
+  1847→                      "order": 1
+  1848→                    },
+  1849→                    {
+  1850→                      "id": "q-id_3fzgq46c9st-1",
+  1851→                      "lessonId": "id_3fzgq46c9st",
+  1852→                      "type": "multiple-choice",
+  1853→                      "questionAr": "ما هي تقنية القراءة التي تساعد على استيعاب الأفكار الرئيسية في نص طويل؟",
+  1854→                      "questionEn": "Which reading technique helps in grasping the main ideas in a long text?",
+  1855→                      "optionsAr": "[\"القراءة الصوتية\",\"القراءة المتكررة\",\"القراءة الانتقائية\",\"القراءة بدون توقف\"]",
+  1856→                      "optionsEn": "[\"Reading aloud\",\"Repeated reading\",\"Selective reading\",\"Reading without stopping\"]",
+  1857→                      "answer": "ج",
+  1858→                      "explanationAr": "القراءة الانتقائية تركز على استخلاص الأفكار الرئيسية وتجاهل التفاصيل غير الضرورية، مما يساعد في فهم النصوص الطويلة بفعالية.",
+  1859→                      "explanationEn": "Selective reading focuses on extracting main ideas and ignoring unnecessary details, which helps in effectively understanding long texts.",
+  1860→                      "points": 1,
+  1861→                      "difficulty": "medium",
+  1862→                      "order": 2
+  1863→                    }
+  1864→                  ]
+  1865→                }
+  1866→              ]
+  1867→            }
+  1868→          ]
+  1869→        },
+  1870→        {
+  1871→          "id": "id_277t7lm7krs",
+  1872→          "nameAr": "اللغة الإنجليزية",
+  1873→          "nameEn": "English Language",
+  1874→          "slug": "english-language-first-year",
+  1875→          "icon": "Globe",
+  1876→          "color": "#EC4899",
+  1877→          "order": 2,
+  1878→          "yearId": "year-1",
+  1879→          "specializationId": null,
+  1880→          "isCommon": true,
+  1881→          "createdAt": "2026-06-13T10:13:57.872Z",
+  1882→          "updatedAt": "2026-06-13T10:13:57.872Z",
+  1883→          "Specialization": null,
+  1884→          "Unit": [
+  1885→            {
+  1886→              "id": "id_73m60wapeo",
+  1887→              "subjectId": "id_277t7lm7krs",
+  1888→              "semesterId": null,
+  1889→              "nameAr": "Grammar Unit",
+  1890→              "nameEn": "Unit 1",
+  1891→              "slug": "unit-1-id_277t7lm7krs",
+  1892→              "order": 1,
+  1893→              "createdAt": "2026-06-13T10:13:57.873Z",
+  1894→              "updatedAt": "2026-06-13T10:13:57.872Z",
+  1895→              "Lesson": [
+  1896→                {
+  1897→                  "id": "id_tsvlt0a0tua",
+  1898→                  "unitId": "id_73m60wapeo",
+  1899→                  "titleAr": "الدرس 1: Grammar Unit",
+  1900→                  "titleEn": "Lesson 1",
+  1901→                  "slug": "lesson-1-id_73m60wapeo",
+  1902→                  "descriptionAr": "شرح Grammar Unit - الدرس 1",
+  1903→                  "descriptionEn": "Explanation of Grammar Unit - Lesson 1",
+  1904→                  "duration": 31,
+  1905→                  "order": 1,
+  1906→                  "isFree": false,
+  1907→                  "videoUrl": null,
+  1908→                  "pdfUrl": null,
+  1909→                  "thumbnailUrl": null,
+  1910→                  "introductionAr": "مرحباً بكم في درسنا الأول حول الوحدة النحوية في مادة اللغة الإنجليزية للصف الأول الثانوي. في هذا الدرس، سنستكشف أساسيات القواعد الإنجليزية التي تمثل حجر الزاوية في بناء جمل صحيحة وفهم اللغة بشكل أعمق. سنتناول أنواع الجمل المختلفة، أجزاء الكلمة، ودور كل جزء في تكوين المعنى. كما سنتعلم كيفية استخدام الأفعال بشكل صحيح، والتعامل مع الأزمنة المختلفة، وفهم العلاقات بين الكلمات في الجملة. هذا الدرس سيمهد الطريق لفهم أكثر تعقيداً للغة الإنجليزية في الدروس اللاحقة، ويوفر أساساً متيناً لتطوير مهاراتك في القراءة والكتابة والاستماع والتحليل اللغوي.",
+  1911→                  "introductionEn": "Welcome to our first lesson on the Grammar Unit in the English subject for First Year Secondary School. In this lesson, we will explore the fundamentals of English grammar that form the cornerstone of constructing correct sentences and understanding the language more deeply. We will cover different types of sentences, parts of speech, and the role of each part in meaning formation. We will also learn how to use verbs correctly, handle different tenses, and understand relationships between words in sentences. This lesson will pave the way for a more complex understanding of the English language in subsequent lessons, and provide a solid foundation for developing your reading, writing, listening, and analytical skills.",
+  1912→                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات القواعد الإنجليزية وأجزاء الكلمة الرئيسية. فهمت كيفية استخدام الأسماء والأفعال والصفات والظروف والحروف الجارة والحروف الربط والضمائر بشكل صحيح. تعلمنا أيضاً كيفية تكوين الجمل المختلفة واستخدام الأزمنة المناسبة. هذه المعرفة تمثل أساساً متيناً لمواصلة تعلم اللغة الإنجليزية وتطوير مهاراتك اللغوية.",
+  1913→                  "summaryEn": "In this lesson, we learned the fundamentals of English grammar and the main parts of speech. We understood how to use nouns, verbs, adjectives, adverbs, prepositions, conjunctions, and pronouns correctly. We also learned how to form different types of sentences and use appropriate tenses. This knowledge provides a solid foundation for continuing to learn the English language and developing your language skills.",
+  1914→                  "createdAt": "2026-06-13T10:13:57.873Z",
+  1915→                  "updatedAt": "2026-06-13T10:13:57.872Z",
+  1916→                  "Objective": [
+  1917→                    {
+  1918→                      "id": "obj-id_tsvlt0a0tua-0",
+  1919→                      "lessonId": "id_tsvlt0a0tua",
+  1920→                      "textAr": "أجزاء الكلمة الرئيسية وأدوارها",
+  1921→                      "textEn": "Main parts of speech and their roles",
+  1922→                      "order": 1
+  1923→                    },
+  1924→                    {
+  1925→                      "id": "obj-id_tsvlt0a0tua-1",
+  1926→                      "lessonId": "id_tsvlt0a0tua",
+  1927→                      "textAr": "أنواع الجمل وتكوينها",
+  1928→                      "textEn": "Types of sentences and their formation",
+  1929→                      "order": 2
+  1930→                    },
+  1931→                    {
+  1932→                      "id": "obj-id_tsvlt0a0tua-2",
+  1933→                      "lessonId": "id_tsvlt0a0tua",
+  1934→                      "textAr": "الأزمنة الفعلية واستخداماتها",
+  1935→                      "textEn": "Verb tenses and their uses",
+  1936→                      "order": 3
+  1937→                    },
+  1938→                    {
+  1939→                      "id": "obj-id_tsvlt0a0tua-3",
+  1940→                      "lessonId": "id_tsvlt0a0tua",
+  1941→                      "textAr": "علاقات الكلمات في الجملة",
+  1942→                      "textEn": "Relationships between words in sentences",
+  1943→                      "order": 4
+  1944→                    }
+  1945→                  ],
+  1946→                  "Concept": [
+  1947→                    {
+  1948→                      "id": "concept-id_tsvlt0a0tua-0",
+  1949→                      "lessonId": "id_tsvlt0a0tua",
+  1950→                      "termAr": "أجزاء الكلمة الرئيسية وأدوارها",
+  1951→                      "termEn": "Main parts of speech and their roles",
+  1952→                      "definitionAr": "أجزاء الكلمة الرئيسية وأدوارها",
+  1953→                      "definitionEn": "Main parts of speech and their roles",
+  1954→                      "order": 1
+  1955→                    },
+  1956→                    {
+  1957→                      "id": "concept-id_tsvlt0a0tua-1",
+  1958→                      "lessonId": "id_tsvlt0a0tua",
+  1959→                      "termAr": "أنواع الجمل وتكوينها",
+  1960→                      "termEn": "Types of sentences and their formation",
+  1961→                      "definitionAr": "أنواع الجمل وتكوينها",
+  1962→                      "definitionEn": "Types of sentences and their formation",
+  1963→                      "order": 2
+  1964→                    },
+  1965→                    {
+  1966→                      "id": "concept-id_tsvlt0a0tua-2",
+  1967→                      "lessonId": "id_tsvlt0a0tua",
+  1968→                      "termAr": "الأزمنة الفعلية واستخداماتها",
+  1969→                      "termEn": "Verb tenses and their uses",
+  1970→                      "definitionAr": "الأزمنة الفعلية واستخداماتها",
+  1971→                      "definitionEn": "Verb tenses and their uses",
+  1972→                      "order": 3
+  1973→                    }
+  1974→                  ],
+  1975→                  "Formula": [
+  1976→                    {
+  1977→                      "id": "form-id_tsvlt0a0tua-0",
+  1978→                      "lessonId": "id_tsvlt0a0tua",
+  1979→                      "formula": "Subject + Verb + Object",
+  1980→                      "explanationAr": "تركيب الجملة الأساسية في الإنجليزية",
+  1981→                      "explanationEn": "Basic English sentence structure",
+  1982→                      "order": 1
+  1983→                    },
+  1984→                    {
+  1985→                      "id": "form-id_tsvlt0a0tua-1",
+  1986→                      "lessonId": "id_tsvlt0a0tua",
+  1987→                      "formula": "If + present, will + infinitive",
+  1988→                      "explanationAr": "الشرط من النوع الأول",
+  1989→                      "explanationEn": "First conditional",
+  1990→                      "order": 2
+  1991→                    }
+  1992→                  ],
+  1993→                  "Example": [
+  1994→                    {
+  1995→                      "id": "example-id_tsvlt0a0tua-0",
+  1996→                      "lessonId": "id_tsvlt0a0tua",
+  1997→                      "questionAr": "استخدام الأفعال في الزمن المضارع: الجملة: 'محمد يدرس اللغة الإنجليزية'. هنا، 'يدرس' هو فعل مضارع يعبر عن فعل مستمر في الحاضر.",
+  1998→                      "questionEn": "Using Verbs in Present Tense: Sentence: 'محمد يدرس اللغة الإنجليزية'. Here, 'يدرس' is a present tense verb expressing an ongoing action in the present.",
+  1999→                      "solutionAr": "1. تحديد الفعل الرئيسي في الجملة\\n2. التعرف على الزمن المستخدم (المضارع)\\n3. فهم كيفية استخدام حرف 'ي' للإشارة إلى الضمير 'هو'",
+  2000→                      "solutionEn": "1. Identify the main verb in the sentence\\n2. Recognize the tense used (present)\\n3. Understand how the letter 'ي' indicates the pronoun 'he'",
+
+[showing lines 1-2000 of 69538; use offset=2001 with limit to continue reading]

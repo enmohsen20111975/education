@@ -1634,3 +1634,564 @@ export function getSimulationsStats() {
     free: simulations.filter(s => s.isFree).length
   };
 }
+
+// ==========================================
+// نظام الربط الذكي للمحاكيات بالدروس
+// ==========================================
+
+/**
+ * خريطة ربط المحاكيات بالمادات
+ * تربط اسم المادة (بالعربية) بقائمة معرفات المحاكيات المناسبة
+ */
+export const subjectSimulationMap: Record<string, string[]> = {
+  'الفيزياء': [
+    // الميكانيكا
+    'sim-physics-motion-1', 'sim-physics-motion-2', 'sim-physics-motion-3', 'sim-physics-motion-4',
+    'sim-physics-freefall-1', 'sim-physics-freefall-2',
+    'sim-physics-forces-1', 'sim-physics-forces-2',
+    'sim-physics-newton-1', 'sim-physics-newton-2', 'sim-physics-newton-3', 'sim-physics-newton-4',
+    'sim-physics-projectile-1', 'sim-physics-projectile-2',
+    'sim-physics-energy-1', 'sim-physics-energy-2', 'sim-physics-energy-3', 'sim-physics-energy-4',
+    'sim-physics-momentum-1', 'sim-physics-momentum-2',
+    'sim-physics-work-1', 'sim-physics-circular-1',
+    'sim-physics-gravity-1', 'sim-physics-satellite-1',
+    // الموجات
+    'sim-physics-wave-1', 'sim-physics-wave-2', 'sim-physics-wave-3', 'sim-physics-wave-4', 'sim-physics-wave-5',
+    'sim-physics-sound-1', 'sim-physics-sound-2', 'sim-physics-sound-3', 'sim-physics-sound-4',
+    'sim-physics-light-1', 'sim-physics-light-2', 'sim-physics-light-3', 'sim-physics-light-4', 'sim-physics-light-5',
+    'sim-physics-optics-1',
+    // الكهرباء والمغناطيسية
+    'sim-physics-electricity-1', 'sim-physics-electricity-2', 'sim-physics-electricity-3',
+    'sim-physics-circuit-1', 'sim-physics-circuit-2', 'sim-physics-circuit-3', 'sim-physics-circuit-4', 'sim-physics-circuit-5',
+    'sim-physics-magnetism-1', 'sim-physics-magnetism-2',
+    'sim-physics-electromagnetism-1', 'sim-physics-electromagnetism-2', 'sim-physics-electromagnetism-3', 
+    'sim-physics-electromagnetism-4', 'sim-physics-electromagnetism-5',
+    'sim-physics-thermodynamics-1'
+  ],
+  'Physics': [
+    // نفس محاكيات الفيزياء بالإنجليزية
+    'sim-physics-motion-1', 'sim-physics-motion-2', 'sim-physics-motion-3', 'sim-physics-motion-4',
+    'sim-physics-freefall-1', 'sim-physics-freefall-2',
+    'sim-physics-forces-1', 'sim-physics-forces-2',
+    'sim-physics-newton-1', 'sim-physics-newton-2', 'sim-physics-newton-3', 'sim-physics-newton-4',
+    'sim-physics-projectile-1', 'sim-physics-projectile-2',
+    'sim-physics-energy-1', 'sim-physics-energy-2', 'sim-physics-energy-3', 'sim-physics-energy-4',
+    'sim-physics-momentum-1', 'sim-physics-momentum-2',
+    'sim-physics-work-1', 'sim-physics-circular-1',
+    'sim-physics-gravity-1', 'sim-physics-satellite-1',
+    'sim-physics-wave-1', 'sim-physics-wave-2', 'sim-physics-wave-3', 'sim-physics-wave-4', 'sim-physics-wave-5',
+    'sim-physics-sound-1', 'sim-physics-sound-2', 'sim-physics-sound-3', 'sim-physics-sound-4',
+    'sim-physics-light-1', 'sim-physics-light-2', 'sim-physics-light-3', 'sim-physics-light-4', 'sim-physics-light-5',
+    'sim-physics-optics-1',
+    'sim-physics-electricity-1', 'sim-physics-electricity-2', 'sim-physics-electricity-3',
+    'sim-physics-circuit-1', 'sim-physics-circuit-2', 'sim-physics-circuit-3', 'sim-physics-circuit-4', 'sim-physics-circuit-5',
+    'sim-physics-magnetism-1', 'sim-physics-magnetism-2',
+    'sim-physics-electromagnetism-1', 'sim-physics-electromagnetism-2', 'sim-physics-electromagnetism-3', 
+    'sim-physics-electromagnetism-4', 'sim-physics-electromagnetism-5',
+    'sim-physics-thermodynamics-1'
+  ],
+  'الكيمياء': [
+    // البنية الذرية
+    'sim-chemistry-atom-1', 'sim-chemistry-atom-2', 'sim-chemistry-atom-3', 'sim-chemistry-atom-4',
+    'sim-chemistry-periodic-1', 'sim-chemistry-periodic-2', 'sim-chemistry-periodic-3', 'sim-chemistry-periodic-4',
+    // الروابط الكيميائية
+    'sim-chemistry-bond-1', 'sim-chemistry-bond-2', 'sim-chemistry-bond-3', 'sim-chemistry-bond-4', 
+    'sim-chemistry-bond-5', 'sim-chemistry-bond-6',
+    // التفاعلات الكيميائية
+    'sim-chemistry-nomenclature-1',
+    'sim-chemistry-reaction-1', 'sim-chemistry-reaction-2', 'sim-chemistry-reaction-3', 'sim-chemistry-reaction-4',
+    'sim-chemistry-reaction-5', 'sim-chemistry-reaction-6',
+    'sim-chemistry-solution-1', 'sim-chemistry-solution-2',
+    'sim-chemistry-acid-1', 'sim-chemistry-acid-2'
+  ],
+  'Chemistry': [
+    // نفس محاكيات الكيمياء بالإنجليزية
+    'sim-chemistry-atom-1', 'sim-chemistry-atom-2', 'sim-chemistry-atom-3', 'sim-chemistry-atom-4',
+    'sim-chemistry-periodic-1', 'sim-chemistry-periodic-2', 'sim-chemistry-periodic-3', 'sim-chemistry-periodic-4',
+    'sim-chemistry-bond-1', 'sim-chemistry-bond-2', 'sim-chemistry-bond-3', 'sim-chemistry-bond-4', 
+    'sim-chemistry-bond-5', 'sim-chemistry-bond-6',
+    'sim-chemistry-nomenclature-1',
+    'sim-chemistry-reaction-1', 'sim-chemistry-reaction-2', 'sim-chemistry-reaction-3', 'sim-chemistry-reaction-4',
+    'sim-chemistry-reaction-5', 'sim-chemistry-reaction-6',
+    'sim-chemistry-solution-1', 'sim-chemistry-solution-2',
+    'sim-chemistry-acid-1', 'sim-chemistry-acid-2'
+  ],
+  'الرياضيات': [
+    // الجبر والمعادلات
+    'sim-math-equations-1', 'sim-math-equations-2', 'sim-math-equations-3',
+    'sim-math-quadratic-1', 'sim-math-quadratic-2', 'sim-math-quadratic-3',
+    'sim-math-systems-1', 'sim-math-systems-2', 'sim-math-systems-3',
+    'sim-math-log-1', 'sim-math-log-2',
+    'sim-math-functions-1', 'sim-math-functions-2',
+    'sim-matrices-1', 'sim-matrices-2',
+    // الهندسة وعلم المثلثات
+    'sim-math-geometry-1', 'sim-math-geometry-2', 'sim-math-geometry-3', 'sim-math-geometry-4', 'sim-math-geometry-5',
+    'sim-math-trig-1', 'sim-math-trig-2', 'sim-math-trig-3', 'sim-math-trig-4', 'sim-math-trig-5', 
+    'sim-math-trig-6', 'sim-math-trig-7',
+    'sim-math-vectors-1', 'sim-math-vectors-2', 'sim-math-vectors-3',
+    // التفاضل والتكامل
+    'sim-math-calculus-1', 'sim-math-calculus-2', 'sim-math-calculus-3', 'sim-math-calculus-4',
+    'sim-math-calculus-5', 'sim-math-calculus-6', 'sim-math-calculus-7', 'sim-math-calculus-8',
+    'sim-math-calculus-9', 'sim-math-calculus-10',
+    // أدوات عامة
+    'sim-calc-scientific', 'sim-graphing-tool', 'sim-statistics-1', 'sim-probability-1'
+  ],
+  'Mathematics': [
+    // نفس محاكيات الرياضيات بالإنجليزية
+    'sim-math-equations-1', 'sim-math-equations-2', 'sim-math-equations-3',
+    'sim-math-quadratic-1', 'sim-math-quadratic-2', 'sim-math-quadratic-3',
+    'sim-math-systems-1', 'sim-math-systems-2', 'sim-math-systems-3',
+    'sim-math-log-1', 'sim-math-log-2',
+    'sim-math-functions-1', 'sim-math-functions-2',
+    'sim-matrices-1', 'sim-matrices-2',
+    'sim-math-geometry-1', 'sim-math-geometry-2', 'sim-math-geometry-3', 'sim-math-geometry-4', 'sim-math-geometry-5',
+    'sim-math-trig-1', 'sim-math-trig-2', 'sim-math-trig-3', 'sim-math-trig-4', 'sim-math-trig-5', 
+    'sim-math-trig-6', 'sim-math-trig-7',
+    'sim-math-vectors-1', 'sim-math-vectors-2', 'sim-math-vectors-3',
+    'sim-math-calculus-1', 'sim-math-calculus-2', 'sim-math-calculus-3', 'sim-math-calculus-4',
+    'sim-math-calculus-5', 'sim-math-calculus-6', 'sim-math-calculus-7', 'sim-math-calculus-8',
+    'sim-math-calculus-9', 'sim-math-calculus-10',
+    'sim-calc-scientific', 'sim-graphing-tool', 'sim-statistics-1', 'sim-probability-1'
+  ],
+  'الرياضيات (1)': [
+    'sim-math-equations-1', 'sim-math-equations-2', 'sim-math-equations-3',
+    'sim-math-quadratic-1', 'sim-math-quadratic-2', 'sim-math-quadratic-3',
+    'sim-math-systems-1', 'sim-math-systems-2', 'sim-math-systems-3',
+    'sim-math-geometry-1', 'sim-math-geometry-2', 'sim-math-geometry-3', 'sim-math-geometry-4', 'sim-math-geometry-5',
+    'sim-math-trig-1', 'sim-math-trig-2', 'sim-math-trig-3',
+    'sim-calc-scientific', 'sim-graphing-tool'
+  ],
+  'الرياضيات (2)': [
+    'sim-math-log-1', 'sim-math-log-2',
+    'sim-math-functions-1', 'sim-math-functions-2',
+    'sim-matrices-1', 'sim-matrices-2',
+    'sim-math-trig-4', 'sim-math-trig-5', 'sim-math-trig-6', 'sim-math-trig-7',
+    'sim-math-vectors-1', 'sim-math-vectors-2', 'sim-math-vectors-3',
+    'sim-math-calculus-1', 'sim-math-calculus-2', 'sim-math-calculus-3', 'sim-math-calculus-4',
+    'sim-math-calculus-5', 'sim-math-calculus-6', 'sim-math-calculus-7', 'sim-math-calculus-8',
+    'sim-math-calculus-9', 'sim-math-calculus-10',
+    'sim-calc-scientific', 'sim-graphing-tool'
+  ],
+  'الأحياء': [],
+  'Biology': [],
+  'الجغرافيا': [],
+  'Geography': []
+};
+
+/**
+ * خريطة الكلمات المفتاحية لربط المحاكيات بالدروس
+ * تربط اسم الوحدة أو موضوع الدرس بكلمات مفتاحية للمطابقة مع المحاكيات
+ */
+export const lessonKeywordMap: Record<string, string[]> = {
+  // الفيزياء - الميكانيكا
+  'الميكانيكا': ['motion', 'velocity', 'acceleration', 'forces', 'newton', 'momentum', 'energy', 'projectile', 'freefall', 'gravity', 'circular'],
+  'الحركة على خط مستقيم': ['motion', 'velocity', 'acceleration', 'graphs', 'equations'],
+  'قوانين نيوتن للحركة': ['newton', 'forces', 'friction', 'inertia'],
+  
+  // الفيزياء - الكهربية
+  'الكهربية': ['electricity', 'circuit', 'current', 'voltage', 'resistance', 'ohm', 'power'],
+  'التيار الكهربي وقانون أوم': ['circuit', 'ohm', 'current', 'voltage', 'resistance'],
+  'ربط المقاومات على التوالي والتوازي': ['circuit', 'resistors', 'series', 'parallel'],
+  'القدرة الكهربائية والطاقة الكهربية': ['power', 'electricity', 'energy'],
+  
+  // الفيزياء - المغناطيسية
+  'المغناطيسية': ['magnetism', 'magnetic', 'field', 'electromagnet'],
+  'المجال المغناطيسي والقوة المغناطيسية': ['magnetism', 'magnetic', 'field'],
+  'القوة المغناطيسية على سلك يمر به تيار': ['magnetism', 'electromagnet', 'induction'],
+  'الحث الكهرومغناطيسي': ['electromagnet', 'induction', 'transformer', 'motor'],
+  'المولدات والمحولات': ['transformer', 'motor', 'induction', 'electromagnet'],
+  
+  // الفيزياء - الموجات
+  'الموجات': ['wave', 'sound', 'interference', 'reflection', 'standing'],
+  'خواص الموجات': ['wave', 'frequency', 'amplitude', 'wavelength'],
+  'ظواهر الموجات': ['wave', 'interference', 'reflection', 'doppler'],
+  
+  // الفيزياء - البصريات
+  'البصريات': ['light', 'lenses', 'mirrors', 'reflection', 'refraction', 'diffraction'],
+  'الانعكاس والمرايا': ['light', 'reflection', 'mirrors'],
+  'الانكسار والعدسات': ['light', 'refraction', 'lenses'],
+  'الظواهر الضوئية والأجهزة البصرية': ['light', 'diffraction', 'doubleslit', 'optics'],
+  
+  // الكيمياء - البنية الذرية
+  'البنية الذرية': ['atom', 'atomic', 'electron', 'orbital', 'nucleus'],
+  'التركيب الإلكتروني للذرة': ['electron', 'orbital', 'configuration'],
+  'الجدول الدوري الحديث': ['periodic', 'trends', 'electronegativity', 'groups'],
+  
+  // الكيمياء - الروابط
+  'الروابط الكيميائية': ['bond', 'ionic', 'covalent', 'metallic', 'molecular'],
+  'الرابطة الأيونية': ['ionic', 'bond'],
+  'الرابطة التساهمية': ['covalent', 'bond', 'molecular', 'geometry', 'polarity'],
+  'الرابطة الفلزية': ['metallic', 'bond'],
+  'قوى فان دير فالس والروابط الهيدروجينية': ['intermolecular', 'hydrogen', 'imf'],
+  
+  // الكيمياء - التفاعلات
+  'التفاعلات الكيميائية': ['reaction', 'equilibrium', 'rate', 'activation'],
+  'أنواع التفاعلات الكيميائية': ['reaction', 'types', 'nomenclature'],
+  'سرعة التفاعل الكيميائي': ['rate', 'activation', 'reaction'],
+  
+  // الكيمياء العضوية
+  'الكيمياء العضوية': [],
+  'الهيدروكربونات المشبعة (الألكانات)': [],
+  'الهيدروكربونات غير المشبعة': [],
+  'الكحولات والإيثيرات': [],
+  'الأحماض الكربوكسيلية والإسترات': [],
+  
+  // الرياضيات - الجبر
+  'الجبر': ['equations', 'linear', 'quadratic', 'systems', 'functions', 'matrices'],
+  
+  // الرياضيات - الهندسة
+  'الهندسة': ['geometry', 'angles', 'polygons', 'circle', 'pythagoras', 'vectors'],
+  
+  // الرياضيات - التفاضل
+  'التفاضل': ['derivative', 'limits', 'calculus', 'rate', 'maxima', 'minima'],
+  
+  // الرياضيات - التكامل
+  'التكامل': ['integral', 'calculus', 'area', 'curve'],
+  
+  // الرياضيات - الاحتمالات
+  'الاحتمالات': ['probability', 'statistics'],
+  
+  // الأحياء - الخلية
+  'الخلية': [],
+  'تركيب الخلية النباتية والحيوانية': [],
+  'الانقسام الخلوي': [],
+  'الأيض الخلوي': [],
+  
+  // الأحياء - الوراثة
+  'الوراثة': [],
+  'قوانين مندل للوراثة': [],
+  'الوراثة غير المندلية': [],
+  'DNA والتركيب الوراثي': [],
+  'الطفرات والهندسة الوراثية': [],
+  
+  // الأحياء - الأنظمة الحيوية
+  'الأنظمة الحيوية': [],
+  'الجهاز الهضمي والدوري': [],
+  'الجهاز التنفسي والعصبي': [],
+  
+  // الأحياء - البيئة
+  'البيئة': [],
+  'النظام البيئي والسلاسل الغذائية': [],
+  'التوازن البيئي والتنوع الحيوي': []
+};
+
+/**
+ * خريطة ربط الوحدات بالمحاكيات المحددة
+ * تربط اسم الوحدة مباشرة بمعرفات المحاكيات المناسبة
+ */
+export const unitSimulationMap: Record<string, string[]> = {
+  // فيزياء - الميكانيكا
+  'الميكانيكا': [
+    'sim-physics-motion-1', 'sim-physics-motion-2', 'sim-physics-motion-3', 'sim-physics-motion-4',
+    'sim-physics-freefall-1', 'sim-physics-freefall-2',
+    'sim-physics-forces-1', 'sim-physics-forces-2',
+    'sim-physics-newton-1', 'sim-physics-newton-2', 'sim-physics-newton-3', 'sim-physics-newton-4',
+    'sim-physics-projectile-1', 'sim-physics-projectile-2',
+    'sim-physics-energy-1', 'sim-physics-energy-2', 'sim-physics-energy-3', 'sim-physics-energy-4',
+    'sim-physics-momentum-1', 'sim-physics-momentum-2',
+    'sim-physics-work-1', 'sim-physics-circular-1',
+    'sim-physics-gravity-1', 'sim-physics-satellite-1'
+  ],
+  // فيزياء - الموجات
+  'الموجات': [
+    'sim-physics-wave-1', 'sim-physics-wave-2', 'sim-physics-wave-3', 'sim-physics-wave-4', 'sim-physics-wave-5',
+    'sim-physics-sound-1', 'sim-physics-sound-2', 'sim-physics-sound-3', 'sim-physics-sound-4'
+  ],
+  // فيزياء - الكهربية
+  'الكهربية': [
+    'sim-physics-electricity-1', 'sim-physics-electricity-2', 'sim-physics-electricity-3',
+    'sim-physics-circuit-1', 'sim-physics-circuit-2', 'sim-physics-circuit-3', 'sim-physics-circuit-4', 'sim-physics-circuit-5'
+  ],
+  // فيزياء - المغناطيسية
+  'المغناطيسية': [
+    'sim-physics-magnetism-1', 'sim-physics-magnetism-2',
+    'sim-physics-electromagnetism-1', 'sim-physics-electromagnetism-2', 'sim-physics-electromagnetism-3',
+    'sim-physics-electromagnetism-4', 'sim-physics-electromagnetism-5'
+  ],
+  // فيزياء - البصريات
+  'البصريات': [
+    'sim-physics-light-1', 'sim-physics-light-2', 'sim-physics-light-3', 'sim-physics-light-4', 'sim-physics-light-5',
+    'sim-physics-optics-1'
+  ],
+  // كيمياء - البنية الذرية
+  'البنية الذرية': [
+    'sim-chemistry-atom-1', 'sim-chemistry-atom-2', 'sim-chemistry-atom-3', 'sim-chemistry-atom-4',
+    'sim-chemistry-periodic-1', 'sim-chemistry-periodic-2', 'sim-chemistry-periodic-3', 'sim-chemistry-periodic-4'
+  ],
+  // كيمياء - الروابط الكيميائية
+  'الروابط الكيميائية': [
+    'sim-chemistry-bond-1', 'sim-chemistry-bond-2', 'sim-chemistry-bond-3', 'sim-chemistry-bond-4',
+    'sim-chemistry-bond-5', 'sim-chemistry-bond-6'
+  ],
+  // كيمياء - التفاعلات الكيميائية
+  'التفاعلات الكيميائية': [
+    'sim-chemistry-nomenclature-1',
+    'sim-chemistry-reaction-1', 'sim-chemistry-reaction-2', 'sim-chemistry-reaction-3', 'sim-chemistry-reaction-4',
+    'sim-chemistry-reaction-5', 'sim-chemistry-reaction-6',
+    'sim-chemistry-solution-1', 'sim-chemistry-solution-2',
+    'sim-chemistry-acid-1', 'sim-chemistry-acid-2'
+  ],
+  // كيمياء - الكيمياء العضوية
+  'الكيمياء العضوية': [],
+  // رياضيات - الجبر
+  'الجبر': [
+    'sim-math-equations-1', 'sim-math-equations-2', 'sim-math-equations-3',
+    'sim-math-quadratic-1', 'sim-math-quadratic-2', 'sim-math-quadratic-3',
+    'sim-math-systems-1', 'sim-math-systems-2', 'sim-math-systems-3',
+    'sim-math-log-1', 'sim-math-log-2',
+    'sim-math-functions-1', 'sim-math-functions-2',
+    'sim-matrices-1', 'sim-matrices-2'
+  ],
+  // رياضيات - الهندسة
+  'الهندسة': [
+    'sim-math-geometry-1', 'sim-math-geometry-2', 'sim-math-geometry-3', 'sim-math-geometry-4', 'sim-math-geometry-5',
+    'sim-math-trig-1', 'sim-math-trig-2', 'sim-math-trig-3', 'sim-math-trig-4', 'sim-math-trig-5',
+    'sim-math-trig-6', 'sim-math-trig-7',
+    'sim-math-vectors-1', 'sim-math-vectors-2', 'sim-math-vectors-3'
+  ],
+  // رياضيات - التفاضل
+  'التفاضل': [
+    'sim-math-calculus-1', 'sim-math-calculus-2', 'sim-math-calculus-3', 'sim-math-calculus-4',
+    'sim-math-calculus-5', 'sim-math-calculus-6', 'sim-math-calculus-7'
+  ],
+  // رياضيات - التكامل
+  'التكامل': [
+    'sim-math-calculus-8', 'sim-math-calculus-9', 'sim-math-calculus-10'
+  ],
+  // رياضيات - الاحتمالات
+  'الاحتمالات': [
+    'sim-statistics-1', 'sim-probability-1'
+  ],
+  // أحياء - الخلية
+  'الخلية': [],
+  // أحياء - الوراثة
+  'الوراثة': [],
+  // أحياء - الأنظمة الحيوية
+  'الأنظمة الحيوية': [],
+  // أحياء - البيئة
+  'البيئة': []
+};
+
+/**
+ * دالة للحصول على المحاكيات المناسبة للمادة
+ * @param subjectName اسم المادة (بالعربية أو الإنجليزية)
+ * @returns قائمة المحاكيات المناسبة للمادة
+ */
+export function getSimulationsForSubject(subjectName: string): Simulation[] {
+  const simIds = subjectSimulationMap[subjectName] || [];
+  
+  if (simIds.length === 0) {
+    // إذا لم يتم العثور على محاكيات محددة، نرجع المحاكيات حسب النوع
+    return getSimulationsBySubject(subjectName);
+  }
+  
+  // نرجع المحاكيات بالترتيب المحدد
+  return simIds
+    .map(id => simulations.find(sim => sim.id === id))
+    .filter((sim): sim is Simulation => sim !== undefined);
+}
+
+/**
+ * دالة للحصول على المحاكيات المناسبة لدرس معين
+ * @param lessonId معرف الدرس
+ * @param lessonTitle عنوان الدرس
+ * @param subjectName اسم المادة
+ * @param unitName اسم الوحدة (اختياري)
+ * @returns قائمة المحاكيات المناسبة للدرس
+ */
+export function getSimulationsForLesson(
+  lessonId: string, 
+  lessonTitle: string, 
+  subjectName: string,
+  unitName?: string
+): Simulation[] {
+  // 1. محاولة الحصول على المحاكيات من الربط المباشر بالـ lessonId
+  const directSimulations = getSimulationsByLessonId(lessonId);
+  if (directSimulations.length > 0 && directSimulations.some(s => s.lessonId !== 'any')) {
+    return directSimulations.filter(s => s.lessonId !== 'any');
+  }
+  
+  // 2. محاولة الحصول على المحاكيات من خريطة الوحدات
+  if (unitName && unitSimulationMap[unitName] && unitSimulationMap[unitName].length > 0) {
+    const unitSimIds = unitSimulationMap[unitName];
+    return unitSimIds
+      .map(id => simulations.find(sim => sim.id === id))
+      .filter((sim): sim is Simulation => sim !== undefined)
+      .slice(0, 6); // نرجع أول 6 محاكيات للوحدة
+  }
+  
+  // 3. البحث بالكلمات المفتاحية في عنوان الدرس
+  const keywords = lessonKeywordMap[lessonTitle] || lessonKeywordMap[unitName || ''] || [];
+  
+  if (keywords.length > 0) {
+    // الحصول على محاكيات المادة
+    const subjectSimulations = getSimulationsForSubject(subjectName);
+    
+    // فلترة المحاكيات التي تحتوي على كلمات مفتاحية مطابقة
+    const matchedSimulations = subjectSimulations.filter(sim => {
+      const simText = `${sim.id} ${sim.titleAr} ${sim.titleEn} ${sim.descriptionAr} ${sim.descriptionEn}`.toLowerCase();
+      return keywords.some(keyword => simText.includes(keyword.toLowerCase()));
+    });
+    
+    if (matchedSimulations.length > 0) {
+      return matchedSimulations.slice(0, 6);
+    }
+  }
+  
+  // 4. البحث في نص عنوان الدرس للكلمات المفتاحية
+  const titleLower = lessonTitle.toLowerCase();
+  const subjectSimulations = getSimulationsForSubject(subjectName);
+  
+  // قاموس الكلمات المفتاحية العربية للمطابقة
+  const arabicKeywords: Record<string, string[]> = {
+    'حركة': ['motion', 'حركة'],
+    'سرعة': ['velocity', 'سرعة'],
+    'تسارع': ['acceleration', 'تسارع'],
+    'قوة': ['forces', 'قوة'],
+    'نيوتن': ['newton', 'نيوتن'],
+    'طاقة': ['energy', 'طاقة'],
+    'زخم': ['momentum', 'زخم'],
+    'موجة': ['wave', 'موجة'],
+    'صوت': ['sound', 'صوت'],
+    'ضوء': ['light', 'ضوء'],
+    'كهرب': ['electricity', 'circuit', 'كهرب'],
+    'مغناط': ['magnet', 'مغناط'],
+    'ذرة': ['atom', 'ذرة'],
+    'إلكترون': ['electron', 'إلكترون'],
+    'جدول دوري': ['periodic', 'جدول'],
+    'رابطة': ['bond', 'رابطة'],
+    'تفاعل': ['reaction', 'تفاعل'],
+    'معادلة': ['equations', 'معادلة'],
+    'دالة': ['functions', 'دالة'],
+    'هندسة': ['geometry', 'هندسة'],
+    'مثلث': ['trig', 'مثلث'],
+    'تفاضل': ['derivative', 'calculus', 'تفاضل'],
+    'تكامل': ['integral', 'تكامل'],
+    'احتمال': ['probability', 'احتمال']
+  };
+  
+  // البحث عن كلمات مفتاحية مطابقة في عنوان الدرس
+  const matchedKeywords: string[] = [];
+  for (const [key, values] of Object.entries(arabicKeywords)) {
+    if (titleLower.includes(key)) {
+      matchedKeywords.push(...values);
+    }
+  }
+  
+  if (matchedKeywords.length > 0) {
+    const matched = subjectSimulations.filter(sim => {
+      const simText = `${sim.id} ${sim.titleAr} ${sim.titleEn}`.toLowerCase();
+      return matchedKeywords.some(kw => simText.includes(kw.toLowerCase()));
+    });
+    
+    if (matched.length > 0) {
+      return matched.slice(0, 6);
+    }
+  }
+  
+  // 5. إرجاع المحاكيات العامة للمادة كحل أخير
+  return subjectSimulations.slice(0, 6);
+}
+
+/**
+ * دالة للحصول على المحاكيات المناسبة لوحدة معينة
+ * @param unitName اسم الوحدة
+ * @param subjectName اسم المادة
+ * @returns قائمة المحاكيات المناسبة للوحدة
+ */
+export function getSimulationsForUnit(unitName: string, subjectName: string): Simulation[] {
+  // محاولة الحصول من خريطة الوحدات
+  if (unitSimulationMap[unitName] && unitSimulationMap[unitName].length > 0) {
+    return unitSimulationMap[unitName]
+      .map(id => simulations.find(sim => sim.id === id))
+      .filter((sim): sim is Simulation => sim !== undefined);
+  }
+  
+  // استخدام الكلمات المفتاحية
+  const keywords = lessonKeywordMap[unitName] || [];
+  const subjectSimulations = getSimulationsForSubject(subjectName);
+  
+  if (keywords.length > 0) {
+    return subjectSimulations
+      .filter(sim => {
+        const simText = `${sim.id} ${sim.titleAr} ${sim.titleEn} ${sim.descriptionAr} ${sim.descriptionEn}`.toLowerCase();
+        return keywords.some(keyword => simText.includes(keyword.toLowerCase()));
+      })
+      .slice(0, 8);
+  }
+  
+  // إرجاع المحاكيات العامة للمادة
+  return subjectSimulations.slice(0, 8);
+}
+
+/**
+ * دالة للحصول على المحاكيات ذات الصلة بموضوع معين
+ * @param topic الموضوع أو الكلمة المفتاحية
+ * @param subjectName اسم المادة (اختياري)
+ * @returns قائمة المحاكيات ذات الصلة
+ */
+export function getRelatedSimulations(topic: string, subjectName?: string): Simulation[] {
+  const topicLower = topic.toLowerCase();
+  
+  let baseSimulations = subjectName ? getSimulationsForSubject(subjectName) : simulations;
+  
+  return baseSimulations.filter(sim => {
+    const simText = `${sim.id} ${sim.titleAr} ${sim.titleEn} ${sim.descriptionAr} ${sim.descriptionEn}`.toLowerCase();
+    return simText.includes(topicLower);
+  });
+}
+
+/**
+ * دالة للحصول على المحاكيات المميزة (المجانية والمهمة)
+ * @param subjectName اسم المادة (اختياري)
+ * @param limit الحد الأقصى للعدد
+ * @returns قائمة المحاكيات المميزة
+ */
+export function getFeaturedSimulations(subjectName?: string, limit: number = 6): Simulation[] {
+  let baseSimulations = subjectName ? getSimulationsForSubject(subjectName) : simulations;
+  
+  // نرجع المحاكيات المجانية والمهمة
+  return baseSimulations
+    .filter(sim => sim.isFree)
+    .slice(0, limit);
+}
+
+/**
+ * دالة للبحث في المحاكيات
+ * @param query نص البحث
+ * @param filters معايير التصفية (اختياري)
+ * @returns قائمة المحاكيات المطابقة
+ */
+export function searchSimulations(
+  query: string, 
+  filters?: {
+    subject?: string;
+    category?: 'experiment' | 'calculator' | 'visualization' | 'game';
+    isFree?: boolean;
+  }
+): Simulation[] {
+  const queryLower = query.toLowerCase();
+  
+  let results = simulations.filter(sim => {
+    const searchText = `${sim.id} ${sim.titleAr} ${sim.titleEn} ${sim.descriptionAr} ${sim.descriptionEn}`.toLowerCase();
+    return searchText.includes(queryLower);
+  });
+  
+  // تطبيق معايير التصفية
+  if (filters) {
+    if (filters.subject) {
+      const subjectTypes = subjectSimulationMap[filters.subject] || [];
+      results = results.filter(sim => subjectTypes.includes(sim.id));
+    }
+    
+    if (filters.category) {
+      results = results.filter(sim => sim.category === filters.category);
+    }
+    
+    if (filters.isFree !== undefined) {
+      results = results.filter(sim => sim.isFree === filters.isFree);
+    }
+  }
+  
+  return results;
+}

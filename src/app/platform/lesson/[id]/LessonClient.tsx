@@ -15,10 +15,14 @@ import {
   FileText, HelpCircle, Beaker, CheckCircle, FlaskConical
 } from "lucide-react";
 import { loadStaticData } from "@/lib/static-data";
-import { getSimulationsByLessonId, getSimulationsBySubjectAndUnit, Simulation } from "@/lib/simulations";
+import { getSimulationsForLesson, Simulation } from "@/lib/simulations";
 import { SimulationList } from "@/components/simulations/SimulationCard";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
 import { MathRenderer } from "@/components/ui/MathRenderer";
+import { GeometricDiagram } from "@/components/ui/GeometricDiagrams";
+import { GeographyMap } from "@/components/ui/GeographyMaps";
+import { ScienceDiagram } from "@/components/ui/ScienceDiagrams";
+import { vocalizeText } from "@/lib/arabic-utils";
 
 interface Objective {
   id: string;
@@ -137,11 +141,10 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
                   Unit: { ...unit, Subject: subject }
                 };
                 
-                // Get related simulations - based on subject and unit
+                // Get related simulations - based on lesson title and subject
                 const subjectName = subject.nameAr;
-                const unitOrder = unit.order || 1;
-                const simulationsForLesson = getSimulationsBySubjectAndUnit(subjectName, unitOrder);
-                setRelatedSimulations(simulationsForLesson);
+                const lessonSimulations = getSimulationsForLesson(lesson.id, lesson.titleAr, subjectName);
+                setRelatedSimulations(lessonSimulations);
                 
                 break;
               }
@@ -222,6 +225,137 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
   const getQuestions = () => {
     if (!lesson?.Question) return [];
     return lesson.Question.sort((a, b) => a.order - b.order);
+  };
+
+  // الحصول على المحتوى البصري بناءً على نوع المادة
+  const getVisualContent = () => {
+    if (!lesson?.Unit?.Subject) return null;
+    
+    const subjectName = lesson.Unit.Subject.nameAr;
+    const unitName = lesson.Unit.nameAr;
+    const lessonTitle = lesson.titleAr;
+    
+    // الرياضيات - رسومات هندسية
+    if (subjectName === "الرياضيات") {
+      if (unitName?.includes("هندسة") || lessonTitle?.includes("هندسة") || lessonTitle?.includes("مثلث") || lessonTitle?.includes("دائرة")) {
+        return (
+          <Card className="border-0 shadow-md">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <Target className="w-5 h-5 text-purple-500" />
+                {t("رسومات هندسية", "Geometric Diagrams")}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <GeometricDiagram type="triangle" params={{ a: 80, b: 100, angle: 60 }} language={language} />
+                <GeometricDiagram type="circle" params={{ r: 70 }} language={language} />
+              </div>
+            </CardContent>
+          </Card>
+        );
+      }
+      if (unitName?.includes("جبر") || lessonTitle?.includes("معادلة")) {
+        return (
+          <Card className="border-0 shadow-md">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <Target className="w-5 h-5 text-purple-500" />
+                {t("رسومات بيانية", "Graphical Representations")}
+              </h3>
+              <GeometricDiagram type="pythagorean" params={{ a: 3, b: 4 }} language={language} />
+            </CardContent>
+          </Card>
+        );
+      }
+    }
+    
+    // الفيزياء - رسومات علمية
+    if (subjectName === "الفيزياء") {
+      if (unitName?.includes("ميكانيكا") || lessonTitle?.includes("حركة")) {
+        return (
+          <Card className="border-0 shadow-md">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <Beaker className="w-5 h-5 text-purple-500" />
+                {t("رسومات توضيحية", "Illustrative Diagrams")}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <GeometricDiagram type="vectors" params={{ ax: 3, ay: 4, bx: -2, by: 3 }} language={language} />
+                <ScienceDiagram type="solarsystem" language={language} />
+              </div>
+            </CardContent>
+          </Card>
+        );
+      }
+      if (unitName?.includes("كهرباء") || lessonTitle?.includes("كهرباء")) {
+        return (
+          <Card className="border-0 shadow-md">
+            <CardContent className="p-6">
+              <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                <Beaker className="w-5 h-5 text-purple-500" />
+                {t("رسومات الدوائر الكهربائية", "Circuit Diagrams")}
+              </h3>
+              <ScienceDiagram type="atom" params={{ element: "carbon" }} language={language} />
+            </CardContent>
+          </Card>
+        );
+      }
+    }
+    
+    // الكيمياء - رسومات الذرات والجزيئات
+    if (subjectName === "الكيمياء") {
+      return (
+        <Card className="border-0 shadow-md">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+              <Beaker className="w-5 h-5 text-purple-500" />
+              {t("تركيب الذرات والجزيئات", "Atoms & Molecules Structure")}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ScienceDiagram type="atom" params={{ element: "carbon" }} language={language} />
+              <ScienceDiagram type="molecule" params={{ molecule: "water" }} language={language} />
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    // الأحياء - رسومات الخلايا
+    if (subjectName === "الأحياء") {
+      return (
+        <Card className="border-0 shadow-md">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+              <Beaker className="w-5 h-5 text-purple-500" />
+              {t("رسومات بيولوجية", "Biological Diagrams")}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <ScienceDiagram type="cell" params={{ cellType: "plant" }} language={language} />
+              <ScienceDiagram type="dna" language={language} />
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    // الجغرافيا - خرائط
+    if (subjectName === "الجغرافيا") {
+      return (
+        <Card className="border-0 shadow-md">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+              <Globe className="w-5 h-5 text-purple-500" />
+              {t("خرائط توضيحية", "Interactive Maps")}
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <GeographyMap type="egypt" language={language} />
+              <GeographyMap type="world" language={language} />
+            </div>
+          </CardContent>
+        </Card>
+      );
+    }
+    
+    return null;
   };
 
   return (
@@ -358,7 +492,7 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
 
             {/* Lesson Content Tabs */}
             <Tabs defaultValue="content" className="space-y-6">
-              <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 h-auto p-2 bg-white dark:bg-slate-800 rounded-xl">
+              <TabsList className={`grid grid-cols-2 ${relatedSimulations.length > 0 ? 'md:grid-cols-6' : 'md:grid-cols-5'} gap-2 h-auto p-2 bg-white dark:bg-slate-800 rounded-xl`}>
                 <TabsTrigger value="content" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
                   <BookOpen className="w-4 h-4 mr-2" />
                   {t("المحتوى", "Content")}
@@ -375,10 +509,12 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
                   <FileText className="w-4 h-4 mr-2" />
                   {t("أمثلة", "Examples")}
                 </TabsTrigger>
-                <TabsTrigger value="simulations" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
-                  <Beaker className="w-4 h-4 mr-2" />
-                  {t("محاكيات", "Simulations")}
-                </TabsTrigger>
+                {relatedSimulations.length > 0 && (
+                  <TabsTrigger value="simulations" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+                    <Beaker className="w-4 h-4 mr-2" />
+                    {t("محاكيات", "Simulations")}
+                  </TabsTrigger>
+                )}
                 <TabsTrigger value="quiz" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
                   <HelpCircle className="w-4 h-4 mr-2" />
                   {t("اختبار", "Quiz")}
@@ -433,11 +569,14 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
                           {t("ملخص الدرس", "Summary")}
                         </h3>
                         <div className="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
-                          {getSummary()}
+                          {language === "ar" ? vocalizeText(getSummary()) : getSummary()}
                         </div>
                       </CardContent>
                     </Card>
                   )}
+
+                  {/* المحتوى البصري */}
+                  {getVisualContent()}
                 </motion.div>
               </TabsContent>
 
@@ -569,29 +708,31 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
               </TabsContent>
 
               {/* Simulations Tab */}
-              <TabsContent value="simulations">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  <Card className="border-0 shadow-md">
-                    <CardContent className="p-6">
-                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
-                        <Beaker className="w-5 h-5 text-purple-500" />
-                        {t("المحاكيات التفاعلية", "Interactive Simulations")}
-                      </h3>
-                      <SimulationList 
-                        simulations={relatedSimulations} 
-                        language={language}
-                        onSimulationClick={(sim) => {
-                          console.log("Opening simulation:", sim.id);
-                          // TODO: Open simulation modal or navigate to simulation page
-                        }}
-                      />
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </TabsContent>
+              {relatedSimulations.length > 0 && (
+                <TabsContent value="simulations">
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <Card className="border-0 shadow-md">
+                      <CardContent className="p-6">
+                        <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+                          <Beaker className="w-5 h-5 text-purple-500" />
+                          {t("المحاكيات التفاعلية", "Interactive Simulations")}
+                        </h3>
+                        <SimulationList 
+                          simulations={relatedSimulations} 
+                          language={language}
+                          onSimulationClick={(sim) => {
+                            console.log("Opening simulation:", sim.id);
+                            // TODO: Open simulation modal or navigate to simulation page
+                          }}
+                        />
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </TabsContent>
+              )}
 
               {/* Quiz Tab */}
               <TabsContent value="quiz">

@@ -1,0 +1,502 @@
+     1→{
+     2→  "academicYears": [
+     3→    {
+     4→      "id": "year-1",
+     5→      "nameAr": "الصف الأول الثانوي",
+     6→      "nameEn": "First Year Secondary",
+     7→      "code": "first-year",
+     8→      "order": 1,
+     9→      "createdAt": "2026-06-13T10:13:57.831Z",
+    10→      "updatedAt": "2026-06-13T10:13:57.831Z",
+    11→      "Subject": [
+    12→        {
+    13→          "id": "id_azlhpdzv3oq",
+    14→          "nameAr": "اللغة العربية",
+    15→          "nameEn": "Arabic Language",
+    16→          "slug": "arabic-language-first-year",
+    17→          "icon": "BookOpen",
+    18→          "color": "#6366F1",
+    19→          "order": 1,
+    20→          "yearId": "year-1",
+    21→          "specializationId": null,
+    22→          "isCommon": true,
+    23→          "createdAt": "2026-06-13T10:13:57.847Z",
+    24→          "updatedAt": "2026-06-13T10:13:57.847Z",
+    25→          "Specialization": null,
+    26→          "Unit": [
+    27→            {
+    28→              "id": "id_z4td8ozh8jd",
+    29→              "subjectId": "id_azlhpdzv3oq",
+    30→              "semesterId": null,
+    31→              "nameAr": "وحدة النحو",
+    32→              "nameEn": "Unit 1",
+    33→              "slug": "unit-1-id_azlhpdzv3oq",
+    34→              "order": 1,
+    35→              "createdAt": "2026-06-13T10:13:57.849Z",
+    36→              "updatedAt": "2026-06-13T10:13:57.848Z",
+    37→              "Lesson": [
+    38→                {
+    39→                  "id": "id_m0g4ytd8fv",
+    40→                  "unitId": "id_z4td8ozh8jd",
+    41→                  "titleAr": "الدرس 1: وحدة النحو",
+    42→                  "titleEn": "Lesson 1",
+    43→                  "slug": "lesson-1-id_z4td8ozh8jd",
+    44→                  "descriptionAr": "شرح وحدة النحو - الدرس 1",
+    45→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 1",
+    46→                  "duration": 45,
+    47→                  "order": 1,
+    48→                  "isFree": false,
+    49→                  "videoUrl": null,
+    50→                  "pdfUrl": null,
+    51→                  "thumbnailUrl": null,
+    52→                  "introductionAr": "مرحباً بطلابنا في الصف الأول الثانوي. في درسنا اليوم، سنبدأ رحلتنا مع وحدة النحو، وهي من أهم الوحدات في مادة اللغة العربية. النحو هو علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل وتناسيبها، وهو أساس فهم اللغة وتطبيقها بشكل صحيح. في هذا الدرس، سنتعرف على المبادئ الأساسية للنحو العربي، وأهمية دراسته، وكيف يساعدنا في فهم القرآن الكريم والأدب العربي بشكل أعمق. سنبدأ بتعريف علم النحو وأهدافه، ثم ننتقل إلى مفاهيمه الأساسية مثل الاسم والفعل والحرف، ونختم ببعض الأمثلة التطبيقية التي تساعدنا على فهم هذه المفاهيم بشكل أفضل.",
+    53→                  "introductionEn": "Welcome to our first-year secondary school students. In today's lesson, we begin our journey with the grammar unit, which is one of the most important units in the Arabic language subject. Grammar is the science that studies the rules of the Arabic language in word and sentence construction and their relationships, and it is the foundation for understanding and correctly applying the language. In this lesson, we will learn about the basic principles of Arabic grammar, the importance of studying it, and how it helps us understand the Quran and Arabic literature more deeply. We will start by defining grammar and its objectives, then move to its basic concepts such as noun, verb, and particle, and conclude with some practical examples that help us understand these concepts better.",
+    54→                  "summaryAr": "في هذا الدرس، تعرفنا على علم النحو وأهميته في دراسة اللغة العربية. علم النحو هو علم يدرس قواعد تركيب الكلمات والجمل وتناسيبها، ويعود أصل إلى العصر العباسي بسبب الحاجة لفهم القرآن الكريم. قسمنا النحو إلى عدة فروع رئيسية: الصرف والإعراب والنحو التطبيقي. كما تعرفنا على المفاهيم الأساسية الثلاثة: الاسم وهو كل كلمة تدل على معنى قائم بنفسها، والفعل وهو كل كلمة تدل على حدث أو حالة، والحرف وهو كل كلمة لا تدل على معنى قائم بنفسها ولكنها تربط الكلمات وتفيد معاني. الأمثلة التي قمنا بتحليلها ساعدتنا على تطبيق هذه المفاهيم على الجمل العربية. فهم هذه المفاهيم الأساسية سيساعدنا في دراسة الدروس القادمة بشكل أفضل وتطبيق قواعد النحو في كتابة وتحليل النصوص العربية.",
+    55→                  "summaryEn": "In this lesson, we learned about grammar and its importance in studying the Arabic language. Grammar is the science that studies the rules of word and sentence construction and their relationships, and its origin dates back to the Abbasid era due to the need to understand the Quran. We divided grammar into several main branches: morphology, syntax, and applied grammar. We also learned about the three basic concepts: noun which is any word that refers to a meaning that exists in itself, verb which is any word that refers to an event or state, and particle which is any word that does not refer to a meaning in itself but connects words and conveys meanings. The examples we analyzed helped us apply these concepts to Arabic sentences. Understanding these basic concepts will help us study the following lessons better and apply grammar rules in writing and analyzing Arabic texts.",
+    56→                  "createdAt": "2026-06-13T10:13:57.850Z",
+    57→                  "updatedAt": "2026-06-13T10:13:57.849Z",
+    58→                  "Objective": [
+    59→                    {
+    60→                      "id": "obj-id_m0g4ytd8fv-0",
+    61→                      "lessonId": "id_m0g4ytd8fv",
+    62→                      "textAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    63→                      "textEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    64→                      "order": 1
+    65→                    },
+    66→                    {
+    67→                      "id": "obj-id_m0g4ytd8fv-1",
+    68→                      "lessonId": "id_m0g4ytd8fv",
+    69→                      "textAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+    70→                      "textEn": "Noun, verb, and particle are the basic concepts in grammar",
+    71→                      "order": 2
+    72→                    },
+    73→                    {
+    74→                      "id": "obj-id_m0g4ytd8fv-2",
+    75→                      "lessonId": "id_m0g4ytd8fv",
+    76→                      "textAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+    77→                      "textEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+    78→                      "order": 3
+    79→                    },
+    80→                    {
+    81→                      "id": "obj-id_m0g4ytd8fv-3",
+    82→                      "lessonId": "id_m0g4ytd8fv",
+    83→                      "textAr": "النحو ينقسم إلى عدة فروع رئيسية: الصرف والإعراب والنحو التطبيقي",
+    84→                      "textEn": "Grammar is divided into several main branches: morphology, syntax, and applied grammar",
+    85→                      "order": 4
+    86→                    }
+    87→                  ],
+    88→                  "Concept": [
+    89→                    {
+    90→                      "id": "concept-id_m0g4ytd8fv-0",
+    91→                      "lessonId": "id_m0g4ytd8fv",
+    92→                      "termAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    93→                      "termEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    94→                      "definitionAr": "علم النحو هو علم يدرق قواعد تركيب الكلمات والجمل في اللغة العربية",
+    95→                      "definitionEn": "Grammar is the science that studies the rules of word and sentence construction in Arabic",
+    96→                      "order": 1
+    97→                    },
+    98→                    {
+    99→                      "id": "concept-id_m0g4ytd8fv-1",
+   100→                      "lessonId": "id_m0g4ytd8fv",
+   101→                      "termAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+   102→                      "termEn": "Noun",
+   103→                      "definitionAr": "الاسم والفعل والحرف هي المفاهيم الأساسية في علم النحو",
+   104→                      "definitionEn": "Noun, verb, and particle are the basic concepts in grammar",
+   105→                      "order": 2
+   106→                    },
+   107→                    {
+   108→                      "id": "concept-id_m0g4ytd8fv-2",
+   109→                      "lessonId": "id_m0g4ytd8fv",
+   110→                      "termAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+   111→                      "termEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+   112→                      "definitionAr": "فهم النحو يساعد في فهم القرآن الكريم والأدب العربي بشكل أعمق",
+   113→                      "definitionEn": "Understanding grammar helps in understanding the Quran and Arabic literature more deeply",
+   114→                      "order": 3
+   115→                    }
+   116→                  ],
+   117→                  "Formula": [
+   118→                    {
+   119→                      "id": "form-id_m0g4ytd8fv-0",
+   120→                      "lessonId": "id_m0g4ytd8fv",
+   121→                      "formula": "الفاعل + المفعول به + الفعل",
+   122→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   123→                      "explanationEn": "Arabic verbal sentence structure",
+   124→                      "order": 1
+   125→                    },
+   126→                    {
+   127→                      "id": "form-id_m0g4ytd8fv-1",
+   128→                      "lessonId": "id_m0g4ytd8fv",
+   129→                      "formula": "المبتدأ + الخبر",
+   130→                      "explanationAr": "ترتيب الجملة الاسمية",
+   131→                      "explanationEn": "Arabic nominal sentence structure",
+   132→                      "order": 2
+   133→                    }
+   134→                  ],
+   135→                  "Example": [
+   136→                    {
+   137→                      "id": "example-id_m0g4ytd8fv-0",
+   138→                      "lessonId": "id_m0g4ytd8fv",
+   139→                      "questionAr": "مثال على الاسم: الطالب يقرأ الكتاب بتركيز.",
+   140→                      "questionEn": "Example of a Noun: The student reads the book carefully.",
+   141→                      "solutionAr": "1. تحديد الكلمات: الطالب، يقرأ، الكتاب، ب، تركيز.\\n2. تحديد نوع كل كلمة: الطاسم (الطالب)، فعل مضارع (يقرأ)، اسم (الكتاب)، حرف (ب)، اسم (تركيز).",
+   142→                      "solutionEn": "1. Identify the words: The, student, reads, the, book, carefully.\\n2. Determine the type of each word: Article (the), noun (student), verb (reads), article (the), noun (book), adverb (carefully).",
+   143→                      "stepsAr": "1. تحديد الكلمات: الطالب، يقرأ، الكتاب، ب، تركيز.\\n2. تحديد نوع كل كلمة: الطاسم (الطالب)، فعل مضارع (يقرأ)، اسم (الكتاب)، حرف (ب)، اسم (تركيز).",
+   144→                      "stepsEn": "1. Identify the words: The, student, reads, the, book, carefully.\\n2. Determine the type of each word: Article (the), noun (student), verb (reads), article (the), noun (book), adverb (carefully).",
+   145→                      "order": 1
+   146→                    },
+   147→                    {
+   148→                      "id": "example-id_m0g4ytd8fv-1",
+   149→                      "lessonId": "id_m0g4ytd8fv",
+   150→                      "questionAr": "مثال على الفعل: المدرس يعلم الطلاب.",
+   151→                      "questionEn": "Example of a Verb: The teacher teaches the students.",
+   152→                      "solutionAr": "1. تحديد الكلمات: المدرس، يعلم، الطلاب.\\n2. تحديد نوع كل كلمة: اسم (المدرس)، فعل مضارع (يعلم)، اسم (الطلاب).\\n3. ملاحظة أن الفعل يعبر عن حدث (تعليم).",
+   153→                      "solutionEn": "1. Identify the words: The, teacher, teaches, the, students.\\n2. Determine the type of each word: Article (the), noun (teacher), verb (teaches), article (the), noun (students).\\n3. Notice that the verb expresses an action (teaching).",
+   154→                      "stepsAr": "1. تحديد الكلمات: المدرس، يعلم، الطلاب.\\n2. تحديد نوع كل كلمة: اسم (المدرس)، فعل مضارع (يعلم)، اسم (الطلاب).\\n3. ملاحظة أن الفعل يعبر عن حدث (تعليم).",
+   155→                      "stepsEn": "1. Identify the words: The, teacher, teaches, the, students.\\n2. Determine the type of each word: Article (the), noun (teacher), verb (teaches), article (the), noun (students).\\n3. Notice that the verb expresses an action (teaching).",
+   156→                      "order": 2
+   157→                    },
+   158→                    {
+   159→                      "id": "example-id_m0g4ytd8fv-2",
+   160→                      "lessonId": "id_m0g4ytd8fv",
+   161→                      "questionAr": "مثال على الحرف: ذهبت إلى المدرسة.",
+   162→                      "questionEn": "Example of a Particle: I went to the school.",
+   163→                      "solutionAr": "1. تحديد الكلمات: ذهبت، إلى، المدرسة.\\n2. تحديد نوع كل كلمة: فعل ماضي (ذهبت)، حرف (إلى)، اسم (المدرسة).\\n3. ملاحظة أن الحرف 'إلى' يربط بين الفعل والاسم ويشير إلى اتجاه.",
+   164→                      "solutionEn": "1. Identify the words: I, went, to, the, school.\\n2. Determine the type of each word: Pronoun (I), verb (went), preposition (to), article (the), noun (school).\\n3. Notice that the preposition 'to' connects the verb and the noun and indicates direction.",
+   165→                      "stepsAr": "1. تحديد الكلمات: ذهبت، إلى، المدرسة.\\n2. تحديد نوع كل كلمة: فعل ماضي (ذهبت)، حرف (إلى)، اسم (المدرسة).\\n3. ملاحظة أن الحرف 'إلى' يربط بين الفعل والاسم ويشير إلى اتجاه.",
+   166→                      "stepsEn": "1. Identify the words: I, went, to, the, school.\\n2. Determine the type of each word: Pronoun (I), verb (went), preposition (to), article (the), noun (school).\\n3. Notice that the preposition 'to' connects the verb and the noun and indicates direction.",
+   167→                      "order": 3
+   168→                    }
+   169→                  ],
+   170→                  "Question": [
+   171→                    {
+   172→                      "id": "q-id_m0g4ytd8fv-0",
+   173→                      "lessonId": "id_m0g4ytd8fv",
+   174→                      "type": "multiple-choice",
+   175→                      "questionAr": "ما هو تعريف علم النحو؟",
+   176→                      "questionEn": "What is the definition of grammar?",
+   177→                      "optionsAr": "[\"علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل\",\"علم يدرس تاريخ اللغة العربية\",\"علم يدرس الأدب العربي فقط\",\"علم يدرس البلاغة العربية\"]",
+   178→                      "optionsEn": "[\"The science that studies the rules of Arabic language in word and sentence construction\",\"The science that studies the history of Arabic language\",\"The science that studies Arabic literature only\",\"The science that studies Arabic rhetoric\"]",
+   179→                      "answer": "أ",
+   180→                      "explanationAr": "علم النحو هو علم يدرس قواعد اللغة العربية في تركيب الكلمات والجمل وتناسيبها، وهو ليس مجدر دراسة تاريخ اللغة أو الأدب فقط.",
+   181→                      "explanationEn": "Grammar is the science that studies the rules of Arabic language in word and sentence construction and their relationships, it is not just the study of language history or literature only.",
+   182→                      "points": 1,
+   183→                      "difficulty": "medium",
+   184→                      "order": 1
+   185→                    },
+   186→                    {
+   187→                      "id": "q-id_m0g4ytd8fv-1",
+   188→                      "lessonId": "id_m0g4ytd8fv",
+   189→                      "type": "multiple-choice",
+   190→                      "questionAr": "ما هي أنواع الكلمات الرئيسية في اللغة العربية؟",
+   191→                      "questionEn": "What are the main types of words in Arabic language?",
+   192→                      "optionsAr": "[\"اسم وفعل وحرف\",\"مفرد وجمع\",\"مذكر ومؤنث\",\"معجمي ووصفي\"]",
+   193→                      "optionsEn": "[\"Noun, verb, and particle\",\"Singular and plural\",\"Masculine and feminine\",\"Lexical and descriptive\"]",
+   194→                      "answer": "أ",
+   195→                      "explanationAr": "الاسم والفعل والحرف هي الأنواع الرئيسية للكلمات في اللغة العربية، حيث كل كلمة تنتمي إلى أحد هذه الأنواع الثلاثة.",
+   196→                      "explanationEn": "Noun, verb, and particle are the main types of words in Arabic language, where each word belongs to one of these three types.",
+   197→                      "points": 1,
+   198→                      "difficulty": "medium",
+   199→                      "order": 2
+   200→                    },
+   201→                    {
+   202→                      "id": "q-id_m0g4ytd8fv-2",
+   203→                      "lessonId": "id_m0g4ytd8fv",
+   204→                      "type": "multiple-choice",
+   205→                      "questionAr": "ما هو الفعل؟",
+   206→                      "questionEn": "What is a verb?",
+   207→                      "optionsAr": "[\"كل كلمة تدل على معنى قائم بنفسها\",\"كل كلمة تدل على حدث أو حالة\",\"كل كلمة تربط الكلمات وتفيد معاني\",\"كل كلمة لها صيغة خاصة\"]",
+   208→                      "optionsEn": "[\"Any word that refers to a meaning that exists in itself\",\"Any word that refers to an event or state\",\"Any word that connects words and conveys meanings\",\"Any word that has a special form\"]",
+   209→                      "answer": "ب",
+   210→                      "explanationAr": "الفعل هو كل كلمة تدل على حدث أو حالة مثل 'يكتب' و'يقرأ'، وهو ليس مجرد كلمة لها معنى قائم بنفسها أو كلمة تربط الكلمات.",
+   211→                      "explanationEn": "A verb is any word that refers to an event or state such as 'writes' and 'reads', it is not just a word that has a meaning in itself or a word that connects words.",
+   212→                      "points": 1,
+   213→                      "difficulty": "medium",
+   214→                      "order": 3
+   215→                    }
+   216→                  ]
+   217→                },
+   218→                {
+   219→                  "id": "id_klfewn4zjli",
+   220→                  "unitId": "id_z4td8ozh8jd",
+   221→                  "titleAr": "الدرس 2: وحدة النحو",
+   222→                  "titleEn": "Lesson 2",
+   223→                  "slug": "lesson-2-id_z4td8ozh8jd",
+   224→                  "descriptionAr": "شرح وحدة النحو - الدرس 2",
+   225→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 2",
+   226→                  "duration": 58,
+   227→                  "order": 2,
+   228→                  "isFree": false,
+   229→                  "videoUrl": null,
+   230→                  "pdfUrl": null,
+   231→                  "thumbnailUrl": null,
+   232→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا الثاني حول وحدة النحو. في هذا الدرس، سنستكشف أساسيات النحو العربي التي تشكل العمود الفقري للغة العربية. النحو ليس مجرد قواعد جافة، بل هو أداة تمكننا من التعبير عن أفكارنا بدقة ووضوح. سنتناول مفاهيم أساسية مثل المبتدأ والخبر، والفاعل والمفعول به، والجملة الاسمية والفعلية. هذه المفاهيم ضرورية لفهم بنية الجملة العربية وتحليلها بشكل صحيح. من خلال هذا الدرس، ستتمكنون من تطوير مهاراتكم في تحليل النصوص والكتابة الواضحة والمنظمة. لنبدأ رحلتنا في عالم النحو العربي الممتع والمفيد.",
+   233→                  "introductionEn": "Welcome to Grade 11 students for our second lesson on the grammar unit. In this lesson, we will explore the fundamentals of Arabic grammar that form the backbone of the Arabic language. Grammar is not just dry rules; it is a tool that enables us to express our ideas accurately and clearly. We will cover essential concepts such as the subject and predicate, the doer and the object, and the nominal and verbal sentences. These concepts are crucial for understanding and analyzing Arabic sentence structure correctly. Through this lesson, you will develop your skills in analyzing texts and writing clearly and organized. Let's begin our journey in the fascinating and useful world of Arabic grammar.",
+   234→                  "summaryAr": "في هذا الدرس، تعلمنا أساسيات النحو العربي، خاصة الجملة الاسمية والفعلية. الجملة الاسمية تتكون من مبتدء وخبر، بينما الجملة الفعلية تتكون من فعل وفاعل ومفعول به. فهم هذه المفاهيم الأساسية ضروري لتحليل الجمل العربية بشكل صحيح وتطوير مهارات الكتابة. من خلال الأمثلة والتطبيقات العملية، تمكنا من تطبيق هذه المفاهيم على جمل مختلفة وتحليل مكوناتها. يجب على الطلاب ممارسة هذه المفاهيم بانتظام لتثبيتها في أذهانهم وتطبيقها في قراءاتهم وكتاباتهم المستقبلية.",
+   235→                  "summaryEn": "In this lesson, we learned the basics of Arabic grammar, particularly nominal and verbal sentences. A nominal sentence consists of a subject and a predicate, while a verbal sentence consists of a verb, a doer, and an object. Understanding these basic concepts is essential for analyzing Arabic sentences correctly and developing writing skills. Through examples and practical applications, we were able to apply these concepts to different sentences and analyze their components. Students should practice these concepts regularly to reinforce them in their minds and apply them in their future reading and writing.",
+   236→                  "createdAt": "2026-06-13T10:13:57.852Z",
+   237→                  "updatedAt": "2026-06-13T10:13:57.851Z",
+   238→                  "Objective": [
+   239→                    {
+   240→                      "id": "obj-id_klfewn4zjli-0",
+   241→                      "lessonId": "id_klfewn4zjli",
+   242→                      "textAr": "المبتدأ والخبر في الجملة الاسمية",
+   243→                      "textEn": "The subject and predicate in nominal sentences",
+   244→                      "order": 1
+   245→                    },
+   246→                    {
+   247→                      "id": "obj-id_klfewn4zjli-1",
+   248→                      "lessonId": "id_klfewn4zjli",
+   249→                      "textAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   250→                      "textEn": "The verb, doer, and object in verbal sentences",
+   251→                      "order": 2
+   252→                    },
+   253→                    {
+   254→                      "id": "obj-id_klfewn4zjli-2",
+   255→                      "lessonId": "id_klfewn4zjli",
+   256→                      "textAr": "أنواع المفعول به وأحكامه",
+   257→                      "textEn": "Types of objects and their rules",
+   258→                      "order": 3
+   259→                    }
+   260→                  ],
+   261→                  "Concept": [
+   262→                    {
+   263→                      "id": "concept-id_klfewn4zjli-0",
+   264→                      "lessonId": "id_klfewn4zjli",
+   265→                      "termAr": "المبتدأ والخبر في الجملة الاسمية",
+   266→                      "termEn": "The subject and predicate in nominal sentences",
+   267→                      "definitionAr": "المبتدأ والخبر في الجملة الاسمية",
+   268→                      "definitionEn": "The subject and predicate in nominal sentences",
+   269→                      "order": 1
+   270→                    },
+   271→                    {
+   272→                      "id": "concept-id_klfewn4zjli-1",
+   273→                      "lessonId": "id_klfewn4zjli",
+   274→                      "termAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   275→                      "termEn": "The verb",
+   276→                      "definitionAr": "الفعل والفاعل والمفعول به في الجملة الفعلية",
+   277→                      "definitionEn": "The verb, doer, and object in verbal sentences",
+   278→                      "order": 2
+   279→                    },
+   280→                    {
+   281→                      "id": "concept-id_klfewn4zjli-2",
+   282→                      "lessonId": "id_klfewn4zjli",
+   283→                      "termAr": "أنواع المفعول به وأحكامه",
+   284→                      "termEn": "Types of objects and their rules",
+   285→                      "definitionAr": "أنواع المفعول به وأحكامه",
+   286→                      "definitionEn": "Types of objects and their rules",
+   287→                      "order": 3
+   288→                    }
+   289→                  ],
+   290→                  "Formula": [
+   291→                    {
+   292→                      "id": "form-id_klfewn4zjli-0",
+   293→                      "lessonId": "id_klfewn4zjli",
+   294→                      "formula": "الفاعل + المفعول به + الفعل",
+   295→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   296→                      "explanationEn": "Arabic verbal sentence structure",
+   297→                      "order": 1
+   298→                    },
+   299→                    {
+   300→                      "id": "form-id_klfewn4zjli-1",
+   301→                      "lessonId": "id_klfewn4zjli",
+   302→                      "formula": "المبتدأ + الخبر",
+   303→                      "explanationAr": "ترتيب الجملة الاسمية",
+   304→                      "explanationEn": "Arabic nominal sentence structure",
+   305→                      "order": 2
+   306→                    }
+   307→                  ],
+   308→                  "Example": [
+   309→                    {
+   310→                      "id": "example-id_klfewn4zjli-0",
+   311→                      "lessonId": "id_klfewn4zjli",
+   312→                      "questionAr": "مثال على الجملة الاسمية: الطالب مجتهد",
+   313→                      "questionEn": "Example of a nominal sentence: The student is diligent",
+   314→                      "solutionAr": "1. تحديد المبتدأ: الطالب\\n2. تحديد الخبر: مجتهد",
+   315→                      "solutionEn": "1. Identify the subject: The student\\n2. Identify the predicate: diligent",
+   316→                      "stepsAr": "1. تحديد المبتدأ: الطالب\\n2. تحديد الخبر: مجتهد",
+   317→                      "stepsEn": "1. Identify the subject: The student\\n2. Identify the predicate: diligent",
+   318→                      "order": 1
+   319→                    },
+   320→                    {
+   321→                      "id": "example-id_klfewn4zjli-1",
+   322→                      "lessonId": "id_klfewn4zjli",
+   323→                      "questionAr": "مثال على الجملة الفعلية: يقرأ الطالب الكتاب",
+   324→                      "questionEn": "Example of a verbal sentence: The student reads the book",
+   325→                      "solutionAr": "1. تحديد الفعل: يقرأ\\n2. تحديد الفاعل: الطالب\\n3. تحديد المفعول به: الكتاب",
+   326→                      "solutionEn": "1. Identify the verb: reads\\n2. Identify the doer: The student\\n3. Identify the object: the book",
+   327→                      "stepsAr": "1. تحديد الفعل: يقرأ\\n2. تحديد الفاعل: الطالب\\n3. تحديد المفعول به: الكتاب",
+   328→                      "stepsEn": "1. Identify the verb: reads\\n2. Identify the doer: The student\\n3. Identify the object: the book",
+   329→                      "order": 2
+   330→                    }
+   331→                  ],
+   332→                  "Question": [
+   333→                    {
+   334→                      "id": "q-id_klfewn4zjli-0",
+   335→                      "lessonId": "id_klfewn4zjli",
+   336→                      "type": "multiple-choice",
+   337→                      "questionAr": "في الجملة 'المدرسة كبيرة'، ما هو المبتدأ؟",
+   338→                      "questionEn": "In the sentence 'The school is big', what is the subject?",
+   339→                      "optionsAr": "[\"المدرسة\",\"كبيرة\",\"جملة اسمية\",\"لا شيء مما ذكر\"]",
+   340→                      "optionsEn": "[\"The school\",\"Big\",\"Nominal sentence\",\"None of the above\"]",
+   341→                      "answer": "أ",
+   342→                      "explanationAr": "المبتدأ هو 'المدرسة' وهو المسمى الذي نريد الحديث عنه، بينما 'كبيرة' هو الخبر الذي يثبت به.",
+   343→                      "explanationEn": "The subject is 'The school' which is the noun we want to talk about, while 'big' is the predicate that affirms it.",
+   344→                      "points": 1,
+   345→                      "difficulty": "medium",
+   346→                      "order": 1
+   347→                    },
+   348→                    {
+   349→                      "id": "q-id_klfewn4zjli-1",
+   350→                      "lessonId": "id_klfewn4zjli",
+   351→                      "type": "multiple-choice",
+   352→                      "questionAr": "في الجملة 'كتب الطالب الدرس'، ما هو المفعول به؟",
+   353→                      "questionEn": "In the sentence 'The student wrote the lesson', what is the object?",
+   354→                      "optionsAr": "[\"كتب\",\"الطالب\",\"الدرس\",\"جملة فعلية\"]",
+   355→                      "optionsEn": "[\"Wrote\",\"The student\",\"The lesson\",\"Verbal sentence\"]",
+   356→                      "answer": "ج",
+   357→                      "explanationAr": "المفعول به هو 'الدرس' وهو ما وقع عليه الفعل 'كتب'، بينما 'الطالب' هو الفاعل.",
+   358→                      "explanationEn": "The object is 'The lesson' which receives the action of the verb 'wrote', while 'The student' is the doer.",
+   359→                      "points": 1,
+   360→                      "difficulty": "medium",
+   361→                      "order": 2
+   362→                    }
+   363→                  ]
+   364→                },
+   365→                {
+   366→                  "id": "id_p5i90a688np",
+   367→                  "unitId": "id_z4td8ozh8jd",
+   368→                  "titleAr": "الدرس 3: وحدة النحو",
+   369→                  "titleEn": "Lesson 3",
+   370→                  "slug": "lesson-3-id_z4td8ozh8jd",
+   371→                  "descriptionAr": "شرح وحدة النحو - الدرس 3",
+   372→                  "descriptionEn": "Explanation of وحدة النحو - Lesson 3",
+   373→                  "duration": 49,
+   374→                  "order": 3,
+   375→                  "isFree": false,
+   376→                  "videoUrl": null,
+   377→                  "pdfUrl": null,
+   378→                  "thumbnailUrl": null,
+   379→                  "introductionAr": "مرحباً بطلاب الصف الأول الثانوي في درسنا اليوم عن وحدة النحو. النحو هو علم يدرس قواعد اللغة العربية في بن الجملة وتنظيمها، وهو أساس الفصاحة والبلاغة في اللغة. في هذا الدرس، سنتناول المفاهيم الأساسية للنحو العربي مثل الاسم والفعل والحرف، وأنواعها، وأحكام الإعراب. سنتعلم كيفية تحديد المفعول به والمفعول فيه والمفعول مكاناً، وكيفية التعرف على الخبر والخبرة في الجملة. كما سنتناول قواعد الإعراب الرئيسية مثل العطف والجزم والنصب. هذا الدرس يعتبر حجر الزاوية في فهم اللغة العربية بشكل صحيح، وسيساعدكم على تحسين مهاراتكم الكتابية والشفهية.",
+   380→                  "introductionEn": "Welcome to today's lesson on the Grammar Unit for first-year secondary school students. Grammar is the science that studies the rules of the Arabic language in constructing and organizing sentences, and it is the foundation of eloquence and rhetoric in the language. In this lesson, we will cover the basic concepts of Arabic grammar such as nouns, verbs, and particles, their types, and the rules of grammatical inflection (i'rab). We will learn how to identify the direct object, the indirect object, and the object of place, as well as how to recognize the predicate and its subject in a sentence. We will also discuss the main rules of grammatical inflection such as conjunction, jussive case, and accusative case. This lesson is considered the cornerstone of understanding the Arabic language correctly and will help you improve your written and verbal skills.",
+   381→                  "summaryAr": "في هذا الدرس تعلمنا أساسيات النحو العربي، حيث تعرفنا على مفهوم النحو وأهميته في فهم اللغة العربية بشكل صحيح. تعلمنا أنواع الكلمات الرئيسية: الاسم الذي يدل على شيء بذاته، والفعل الذي يدل على حدث أو حالة، والحرف الذي لا يدل على شيء بذاته. كما تعلمنا أنواع الجمل: الاسمية التي تبدأ باسم وخبر، والفعلية التي تبدأ بفعل. وتعلمنا أحكام الإعراب الثلاثة: رفع للاسم الذي دل عليه ضمير أو هو المبتدأ أو الخبر، نصب للاسم الذي دل عليه فعل مضارع أو نون جازم، وجر للاسم الذي دل عليه حرف جر. هذه المبادئ الأساسية تمثل حجر الزاوية في فهم اللغة العربية وتطبيق قواعدها بشكل صحيح.",
+   382→                  "summaryEn": "In this lesson, we learned the basics of Arabic grammar, where we became familiar with the concept of grammar and its importance in understanding the Arabic language correctly. We learned about the main types of words: nouns that refer to something in themselves, verbs that indicate an event or a state, and particles that do not refer to something in themselves. We also learned about the types of sentences: nominal sentences that begin with a noun and a predicate, and verbal sentences that begin with a verb. We learned the three rules of inflection: nominative for nouns indicated by a pronoun or that are the subject or predicate, accusative for nouns indicated by a present tense verb or a jussive nun, and genitive for nouns indicated by a preposition. These basic principles represent the cornerstone of understanding the Arabic language and applying its rules correctly.",
+   383→                  "createdAt": "2026-06-13T10:13:57.854Z",
+   384→                  "updatedAt": "2026-06-13T10:13:57.853Z",
+   385→                  "Objective": [
+   386→                    {
+   387→                      "id": "obj-id_p5i90a688np-0",
+   388→                      "lessonId": "id_p5i90a688np",
+   389→                      "textAr": "مفهوم النحو وأهميته في اللغة العربية",
+   390→                      "textEn": "Concept of grammar and its importance in the Arabic language",
+   391→                      "order": 1
+   392→                    },
+   393→                    {
+   394→                      "id": "obj-id_p5i90a688np-1",
+   395→                      "lessonId": "id_p5i90a688np",
+   396→                      "textAr": "أنواع الكلمات: الاسم، الفعل، والحرف",
+   397→                      "textEn": "Types of words: noun, verb, and particle",
+   398→                      "order": 2
+   399→                    },
+   400→                    {
+   401→                      "id": "obj-id_p5i90a688np-2",
+   402→                      "lessonId": "id_p5i90a688np",
+   403→                      "textAr": "أنواع الجمل: الاسمية والفعلية",
+   404→                      "textEn": "Types of sentences: nominal and verbal",
+   405→                      "order": 3
+   406→                    },
+   407→                    {
+   408→                      "id": "obj-id_p5i90a688np-3",
+   409→                      "lessonId": "id_p5i90a688np",
+   410→                      "textAr": "أحكام الإعراب: رفع، نصب، وجر",
+   411→                      "textEn": "Rules of inflection: nominative, accusative, and genitive",
+   412→                      "order": 4
+   413→                    }
+   414→                  ],
+   415→                  "Concept": [
+   416→                    {
+   417→                      "id": "concept-id_p5i90a688np-0",
+   418→                      "lessonId": "id_p5i90a688np",
+   419→                      "termAr": "مفهوم النحو وأهميته في اللغة العربية",
+   420→                      "termEn": "Concept of grammar and its importance in the Arabic language",
+   421→                      "definitionAr": "مفهوم النحو وأهميته في اللغة العربية",
+   422→                      "definitionEn": "Concept of grammar and its importance in the Arabic language",
+   423→                      "order": 1
+   424→                    },
+   425→                    {
+   426→                      "id": "concept-id_p5i90a688np-1",
+   427→                      "lessonId": "id_p5i90a688np",
+   428→                      "termAr": "أنواع الكلمات: الاسم",
+   429→                      "termEn": "Types of words: noun",
+   430→                      "definitionAr": "أنواع الكلمات: الاسم، الفعل، والحرف",
+   431→                      "definitionEn": "Types of words: noun, verb, and particle",
+   432→                      "order": 2
+   433→                    },
+   434→                    {
+   435→                      "id": "concept-id_p5i90a688np-2",
+   436→                      "lessonId": "id_p5i90a688np",
+   437→                      "termAr": "أنواع الجمل: الاسمية والفعلية",
+   438→                      "termEn": "Types of sentences: nominal and verbal",
+   439→                      "definitionAr": "أنواع الجمل: الاسمية والفعلية",
+   440→                      "definitionEn": "Types of sentences: nominal and verbal",
+   441→                      "order": 3
+   442→                    }
+   443→                  ],
+   444→                  "Formula": [
+   445→                    {
+   446→                      "id": "form-id_p5i90a688np-0",
+   447→                      "lessonId": "id_p5i90a688np",
+   448→                      "formula": "الفاعل + المفعول به + الفعل",
+   449→                      "explanationAr": "ترتيب الجملة الفعلية في اللغة العربية",
+   450→                      "explanationEn": "Arabic verbal sentence structure",
+   451→                      "order": 1
+   452→                    },
+   453→                    {
+   454→                      "id": "form-id_p5i90a688np-1",
+   455→                      "lessonId": "id_p5i90a688np",
+   456→                      "formula": "المبتدأ + الخبر",
+   457→                      "explanationAr": "ترتيب الجملة الاسمية",
+   458→                      "explanationEn": "Arabic nominal sentence structure",
+   459→                      "order": 2
+   460→                    }
+   461→                  ],
+   462→                  "Example": [
+   463→                    {
+   464→                      "id": "example-id_p5i90a688np-0",
+   465→                      "lessonId": "id_p5i90a688np",
+   466→                      "questionAr": "تحليل الجملة الاسمية: لنحلل الجملة: \"محمد طالب مجتهد\"",
+   467→                      "questionEn": "Analyzing the Nominal Sentence: Let's analyze the sentence: \"Muhammad is a diligent student\"",
+   468→                      "solutionAr": "1. \"محمد\" هو المبتدأ لأنه اسم مجرد مبني على الضمة في محل رفع مبتدأ.\\n2. \"طالب\" هو الخبر لأنه اسم مجرد مبني على الضمة في محل رفع خبر.\\n3. \"مجتهد\" هو صفة لطالب لأنه اسم مجرد مبني على الضمة في محل رفع خبر ثان.",
+   469→                      "solutionEn": "1. \"Muhammad\" is the subject (mubtada') because it is an abstract noun in the nominative case with a damma.\\n2. \"Student\" is the predicate (khabar) because it is an abstract noun in the nominative case with a damma.\\n3. \"Diligent\" is an adjective for \"student\" because it is an abstract noun in the nominative case with a damma, serving as a second predicate.",
+   470→                      "stepsAr": "1. \"محمد\" هو المبتدأ لأنه اسم مجرد مبني على الضمة في محل رفع مبتدأ.\\n2. \"طالب\" هو الخبر لأنه اسم مجرد مبني على الضمة في محل رفع خبر.\\n3. \"مجتهد\" هو صفة لطالب لأنه اسم مجرد مبني على الضمة في محل رفع خبر ثان.",
+   471→                      "stepsEn": "1. \"Muhammad\" is the subject (mubtada') because it is an abstract noun in the nominative case with a damma.\\n2. \"Student\" is the predicate (khabar) because it is an abstract noun in the nominative case with a damma.\\n3. \"Diligent\" is an adjective for \"student\" because it is an abstract noun in the nominative case with a damma, serving as a second predicate.",
+   472→                      "order": 1
+   473→                    },
+   474→                    {
+   475→                      "id": "example-id_p5i90a688np-1",
+   476→                      "lessonId": "id_p5i90a688np",
+   477→                      "questionAr": "تحليل الجملة الفعلية: لنحلل الجملة: \"يقرأ الطالب الدرس بجد\"",
+   478→                      "questionEn": "Analyzing the Verbal Sentence: Let's analyze the sentence: \"The student reads the lesson diligently\"",
+   479→                      "solutionAr": "1. \"يقرأ\" فعل مضارع مرفوع بالضمة لأنه ماضي مبني على الضمة.\\n2. \"الطالب\" فاعل مرفوع بالضمة لأنه اسم معرفة مبني على الضمة.\\n3. \"الدرس\" مفعول به منصب بالفتة لأنه معرفة نكرة.\\n4. \"ب\" حجر جر مجزوم بالسكون لأنه حرف جر.\\n5. \"جد\" مجرور بالكسرة لأنه اسم مجرد مجرور بحرف الجر.",
+   480→                      "solutionEn": "1. \"Reads\" is a present tense verb in the nominative case with a damma because it is a past tense verb built on a damma.\\n2. \"The student\" is the doer (fa'il) in the nominative case with a damma because it is a definite noun built on a damma.\\n3. \"The lesson\" is the direct object (maf'ul bihi) in the accusative case with a fatha because it is a definite indefinite noun.\\n4. \"With\" is a preposition particle in the jussive case with sukun because it is a preposition.\\n5. \"Diligently\" is in the genitive case with a kasra because it is an abstract noun governed by the preposition.",
+   481→                      "stepsAr": "1. \"يقرأ\" فعل مضارع مرفوع بالضمة لأنه ماضي مبني على الضمة.\\n2. \"الطالب\" فاعل مرفوع بالضمة لأنه اسم معرفة مبني على الضمة.\\n3. \"الدرس\" مفعول به منصب بالفتة لأنه معرفة نكرة.\\n4. \"ب\" حجر جر مجزوم بالسكون لأنه حرف جر.\\n5. \"جد\" مجرور بالكسرة لأنه اسم مجرد مجرور بحرف الجر.",
+   482→                      "stepsEn": "1. \"Reads\" is a present tense verb in the nominative case with a damma because it is a past tense verb built on a damma.\\n2. \"The student\" is the doer (fa'il) in the nominative case with a damma because it is a definite noun built on a damma.\\n3. \"The lesson\" is the direct object (maf'ul bihi) in the accusative case with a fatha because it is a definite indefinite noun.\\n4. \"With\" is a preposition particle in the jussive case with sukun because it is a preposition.\\n5. \"Diligently\" is in the genitive case with a kasra because it is an abstract noun governed by the preposition.",
+   483→                      "order": 2
+   484→                    }
+   485→                  ],
+   486→                  "Question": [
+   487→                    {
+   488→                      "id": "q-id_p5i90a688np-0",
+   489→                      "lessonId": "id_p5i90a688np",
+   490→                      "type": "multiple-choice",
+   491→                      "questionAr": "ما نوع الجملة التالية؟ \"الطالب يحفظ الدرس\"",
+   492→                      "questionEn": "What type of sentence is the following? \"The student memorizes the lesson\"",
+   493→                      "optionsAr": "[\"أ. جملة اسمية\",\"ب. جملة فعلية\",\"ج. جملة شرطية\",\"د. جملة استفهامية\"]",
+   494→                      "optionsEn": "[\"A. Nominal sentence\",\"B. Verbal sentence\",\"C. Conditional sentence\",\"D. Interrogative sentence\"]",
+   495→                      "answer": "ب",
+   496→                      "explanationAr": "الجملة فعلية لأنها تبدأ بفعل مضارع (يحفظ)، والفاعل (الطالب) والفاعل (الدرس) هما متممات للفعل.",
+   497→                      "explanationEn": "The sentence is verbal because it begins with a present tense verb (memorizes), and the subject (the student) and the object (the lesson) are complements to the verb.",
+   498→                      "points": 1,
+   499→                      "difficulty": "medium",
+   500→                      "order": 1
+
+[showing lines 1-500 of 69538; use offset=501 with limit to continue reading]

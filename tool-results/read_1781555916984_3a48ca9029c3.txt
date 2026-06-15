@@ -1,0 +1,653 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect } from "react";
+     4→import { motion } from "framer-motion";
+     5→import Link from "next/link";
+     6→
+     7→import { useLanguage } from "@/lib/i18n";
+     8→import { Button } from "@/components/ui/button";
+     9→import { Badge } from "@/components/ui/badge";
+    10→import { Card, CardContent } from "@/components/ui/card";
+    11→import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+    12→import { 
+    13→  Globe, Moon, Sun, ChevronRight, ArrowLeft,
+    14→  Clock, Play, Lock, BookOpen, Target, Lightbulb, 
+    15→  FileText, HelpCircle, Beaker, CheckCircle, FlaskConical
+    16→} from "lucide-react";
+    17→import { loadStaticData } from "@/lib/static-data";
+    18→import { getSimulationsByLessonId, getSimulationsBySubjectAndUnit, Simulation } from "@/lib/simulations";
+    19→import { SimulationList } from "@/components/simulations/SimulationCard";
+    20→import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
+    21→import { MathRenderer } from "@/components/ui/MathRenderer";
+    22→
+    23→interface Objective {
+    24→  id: string;
+    25→  textAr: string;
+    26→  textEn: string;
+    27→  order: number;
+    28→}
+    29→
+    30→interface Concept {
+    31→  id: string;
+    32→  termAr: string;
+    33→  termEn: string;
+    34→  definitionAr: string;
+    35→  definitionEn: string;
+    36→  order: number;
+    37→}
+    38→
+    39→interface Formula {
+    40→  id: string;
+    41→  formula: string;
+    42→  explanationAr: string;
+    43→  explanationEn: string;
+    44→  order: number;
+    45→}
+    46→
+    47→interface Example {
+    48→  id: string;
+    49→  questionAr: string;
+    50→  questionEn: string;
+    51→  solutionAr: string;
+    52→  solutionEn: string;
+    53→  stepsAr: string;
+    54→  stepsEn: string;
+    55→  order: number;
+    56→}
+    57→
+    58→interface Question {
+    59→  id: string;
+    60→  type: string;
+    61→  questionAr: string;
+    62→  questionEn: string;
+    63→  optionsAr?: string;
+    64→  optionsEn?: string;
+    65→  answer: string;
+    66→  explanationAr?: string;
+    67→  explanationEn?: string;
+    68→  points: number;
+    69→  difficulty: string;
+    70→  order: number;
+    71→}
+    72→
+    73→interface LessonDetail {
+    74→  id: string;
+    75→  slug: string;
+    76→  titleAr: string;
+    77→  titleEn: string;
+    78→  descriptionAr: string;
+    79→  descriptionEn: string;
+    80→  duration: number;
+    81→  isFree: boolean;
+    82→  videoUrl?: string;
+    83→  thumbnailUrl?: string;
+    84→  introductionAr: string;
+    85→  introductionEn: string;
+    86→  summaryAr: string;
+    87→  summaryEn: string;
+    88→  Objective: Objective[];
+    89→  Concept: Concept[];
+    90→  Formula: Formula[];
+    91→  Example: Example[];
+    92→  Question: Question[];
+    93→  Unit: {
+    94→    id: string;
+    95→    slug: string;
+    96→    nameAr: string;
+    97→    nameEn: string;
+    98→    Subject: {
+    99→      id: string;
+   100→      slug: string;
+   101→      nameAr: string;
+   102→      nameEn: string;
+   103→      icon: string;
+   104→      color: string;
+   105→    };
+   106→  };
+   107→}
+   108→
+   109→interface LessonClientProps { lessonId: string; }
+   110→
+   111→export default function LessonClient({ lessonId }: LessonClientProps) {
+   112→  
+   113→  
+   114→  const { language, toggleLanguage, t } = useLanguage();
+   115→  const [lesson, setLesson] = useState<LessonDetail | null>(null);
+   116→  const [loading, setLoading] = useState(true);
+   117→  const [isDark, setIsDark] = useState(false);
+   118→  const [relatedSimulations, setRelatedSimulations] = useState<Simulation[]>([]);
+   119→  const [showQuiz, setShowQuiz] = useState(false);
+   120→
+   121→  const isRTL = language === "ar";
+   122→
+   123→  useEffect(() => {
+   124→    const fetchLesson = async () => {
+   125→      try {
+   126→        const data = await loadStaticData();
+   127→        
+   128→        let foundLesson: LessonDetail | null = null;
+   129→        
+   130→        for (const year of data?.academicYears || []) {
+   131→          for (const subject of year.Subject || []) {
+   132→            for (const unit of subject.Unit || []) {
+   133→              const lesson = unit.Lesson?.find((l: any) => l.id === lessonId);
+   134→              if (lesson) {
+   135→                foundLesson = {
+   136→                  ...lesson,
+   137→                  Unit: { ...unit, Subject: subject }
+   138→                };
+   139→                
+   140→                // Get related simulations - based on subject and unit
+   141→                const subjectName = subject.nameAr;
+   142→                const unitOrder = unit.order || 1;
+   143→                const simulationsForLesson = getSimulationsBySubjectAndUnit(subjectName, unitOrder);
+   144→                setRelatedSimulations(simulationsForLesson);
+   145→                
+   146→                break;
+   147→              }
+   148→            }
+   149→            if (foundLesson) break;
+   150→          }
+   151→          if (foundLesson) break;
+   152→        }
+   153→        
+   154→        setLesson(foundLesson);
+   155→      } catch (error) {
+   156→        console.error("Error fetching lesson:", error);
+   157→      } finally {
+   158→        setLoading(false);
+   159→      }
+   160→    };
+   161→    
+   162→    fetchLesson();
+   163→  }, [lessonId]);
+   164→
+   165→  const toggleTheme = () => {
+   166→    setIsDark(!isDark);
+   167→    document.documentElement.classList.toggle('dark');
+   168→  };
+   169→
+   170→  const getTitle = () => {
+   171→    if (!lesson) return "";
+   172→    return language === "ar" ? lesson.titleAr : lesson.titleEn;
+   173→  };
+   174→
+   175→  const getDescription = () => {
+   176→    if (!lesson) return "";
+   177→    return language === "ar" ? lesson.descriptionAr : lesson.descriptionEn;
+   178→  };
+   179→
+   180→  const getIntroduction = () => {
+   181→    if (!lesson) return "";
+   182→    return language === "ar" ? lesson.introductionAr : lesson.introductionEn;
+   183→  };
+   184→
+   185→  const getSummary = () => {
+   186→    if (!lesson) return "";
+   187→    return language === "ar" ? lesson.summaryAr : lesson.summaryEn;
+   188→  };
+   189→
+   190→  const getObjectives = () => {
+   191→    if (!lesson?.Objective) return [];
+   192→    return lesson.Objective.sort((a, b) => a.order - b.order).map(obj => 
+   193→      language === "ar" ? obj.textAr : obj.textEn
+   194→    );
+   195→  };
+   196→
+   197→  const getKeyConcepts = () => {
+   198→    if (!lesson?.Concept) return [];
+   199→    return lesson.Concept.sort((a, b) => a.order - b.order).map(concept => ({
+   200→      term: language === "ar" ? concept.termAr : concept.termEn,
+   201→      definition: language === "ar" ? concept.definitionAr : concept.definitionEn
+   202→    }));
+   203→  };
+   204→
+   205→  const getFormulas = () => {
+   206→    if (!lesson?.Formula) return [];
+   207→    return lesson.Formula.sort((a, b) => a.order - b.order).map(formula => ({
+   208→      formula: formula.formula,
+   209→      explanation: language === "ar" ? formula.explanationAr : formula.explanationEn
+   210→    }));
+   211→  };
+   212→
+   213→  const getExamples = () => {
+   214→    if (!lesson?.Example) return [];
+   215→    return lesson.Example.sort((a, b) => a.order - b.order).map(example => ({
+   216→      question: language === "ar" ? example.questionAr : example.questionEn,
+   217→      solution: language === "ar" ? example.solutionAr : example.solutionEn,
+   218→      steps: language === "ar" ? example.stepsAr?.split('\n') : example.stepsEn?.split('\n')
+   219→    }));
+   220→  };
+   221→
+   222→  const getQuestions = () => {
+   223→    if (!lesson?.Question) return [];
+   224→    return lesson.Question.sort((a, b) => a.order - b.order);
+   225→  };
+   226→
+   227→  return (
+   228→    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+   229→      {/* Header */}
+   230→      <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
+   231→        <div className="max-w-7xl mx-auto px-4 py-4">
+   232→          <div className="flex items-center justify-between">
+   233→            <div className="flex items-center gap-4">
+   234→              <Link href="/platform" className="flex items-center gap-2 hover:opacity-80 transition">
+   235→                <img src="/logo.jpeg" alt="SmartEdu" className="w-10 h-10 rounded-xl object-cover" />
+   236→                <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hidden sm:inline">
+   237→                  {t("تعلم ذكي", "SmartEdu")}
+   238→                </span>
+   239→              </Link>
+   240→            </div>
+   241→
+   242→            <div className="flex items-center gap-2">
+   243→              {lesson?.Unit?.Subject && (
+   244→                <Link href={`/platform/subject/${lesson.Unit.Subject.id}`}>
+   245→                  <Button variant="ghost" size="sm" className="gap-2">
+   246→                    <ArrowLeft className="w-4 h-4" />
+   247→                    {t("العودة", "Back")}
+   248→                  </Button>
+   249→                </Link>
+   250→              )}
+   251→              <Button
+   252→                variant="ghost"
+   253→                size="sm"
+   254→                onClick={toggleLanguage}
+   255→                className="gap-2"
+   256→              >
+   257→                <Globe className="w-4 h-4" />
+   258→                {language === "ar" ? "EN" : "عربي"}
+   259→              </Button>
+   260→              <Button
+   261→                variant="ghost"
+   262→                size="icon"
+   263→                onClick={toggleTheme}
+   264→              >
+   265→                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+   266→              </Button>
+   267→            </div>
+   268→          </div>
+   269→        </div>
+   270→      </header>
+   271→
+   272→      {/* Main Content */}
+   273→      <main className="max-w-5xl mx-auto px-4 py-8">
+   274→        {loading ? (
+   275→          <div className="flex items-center justify-center py-20">
+   276→            <div className="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full"></div>
+   277→          </div>
+   278→        ) : !lesson ? (
+   279→          <div className="text-center py-20">
+   280→            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">
+   281→              {t("الدرس غير موجود", "Lesson not found")}
+   282→            </h2>
+   283→            <Link href="/platform">
+   284→              <Button>
+   285→                {t("العودة للمنصة", "Back to Platform")}
+   286→              </Button>
+   287→            </Link>
+   288→          </div>
+   289→        ) : (
+   290→          <>
+   291→            {/* Breadcrumb */}
+   292→            <nav className="flex items-center gap-2 text-sm text-slate-500 mb-6 flex-wrap">
+   293→              <Link href="/platform" className="hover:text-purple-600 transition">
+   294→                {t("المنصة", "Platform")}
+   295→              </Link>
+   296→              <ChevronRight className="w-4 h-4" />
+   297→              {lesson.Unit?.Subject && (
+   298→                <>
+   299→                  <Link 
+   300→                    href={`/platform/subject/${lesson.Unit.Subject.id}`} 
+   301→                    className="hover:text-purple-600 transition"
+   302→                  >
+   303→                    {language === "ar" ? lesson.Unit.Subject.nameAr : lesson.Unit.Subject.nameEn}
+   304→                  </Link>
+   305→                  <ChevronRight className="w-4 h-4" />
+   306→                </>
+   307→              )}
+   308→              <span className="text-slate-800 dark:text-white font-medium line-clamp-1">
+   309→                {getTitle()}
+   310→              </span>
+   311→            </nav>
+   312→
+   313→            {/* Lesson Header */}
+   314→            <motion.div
+   315→              initial={{ opacity: 0, y: 20 }}
+   316→              animate={{ opacity: 1, y: 0 }}
+   317→              className="mb-8"
+   318→            >
+   319→              <div className="flex items-start gap-4 mb-4">
+   320→                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+   321→                  lesson.isFree 
+   322→                    ? "bg-green-100 dark:bg-green-900/30" 
+   323→                    : "bg-purple-100 dark:bg-purple-900/30"
+   324→                }`}>
+   325→                  {lesson.isFree ? (
+   326→                    <Play className="w-6 h-6 text-green-600" />
+   327→                  ) : (
+   328→                    <Lock className="w-6 h-6 text-purple-600" />
+   329→                  )}
+   330→                </div>
+   331→                <div className="flex-1">
+   332→                  <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2">
+   333→                    {getTitle()}
+   334→                  </h1>
+   335→                  <p className="text-slate-600 dark:text-slate-400 mb-3">
+   336→                    {getDescription()}
+   337→                  </p>
+   338→                  <div className="flex items-center gap-4 text-sm text-slate-500">
+   339→                    <div className="flex items-center gap-1">
+   340→                      <Clock className="w-4 h-4" />
+   341→                      {lesson.duration} {t("دقيقة", "min")}
+   342→                    </div>
+   343→                    {lesson.isFree && (
+   344→                      <Badge className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-0">
+   345→                        {t("مجاني", "Free")}
+   346→                      </Badge>
+   347→                    )}
+   348→                    {relatedSimulations.length > 0 && (
+   349→                      <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-0">
+   350→                        <FlaskConical className="w-3 h-3 mr-1" />
+   351→                        {relatedSimulations.length} {t("محاكاة", "simulations")}
+   352→                      </Badge>
+   353→                    )}
+   354→                  </div>
+   355→                </div>
+   356→              </div>
+   357→            </motion.div>
+   358→
+   359→            {/* Lesson Content Tabs */}
+   360→            <Tabs defaultValue="content" className="space-y-6">
+   361→              <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-2 h-auto p-2 bg-white dark:bg-slate-800 rounded-xl">
+   362→                <TabsTrigger value="content" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   363→                  <BookOpen className="w-4 h-4 mr-2" />
+   364→                  {t("المحتوى", "Content")}
+   365→                </TabsTrigger>
+   366→                <TabsTrigger value="concepts" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   367→                  <Lightbulb className="w-4 h-4 mr-2" />
+   368→                  {t("المفاهيم", "Concepts")}
+   369→                </TabsTrigger>
+   370→                <TabsTrigger value="formulas" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   371→                  <Target className="w-4 h-4 mr-2" />
+   372→                  {t("القوانين", "Formulas")}
+   373→                </TabsTrigger>
+   374→                <TabsTrigger value="examples" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   375→                  <FileText className="w-4 h-4 mr-2" />
+   376→                  {t("أمثلة", "Examples")}
+   377→                </TabsTrigger>
+   378→                <TabsTrigger value="simulations" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   379→                  <Beaker className="w-4 h-4 mr-2" />
+   380→                  {t("محاكيات", "Simulations")}
+   381→                </TabsTrigger>
+   382→                <TabsTrigger value="quiz" className="rounded-lg data-[state=active]:bg-purple-100 data-[state=active]:text-purple-700 dark:data-[state=active]:bg-purple-900/30">
+   383→                  <HelpCircle className="w-4 h-4 mr-2" />
+   384→                  {t("اختبار", "Quiz")}
+   385→                </TabsTrigger>
+   386→              </TabsList>
+   387→
+   388→              {/* Content Tab */}
+   389→              <TabsContent value="content">
+   390→                <motion.div
+   391→                  initial={{ opacity: 0, y: 10 }}
+   392→                  animate={{ opacity: 1, y: 0 }}
+   393→                  className="space-y-6"
+   394→                >
+   395→                  {getObjectives().length > 0 && (
+   396→                    <Card className="border-0 shadow-md">
+   397→                      <CardContent className="p-6">
+   398→                        <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+   399→                          <Target className="w-5 h-5 text-purple-500" />
+   400→                          {t("أهداف الدرس", "Lesson Objectives")}
+   401→                        </h3>
+   402→                        <ul className="space-y-2">
+   403→                          {getObjectives().map((obj: string, i: number) => (
+   404→                            <li key={i} className="flex items-start gap-3">
+   405→                              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+   406→                              <span className="text-slate-600 dark:text-slate-300">{obj}</span>
+   407→                            </li>
+   408→                          ))}
+   409→                        </ul>
+   410→                      </CardContent>
+   411→                    </Card>
+   412→                  )}
+   413→
+   414→                  {getIntroduction() && (
+   415→                    <Card className="border-0 shadow-md">
+   416→                      <CardContent className="p-6">
+   417→                        <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+   418→                          <BookOpen className="w-5 h-5 text-purple-500" />
+   419→                          {t("مقدمة الدرس", "Introduction")}
+   420→                        </h3>
+   421→                        <div className="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
+   422→                          {getIntroduction()}
+   423→                        </div>
+   424→                      </CardContent>
+   425→                    </Card>
+   426→                  )}
+   427→
+   428→                  {getSummary() && (
+   429→                    <Card className="border-0 shadow-md bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+   430→                      <CardContent className="p-6">
+   431→                        <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+   432→                          <FileText className="w-5 h-5 text-purple-500" />
+   433→                          {t("ملخص الدرس", "Summary")}
+   434→                        </h3>
+   435→                        <div className="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
+   436→                          {getSummary()}
+   437→                        </div>
+   438→                      </CardContent>
+   439→                    </Card>
+   440→                  )}
+   441→                </motion.div>
+   442→              </TabsContent>
+   443→
+   444→              {/* Concepts Tab */}
+   445→              <TabsContent value="concepts">
+   446→                <motion.div
+   447→                  initial={{ opacity: 0, y: 10 }}
+   448→                  animate={{ opacity: 1, y: 0 }}
+   449→                >
+   450→                  <Card className="border-0 shadow-md">
+   451→                    <CardContent className="p-6">
+   452→                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+   453→                        <Lightbulb className="w-5 h-5 text-purple-500" />
+   454→                        {t("المفاهيم الأساسية", "Key Concepts")}
+   455→                      </h3>
+   456→                      {getKeyConcepts().length === 0 ? (
+   457→                        <p className="text-slate-500 text-center py-8">
+   458→                          {t("لا توجد مفاهيم بعد", "No concepts yet")}
+   459→                        </p>
+   460→                      ) : (
+   461→                        <div className="space-y-4">
+   462→                          {getKeyConcepts().map((concept: any, i: number) => (
+   463→                            <div key={i} className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+   464→                              <h4 className="font-bold text-purple-600 dark:text-purple-400 mb-2">
+   465→                                {concept.term}
+   466→                              </h4>
+   467→                              <p className="text-slate-600 dark:text-slate-300">
+   468→                                {concept.definition}
+   469→                              </p>
+   470→                            </div>
+   471→                          ))}
+   472→                        </div>
+   473→                      )}
+   474→                    </CardContent>
+   475→                  </Card>
+   476→                </motion.div>
+   477→              </TabsContent>
+   478→
+   479→              {/* Formulas Tab */}
+   480→              <TabsContent value="formulas">
+   481→                <motion.div
+   482→                  initial={{ opacity: 0, y: 10 }}
+   483→                  animate={{ opacity: 1, y: 0 }}
+   484→                >
+   485→                  <Card className="border-0 shadow-md">
+   486→                    <CardContent className="p-6">
+   487→                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+   488→                        <Target className="w-5 h-5 text-purple-500" />
+   489→                        {t("القوانين والمعادلات", "Formulas & Equations")}
+   490→                      </h3>
+   491→                      {getFormulas().length === 0 ? (
+   492→                        <p className="text-slate-500 text-center py-8">
+   493→                          {t("لا توجد قوانين بعد", "No formulas yet")}
+   494→                        </p>
+   495→                      ) : (
+   496→                        <div className="grid gap-4">
+   497→                          {getFormulas().map((formula: any, i: number) => (
+   498→                            <div key={i} className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl">
+   499→                              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2 text-center py-2">
+   500→                                <MathRenderer formula={formula.formula} displayMode={true} />
+   501→                              </div>
+   502→                              <p className="text-slate-600 dark:text-slate-300 text-center">
+   503→                                {formula.explanation}
+   504→                              </p>
+   505→                            </div>
+   506→                          ))}
+   507→                        </div>
+   508→                      )}
+   509→                    </CardContent>
+   510→                  </Card>
+   511→                </motion.div>
+   512→              </TabsContent>
+   513→
+   514→              {/* Examples Tab */}
+   515→              <TabsContent value="examples">
+   516→                <motion.div
+   517→                  initial={{ opacity: 0, y: 10 }}
+   518→                  animate={{ opacity: 1, y: 0 }}
+   519→                >
+   520→                  <Card className="border-0 shadow-md">
+   521→                    <CardContent className="p-6">
+   522→                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+   523→                        <FileText className="w-5 h-5 text-purple-500" />
+   524→                        {t("أمثلة محلولة", "Solved Examples")}
+   525→                      </h3>
+   526→                      {getExamples().length === 0 ? (
+   527→                        <p className="text-slate-500 text-center py-8">
+   528→                          {t("لا توجد أمثلة بعد", "No examples yet")}
+   529→                        </p>
+   530→                      ) : (
+   531→                        <div className="space-y-6">
+   532→                          {getExamples().map((example: any, i: number) => (
+   533→                            <div key={i} className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+   534→                              <div className="p-4 bg-slate-50 dark:bg-slate-800">
+   535→                                <h4 className="font-bold text-slate-800 dark:text-white">
+   536→                                  {t("سؤال", "Question")} {i + 1}:
+   537→                                </h4>
+   538→                                <p className="text-slate-600 dark:text-slate-300 mt-2">
+   539→                                  {example.question}
+   540→                                </p>
+   541→                              </div>
+   542→                              <div className="p-4">
+   543→                                <h5 className="font-medium text-purple-600 dark:text-purple-400 mb-2">
+   544→                                  {t("الحل", "Solution")}:
+   545→                                </h5>
+   546→                                <p className="text-slate-600 dark:text-slate-300">
+   547→                                  {example.solution}
+   548→                                </p>
+   549→                                {example.steps && example.steps.length > 0 && (
+   550→                                  <ol className="mt-3 space-y-2">
+   551→                                    {example.steps.map((step: string, j: number) => (
+   552→                                      <li key={j} className="flex items-start gap-2">
+   553→                                        <span className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 flex items-center justify-center text-sm font-bold flex-shrink-0">
+   554→                                          {j + 1}
+   555→                                        </span>
+   556→                                        <span className="text-slate-600 dark:text-slate-300">{step}</span>
+   557→                                      </li>
+   558→                                    ))}
+   559→                                  </ol>
+   560→                                )}
+   561→                              </div>
+   562→                            </div>
+   563→                          ))}
+   564→                        </div>
+   565→                      )}
+   566→                    </CardContent>
+   567→                  </Card>
+   568→                </motion.div>
+   569→              </TabsContent>
+   570→
+   571→              {/* Simulations Tab */}
+   572→              <TabsContent value="simulations">
+   573→                <motion.div
+   574→                  initial={{ opacity: 0, y: 10 }}
+   575→                  animate={{ opacity: 1, y: 0 }}
+   576→                >
+   577→                  <Card className="border-0 shadow-md">
+   578→                    <CardContent className="p-6">
+   579→                      <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+   580→                        <Beaker className="w-5 h-5 text-purple-500" />
+   581→                        {t("المحاكيات التفاعلية", "Interactive Simulations")}
+   582→                      </h3>
+   583→                      <SimulationList 
+   584→                        simulations={relatedSimulations} 
+   585→                        language={language}
+   586→                        onSimulationClick={(sim) => {
+   587→                          console.log("Opening simulation:", sim.id);
+   588→                          // TODO: Open simulation modal or navigate to simulation page
+   589→                        }}
+   590→                      />
+   591→                    </CardContent>
+   592→                  </Card>
+   593→                </motion.div>
+   594→              </TabsContent>
+   595→
+   596→              {/* Quiz Tab */}
+   597→              <TabsContent value="quiz">
+   598→                <motion.div
+   599→                  initial={{ opacity: 0, y: 10 }}
+   600→                  animate={{ opacity: 1, y: 0 }}
+   601→                >
+   602→                  <Card className="border-0 shadow-md">
+   603→                    <CardContent className="p-6">
+   604→                      {!showQuiz ? (
+   605→                        <div className="text-center py-8">
+   606→                          <HelpCircle className="w-16 h-16 mx-auto text-purple-500 mb-4" />
+   607→                          <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">
+   608→                            {t("اختبار الدرس", "Lesson Quiz")}
+   609→                          </h3>
+   610→                          <p className="text-slate-600 dark:text-slate-300 mb-2">
+   611→                            {t("اختبر فهمك للدرس من خلال الأسئلة التفاعلية", "Test your understanding with interactive questions")}
+   612→                          </p>
+   613→                          <p className="text-sm text-slate-500 mb-6">
+   614→                            {getQuestions().length} {t("أسئلة", "questions")}
+   615→                          </p>
+   616→                          <Button 
+   617→                            className="gradient-primary text-white px-8"
+   618→                            onClick={() => setShowQuiz(true)}
+   619→                            disabled={getQuestions().length === 0}
+   620→                          >
+   621→                            {t("ابدأ الاختبار", "Start Quiz")}
+   622→                          </Button>
+   623→                        </div>
+   624→                      ) : (
+   625→                        <InteractiveQuiz 
+   626→                          questions={getQuestions()} 
+   627→                          language={language}
+   628→                          onComplete={(score, total) => {
+   629→                            console.log("Quiz completed:", score, total);
+   630→                          }}
+   631→                        />
+   632→                      )}
+   633→                    </CardContent>
+   634→                  </Card>
+   635→                </motion.div>
+   636→              </TabsContent>
+   637→            </Tabs>
+   638→          </>
+   639→        )}
+   640→      </main>
+   641→
+   642→      {/* Footer */}
+   643→      <footer className="mt-auto py-6 border-t border-slate-200 dark:border-slate-800">
+   644→        <div className="max-w-7xl mx-auto px-4 text-center">
+   645→          <p className="text-sm text-slate-500">
+   646→            © 2025 {t("تعلم ذكي. كل الحقوق محفوظة.", "SmartEdu. All rights reserved.")}
+   647→          </p>
+   648→        </div>
+   649→      </footer>
+   650→    </div>
+   651→  );
+   652→}
+   653→
