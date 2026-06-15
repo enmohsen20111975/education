@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { RotateCcw, Sun, Mirror, Ruler } from "lucide-react";
+import { RotateCcw, Sun, Circle, Ruler } from "lucide-react";
 
 interface LightReflectionSimulatorProps {
   language: "ar" | "en";
@@ -346,7 +346,7 @@ export function LightReflectionSimulator({ language }: LightReflectionSimulatorP
       <CardHeader className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white rounded-t-lg">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-            <Mirror className="w-6 h-6" />
+            <Circle className="w-6 h-6" />
           </div>
           <div className={isRTL ? "text-right" : "text-left"}>
             <CardTitle>{t.title}</CardTitle>

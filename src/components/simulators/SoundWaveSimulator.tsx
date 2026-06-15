@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
-import { RotateCcw, Volume2, Waveform } from "lucide-react";
+import { RotateCcw, Volume2, Activity } from "lucide-react";
 
 interface SoundWaveSimulatorProps {
   language: "ar" | "en";
@@ -242,7 +242,7 @@ export function SoundWaveSimulator({ language }: SoundWaveSimulatorProps) {
         {/* Controls */}
         <div className="flex gap-3">
           <Button onClick={() => setIsPlaying(!isPlaying)} className={isPlaying ? "bg-red-500 hover:bg-red-600" : "bg-purple-500 hover:bg-purple-600"}>
-            <Waveform className="w-4 h-4 mr-2" />
+            <Activity className="w-4 h-4 mr-2" />
             {isPlaying ? t.stop : t.play}
           </Button>
           <Button variant="outline" onClick={() => { setIsPlaying(false); setTime(0); }}>

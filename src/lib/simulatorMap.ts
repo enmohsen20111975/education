@@ -13,7 +13,6 @@ import { ProjectileSimulator } from '@/components/simulators/ProjectileSimulator
 import { MomentumSimulator } from '@/components/simulators/MomentumSimulator';
 import { SoundWaveSimulator } from '@/components/simulators/SoundWaveSimulator';
 import { ElectromagnetismSimulator } from '@/components/simulators/ElectromagnetismSimulator';
-import { ThermodynamicsSimulator } from '@/components/simulators/ThermodynamicsSimulator';
 import { VelocitySimulator } from '@/components/simulators/VelocitySimulator';
 import { MotionGraphSimulator } from '@/components/simulators/MotionGraphSimulator';
 import { MotionEquationsSimulator } from '@/components/simulators/MotionEquationsSimulator';
@@ -24,6 +23,7 @@ import { SpringSimulator } from '@/components/simulators/SpringSimulator';
 import { CircularMotionSimulator } from '@/components/simulators/CircularMotionSimulator';
 import { GravitySimulator } from '@/components/simulators/GravitySimulator';
 import { SatelliteSimulator } from '@/components/simulators/SatelliteSimulator';
+import { TemperatureSimulator } from '@/components/simulators/TemperatureSimulator';
 
 // Wave & Light Simulators
 import { WaveInterferenceSimulator } from '@/components/simulators/WaveInterferenceSimulator';
@@ -36,6 +36,7 @@ import { LightRefractionSimulator } from '@/components/simulators/LightRefractio
 import { LensesSimulator } from '@/components/simulators/LensesSimulator';
 import { DiffractionSimulator } from '@/components/simulators/DiffractionSimulator';
 import { DoubleSlitSimulator } from '@/components/simulators/DoubleSlitSimulator';
+import { MirrorSimulator } from '@/components/simulators/MirrorSimulator';
 
 // Electricity & Magnetism Simulators
 import { ElectricChargeSimulator } from '@/components/simulators/ElectricChargeSimulator';
@@ -50,6 +51,7 @@ import { ElectromagnetSimulator } from '@/components/simulators/ElectromagnetSim
 import { InductionSimulator } from '@/components/simulators/InductionSimulator';
 import { TransformerSimulator } from '@/components/simulators/TransformerSimulator';
 import { MotorSimulator } from '@/components/simulators/MotorSimulator';
+import { ElectricCircuitSimulator } from '@/components/simulators/ElectricCircuitSimulator';
 
 // Chemistry Simulators
 import { PeriodicTableSimulator } from '@/components/simulators/PeriodicTableSimulator';
@@ -76,8 +78,6 @@ import { AcidsBasesSimulator } from '@/components/simulators/AcidsBasesSimulator
 // Math Simulators
 import { FunctionsSimulator } from '@/components/simulators/FunctionsSimulator';
 import { GeometrySimulator } from '@/components/simulators/GeometrySimulator';
-import { StatisticsSimulator } from '@/components/simulators/StatisticsSimulator';
-import { TrigonometrySimulator } from '@/components/simulators/TrigonometrySimulator';
 import { LinearEquationsSimulator } from '@/components/simulators/LinearEquationsSimulator';
 import { LineGraphSimulator } from '@/components/simulators/LineGraphSimulator';
 import { LineIntersectionSimulator } from '@/components/simulators/LineIntersectionSimulator';
@@ -105,6 +105,8 @@ import { DerivativesSimulator } from '@/components/simulators/DerivativesSimulat
 import { IntegralsSimulator } from '@/components/simulators/IntegralsSimulator';
 import { AreaUnderCurveSimulator } from '@/components/simulators/AreaUnderCurveSimulator';
 import { MaxMinSimulator } from '@/components/simulators/MaxMinSimulator';
+import { StatisticsSimulator } from '@/components/simulators/StatisticsSimulator';
+import { ProbabilitySimulator } from '@/components/simulators/ProbabilitySimulator';
 
 // Biology & Geography Simulators
 import { CellSimulator } from '@/components/simulators/CellSimulator';
@@ -113,10 +115,6 @@ import { DNASimulator } from '@/components/simulators/DNASimulator';
 import { PhotosynthesisSimulator } from '@/components/simulators/PhotosynthesisSimulator';
 import { WaterCycleSimulator } from '@/components/simulators/WaterCycleSimulator';
 import { PlateTectonicsSimulator } from '@/components/simulators/PlateTectonicsSimulator';
-
-// Optics & Circuit Simulators (from original)
-import { OpticsSimulator } from '@/components/simulators/OpticsSimulator';
-import { CircuitSimulator } from '@/components/simulators/CircuitSimulator';
 
 type SimulatorComponent = React.ComponentType<{ language: 'ar' | 'en' }>;
 
@@ -148,7 +146,7 @@ export const simulatorMap: Record<string, SimulatorComponent> = {
   'sim-physics-circular-1': CircularMotionSimulator,
   'sim-physics-gravity-1': GravitySimulator,
   'sim-physics-satellite-1': SatelliteSimulator,
-  'sim-physics-thermodynamics-1': ThermodynamicsSimulator,
+  'sim-physics-thermodynamics-1': TemperatureSimulator,
 
   // ==========================================
   // الفيزياء - الموجات (15 محاكي)
@@ -167,7 +165,7 @@ export const simulatorMap: Record<string, SimulatorComponent> = {
   'sim-physics-light-3': LensesSimulator,
   'sim-physics-light-4': DiffractionSimulator,
   'sim-physics-light-5': DoubleSlitSimulator,
-  'sim-physics-optics-1': OpticsSimulator,
+  'sim-physics-optics-1': MirrorSimulator,
 
   // ==========================================
   // الفيزياء - الكهرباء والمغناطيسية (16 محاكي)
@@ -175,7 +173,7 @@ export const simulatorMap: Record<string, SimulatorComponent> = {
   'sim-physics-electricity-1': ElectricChargeSimulator,
   'sim-physics-electricity-2': ElectricFieldSimulator,
   'sim-physics-electricity-3': ElectricPotentialSimulator,
-  'sim-physics-circuit-1': CircuitSimulator,
+  'sim-physics-circuit-1': ElectricCircuitSimulator,
   'sim-physics-circuit-2': SeriesParallelSimulator,
   'sim-physics-circuit-3': OhmsLawSimulator,
   'sim-physics-circuit-4': ElectricPowerSimulator,
@@ -249,7 +247,7 @@ export const simulatorMap: Record<string, SimulatorComponent> = {
   'sim-math-geometry-4': AreaVolumeSimulator,
   'sim-math-geometry-5': PythagoreanSimulator,
   'sim-math-trig-1': TrigFunctionsSimulator,
-  'sim-math-trig-2': TrigonometrySimulator,
+  'sim-math-trig-2': TrigFunctionsSimulator,
   'sim-math-trig-3': TrigCurvesSimulator,
   'sim-math-trig-4': TrigIdentitiesSimulator,
   'sim-math-trig-5': LawOfSinesSimulator,
@@ -280,7 +278,7 @@ export const simulatorMap: Record<string, SimulatorComponent> = {
   'sim-unit-converter': FunctionsSimulator,
   'sim-graphing-tool': FunctionsSimulator,
   'sim-statistics-1': StatisticsSimulator,
-  'sim-probability-1': StatisticsSimulator,
+  'sim-probability-1': ProbabilitySimulator,
 };
 
 // Helper function to get simulator component

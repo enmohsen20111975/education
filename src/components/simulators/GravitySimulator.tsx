@@ -357,7 +357,7 @@ export function GravitySimulator({ language }: GravitySimulatorProps) {
     ctx.fillStyle = "#1e293b";
     ctx.fillText(t.gravitationalForce, 50, height - 32);
 
-  }, [x, y, vx, vy, distance, speed, gravitationalForce, orbitalVelocity, escapeVelocity, potentialEnergy, kineticEnergy, totalEnergy, orbitType, trail, time, M, initialDistance, scale, t]);
+  }, [x, y, vx, vy, distance, speed, gravitationalForce, orbitalVelocity, escapeVelocity, potentialEnergy, kineticEnergy, totalEnergy, orbitType, trail, time, M, initialDistance, t]);
 
   // Physics simulation
   useEffect(() => {
