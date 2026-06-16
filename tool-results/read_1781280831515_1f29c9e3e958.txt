@@ -1,0 +1,900 @@
+     1→import { PrismaClient } from "@prisma/client";
+     2→
+     3→const prisma = new PrismaClient();
+     4→
+     5→// بيانات الصف الأول الثانوي
+     6→const firstYearData = {
+     7→  nameAr: "الصف الأول الثانوي",
+     8→  nameEn: "First Year Secondary",
+     9→  code: "first-year",
+    10→  order: 1,
+    11→};
+    12→
+    13→// المواد الدراسية للصف الأول (مشتركة لجميع الطلاب)
+    14→const subjectsData = [
+    15→  {
+    16→    nameAr: "اللغة العربية",
+    17→    nameEn: "Arabic Language",
+    18→    slug: "arabic-1",
+    19→    icon: "BookOpen",
+    20→    color: "#8B5CF6",
+    21→    order: 1,
+    22→    isCommon: true,
+    23→    units: [
+    24→      {
+    25→        nameAr: "وحدة النحو",
+    26→        nameEn: "Grammar Unit",
+    27→        slug: "arabic-grammar-1",
+    28→        order: 1,
+    29→        lessons: [
+    30→          {
+    31→            titleAr: "المبتدأ والخبر",
+    32→            titleEn: "Subject and Predicate",
+    33→            slug: "subject-predicate-1",
+    34→            descriptionAr: "دراسة المبتدأ والخبر وأنواعهما في اللغة العربية",
+    35→            descriptionEn: "Study of subject and predicate and their types in Arabic",
+    36→            introductionAr: "المبتدأ هو الاسم المرفوع الذي نبدأ به الجملة الاسمية، والخبر هو الجزء الذي يخبر عن المبتدأ ويتمم معناه. الجملة الاسمية هي التي تبدأ باسم.",
+    37→            introductionEn: "The subject (mubtada) is the noun in the nominative case that we start the nominal sentence with, and the predicate (khabar) is the part that informs about the subject.",
+    38→            summaryAr: "المبتدأ: اسم مرفوع في أول الجملة. الخبر: يخبر عن المبتدأ. أنواع الخبر: مفرد، جملة (فعلية/اسمية)، شبه جملة.",
+    39→            summaryEn: "Subject: noun at the beginning of sentence. Predicate: informs about subject. Types: singular, sentence, semi-sentence.",
+    40→            duration: 45,
+    41→            order: 1,
+    42→            isFree: true,
+    43→            objectives: [
+    44→              { textAr: "التعرف على المبتدأ والخبر", textEn: "Identify subject and predicate" },
+    45→              { textAr: "تحديد أنواع الخبر", textEn: "Determine types of predicate" },
+    46→              { textAr: "إعراب الجملة الاسمية", textEn: "Parse nominal sentences" },
+    47→            ],
+    48→            concepts: [
+    49→              { termAr: "المبتدأ", termEn: "Subject", definitionAr: "اسم مرفوع في أول الجملة الاسمية", definitionEn: "Noun at the beginning of nominal sentence" },
+    50→              { termAr: "الخبر", termEn: "Predicate", definitionAr: "الجزء الذي يخبر عن المبتدأ", definitionEn: "Part that informs about subject" },
+    51→            ],
+    52→            questions: [
+    53→              {
+    54→                type: "multiple_choice",
+    55→                questionAr: "في جملة 'الطالبُ مجتهدٌ'، الخبر هو:",
+    56→                questionEn: "In 'The student is diligent', the predicate is:",
+    57→                optionsAr: ["الطالب", "مجتهد", "الضمير", "لا يوجد"],
+    58→                optionsEn: ["Student", "Diligent", "Pronoun", "None"],
+    59→                answer: "مجتهد",
+    60→                explanationAr: "مجتهد خبر مفرد يخبر عن المبتدأ الطالب",
+    61→                explanationEn: "Diligent is a singular predicate informing about the subject",
+    62→              },
+    63→            ],
+    64→          },
+    65→          {
+    66→            titleAr: "الفاعل ونائب الفاعل",
+    67→            titleEn: "Subject and Deputy Subject",
+    68→            slug: "subject-deputy-1",
+    69→            descriptionAr: "دراسة الفاعل ونائب الفاعل في الجملة الفعلية",
+    70→            descriptionEn: "Study of subject and deputy subject in verbal sentences",
+    71→            introductionAr: "الفاعل هو من قام بالفعل أو اتصف به، ويأتي بعد الفعل مرفوعاً. نائب الفاعل يحل محل الفاعل في بناء الفعل للمجهول.",
+    72→            introductionEn: "The subject is who performed the action, coming after the verb in nominative case. Deputy subject replaces the subject in passive voice.",
+    73→            summaryAr: "الفاعل: من قام بالفعل (مرفوع). نائب الفاعل: يحل محل الفاعل في المبني للمجهول.",
+    74→            summaryEn: "Subject: performed the action. Deputy subject: replaces subject in passive voice.",
+    75→            duration: 50,
+    76→            order: 2,
+    77→            isFree: true,
+    78→            objectives: [
+    79→              { textAr: "التعرف على الفاعل", textEn: "Identify the subject" },
+    80→              { textAr: "التمييز بين الفاعل ونائب الفاعل", textEn: "Distinguish subject from deputy" },
+    81→            ],
+    82→            concepts: [
+    83→              { termAr: "الفاعل", termEn: "Subject", definitionAr: "من قام بالفعل أو اتصف به", definitionEn: "Who performed or was described by the action" },
+    84→              { termAr: "نائب الفاعل", termEn: "Deputy Subject", definitionAr: "محل الفاعل في المبني للمجهول", definitionEn: "Replaces subject in passive voice" },
+    85→            ],
+    86→            questions: [
+    87→              {
+    88→                type: "multiple_choice",
+    89→                questionAr: "في جملة 'كُتِب الدرسُ'، نائب الفاعل هو:",
+    90→                questionEn: "In 'The lesson was written', the deputy subject is:",
+    91→                optionsAr: ["كُتِب", "الدرس", "كاتب", "لا يوجد"],
+    92→                optionsEn: ["Written", "The lesson", "Writer", "None"],
+    93→                answer: "الدرس",
+    94→                explanationAr: "الدرس نائب فاعل لأن الجملة مبنية للمجهول",
+    95→                explanationEn: "The lesson is deputy subject because the sentence is passive",
+    96→              },
+    97→            ],
+    98→          },
+    99→          {
+   100→            titleAr: "المفعول به",
+   101→            titleEn: "Direct Object",
+   102→            slug: "direct-object-1",
+   103→            descriptionAr: "دراسة المفعول به وأنواعه",
+   104→            descriptionEn: "Study of direct object and its types",
+   105→            introductionAr: "المفعول به هو الاسم المنصوب الذي يدل على من وقع عليه الفعل. يأتي بعد فعل متعدٍ.",
+   106→            introductionEn: "The direct object is the accusative noun indicating who received the action. It comes after a transitive verb.",
+   107→            summaryAr: "المفعول به: اسم منصوب وقع عليه الفعل. أنواعه: صريح، مقدر، محذوف.",
+   108→            summaryEn: "Direct object: accusative noun receiving the action. Types: explicit, implied, deleted.",
+   109→            duration: 45,
+   110→            order: 3,
+   111→            isFree: true,
+   112→            objectives: [
+   113→              { textAr: "التعرف على المفعول به", textEn: "Identify the direct object" },
+   114→              { textAr: "تحديد أنواع المفعول به", textEn: "Determine types of direct object" },
+   115→            ],
+   116→            concepts: [
+   117→              { termAr: "المفعول به", termEn: "Direct Object", definitionAr: "اسم منصوب وقع عليه الفعل", definitionEn: "Accusative noun receiving the action" },
+   118→            ],
+   119→            questions: [
+   120→              {
+   121→                type: "multiple_choice",
+   122→                questionAr: "في جملة 'قرأ الطالب الكتابَ'، المفعول به هو:",
+   123→                questionEn: "In 'The student read the book', the direct object is:",
+   124→                optionsAr: ["قرأ", "الطالب", "الكتاب", "لا يوجد"],
+   125→                optionsEn: ["Read", "The student", "The book", "None"],
+   126→                answer: "الكتاب",
+   127→                explanationAr: "الكتاب مفعول به منصوب لأنه وقع عليه فعل القراءة",
+   128→                explanationEn: "The book is direct object because it received the reading action",
+   129→              },
+   130→            ],
+   131→          },
+   132→        ],
+   133→      },
+   134→      {
+   135→        nameAr: "وحدة البلاغة",
+   136→        nameEn: "Rhetoric Unit",
+   137→        slug: "arabic-rhetoric-1",
+   138→        order: 2,
+   139→        lessons: [
+   140→          {
+   141→            titleAr: "الاستعارة",
+   142→            titleEn: "Metaphor",
+   143→            slug: "metaphor-1",
+   144→            descriptionAr: "دراسة الاستعارة وأنواعها في البلاغة العربية",
+   145→            descriptionEn: "Study of metaphor and its types in Arabic rhetoric",
+   146→            introductionAr: "الاستعارة هي تشبيه بليغ حذف أحد طرفيه. وهي من أجمل الصور البيانية في اللغة العربية.",
+   147→            introductionEn: "Metaphor is an eloquent simile with one part removed. It is one of the most beautiful imagery in Arabic.",
+   148→            summaryAr: "الاستعارة: تشبيه حذف أحد طرفيه. أنواعها: تصريحية، مكنية.",
+   149→            summaryEn: "Metaphor: simile with one part removed. Types: explicit, implicit.",
+   150→            duration: 40,
+   151→            order: 1,
+   152→            isFree: true,
+   153→            objectives: [
+   154→              { textAr: "فهم مفهوم الاستعارة", textEn: "Understand metaphor concept" },
+   155→              { textAr: "التمييز بين أنواع الاستعارة", textEn: "Distinguish metaphor types" },
+   156→            ],
+   157→            concepts: [
+   158→              { termAr: "الاستعارة", termEn: "Metaphor", definitionAr: "تشبيه حذف أحد طرفيه", definitionEn: "Simile with one part removed" },
+   159→              { termAr: "الاستعارة التصريحية", termEn: "Explicit Metaphor", definitionAr: "ذكر المشبه به وحذف المشبه", definitionEn: "Mentioning the compared-to, removing the compared" },
+   160→            ],
+   161→            questions: [
+   162→              {
+   163→                type: "multiple_choice",
+   164→                questionAr: "في قوله 'رأيت أسداً يخطب'، الاستعارة:",
+   165→                questionEn: "In 'I saw a lion giving a speech', the metaphor is:",
+   166→                optionsAr: ["تصريحية", "مكنية", "تشبيه", "كناية"],
+   167→                optionsEn: ["Explicit", "Implicit", "Simile", "Metonymy"],
+   168→                answer: "تصريحية",
+   169→                explanationAr: "ذكر الأسد (المشبه به) وأراد الرجل الشجاع (المشبه)",
+   170→                explanationEn: "Mentioned lion (compared-to) meaning the brave man (compared)",
+   171→              },
+   172→            ],
+   173→          },
+   174→        ],
+   175→      },
+   176→      {
+   177→        nameAr: "وحدة الأدب",
+   178→        nameEn: "Literature Unit",
+   179→        slug: "arabic-literature-1",
+   180→        order: 3,
+   181→        lessons: [
+   182→          {
+   183→            titleAr: "العصر الجاهلي",
+   184→            titleEn: "Pre-Islamic Era",
+   185→            slug: "pre-islamic-era-1",
+   186→            descriptionAr: "دراسة الأدب في العصر الجاهلي",
+   187→            descriptionEn: "Study of literature in the pre-Islamic era",
+   188→            introductionAr: "يُسمى العصر الجاهلي لأنه سبق بعثة النبي محمد صلى الله عليه وسلم. تميز بشعر المعلقات والفروسية.",
+   189→            introductionEn: "Called pre-Islamic era because it preceded Prophet Muhammad's mission. Known for suspended odes and chivalry.",
+   190→            summaryAr: "العصر الجاهلي: قبل الإسلام. خصائصه: المعلقات، الفروسية، الصحراء.",
+   191→            summaryEn: "Pre-Islamic era: before Islam. Features: suspended odes, chivalry, desert.",
+   192→            duration: 50,
+   193→            order: 1,
+   194→            isFree: true,
+   195→            objectives: [
+   196→              { textAr: "فهم طبيعة العصر الجاهلي", textEn: "Understand pre-Islamic era nature" },
+   197→              { textAr: "التعرف على خصائص الأدب الجاهلي", textEn: "Know pre-Islamic literature features" },
+   198→            ],
+   199→            concepts: [
+   200→              { termAr: "المعلقات", termEn: "Suspended Odes", definitionAr: "قصائد شعرية مشهورة من العصر الجاهلي", definitionEn: "Famous poems from pre-Islamic era" },
+   201→            ],
+   202→            questions: [
+   203→              {
+   204→                type: "multiple_choice",
+   205→                questionAr: "كم عدد المعلقات؟",
+   206→                questionEn: "How many suspended odes are there?",
+   207→                optionsAr: ["سبع", "عشر", "خمس", "ثلاث"],
+   208→                optionsEn: ["Seven", "Ten", "Five", "Three"],
+   209→                answer: "سبع",
+   210→                explanationAr: "المعلقات سبع قصائد مشهورات",
+   211→                explanationEn: "There are seven famous suspended odes",
+   212→              },
+   213→            ],
+   214→          },
+   215→        ],
+   216→      },
+   217→    ],
+   218→  },
+   219→  {
+   220→    nameAr: "اللغة الإنجليزية",
+   221→    nameEn: "English Language",
+   222→    slug: "english-1",
+   223→    icon: "Globe",
+   224→    color: "#3B82F6",
+   225→    order: 2,
+   226→    isCommon: true,
+   227→    units: [
+   228→      {
+   229→        nameAr: "Grammar Unit",
+   230→        nameEn: "وحدة القواعد",
+   231→        slug: "english-grammar-1",
+   232→        order: 1,
+   233→        lessons: [
+   234→          {
+   235→            titleAr: "Present Simple Tense",
+   236→            titleEn: "زمن المضارع البسيط",
+   237→            slug: "present-simple-1",
+   238→            descriptionAr: "دراسة زمن المضارع البسيط واستخداماته",
+   239→            descriptionEn: "Study of Present Simple tense and its uses",
+   240→            introductionAr: "يستخدم المضارع البسيط للتعبير عن العادات والحقائق الثابتة. يتكون من المصدر مع إضافة s/es للغائب.",
+   241→            introductionEn: "Present Simple is used to express habits and facts. Formed with base verb + s/es for third person.",
+   242→            summaryAr: "الاستخدام: عادات، حقائق. التكوين: Subject + verb (+ s/es). النفي: don't/doesn't.",
+   243→            summaryEn: "Use: habits, facts. Form: Subject + verb (+ s/es). Negative: don't/doesn't.",
+   244→            duration: 45,
+   245→            order: 1,
+   246→            isFree: true,
+   247→            objectives: [
+   248→              { textAr: "فهم استخدامات المضارع البسيط", textEn: "Understand Present Simple uses" },
+   249→              { textAr: "تكوين جمل صحيحة", textEn: "Form correct sentences" },
+   250→            ],
+   251→            concepts: [
+   252→              { termAr: "Present Simple", termEn: "المضارع البسيط", definitionAr: "زمن للعادات والحقائق", definitionEn: "Tense for habits and facts" },
+   253→            ],
+   254→            questions: [
+   255→              {
+   256→                type: "multiple_choice",
+   257→                questionAr: "Choose: She ___ to school every day.",
+   258→                questionEn: "اختر: She ___ to school every day.",
+   259→                optionsAr: ["go", "goes", "going", "went"],
+   260→                optionsEn: ["go", "goes", "going", "went"],
+   261→                answer: "goes",
+   262→                explanationAr: "She فاعل مفرد غائب، نضيف es للفعل",
+   263→                explanationEn: "She is third person singular, add es to verb",
+   264→              },
+   265→            ],
+   266→          },
+   267→          {
+   268→            titleAr: "Past Simple Tense",
+   269→            titleEn: "زمن الماضي البسيط",
+   270→            slug: "past-simple-1",
+   271→            descriptionAr: "دراسة زمن الماضي البسيط",
+   272→            descriptionEn: "Study of Past Simple tense",
+   273→            introductionAr: "يستخدم الماضي البسيط للتعبير عن أحداث تمت في الماضي وانتهت. الأفعال المنتظمة تضاف ed.",
+   274→            introductionEn: "Past Simple is used for events that happened and finished in the past. Regular verbs add ed.",
+   275→            summaryAr: "الاستخدام: أحداث منتهية في الماضي. التكوين: Subject + verb-ed/irregular.",
+   276→            summaryEn: "Use: finished past events. Form: Subject + verb-ed/irregular.",
+   277→            duration: 45,
+   278→            order: 2,
+   279→            isFree: true,
+   280→            objectives: [
+   281→              { textAr: "فهم الماضي البسيط", textEn: "Understand Past Simple" },
+   282→              { textAr: "حفظ الأفعال الشاذة", textEn: "Memorize irregular verbs" },
+   283→            ],
+   284→            concepts: [
+   285→              { termAr: "Past Simple", termEn: "الماضي البسيط", definitionAr: "زمن لأحداث منتهية في الماضي", definitionEn: "Tense for finished past events" },
+   286→            ],
+   287→            questions: [
+   288→              {
+   289→                type: "multiple_choice",
+   290→                questionAr: "Choose: I ___ to the cinema yesterday.",
+   291→                questionEn: "اختر: I ___ to the cinema yesterday.",
+   292→                optionsAr: ["go", "went", "gone", "going"],
+   293→                optionsEn: ["go", "went", "gone", "going"],
+   294→                answer: "went",
+   295→                explanationAr: "went فعل شاذ في الماضي",
+   296→                explanationEn: "went is an irregular past verb",
+   297→              },
+   298→            ],
+   299→          },
+   300→        ],
+   301→      },
+   302→      {
+   303→        nameAr: "Reading Unit",
+   304→        nameEn: "وحدة القراءة",
+   305→        slug: "english-reading-1",
+   306→        order: 2,
+   307→        lessons: [
+   308→          {
+   309→            titleAr: "Reading Comprehension",
+   310→            titleEn: "فهم المقروء",
+   311→            slug: "reading-comprehension-1",
+   312→            descriptionAr: "تقنيات فهم النصوص الإنجليزية",
+   313→            descriptionEn: "Techniques for understanding English texts",
+   314→            introductionAr: "فهم المقروء مهارة أساسية تتطلب القراءة المتأنية واستخلاص الأفكار الرئيسية.",
+   315→            introductionEn: "Reading comprehension is an essential skill requiring careful reading and extracting main ideas.",
+   316→            summaryAr: "اقرأ بعناية، استخرج الفكرة الرئيسية، حدد التفاصيل المهمة.",
+   317→            summaryEn: "Read carefully, extract main idea, identify important details.",
+   318→            duration: 40,
+   319→            order: 1,
+   320→            isFree: true,
+   321→            objectives: [
+   322→              { textAr: "تحسين مهارة القراءة", textEn: "Improve reading skill" },
+   323→              { textAr: "استخلاص الأفكار الرئيسية", textEn: "Extract main ideas" },
+   324→            ],
+   325→            concepts: [
+   326→              { termAr: "Main Idea", termEn: "الفكرة الرئيسية", definitionAr: "الفكرة المركزية في النص", definitionEn: "Central idea in the text" },
+   327→            ],
+   328→            questions: [
+   329→              {
+   330→                type: "multiple_choice",
+   331→                questionAr: "What is the first step in reading comprehension?",
+   332→                questionEn: "ما الخطوة الأولى في فهم المقروء؟",
+   333→                optionsAr: ["Read quickly", "Read carefully", "Skip difficult words", "Guess the meaning"],
+   334→                optionsEn: ["القراءة السريعة", "القراءة بعناية", "تخطي الكلمات الصعبة", "تخمين المعنى"],
+   335→                answer: "Read carefully",
+   336→                explanationEn: "Reading carefully is the foundation of comprehension",
+   337→                explanationAr: "القراءة بعناية هي أساس الفهم",
+   338→              },
+   339→            ],
+   340→          },
+   341→        ],
+   342→      },
+   343→    ],
+   344→  },
+   345→  {
+   346→    nameAr: "الرياضيات",
+   347→    nameEn: "Mathematics",
+   348→    slug: "math-1",
+   349→    icon: "Calculator",
+   350→    color: "#F59E0B",
+   351→    order: 3,
+   352→    isCommon: true,
+   353→    units: [
+   354→      {
+   355→        nameAr: "وحدة الجذور والأسس",
+   356→        nameEn: "Roots and Exponents Unit",
+   357→        slug: "roots-exponents-1",
+   358→        order: 1,
+   359→        lessons: [
+   360→          {
+   361→            titleAr: "الجذور وخصائصها",
+   362→            titleEn: "Roots and Their Properties",
+   363→            slug: "roots-properties-1",
+   364→            descriptionAr: "دراسة الجذور وخصائصها الأساسية",
+   365→            descriptionEn: "Study of roots and their basic properties",
+   366→            introductionAr: "الجذر التربيعي لعدد a هو العدد الذي مربعه يساوي a. الجذر التكعيبي هو العدد الذي مكعبه يساوي a.",
+   367→            introductionEn: "The square root of a is the number whose square equals a. The cube root is the number whose cube equals a.",
+   368→            summaryAr: "√(a×b) = √a × √b. √(a/b) = √a / √b.",
+   369→            summaryEn: "√(a×b) = √a × √b. √(a/b) = √a / √b.",
+   370→            duration: 45,
+   371→            order: 1,
+   372→            isFree: true,
+   373→            objectives: [
+   374→              { textAr: "فهم الجذور", textEn: "Understand roots" },
+   375→              { textAr: "تطبيق خصائص الجذور", textEn: "Apply root properties" },
+   376→            ],
+   377→            concepts: [
+   378→              { termAr: "الجذر التربيعي", termEn: "Square Root", definitionAr: "العدد الذي مربعه يساوي العدد الأصلي", definitionEn: "Number whose square equals original" },
+   379→            ],
+   380→            formulas: [
+   381→              { formula: "√(a × b) = √a × √b", explanationAr: "جذر حاصل الضرب", explanationEn: "Root of product" },
+   382→            ],
+   383→            questions: [
+   384→              {
+   385→                type: "multiple_choice",
+   386→                questionAr: "قيمة √144 هي:",
+   387→                questionEn: "The value of √144 is:",
+   388→                optionsAr: ["10", "11", "12", "13"],
+   389→                optionsEn: ["10", "11", "12", "13"],
+   390→                answer: "12",
+   391→                explanationAr: "12 × 12 = 144",
+   392→                explanationEn: "12 × 12 = 144",
+   393→              },
+   394→            ],
+   395→          },
+   396→          {
+   397→            titleAr: "الأسس وخصائصها",
+   398→            titleEn: "Exponents and Their Properties",
+   399→            slug: "exponents-properties-1",
+   400→            descriptionAr: "دراسة الأسس وقوانينها",
+   401→            descriptionEn: "Study of exponents and their laws",
+   402→            introductionAr: "الأس يدل على عدد مرات ضرب الأساس في نفسه. للأسس قوانين مهمة لتبسيط التعابير.",
+   403→            introductionEn: "Exponent indicates how many times the base is multiplied by itself. Exponents have important laws.",
+   404→            summaryAr: "a^m × a^n = a^(m+n). a^m ÷ a^n = a^(m-n). (a^m)^n = a^(mn).",
+   405→            summaryEn: "a^m × a^n = a^(m+n). a^m ÷ a^n = a^(m-n). (a^m)^n = a^(mn).",
+   406→            duration: 45,
+   407→            order: 2,
+   408→            isFree: true,
+   409→            objectives: [
+   410→              { textAr: "فهم قوانين الأسس", textEn: "Understand exponent laws" },
+   411→              { textAr: "تبسيط التعابير الأسية", textEn: "Simplify exponential expressions" },
+   412→            ],
+   413→            concepts: [
+   414→              { termAr: "الأس", termEn: "Exponent", definitionAr: "عدد مرات ضرب الأساس", definitionEn: "Number of times base is multiplied" },
+   415→            ],
+   416→            formulas: [
+   417→              { formula: "a^m × a^n = a^(m+n)", explanationAr: "ضرب الأسس", explanationEn: "Multiplying exponents" },
+   418→            ],
+   419→            questions: [
+   420→              {
+   421→                type: "multiple_choice",
+   422→                questionAr: "2³ × 2⁴ =",
+   423→                questionEn: "2³ × 2⁴ =",
+   424→                optionsAr: ["2⁷", "2¹²", "4⁷", "8"],
+   425→                optionsEn: ["2⁷", "2¹²", "4⁷", "8"],
+   426→                answer: "2⁷",
+   427→                explanationAr: "2³ × 2⁴ = 2^(3+4) = 2⁷",
+   428→                explanationEn: "2³ × 2⁴ = 2^(3+4) = 2⁷",
+   429→              },
+   430→            ],
+   431→          },
+   432→        ],
+   433→      },
+   434→      {
+   435→        nameAr: "وحدة المعادلات",
+   436→        nameEn: "Equations Unit",
+   437→        slug: "equations-1",
+   438→        order: 2,
+   439→        lessons: [
+   440→          {
+   441→            titleAr: "المعادلات الخطية",
+   442→            titleEn: "Linear Equations",
+   443→            slug: "linear-equations-1",
+   444→            descriptionAr: "حل المعادلات الخطية",
+   445→            descriptionEn: "Solving linear equations",
+   446→            introductionAr: "المعادلة الخطية معادلة من الدرجة الأولى. حلها هو إيجاد قيمة المجهول.",
+   447→            introductionEn: "Linear equation is a first-degree equation. Solving it means finding the unknown.",
+   448→            summaryAr: "ax + b = 0 → x = -b/a",
+   449→            summaryEn: "ax + b = 0 → x = -b/a",
+   450→            duration: 40,
+   451→            order: 1,
+   452→            isFree: true,
+   453→            objectives: [
+   454→              { textAr: "حل معادلات خطية", textEn: "Solve linear equations" },
+   455→            ],
+   456→            concepts: [
+   457→              { termAr: "المعادلة الخطية", termEn: "Linear Equation", definitionAr: "معادلة من الدرجة الأولى", definitionEn: "First-degree equation" },
+   458→            ],
+   459→            formulas: [
+   460→              { formula: "ax + b = 0 → x = -b/a", explanationAr: "حل المعادلة الخطية", explanationEn: "Linear equation solution" },
+   461→            ],
+   462→            questions: [
+   463→              {
+   464→                type: "multiple_choice",
+   465→                questionAr: "حل المعادلة 2x + 6 = 10 هو:",
+   466→                questionEn: "Solution of 2x + 6 = 10 is:",
+   467→                optionsAr: ["x = 2", "x = 3", "x = 4", "x = 8"],
+   468→                optionsEn: ["x = 2", "x = 3", "x = 4", "x = 8"],
+   469→                answer: "x = 2",
+   470→                explanationAr: "2x = 4, x = 2",
+   471→                explanationEn: "2x = 4, x = 2",
+   472→              },
+   473→            ],
+   474→          },
+   475→        ],
+   476→      },
+   477→    ],
+   478→  },
+   479→  {
+   480→    nameAr: "الفيزياء",
+   481→    nameEn: "Physics",
+   482→    slug: "physics-1",
+   483→    icon: "Atom",
+   484→    color: "#10B981",
+   485→    order: 4,
+   486→    isCommon: true,
+   487→    units: [
+   488→      {
+   489→        nameAr: "وحدة الحركة والقوى",
+   490→        nameEn: "Motion and Forces Unit",
+   491→        slug: "motion-forces-1",
+   492→        order: 1,
+   493→        lessons: [
+   494→          {
+   495→            titleAr: "الحركة والسكون",
+   496→            titleEn: "Motion and Rest",
+   497→            slug: "motion-rest-1",
+   498→            descriptionAr: "دراسة مفهوم الحركة والسكون",
+   499→            descriptionEn: "Study of motion and rest concepts",
+   500→            introductionAr: "الحركة هي تغير موضع الجسم بالنسبة لجسم آخر بمرور الزمن. السكون هو ثبات الجسم.",
+   501→            introductionEn: "Motion is change of position relative to another body. Rest is stability of the body.",
+   502→            summaryAr: "الحركة نسبية. المسافة كمية قياسية. الإزاحة كمية متجهة.",
+   503→            summaryEn: "Motion is relative. Distance is scalar. Displacement is vector.",
+   504→            duration: 45,
+   505→            order: 1,
+   506→            isFree: true,
+   507→            objectives: [
+   508→              { textAr: "فهم الحركة النسبية", textEn: "Understand relative motion" },
+   509→              { textAr: "التمييز بين المسافة والإزاحة", textEn: "Distinguish distance and displacement" },
+   510→            ],
+   511→            concepts: [
+   512→              { termAr: "الحركة", termEn: "Motion", definitionAr: "تغير موضع الجسم بمرور الزمن", definitionEn: "Change of position over time" },
+   513→              { termAr: "الإزاحة", termEn: "Displacement", definitionAr: "أقصر مسافة بين نقطتين", definitionEn: "Shortest distance between two points" },
+   514→            ],
+   515→            formulas: [
+   516→              { formula: "v = d / t", explanationAr: "حساب السرعة", explanationEn: "Calculate velocity" },
+   517→            ],
+   518→            questions: [
+   519→              {
+   520→                type: "multiple_choice",
+   521→                questionAr: "الحركة مفهوم:",
+   522→                questionEn: "Motion is:",
+   523→                optionsAr: ["مطلق", "نسبي", "ثابت", "متغير"],
+   524→                optionsEn: ["Absolute", "Relative", "Fixed", "Variable"],
+   525→                answer: "نسبي",
+   526→                explanationAr: "الحركة نسبية تعتمد على المرجع",
+   527→                explanationEn: "Motion is relative depending on reference",
+   528→              },
+   529→            ],
+   530→          },
+   531→          {
+   532→            titleAr: "السرعة والتسارع",
+   533→            titleEn: "Velocity and Acceleration",
+   534→            slug: "velocity-acceleration-1",
+   535→            descriptionAr: "دراسة السرعة والتسارع",
+   536→            descriptionEn: "Study of velocity and acceleration",
+   537→            introductionAr: "السرعة هي معدل تغير الإزاحة. التسارع هو معدل تغير السرعة.",
+   538→            introductionEn: "Velocity is rate of change of displacement. Acceleration is rate of change of velocity.",
+   539→            summaryAr: "v = Δx / t. a = Δv / t.",
+   540→            summaryEn: "v = Δx / t. a = Δv / t.",
+   541→            duration: 50,
+   542→            order: 2,
+   543→            isFree: true,
+   544→            objectives: [
+   545→              { textAr: "حساب السرعة", textEn: "Calculate velocity" },
+   546→              { textAr: "حساب التسارع", textEn: "Calculate acceleration" },
+   547→            ],
+   548→            concepts: [
+   549→              { termAr: "السرعة", termEn: "Velocity", definitionAr: "الإزاحة على الزمن", definitionEn: "Displacement over time" },
+   550→              { termAr: "التسارع", termEn: "Acceleration", definitionAr: "تغير السرعة على الزمن", definitionEn: "Change in velocity over time" },
+   551→            ],
+   552→            formulas: [
+   553→              { formula: "a = (v₂ - v₁) / t", explanationAr: "حساب التسارع", explanationEn: "Calculate acceleration" },
+   554→            ],
+   555→            questions: [
+   556→              {
+   557→                type: "multiple_choice",
+   558→                questionAr: "وحدة التسارع:",
+   559→                questionEn: "Unit of acceleration:",
+   560→                optionsAr: ["m/s", "m/s²", "m²/s", "s/m"],
+   561→                optionsEn: ["m/s", "m/s²", "m²/s", "s/m"],
+   562→                answer: "m/s²",
+   563→                explanationAr: "التسارع = تغير السرعة / الزمن = (m/s) / s = m/s²",
+   564→                explanationEn: "Acceleration = change in velocity / time = (m/s) / s = m/s²",
+   565→              },
+   566→            ],
+   567→          },
+   568→        ],
+   569→      },
+   570→    ],
+   571→  },
+   572→  {
+   573→    nameAr: "الكيمياء",
+   574→    nameEn: "Chemistry",
+   575→    slug: "chemistry-1",
+   576→    icon: "FlaskConical",
+   577→    color: "#EF4444",
+   578→    order: 5,
+   579→    isCommon: true,
+   580→    units: [
+   581→      {
+   582→        nameAr: "وحدة الذرات",
+   583→        nameEn: "Atoms Unit",
+   584→        slug: "atoms-1",
+   585→        order: 1,
+   586→        lessons: [
+   587→          {
+   588→            titleAr: "تركيب الذرة",
+   589→            titleEn: "Atomic Structure",
+   590→            slug: "atomic-structure-1",
+   591→            descriptionAr: "دراسة تركيب الذرة",
+   592→            descriptionEn: "Study of atomic structure",
+   593→            introductionAr: "الذرة هي وحدة البناء الأساسية للمادة. تتكون من نواة وإلكترونات.",
+   594→            introductionEn: "Atom is the basic building block of matter. Consists of nucleus and electrons.",
+   595→            summaryAr: "الذرة = نواة (بروتونات + نيوترونات) + إلكترونات. العدد الذري = عدد البروتونات.",
+   596→            summaryEn: "Atom = nucleus (protons + neutrons) + electrons. Atomic number = number of protons.",
+   597→            duration: 50,
+   598→            order: 1,
+   599→            isFree: true,
+   600→            objectives: [
+   601→              { textAr: "التعرف على مكونات الذرة", textEn: "Identify atomic components" },
+   602→              { textAr: "فهم العدد الذري والكتلي", textEn: "Understand atomic and mass numbers" },
+   603→            ],
+   604→            concepts: [
+   605→              { termAr: "البروتون", termEn: "Proton", definitionAr: "جسيم موجب في النواة", definitionEn: "Positive particle in nucleus" },
+   606→              { termAr: "الإلكترون", termEn: "Electron", definitionAr: "جسيم سالب يدور حول النواة", definitionEn: "Negative particle orbiting nucleus" },
+   607→            ],
+   608→            formulas: [
+   609→              { formula: "العدد الكتلي = عدد البروتونات + عدد النيوترونات", explanationAr: "حساب العدد الكتلي", explanationEn: "Calculate mass number" },
+   610→            ],
+   611→            questions: [
+   612→              {
+   613→                type: "multiple_choice",
+   614→                questionAr: "الجسيم الذي يحدد العدد الذري:",
+   615→                questionEn: "Particle determining atomic number:",
+   616→                optionsAr: ["الإلكترون", "النيوترون", "البروتون", "النواة"],
+   617→                optionsEn: ["Electron", "Neutron", "Proton", "Nucleus"],
+   618→                answer: "البروتون",
+   619→                explanationAr: "العدد الذري = عدد البروتونات",
+   620→                explanationEn: "Atomic number = number of protons",
+   621→              },
+   622→            ],
+   623→          },
+   624→        ],
+   625→      },
+   626→    ],
+   627→  },
+   628→  {
+   629→    nameAr: "الأحياء",
+   630→    nameEn: "Biology",
+   631→    slug: "biology-1",
+   632→    icon: "Leaf",
+   633→    color: "#22C55E",
+   634→    order: 6,
+   635→    isCommon: true,
+   636→    units: [
+   637→      {
+   638→        nameAr: "وحدة الخلية",
+   639→        nameEn: "Cell Unit",
+   640→        slug: "cell-1",
+   641→        order: 1,
+   642→        lessons: [
+   643→          {
+   644→            titleAr: "تركيب الخلية",
+   645→            titleEn: "Cell Structure",
+   646→            slug: "cell-structure-1",
+   647→            descriptionAr: "دراسة تركيب الخلية",
+   648→            descriptionEn: "Study of cell structure",
+   649→            introductionAr: "الخلية هي وحدة البناء الأساسية للحياة. تتكون من غشاء و سيتوبلازم ونواة.",
+   650→            introductionEn: "Cell is the basic unit of life. Consists of membrane, cytoplasm, and nucleus.",
+   651→            summaryAr: "الخلية: غشاء + سيتوبلازم + نواة. توجد عضيات مثل الميتوكوندريا.",
+   652→            summaryEn: "Cell: membrane + cytoplasm + nucleus. Contains organelles like mitochondria.",
+   653→            duration: 45,
+   654→            order: 1,
+   655→            isFree: true,
+   656→            objectives: [
+   657→              { textAr: "التعرف على مكونات الخلية", textEn: "Identify cell components" },
+   658→            ],
+   659→            concepts: [
+   660→              { termAr: "الغشاء البلازمي", termEn: "Plasma Membrane", definitionAr: "غشاء يحيط بالخلية", definitionEn: "Membrane surrounding the cell" },
+   661→            ],
+   662→            questions: [
+   663→              {
+   664→                type: "multiple_choice",
+   665→                questionAr: "موقع الطاقة في الخلية:",
+   666→                questionEn: "Energy location in cell:",
+   667→                optionsAr: ["النواة", "الميتوكوندريا", "الغشاء", "السيتوبلازم"],
+   668→                optionsEn: ["Nucleus", "Mitochondria", "Membrane", "Cytoplasm"],
+   669→                answer: "الميتوكوندريا",
+   670→                explanationAr: "الميتوكوندريا هي محطة الطاقة في الخلية",
+   671→                explanationEn: "Mitochondria is the power station of the cell",
+   672→              },
+   673→            ],
+   674→          },
+   675→        ],
+   676→      },
+   677→    ],
+   678→  },
+   679→  {
+   680→    nameAr: "التاريخ",
+   681→    nameEn: "History",
+   682→    slug: "history-1",
+   683→    icon: "Landmark",
+   684→    color: "#A855F7",
+   685→    order: 7,
+   686→    isCommon: true,
+   687→    units: [],
+   688→  },
+   689→  {
+   690→    nameAr: "الجغرافيا",
+   691→    nameEn: "Geography",
+   692→    slug: "geography-1",
+   693→    icon: "Map",
+   694→    color: "#06B6D4",
+   695→    order: 8,
+   696→    isCommon: true,
+   697→    units: [],
+   698→  },
+   699→  {
+   700→    nameAr: "الفلسفة والمنطق",
+   701→    nameEn: "Philosophy & Logic",
+   702→    slug: "philosophy-1",
+   703→    icon: "Brain",
+   704→    color: "#F97316",
+   705→    order: 9,
+   706→    isCommon: true,
+   707→    units: [],
+   708→  },
+   709→  {
+   710→    nameAr: "اللغة الفرنسية",
+   711→    nameEn: "French Language",
+   712→    slug: "french-1",
+   713→    icon: "Globe",
+   714→    color: "#EC4899",
+   715→    order: 10,
+   716→    isCommon: true,
+   717→    units: [],
+   718→  },
+   719→];
+   720→
+   721→async function main() {
+   722→  console.log("🚀 Starting First Year Seeding...");
+   723→
+   724→  // إنشاء السنة الدراسية
+   725→  const academicYear = await prisma.academicYear.upsert({
+   726→    where: { code: firstYearData.code },
+   727→    update: firstYearData,
+   728→    create: firstYearData,
+   729→  });
+   730→  console.log(`✅ Academic Year: ${academicYear.nameAr}`);
+   731→
+   732→  // إنشاء الفصل الدراسي الأول
+   733→  const semester = await prisma.semester.upsert({
+   734→    where: { code: "first-semester" },
+   735→    update: { nameAr: "الفصل الدراسي الأول", nameEn: "First Semester", code: "first-semester", order: 1 },
+   736→    create: { nameAr: "الفصل الدراسي الأول", nameEn: "First Semester", code: "first-semester", order: 1 },
+   737→  });
+   738→
+   739→  let totalUnits = 0;
+   740→  let totalLessons = 0;
+   741→
+   742→  // إنشاء المواد والوحدات والدروس
+   743→  for (const subjectData of subjectsData) {
+   744→    const subject = await prisma.subject.upsert({
+   745→      where: { slug: subjectData.slug },
+   746→      update: {
+   747→        nameAr: subjectData.nameAr,
+   748→        nameEn: subjectData.nameEn,
+   749→        icon: subjectData.icon,
+   750→        color: subjectData.color,
+   751→        order: subjectData.order,
+   752→        isCommon: subjectData.isCommon,
+   753→        yearId: academicYear.id,
+   754→        specializationId: null,
+   755→      },
+   756→      create: {
+   757→        nameAr: subjectData.nameAr,
+   758→        nameEn: subjectData.nameEn,
+   759→        slug: subjectData.slug,
+   760→        icon: subjectData.icon,
+   761→        color: subjectData.color,
+   762→        order: subjectData.order,
+   763→        isCommon: subjectData.isCommon,
+   764→        yearId: academicYear.id,
+   765→        specializationId: null,
+   766→      },
+   767→    });
+   768→    console.log(`📚 Subject: ${subject.nameAr}`);
+   769→
+   770→    for (const unitData of subjectData.units) {
+   771→      const unit = await prisma.unit.upsert({
+   772→        where: { slug: unitData.slug },
+   773→        update: {
+   774→          nameAr: unitData.nameAr,
+   775→          nameEn: unitData.nameEn,
+   776→          order: unitData.order,
+   777→          subjectId: subject.id,
+   778→          semesterId: semester.id,
+   779→        },
+   780→        create: {
+   781→          nameAr: unitData.nameAr,
+   782→          nameEn: unitData.nameEn,
+   783→          slug: unitData.slug,
+   784→          order: unitData.order,
+   785→          subjectId: subject.id,
+   786→          semesterId: semester.id,
+   787→        },
+   788→      });
+   789→      totalUnits++;
+   790→
+   791→      for (const lessonData of unitData.lessons) {
+   792→        const lesson = await prisma.lesson.upsert({
+   793→          where: { slug: lessonData.slug },
+   794→          update: {
+   795→            titleAr: lessonData.titleAr,
+   796→            titleEn: lessonData.titleEn,
+   797→            descriptionAr: lessonData.descriptionAr,
+   798→            descriptionEn: lessonData.descriptionEn,
+   799→            introductionAr: lessonData.introductionAr,
+   800→            introductionEn: lessonData.introductionEn,
+   801→            summaryAr: lessonData.summaryAr,
+   802→            summaryEn: lessonData.summaryEn,
+   803→            duration: lessonData.duration,
+   804→            order: lessonData.order,
+   805→            isFree: lessonData.isFree,
+   806→            unitId: unit.id,
+   807→          },
+   808→          create: {
+   809→            titleAr: lessonData.titleAr,
+   810→            titleEn: lessonData.titleEn,
+   811→            slug: lessonData.slug,
+   812→            descriptionAr: lessonData.descriptionAr,
+   813→            descriptionEn: lessonData.descriptionEn,
+   814→            introductionAr: lessonData.introductionAr,
+   815→            introductionEn: lessonData.introductionEn,
+   816→            summaryAr: lessonData.summaryAr,
+   817→            summaryEn: lessonData.summaryEn,
+   818→            duration: lessonData.duration,
+   819→            order: lessonData.order,
+   820→            isFree: lessonData.isFree,
+   821→            unitId: unit.id,
+   822→          },
+   823→        });
+   824→        totalLessons++;
+   825→
+   826→        // إنشاء الأهداف
+   827→        for (const obj of lessonData.objectives) {
+   828→          await prisma.objective.create({
+   829→            data: {
+   830→              lessonId: lesson.id,
+   831→              textAr: obj.textAr,
+   832→              textEn: obj.textEn,
+   833→              order: 1,
+   834→            },
+   835→          });
+   836→        }
+   837→
+   838→        // إنشاء المفاهيم
+   839→        for (const concept of lessonData.concepts) {
+   840→          await prisma.concept.create({
+   841→            data: {
+   842→              lessonId: lesson.id,
+   843→              termAr: concept.termAr,
+   844→              termEn: concept.termEn,
+   845→              definitionAr: concept.definitionAr,
+   846→              definitionEn: concept.definitionEn,
+   847→              order: 1,
+   848→            },
+   849→          });
+   850→        }
+   851→
+   852→        // إنشاء القوانين
+   853→        if (lessonData.formulas) {
+   854→          for (const formula of lessonData.formulas) {
+   855→            await prisma.formula.create({
+   856→              data: {
+   857→                lessonId: lesson.id,
+   858→                formula: formula.formula,
+   859→                explanationAr: formula.explanationAr,
+   860→                explanationEn: formula.explanationEn,
+   861→                order: 1,
+   862→              },
+   863→            });
+   864→          }
+   865→        }
+   866→
+   867→        // إنشاء الأسئلة
+   868→        for (const q of lessonData.questions) {
+   869→          await prisma.question.create({
+   870→            data: {
+   871→              lessonId: lesson.id,
+   872→              type: q.type,
+   873→              questionAr: q.questionAr,
+   874→              questionEn: q.questionEn,
+   875→              optionsAr: JSON.stringify(q.optionsAr),
+   876→              optionsEn: JSON.stringify(q.optionsEn),
+   877→              answer: q.answer,
+   878→              explanationAr: q.explanationAr,
+   879→              explanationEn: q.explanationEn,
+   880→              order: 1,
+   881→            },
+   882→          });
+   883→        }
+   884→      }
+   885→    }
+   886→  }
+   887→
+   888→  console.log("\n🎉 First Year Seeding Completed!");
+   889→  console.log(`📊 Stats: ${subjectsData.length} subjects, ${totalUnits} units, ${totalLessons} lessons`);
+   890→}
+   891→
+   892→main()
+   893→  .catch((e) => {
+   894→    console.error("❌ Error:", e);
+   895→    process.exit(1);
+   896→  })
+   897→  .finally(async () => {
+   898→    await prisma.$disconnect();
+   899→  });
+   900→

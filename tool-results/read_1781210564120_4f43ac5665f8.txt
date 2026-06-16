@@ -1,0 +1,1195 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useCallback } from "react";
+     4→import { motion, AnimatePresence } from "framer-motion";
+     5→import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+     6→import { Badge } from "@/components/ui/badge";
+     7→import { Button } from "@/components/ui/button";
+     8→import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+     9→import { Progress } from "@/components/ui/progress";
+    10→import { 
+    11→  BookOpen, Target, Lightbulb, Calculator, FlaskConical, 
+    12→  ChevronLeft, ChevronRight, Play, CheckCircle, ArrowRight,
+    13→  FileText, Zap, Brain, HelpCircle, Network, BarChart3,
+    14→  Share2, Copy, Twitter, Facebook, Link2, PartyPopper,
+    15→  Sparkles, Check, RotateCcw, Eye, EyeOff, Trophy, Star
+    16→} from "lucide-react";
+    17→import type { LessonContent } from "@/data/lessons";
+    18→import { MotionSimulator } from "@/components/simulators/MotionSimulator";
+    19→import { ForcesSimulator } from "@/components/simulators/ForcesSimulator";
+    20→import { EnergySimulator } from "@/components/simulators/EnergySimulator";
+    21→import { FreeFallSimulator } from "@/components/simulators/FreeFallSimulator";
+    22→import { WaveSimulator } from "@/components/simulators/WaveSimulator";
+    23→import { FunctionsSimulator } from "@/components/simulators/FunctionsSimulator";
+    24→import { PeriodicTableSimulator } from "@/components/simulators/PeriodicTableSimulator";
+    25→import { ProjectileSimulator } from "@/components/simulators/ProjectileSimulator";
+    26→import MindMap, { MIND_MAPS, type MindMapType } from "@/components/MindMap";
+    27→import { Infographic, energyCircleData, atomTimelineData, speedComparisonData } from "@/components/Infographic";
+    28→
+    29→interface LessonViewProps {
+    30→  lesson: LessonContent;
+    31→  language: "ar" | "en";
+    32→  onBack: () => void;
+    33→}
+    34→
+    35→// Confetti Particle Component
+    36→const ConfettiParticle = ({ color, x, delay }: { color: string; x: number; delay: number }) => (
+    37→  <motion.div
+    38→    className="absolute w-3 h-3 rounded-sm"
+    39→    style={{ 
+    40→      backgroundColor: color,
+    41→      left: `${x}%`,
+    42→      top: -20
+    43→    }}
+    44→    initial={{ y: 0, rotate: 0, opacity: 1 }}
+    45→    animate={{ 
+    46→      y: window.innerHeight + 100,
+    47→      rotate: Math.random() * 720 - 360,
+    48→      opacity: [1, 1, 0]
+    49→    }}
+    50→    transition={{ 
+    51→      duration: 2 + Math.random() * 2,
+    52→      delay,
+    53→      ease: "easeIn"
+    54→    }}
+    55→  />
+    56→);
+    57→
+    58→// Flip Card Component for Concepts
+    59→const FlipCard = ({ term, definition, language }: { term: string; definition: string; language: "ar" | "en" }) => {
+    60→  const [isFlipped, setIsFlipped] = useState(false);
+    61→  const dir = language === "ar" ? "rtl" : "ltr";
+    62→
+    63→  return (
+    64→    <div 
+    65→      className="relative h-48 cursor-pointer perspective-1000"
+    66→      onClick={() => setIsFlipped(!isFlipped)}
+    67→    >
+    68→      <motion.div
+    69→        className="absolute inset-0 w-full h-full"
+    70→        style={{ transformStyle: "preserve-3d" }}
+    71→        animate={{ rotateY: isFlipped ? 180 : 0 }}
+    72→        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+    73→      >
+    74→        {/* Front Side */}
+    75→        <div 
+    76→          className="absolute inset-0 w-full h-full rounded-xl border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 flex flex-col items-center justify-center p-4 shadow-lg"
+    77→          style={{ backfaceVisibility: "hidden" }}
+    78→        >
+    79→          <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center mb-3">
+    80→            <Lightbulb className="w-6 h-6 text-amber-500" />
+    81→          </div>
+    82→          <h3 className="font-bold text-lg text-center">{term}</h3>
+    83→          <p className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+    84→            <Eye className="w-3 h-3" />
+    85→            {language === "ar" ? "انقر للقلب" : "Click to flip"}
+    86→          </p>
+    87→        </div>
+    88→
+    89→        {/* Back Side */}
+    90→        <div 
+    91→          className="absolute inset-0 w-full h-full rounded-xl border-2 border-teal-200 dark:border-teal-800 bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950 dark:to-emerald-950 flex items-center justify-center p-4 shadow-lg"
+    92→          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+    93→          dir={dir}
+    94→        >
+    95→          <p className="text-center text-slate-700 dark:text-slate-300">{definition}</p>
+    96→        </div>
+    97→      </motion.div>
+    98→    </div>
+    99→  );
+   100→};
+   101→
+   102→// Step Animation Component for Examples
+   103→const AnimatedStep = ({ step, index, isVisible }: { step: string; index: number; isVisible: boolean }) => {
+   104→  return (
+   105→    <motion.div
+   106→      className="flex items-start gap-2"
+   107→      initial={{ opacity: 0, x: -20 }}
+   108→      animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+   109→      transition={{ delay: index * 0.2, duration: 0.4 }}
+   110→    >
+   111→      <motion.span 
+   112→        className="w-6 h-6 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white flex items-center justify-center text-sm shrink-0"
+   113→        initial={{ scale: 0 }}
+   114→        animate={isVisible ? { scale: 1 } : { scale: 0 }}
+   115→        transition={{ delay: index * 0.2 + 0.1, type: "spring", stiffness: 300 }}
+   116→      >
+   117→        {index + 1}
+   118→      </motion.span>
+   119→      <code className="text-slate-700 dark:text-slate-300">{step}</code>
+   120→    </motion.div>
+   121→  );
+   122→};
+   123→
+   124→// Navigation Tab Button Component
+   125→const NavTabButton = ({ 
+   126→  value, 
+   127→  icon: Icon, 
+   128→  label, 
+   129→  isActive,
+   130→  onClick,
+   131→  visited
+   132→}: { 
+   133→  value: string; 
+   134→  icon: React.ElementType; 
+   135→  label: string; 
+   136→  isActive: boolean;
+   137→  onClick: () => void;
+   138→  visited: boolean;
+   139→}) => (
+   140→  <motion.button
+   141→    onClick={onClick}
+   142→    className={`relative flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+   143→      isActive 
+   144→        ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg" 
+   145→        : visited
+   146→          ? "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300"
+   147→          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+   148→    }`}
+   149→    whileHover={{ scale: 1.02, y: -2 }}
+   150→    whileTap={{ scale: 0.98 }}
+   151→  >
+   152→    <motion.div
+   153→      animate={isActive ? { rotate: [0, -10, 10, 0] } : {}}
+   154→      transition={{ duration: 0.5, repeat: isActive ? Infinity : 0, repeatDelay: 2 }}
+   155→    >
+   156→      <Icon className="w-4 h-4" />
+   157→    </motion.div>
+   158→    <span className="hidden sm:inline">{label}</span>
+   159→    {visited && !isActive && (
+   160→      <Check className="w-3 h-3 text-emerald-500" />
+   161→    )}
+   162→    {isActive && (
+   163→      <motion.div
+   164→        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-white"
+   165→        layoutId="activeTab"
+   166→      />
+   167→    )}
+   168→  </motion.button>
+   169→);
+   170→
+   171→export function LessonView({ lesson, language, onBack }: LessonViewProps) {
+   172→  const [activeSection, setActiveSection] = useState<string>("intro");
+   173→  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set(["intro"]));
+   174→  const [isCompleted, setIsCompleted] = useState(false);
+   175→  const [showConfetti, setShowConfetti] = useState(false);
+   176→  const [showShareMenu, setShowShareMenu] = useState(false);
+   177→  const [copiedLink, setCopiedLink] = useState(false);
+   178→  const dir = language === "ar" ? "rtl" : "ltr";
+   179→
+   180→  // Calculate progress
+   181→  const totalSections = 9;
+   182→  const progress = (visitedSections.size / totalSections) * 100;
+   183→
+   184→  // Handle section change
+   185→  const handleSectionChange = (section: string) => {
+   186→    setActiveSection(section);
+   187→    setVisitedSections(prev => new Set([...prev, section]));
+   188→  };
+   189→
+   190→  // Handle lesson completion
+   191→  const handleComplete = () => {
+   192→    setIsCompleted(true);
+   193→    setShowConfetti(true);
+   194→    setTimeout(() => setShowConfetti(false), 4000);
+   195→  };
+   196→
+   197→  // Copy link to clipboard
+   198→  const copyLink = useCallback(() => {
+   199→    navigator.clipboard.writeText(window.location.href);
+   200→    setCopiedLink(true);
+   201→    setTimeout(() => setCopiedLink(false), 2000);
+   202→  }, []);
+   203→
+   204→  // Share functions
+   205→  const shareOnTwitter = () => {
+   206→    const text = language === "ar" 
+   207→      ? `تعلمت درس ${lesson.titleAr} على منصة ثانوية تفاعلية!`
+   208→      : `I just learned ${lesson.titleEn} on Thawaniya Interactive!`;
+   209→    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+   210→  };
+   211→
+   212→  const shareOnFacebook = () => {
+   213→    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+   214→  };
+   215→
+   216→  const texts = {
+   217→    ar: {
+   218→      objectives: "أهداف الدرس",
+   219→      introduction: "المقدمة",
+   220→      keyConcepts: "المفاهيم الأساسية",
+   221→      formulas: "المعادلات",
+   222→      examples: "أمثلة محلولة",
+   223→      simulators: "المحاكيات التفاعلية",
+   224→      summary: "الملخص",
+   225→      mindMap: "الخريطة الذهنية",
+   226→      infographics: "الرسوم التوضيحية",
+   227→      back: "العودة للدروس",
+   228→      minutes: "دقيقة",
+   229→      free: "مجاني",
+   230→      premium: "مدفوع",
+   231→      simulator: "محاكي تفاعلي",
+   232→      showSimulator: "افتح المحاكي",
+   233→      question: "السؤال",
+   234→      solution: "الحل",
+   235→      steps: "خطوات الحل",
+   236→      definition: "التعريف",
+   237→      term: "المصطلح",
+   238→      explanation: "الشرح",
+   239→      interactiveMindMap: "خريطة ذهنية تفاعلية للمفاهيم",
+   240→      visualDiagrams: "مخططات توضيحية للدرس",
+   241→      completeLesson: "أكملت الدرس",
+   242→      lessonCompleted: "تم إكمال الدرس!",
+   243→      congratulations: "تهانينا! لقد أكملت هذا الدرس بنجاح",
+   244→      pointsEarned: "نقطة مكتسبة",
+   245→      share: "مشاركة",
+   246→      shareLesson: "شارك الدرس",
+   247→      copyLink: "نسخ الرابط",
+   248→      linkCopied: "تم النسخ!",
+   249→      shareOnTwitter: "شارك على تويتر",
+   250→      shareOnFacebook: "شارك على فيسبوك",
+   251→      progress: "التقدم",
+   252→      keyPoints: "النقاط المهمة",
+   253→      clickToFlip: "انقر للقلب",
+   254→      flipCard: "بطاقة تفاعلية",
+   255→      letsLearn: "هيا نتعلم!",
+   256→    },
+   257→    en: {
+   258→      objectives: "Objectives",
+   259→      introduction: "Introduction",
+   260→      keyConcepts: "Key Concepts",
+   261→      formulas: "Formulas",
+   262→      examples: "Solved Examples",
+   263→      simulators: "Interactive Simulators",
+   264→      summary: "Summary",
+   265→      mindMap: "Mind Map",
+   266→      infographics: "Infographics",
+   267→      back: "Back to Lessons",
+   268→      minutes: "min",
+   269→      free: "Free",
+   270→      premium: "Premium",
+   271→      simulator: "Interactive Simulator",
+   272→      showSimulator: "Open Simulator",
+   273→      question: "Question",
+   274→      solution: "Solution",
+   275→      steps: "Solution Steps",
+   276→      definition: "Definition",
+   277→      term: "Term",
+   278→      explanation: "Explanation",
+   279→      interactiveMindMap: "Interactive Mind Map of Concepts",
+   280→      visualDiagrams: "Visual Diagrams for the Lesson",
+   281→      completeLesson: "Complete Lesson",
+   282→      lessonCompleted: "Lesson Completed!",
+   283→      congratulations: "Congratulations! You have successfully completed this lesson",
+   284→      pointsEarned: "points earned",
+   285→      share: "Share",
+   286→      shareLesson: "Share Lesson",
+   287→      copyLink: "Copy Link",
+   288→      linkCopied: "Copied!",
+   289→      shareOnTwitter: "Share on Twitter",
+   290→      shareOnFacebook: "Share on Facebook",
+   291→      progress: "Progress",
+   292→      keyPoints: "Key Points",
+   293→      clickToFlip: "Click to flip",
+   294→      flipCard: "Interactive Card",
+   295→      letsLearn: "Let's Learn!",
+   296→    },
+   297→  };
+   298→
+   299→  const t = texts[language];
+   300→
+   301→  // Confetti colors
+   302→  const confettiColors = ["#10b981", "#14b8a6", "#f59e0b", "#8b5cf6", "#ec4899", "#3b82f6"];
+   303→
+   304→  // Render simulator by ID
+   305→  const renderSimulator = (simId: string) => {
+   306→    switch (simId) {
+   307→      case "motion":
+   308→        return <MotionSimulator language={language} />;
+   309→      case "forces":
+   310→        return <ForcesSimulator language={language} />;
+   311→      case "energy":
+   312→        return <EnergySimulator language={language} />;
+   313→      case "freeFall":
+   314→        return <FreeFallSimulator language={language} />;
+   315→      case "wave":
+   316→        return <WaveSimulator language={language} />;
+   317→      case "functions":
+   318→        return <FunctionsSimulator language={language} />;
+   319→      case "periodicTable":
+   320→        return <PeriodicTableSimulator language={language} />;
+   321→      case "projectile":
+   322→        return <ProjectileSimulator language={language} />;
+   323→      default:
+   324→        return null;
+   325→    }
+   326→  };
+   327→
+   328→  // Get simulator name
+   329→  const getSimulatorName = (simId: string) => {
+   330→    const names: Record<string, { ar: string; en: string }> = {
+   331→      motion: { ar: "محاكي الحركة", en: "Motion Simulator" },
+   332→      forces: { ar: "محاكي القوى", en: "Forces Simulator" },
+   333→      energy: { ar: "محاكي الطاقة", en: "Energy Simulator" },
+   334→      freeFall: { ar: "محاكي السقوط الحر", en: "Free Fall Simulator" },
+   335→      wave: { ar: "محاكي الموجات", en: "Wave Simulator" },
+   336→      functions: { ar: "محاكي الدوال", en: "Functions Simulator" },
+   337→      periodicTable: { ar: "الجدول الدوري", en: "Periodic Table" },
+   338→      projectile: { ar: "محاكي الرمي الأفقي", en: "Projectile Motion" },
+   339→    };
+   340→    return names[simId]?.[language] || simId;
+   341→  };
+   342→
+   343→  // Get mind map for lesson
+   344→  const getMindMapForLesson = (): MindMapType | null => {
+   345→    if (lesson.id.includes("motion") || lesson.id.includes("velocity") || lesson.id.includes("acceleration")) {
+   346→      return "motion";
+   347→    }
+   348→    if (lesson.id.includes("energy") || lesson.id.includes("work")) {
+   349→      return "energy";
+   350→    }
+   351→    if (lesson.id.includes("atom") || lesson.id.includes("periodic") || lesson.id.includes("electron")) {
+   352→      return "atom";
+   353→    }
+   354→    // Default based on subject
+   355→    if (lesson.subject === "physics") return "motion";
+   356→    if (lesson.subject === "chemistry") return "atom";
+   357→    return "motion";
+   358→  };
+   359→
+   360→  // Get infographic for lesson
+   361→  const getInfographicForLesson = () => {
+   362→    if (lesson.id.includes("energy")) {
+   363→      return {
+   364→        type: "circle" as const,
+   365→        data: energyCircleData,
+   366→        title: language === "ar" ? "أنواع الطاقة" : "Types of Energy",
+   367→      };
+   368→    }
+   369→    if (lesson.id.includes("atom")) {
+   370→      return {
+   371→        type: "timeline" as const,
+   372→        data: atomTimelineData,
+   373→        title: language === "ar" ? "تطور نظرية الذرة" : "Atomic Theory Evolution",
+   374→      };
+   375→    }
+   376→    if (lesson.id.includes("motion") || lesson.id.includes("velocity")) {
+   377→      return {
+   378→        type: "comparison" as const,
+   379→        data: speedComparisonData,
+   380→        title: language === "ar" ? "مقارنة السرعة والتسارع" : "Velocity vs Acceleration",
+   381→      };
+   382→    }
+   383→    // Default
+   384→    return {
+   385→      type: "circle" as const,
+   386→      data: energyCircleData,
+   387→      title: language === "ar" ? "توزيع المفاهيم" : "Concepts Distribution",
+   388→    };
+   389→  };
+   390→
+   391→  const mindMapType = getMindMapForLesson();
+   392→  const infographicData = getInfographicForLesson();
+   393→
+   394→  // Section order for navigation
+   395→  const sections = [
+   396→    { value: "intro", icon: BookOpen, label: t.introduction },
+   397→    { value: "objectives", icon: Target, label: t.objectives },
+   398→    { value: "concepts", icon: Lightbulb, label: t.keyConcepts },
+   399→    { value: "formulas", icon: Calculator, label: t.formulas },
+   400→    { value: "examples", icon: FileText, label: t.examples },
+   401→    { value: "simulators", icon: Play, label: t.simulators },
+   402→    { value: "mindmap", icon: Network, label: t.mindMap },
+   403→    { value: "infographics", icon: BarChart3, label: t.infographics },
+   404→    { value: "summary", icon: Brain, label: t.summary },
+   405→  ];
+   406→
+   407→  return (
+   408→    <div className="space-y-6 relative" dir={dir}>
+   409→      {/* Progress Bar - Fixed at top */}
+   410→      <motion.div 
+   411→        className="fixed top-0 left-0 right-0 h-1.5 bg-slate-200 dark:bg-slate-800 z-50"
+   412→        initial={{ opacity: 0 }}
+   413→        animate={{ opacity: 1 }}
+   414→      >
+   415→        <motion.div 
+   416→          className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"
+   417→          initial={{ width: 0 }}
+   418→          animate={{ width: `${progress}%` }}
+   419→          transition={{ duration: 0.5, ease: "easeOut" }}
+   420→        />
+   421→        {/* Shine effect */}
+   422→        <motion.div
+   423→          className="absolute top-0 h-full w-20 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+   424→          animate={{ x: ["-100%", "200vw"] }}
+   425→          transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+   426→        />
+   427→      </motion.div>
+   428→
+   429→      {/* Confetti */}
+   430→      <AnimatePresence>
+   431→        {showConfetti && (
+   432→          <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+   433→            {Array.from({ length: 50 }).map((_, i) => (
+   434→              <ConfettiParticle
+   435→                key={i}
+   436→                color={confettiColors[i % confettiColors.length]}
+   437→                x={Math.random() * 100}
+   438→                delay={Math.random() * 0.5}
+   439→              />
+   440→            ))}
+   441→          </div>
+   442→        )}
+   443→      </AnimatePresence>
+   444→
+   445→      {/* Header */}
+   446→      <div className="flex items-center justify-between gap-4 pt-4">
+   447→        <Button variant="ghost" onClick={onBack} className="gap-2">
+   448→          {dir === "rtl" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4 mr-2" />}
+   449→          {t.back}
+   450→        </Button>
+   451→
+   452→        {/* Share Button */}
+   453→        <div className="relative">
+   454→          <Button 
+   455→            variant="outline" 
+   456→            onClick={() => setShowShareMenu(!showShareMenu)}
+   457→            className="gap-2"
+   458→          >
+   459→            <Share2 className="w-4 h-4" />
+   460→            {t.share}
+   461→          </Button>
+   462→
+   463→          <AnimatePresence>
+   464→            {showShareMenu && (
+   465→              <motion.div
+   466→                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+   467→                animate={{ opacity: 1, y: 0, scale: 1 }}
+   468→                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+   469→                className="absolute top-full mt-2 right-0 bg-white dark:bg-slate-900 rounded-xl shadow-xl border p-3 min-w-[200px] z-50"
+   470→              >
+   471→                <p className="text-sm font-medium text-slate-500 mb-2">{t.shareLesson}</p>
+   472→                <div className="space-y-2">
+   473→                  <Button variant="ghost" size="sm" className="w-full justify-start gap-2" onClick={shareOnTwitter}>
+   474→                    <Twitter className="w-4 h-4 text-sky-500" />
+   475→                    {t.shareOnTwitter}
+   476→                  </Button>
+   477→                  <Button variant="ghost" size="sm" className="w-full justify-start gap-2" onClick={shareOnFacebook}>
+   478→                    <Facebook className="w-4 h-4 text-blue-600" />
+   479→                    {t.shareOnFacebook}
+   480→                  </Button>
+   481→                  <Button variant="ghost" size="sm" className="w-full justify-start gap-2" onClick={copyLink}>
+   482→                    {copiedLink ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+   483→                    {copiedLink ? t.linkCopied : t.copyLink}
+   484→                  </Button>
+   485→                </div>
+   486→              </motion.div>
+   487→            )}
+   488→          </AnimatePresence>
+   489→        </div>
+   490→      </div>
+   491→
+   492→      {/* Progress Info */}
+   493→      <div className="flex items-center justify-between text-sm text-slate-500 px-1">
+   494→        <span>{t.progress}: {Math.round(progress)}%</span>
+   495→        <span>{visitedSections.size}/{totalSections}</span>
+   496→      </div>
+   497→
+   498→      {/* Lesson Title Card */}
+   499→      <Card className="border-0 shadow-lg overflow-hidden">
+   500→        <div className={`h-2 bg-gradient-to-r ${
+   501→          lesson.subject === "physics" ? "from-emerald-500 to-teal-500" :
+   502→          lesson.subject === "math" ? "from-blue-500 to-cyan-500" :
+   503→          "from-purple-500 to-pink-500"
+   504→        }`} />
+   505→        <CardContent className="p-6">
+   506→          <div className="flex items-start justify-between">
+   507→            <div>
+   508→              <div className="flex items-center gap-2 mb-2 flex-wrap">
+   509→                <Badge variant="outline">
+   510→                  {language === "ar" ? lesson.unitAr : lesson.unitEn}
+   511→                </Badge>
+   512→                <Badge variant="secondary">
+   513→                  {lesson.duration} {t.minutes}
+   514→                </Badge>
+   515→                {lesson.isFree ? (
+   516→                  <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">{t.free}</Badge>
+   517→                ) : (
+   518→                  <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-300">{t.premium}</Badge>
+   519→                )}
+   520→              </div>
+   521→              <h1 className="text-2xl sm:text-3xl font-bold">
+   522→                {language === "ar" ? lesson.titleAr : lesson.titleEn}
+   523→              </h1>
+   524→            </div>
+   525→            <motion.div 
+   526→              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center ${
+   527→                lesson.subject === "physics" ? "bg-emerald-100 dark:bg-emerald-900" :
+   528→                lesson.subject === "math" ? "bg-blue-100 dark:bg-blue-900" :
+   529→                "bg-purple-100 dark:bg-purple-900"
+   530→              }`}
+   531→              animate={{ rotate: [0, 5, -5, 0] }}
+   532→              transition={{ duration: 2, repeat: Infinity, repeatDelay: 5 }}
+   533→            >
+   534→              {lesson.subject === "physics" ? <FlaskConical className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-600" /> :
+   535→               lesson.subject === "math" ? <Calculator className="w-7 h-7 sm:w-8 sm:h-8 text-blue-600" /> :
+   536→               <FlaskConical className="w-7 h-7 sm:w-8 sm:h-8 text-purple-600" />}
+   537→            </motion.div>
+   538→          </div>
+   539→        </CardContent>
+   540→      </Card>
+   541→
+   542→      {/* Enhanced Navigation Tabs */}
+   543→      <div className="overflow-x-auto pb-2 -mx-2 px-2">
+   544→        <div className="flex gap-2 min-w-max">
+   545→          {sections.map((section) => (
+   546→            <NavTabButton
+   547→              key={section.value}
+   548→              value={section.value}
+   549→              icon={section.icon}
+   550→              label={section.label}
+   551→              isActive={activeSection === section.value}
+   552→              onClick={() => handleSectionChange(section.value)}
+   553→              visited={visitedSections.has(section.value)}
+   554→            />
+   555→          ))}
+   556→        </div>
+   557→      </div>
+   558→
+   559→      {/* Tab Contents */}
+   560→      <AnimatePresence mode="wait">
+   561→        {/* Introduction */}
+   562→        {activeSection === "intro" && (
+   563→          <motion.div
+   564→            key="intro"
+   565→            initial={{ opacity: 0, y: 20 }}
+   566→            animate={{ opacity: 1, y: 0 }}
+   567→            exit={{ opacity: 0, y: -20 }}
+   568→            transition={{ duration: 0.3 }}
+   569→          >
+   570→            <Card className="border-0 shadow-md overflow-hidden">
+   571→              <div className="h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
+   572→              <CardHeader>
+   573→                <CardTitle className="flex items-center gap-2">
+   574→                  <motion.div
+   575→                    animate={{ scale: [1, 1.1, 1] }}
+   576→                    transition={{ duration: 2, repeat: Infinity }}
+   577→                  >
+   578→                    <BookOpen className="w-5 h-5 text-emerald-500" />
+   579→                  </motion.div>
+   580→                  {t.introduction}
+   581→                </CardTitle>
+   582→              </CardHeader>
+   583→              <CardContent>
+   584→                <div className="grid md:grid-cols-2 gap-6">
+   585→                  {/* Introduction Image/Illustration */}
+   586→                  <div className="flex flex-col justify-center">
+   587→                    <div className="prose dark:prose-invert max-w-none">
+   588→                      <div className="whitespace-pre-line text-lg leading-relaxed">
+   589→                        {language === "ar" ? lesson.introduction.ar : lesson.introduction.en}
+   590→                      </div>
+   591→                    </div>
+   592→                    
+   593→                    {/* Key Points Highlight */}
+   594→                    <motion.div 
+   595→                      className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950 dark:to-teal-950 rounded-xl border border-emerald-200 dark:border-emerald-800"
+   596→                      initial={{ opacity: 0, x: -20 }}
+   597→                      animate={{ opacity: 1, x: 0 }}
+   598→                      transition={{ delay: 0.3 }}
+   599→                    >
+   600→                      <div className="flex items-center gap-2 mb-3">
+   601→                        <Sparkles className="w-5 h-5 text-emerald-500" />
+   602→                        <span className="font-bold text-emerald-700 dark:text-emerald-300">{t.keyPoints}</span>
+   603→                      </div>
+   604→                      <ul className="space-y-2">
+   605→                        {(language === "ar" ? lesson.objectives.ar : lesson.objectives.en).slice(0, 3).map((obj, i) => (
+   606→                          <motion.li 
+   607→                            key={i} 
+   608→                            className="flex items-start gap-2 text-sm"
+   609→                            initial={{ opacity: 0, x: -10 }}
+   610→                            animate={{ opacity: 1, x: 0 }}
+   611→                            transition={{ delay: 0.4 + i * 0.1 }}
+   612→                          >
+   613→                            <Check className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
+   614→                            <span>{obj}</span>
+   615→                          </motion.li>
+   616→                        ))}
+   617→                      </ul>
+   618→                    </motion.div>
+   619→                  </div>
+   620→
+   621→                  {/* Visual Illustration */}
+   622→                  <motion.div 
+   623→                    className="flex items-center justify-center"
+   624→                    initial={{ opacity: 0, scale: 0.9 }}
+   625→                    animate={{ opacity: 1, scale: 1 }}
+   626→                    transition={{ delay: 0.2 }}
+   627→                  >
+   628→                    <div className={`relative w-full max-w-xs aspect-square rounded-2xl p-8 ${
+   629→                      lesson.subject === "physics" ? "bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900 dark:to-teal-900" :
+   630→                      lesson.subject === "math" ? "bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900 dark:to-cyan-900" :
+   631→                      "bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900"
+   632→                    }`}>
+   633→                      {/* Animated illustration */}
+   634→                      <div className="absolute inset-0 flex items-center justify-center">
+   635→                        <motion.div
+   636→                          className={`w-32 h-32 rounded-full flex items-center justify-center ${
+   637→                            lesson.subject === "physics" ? "bg-emerald-200 dark:bg-emerald-800" :
+   638→                            lesson.subject === "math" ? "bg-blue-200 dark:bg-blue-800" :
+   639→                            "bg-purple-200 dark:bg-purple-800"
+   640→                          }`}
+   641→                          animate={{ scale: [1, 1.05, 1] }}
+   642→                          transition={{ duration: 3, repeat: Infinity }}
+   643→                        >
+   644→                          {lesson.subject === "physics" ? (
+   645→                            <motion.div
+   646→                              animate={{ rotate: 360 }}
+   647→                              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+   648→                            >
+   649→                              <FlaskConical className="w-16 h-16 text-emerald-600 dark:text-emerald-400" />
+   650→                            </motion.div>
+   651→                          ) : lesson.subject === "math" ? (
+   652→                            <Calculator className="w-16 h-16 text-blue-600 dark:text-blue-400" />
+   653→                          ) : (
+   654→                            <FlaskConical className="w-16 h-16 text-purple-600 dark:text-purple-400" />
+   655→                          )}
+   656→                        </motion.div>
+   657→                      </div>
+   658→
+   659→                      {/* Floating elements */}
+   660→                      <motion.div
+   661→                        className="absolute top-8 left-8 w-8 h-8 rounded-full bg-white/50 dark:bg-black/20"
+   662→                        animate={{ y: [0, -10, 0] }}
+   663→                        transition={{ duration: 2, repeat: Infinity }}
+   664→                      />
+   665→                      <motion.div
+   666→                        className="absolute bottom-12 right-8 w-6 h-6 rounded-full bg-white/30 dark:bg-black/10"
+   667→                        animate={{ y: [0, 10, 0] }}
+   668→                        transition={{ duration: 2.5, repeat: Infinity }}
+   669→                      />
+   670→                      <motion.div
+   671→                        className="absolute top-16 right-12 w-4 h-4 rounded-full bg-white/40 dark:bg-black/15"
+   672→                        animate={{ y: [0, -8, 0] }}
+   673→                        transition={{ duration: 3, repeat: Infinity }}
+   674→                      />
+   675→                    </div>
+   676→                  </motion.div>
+   677→                </div>
+   678→
+   679→                {/* Let's Learn Button */}
+   680→                <motion.div 
+   681→                  className="mt-6 flex justify-center"
+   682→                  initial={{ opacity: 0, y: 20 }}
+   683→                  animate={{ opacity: 1, y: 0 }}
+   684→                  transition={{ delay: 0.5 }}
+   685→                >
+   686→                  <Button 
+   687→                    onClick={() => handleSectionChange("objectives")}
+   688→                    className="gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600"
+   689→                  >
+   690→                    {t.letsLearn}
+   691→                    <ArrowRight className="w-4 h-4" />
+   692→                  </Button>
+   693→                </motion.div>
+   694→              </CardContent>
+   695→            </Card>
+   696→          </motion.div>
+   697→        )}
+   698→
+   699→        {/* Objectives */}
+   700→        {activeSection === "objectives" && (
+   701→          <motion.div
+   702→            key="objectives"
+   703→            initial={{ opacity: 0, y: 20 }}
+   704→            animate={{ opacity: 1, y: 0 }}
+   705→            exit={{ opacity: 0, y: -20 }}
+   706→            transition={{ duration: 0.3 }}
+   707→          >
+   708→            <Card className="border-0 shadow-md overflow-hidden">
+   709→              <div className="h-1 bg-gradient-to-r from-blue-500 to-cyan-500" />
+   710→              <CardHeader>
+   711→                <CardTitle className="flex items-center gap-2">
+   712→                  <Target className="w-5 h-5 text-blue-500" />
+   713→                  {t.objectives}
+   714→                </CardTitle>
+   715→              </CardHeader>
+   716→              <CardContent>
+   717→                <div className="grid gap-3">
+   718→                  {(language === "ar" ? lesson.objectives.ar : lesson.objectives.en).map((obj, index) => (
+   719→                    <motion.div 
+   720→                      key={index} 
+   721→                      className="flex items-start gap-3 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 rounded-xl border border-blue-100 dark:border-blue-900"
+   722→                      initial={{ opacity: 0, x: -20 }}
+   723→                      animate={{ opacity: 1, x: 0 }}
+   724→                      transition={{ delay: index * 0.1 }}
+   725→                      whileHover={{ scale: 1.01, x: 5 }}
+   726→                    >
+   727→                      <motion.div 
+   728→                        className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white flex items-center justify-center text-sm font-bold shrink-0"
+   729→                        whileHover={{ rotate: 360 }}
+   730→                        transition={{ duration: 0.5 }}
+   731→                      >
+   732→                        {index + 1}
+   733→                      </motion.div>
+   734→                      <span className="text-lg pt-1">{obj}</span>
+   735→                    </motion.div>
+   736→                  ))}
+   737→                </div>
+   738→              </CardContent>
+   739→            </Card>
+   740→          </motion.div>
+   741→        )}
+   742→
+   743→        {/* Key Concepts - With Flip Cards */}
+   744→        {activeSection === "concepts" && (
+   745→          <motion.div
+   746→            key="concepts"
+   747→            initial={{ opacity: 0, y: 20 }}
+   748→            animate={{ opacity: 1, y: 0 }}
+   749→            exit={{ opacity: 0, y: -20 }}
+   750→            transition={{ duration: 0.3 }}
+   751→          >
+   752→            <Card className="border-0 shadow-md overflow-hidden">
+   753→              <div className="h-1 bg-gradient-to-r from-amber-500 to-orange-500" />
+   754→              <CardHeader>
+   755→                <CardTitle className="flex items-center gap-2">
+   756→                  <Lightbulb className="w-5 h-5 text-amber-500" />
+   757→                  {t.keyConcepts}
+   758→                  <Badge variant="secondary" className="ml-2">
+   759→                    {t.clickToFlip}
+   760→                  </Badge>
+   761→                </CardTitle>
+   762→              </CardHeader>
+   763→              <CardContent>
+   764→                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+   765→                  {(language === "ar" ? lesson.keyConcepts.ar : lesson.keyConcepts.en).map((concept, index) => (
+   766→                    <motion.div
+   767→                      key={index}
+   768→                      initial={{ opacity: 0, y: 20 }}
+   769→                      animate={{ opacity: 1, y: 0 }}
+   770→                      transition={{ delay: index * 0.1 }}
+   771→                    >
+   772→                      <FlipCard
+   773→                        term={concept.term}
+   774→                        definition={concept.definition}
+   775→                        language={language}
+   776→                      />
+   777→                    </motion.div>
+   778→                  ))}
+   779→                </div>
+   780→              </CardContent>
+   781→            </Card>
+   782→          </motion.div>
+   783→        )}
+   784→
+   785→        {/* Formulas - Enhanced Design */}
+   786→        {activeSection === "formulas" && (
+   787→          <motion.div
+   788→            key="formulas"
+   789→            initial={{ opacity: 0, y: 20 }}
+   790→            animate={{ opacity: 1, y: 0 }}
+   791→            exit={{ opacity: 0, y: -20 }}
+   792→            transition={{ duration: 0.3 }}
+   793→          >
+   794→            <Card className="border-0 shadow-md overflow-hidden">
+   795→              <div className="h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
+   796→              <CardHeader>
+   797→                <CardTitle className="flex items-center gap-2">
+   798→                  <Calculator className="w-5 h-5 text-purple-500" />
+   799→                  {t.formulas}
+   800→                </CardTitle>
+   801→              </CardHeader>
+   802→              <CardContent>
+   803→                <div className="grid gap-4">
+   804→                  {(language === "ar" ? lesson.formulas.ar : lesson.formulas.en).map((formula, index) => (
+   805→                    <motion.div 
+   806→                      key={index} 
+   807→                      className="relative p-6 bg-gradient-to-r from-purple-50 via-pink-50 to-purple-50 dark:from-purple-950 dark:via-pink-950 dark:to-purple-950 rounded-2xl border border-purple-200 dark:border-purple-800 overflow-hidden"
+   808→                      initial={{ opacity: 0, scale: 0.95 }}
+   809→                      animate={{ opacity: 1, scale: 1 }}
+   810→                      transition={{ delay: index * 0.15 }}
+   811→                      whileHover={{ scale: 1.02 }}
+   812→                    >
+   813→                      {/* Background decoration */}
+   814→                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-200/50 to-pink-200/50 dark:from-purple-800/30 dark:to-pink-800/30 rounded-full -translate-y-1/2 translate-x-1/2" />
+   815→                      
+   816→                      <div className="relative">
+   817→                        <div className="flex items-center justify-between mb-3">
+   818→                          <motion.div 
+   819→                            className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 rounded-full shadow-md"
+   820→                            initial={{ x: -20, opacity: 0 }}
+   821→                            animate={{ x: 0, opacity: 1 }}
+   822→                            transition={{ delay: index * 0.15 + 0.1 }}
+   823→                          >
+   824→                            <code className="text-xl sm:text-2xl font-mono font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+   825→                              {formula.formula}
+   826→                            </code>
+   827→                          </motion.div>
+   828→                          <motion.div
+   829→                            animate={{ rotate: [0, 10, -10, 0] }}
+   830→                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+   831→                          >
+   832→                            <Zap className="w-8 h-8 text-purple-400" />
+   833→                          </motion.div>
+   834→                        </div>
+   835→                        <p className="text-slate-600 dark:text-slate-300 text-lg">{formula.explanation}</p>
+   836→                      </div>
+   837→                    </motion.div>
+   838→                  ))}
+   839→                </div>
+   840→              </CardContent>
+   841→            </Card>
+   842→          </motion.div>
+   843→        )}
+   844→
+   845→        {/* Examples - Step by Step Animation */}
+   846→        {activeSection === "examples" && (
+   847→          <motion.div
+   848→            key="examples"
+   849→            initial={{ opacity: 0, y: 20 }}
+   850→            animate={{ opacity: 1, y: 0 }}
+   851→            exit={{ opacity: 0, y: -20 }}
+   852→            transition={{ duration: 0.3 }}
+   853→          >
+   854→            <Card className="border-0 shadow-md overflow-hidden">
+   855→              <div className="h-1 bg-gradient-to-r from-green-500 to-emerald-500" />
+   856→              <CardHeader>
+   857→                <CardTitle className="flex items-center gap-2">
+   858→                  <FileText className="w-5 h-5 text-green-500" />
+   859→                  {t.examples}
+   860→                </CardTitle>
+   861→              </CardHeader>
+   862→              <CardContent>
+   863→                <div className="space-y-6">
+   864→                  {(language === "ar" ? lesson.examples.ar : lesson.examples.en).map((example, index) => (
+   865→                    <motion.div 
+   866→                      key={index} 
+   867→                      className="border rounded-2xl overflow-hidden shadow-lg"
+   868→                      initial={{ opacity: 0, y: 30 }}
+   869→                      animate={{ opacity: 1, y: 0 }}
+   870→                      transition={{ delay: index * 0.2 }}
+   871→                    >
+   872→                      {/* Question */}
+   873→                      <div className="p-5 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-b">
+   874→                        <div className="flex items-start gap-3">
+   875→                          <motion.div 
+   876→                            className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shrink-0"
+   877→                            whileHover={{ scale: 1.1, rotate: 360 }}
+   878→                            transition={{ duration: 0.5 }}
+   879→                          >
+   880→                            <HelpCircle className="w-5 h-5 text-white" />
+   881→                          </motion.div>
+   882→                          <div className="flex-1">
+   883→                            <span className="font-bold text-green-700 dark:text-green-300 text-lg">{t.question}:</span>
+   884→                            <p className="mt-2 text-lg">{example.question}</p>
+   885→                          </div>
+   886→                        </div>
+   887→                      </div>
+   888→                      
+   889→                      {/* Solution */}
+   890→                      <div className="p-5 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 border-b">
+   891→                        <div className="flex items-start gap-3">
+   892→                          <motion.div 
+   893→                            className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center shrink-0"
+   894→                            whileHover={{ scale: 1.1, rotate: 360 }}
+   895→                            transition={{ duration: 0.5 }}
+   896→                          >
+   897→                            <CheckCircle className="w-5 h-5 text-white" />
+   898→                          </motion.div>
+   899→                          <div className="flex-1">
+   900→                            <span className="font-bold text-blue-700 dark:text-blue-300 text-lg">{t.solution}:</span>
+   901→                            <p className="mt-2 text-xl font-mono font-bold text-blue-600 dark:text-blue-400">{example.solution}</p>
+   902→                          </div>
+   903→                        </div>
+   904→                      </div>
+   905→                      
+   906→                      {/* Steps */}
+   907→                      <div className="p-5 bg-slate-50 dark:bg-slate-900">
+   908→                        <span className="font-bold text-slate-700 dark:text-slate-300 text-lg flex items-center gap-2">
+   909→                          <ArrowRight className="w-5 h-5 text-emerald-500" />
+   910→                          {t.steps}:
+   911→                        </span>
+   912→                        <div className="mt-4 space-y-3">
+   913→                          {example.steps.map((step, stepIndex) => (
+   914→                            <AnimatedStep 
+   915→                              key={stepIndex} 
+   916→                              step={step} 
+   917→                              index={stepIndex} 
+   918→                              isVisible={true} 
+   919→                            />
+   920→                          ))}
+   921→                        </div>
+   922→                      </div>
+   923→                    </motion.div>
+   924→                  ))}
+   925→                </div>
+   926→              </CardContent>
+   927→            </Card>
+   928→          </motion.div>
+   929→        )}
+   930→
+   931→        {/* Simulators */}
+   932→        {activeSection === "simulators" && (
+   933→          <motion.div
+   934→            key="simulators"
+   935→            initial={{ opacity: 0, y: 20 }}
+   936→            animate={{ opacity: 1, y: 0 }}
+   937→            exit={{ opacity: 0, y: -20 }}
+   938→            transition={{ duration: 0.3 }}
+   939→          >
+   940→            <Card className="border-0 shadow-md overflow-hidden">
+   941→              <div className="h-1 bg-gradient-to-r from-red-500 to-orange-500" />
+   942→              <CardHeader>
+   943→                <CardTitle className="flex items-center gap-2">
+   944→                  <Play className="w-5 h-5 text-red-500" />
+   945→                  {t.simulators}
+   946→                </CardTitle>
+   947→              </CardHeader>
+   948→              <CardContent>
+   949→                <div className="space-y-6">
+   950→                  {lesson.simulators.map((simId) => (
+   951→                    <motion.div 
+   952→                      key={simId} 
+   953→                      className="border rounded-2xl overflow-hidden"
+   954→                      initial={{ opacity: 0, scale: 0.98 }}
+   955→                      animate={{ opacity: 1, scale: 1 }}
+   956→                      whileHover={{ boxShadow: "0 10px 40px rgba(0,0,0,0.1)" }}
+   957→                    >
+   958→                      <div className="p-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950 dark:to-orange-950 border-b">
+   959→                        <div className="flex items-center gap-3">
+   960→                          <motion.div 
+   961→                            className="w-12 h-12 rounded-xl bg-gradient-to-r from-red-500 to-orange-500 flex items-center justify-center"
+   962→                            whileHover={{ rotate: 360 }}
+   963→                            transition={{ duration: 0.5 }}
+   964→                          >
+   965→                            <Play className="w-6 h-6 text-white" />
+   966→                          </motion.div>
+   967→                          <div>
+   968→                            <h3 className="font-bold text-lg">{getSimulatorName(simId)}</h3>
+   969→                            <p className="text-sm text-slate-500">{t.simulator}</p>
+   970→                          </div>
+   971→                        </div>
+   972→                      </div>
+   973→                      <div className="p-4">
+   974→                        {renderSimulator(simId)}
+   975→                      </div>
+   976→                    </motion.div>
+   977→                  ))}
+   978→                  
+   979→                  {lesson.simulators.length === 0 && (
+   980→                    <div className="text-center py-8 text-slate-500">
+   981→                      {language === "ar" ? "لا توجد محاكيات لهذا الدرس" : "No simulators for this lesson"}
+   982→                    </div>
+   983→                  )}
+   984→                </div>
+   985→              </CardContent>
+   986→            </Card>
+   987→          </motion.div>
+   988→        )}
+   989→
+   990→        {/* Mind Map */}
+   991→        {activeSection === "mindmap" && (
+   992→          <motion.div
+   993→            key="mindmap"
+   994→            initial={{ opacity: 0, y: 20 }}
+   995→            animate={{ opacity: 1, y: 0 }}
+   996→            exit={{ opacity: 0, y: -20 }}
+   997→            transition={{ duration: 0.3 }}
+   998→          >
+   999→            <Card className="border-0 shadow-md overflow-hidden">
+  1000→              <div className="h-1 bg-gradient-to-r from-cyan-500 to-teal-500" />
+  1001→              <CardHeader>
+  1002→                <CardTitle className="flex items-center gap-2">
+  1003→                  <Network className="w-5 h-5 text-cyan-500" />
+  1004→                  {t.mindMap}
+  1005→                </CardTitle>
+  1006→              </CardHeader>
+  1007→              <CardContent>
+  1008→                <p className="text-slate-500 mb-4">{t.interactiveMindMap}</p>
+  1009→                <div className="h-[500px] rounded-xl overflow-hidden border">
+  1010→                  {mindMapType && (
+  1011→                    <MindMap 
+  1012→                      data={MIND_MAPS[mindMapType]} 
+  1013→                      language={language} 
+  1014→                    />
+  1015→                  )}
+  1016→                </div>
+  1017→              </CardContent>
+  1018→            </Card>
+  1019→          </motion.div>
+  1020→        )}
+  1021→
+  1022→        {/* Infographics */}
+  1023→        {activeSection === "infographics" && (
+  1024→          <motion.div
+  1025→            key="infographics"
+  1026→            initial={{ opacity: 0, y: 20 }}
+  1027→            animate={{ opacity: 1, y: 0 }}
+  1028→            exit={{ opacity: 0, y: -20 }}
+  1029→            transition={{ duration: 0.3 }}
+  1030→          >
+  1031→            <Card className="border-0 shadow-md overflow-hidden">
+  1032→              <div className="h-1 bg-gradient-to-r from-orange-500 to-amber-500" />
+  1033→              <CardHeader>
+  1034→                <CardTitle className="flex items-center gap-2">
+  1035→                  <BarChart3 className="w-5 h-5 text-orange-500" />
+  1036→                  {t.infographics}
+  1037→                </CardTitle>
+  1038→              </CardHeader>
+  1039→              <CardContent>
+  1040→                <p className="text-slate-500 mb-4">{t.visualDiagrams}</p>
+  1041→                <Infographic
+  1042→                  type={infographicData.type}
+  1043→                  data={infographicData.data}
+  1044→                  language={language}
+  1045→                  title={infographicData.title}
+  1046→                />
+  1047→              </CardContent>
+  1048→            </Card>
+  1049→          </motion.div>
+  1050→        )}
+  1051→
+  1052→        {/* Summary with Completion */}
+  1053→        {activeSection === "summary" && (
+  1054→          <motion.div
+  1055→            key="summary"
+  1056→            initial={{ opacity: 0, y: 20 }}
+  1057→            animate={{ opacity: 1, y: 0 }}
+  1058→            exit={{ opacity: 0, y: -20 }}
+  1059→            transition={{ duration: 0.3 }}
+  1060→          >
+  1061→            <Card className="border-0 shadow-md overflow-hidden">
+  1062→              <div className="h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
+  1063→              <CardHeader>
+  1064→                <CardTitle className="flex items-center gap-2">
+  1065→                  <Brain className="w-5 h-5 text-indigo-500" />
+  1066→                  {t.summary}
+  1067→                </CardTitle>
+  1068→              </CardHeader>
+  1069→              <CardContent>
+  1070→                <motion.div 
+  1071→                  className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950 rounded-2xl border border-indigo-200 dark:border-indigo-800"
+  1072→                  initial={{ opacity: 0, scale: 0.95 }}
+  1073→                  animate={{ opacity: 1, scale: 1 }}
+  1074→                >
+  1075→                  <p className="text-lg leading-relaxed">
+  1076→                    {language === "ar" ? lesson.summary.ar : lesson.summary.en}
+  1077→                  </p>
+  1078→                </motion.div>
+  1079→                
+  1080→                {/* Quick Review */}
+  1081→                <div className="mt-6">
+  1082→                  <h3 className="font-bold mb-4 flex items-center gap-2 text-lg">
+  1083→                    <CheckCircle className="w-5 h-5 text-emerald-500" />
+  1084→                    {language === "ar" ? "مراجعة سريعة" : "Quick Review"}
+  1085→                  </h3>
+  1086→                  <div className="grid gap-3">
+  1087→                    {(language === "ar" ? lesson.keyConcepts.ar : lesson.keyConcepts.en).slice(0, 3).map((concept, index) => (
+  1088→                      <motion.div 
+  1089→                        key={index} 
+  1090→                        className="flex items-center gap-2 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl"
+  1091→                        initial={{ opacity: 0, x: -20 }}
+  1092→                        animate={{ opacity: 1, x: 0 }}
+  1093→                        transition={{ delay: index * 0.1 }}
+  1094→                      >
+  1095→                        <CheckCircle className="w-5 h-5 text-emerald-500 shrink-0" />
+  1096→                        <span><strong>{concept.term}:</strong> {concept.definition}</span>
+  1097→                      </motion.div>
+  1098→                    ))}
+  1099→                  </div>
+  1100→                </div>
+  1101→
+  1102→                {/* Completion Section */}
+  1103→                <motion.div 
+  1104→                  className="mt-8 p-6 rounded-2xl border-2 border-dashed border-emerald-300 dark:border-emerald-800 bg-gradient-to-r from-emerald-50/50 to-teal-50/50 dark:from-emerald-950/50 dark:to-teal-950/50"
+  1105→                  initial={{ opacity: 0, y: 20 }}
+  1106→                  animate={{ opacity: 1, y: 0 }}
+  1107→                  transition={{ delay: 0.3 }}
+  1108→                >
+  1109→                  {isCompleted ? (
+  1110→                    <motion.div 
+  1111→                      className="text-center"
+  1112→                      initial={{ scale: 0.8, opacity: 0 }}
+  1113→                      animate={{ scale: 1, opacity: 1 }}
+  1114→                    >
+  1115→                      <motion.div
+  1116→                        className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 mb-4"
+  1117→                        animate={{ scale: [1, 1.1, 1] }}
+  1118→                        transition={{ duration: 1, repeat: Infinity }}
+  1119→                      >
+  1120→                        <Trophy className="w-10 h-10 text-white" />
+  1121→                      </motion.div>
+  1122→                      <h3 className="text-2xl font-bold text-emerald-700 dark:text-emerald-300 mb-2">
+  1123→                        {t.lessonCompleted}
+  1124→                      </h3>
+  1125→                      <p className="text-slate-600 dark:text-slate-400 mb-4">
+  1126→                        {t.congratulations}
+  1127→                      </p>
+  1128→                      <div className="flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400">
+  1129→                        <Star className="w-5 h-5" />
+  1130→                        <span className="font-bold">+50 {t.pointsEarned}</span>
+  1131→                        <Star className="w-5 h-5" />
+  1132→                      </div>
+  1133→                    </motion.div>
+  1134→                  ) : (
+  1135→                    <div className="text-center">
+  1136→                      <p className="text-slate-600 dark:text-slate-400 mb-4">
+  1137→                        {language === "ar" 
+  1138→                          ? "هل أنجزت هذا الدرس؟ اضغط لإتمامه والحصول على نقاط!"
+  1139→                          : "Did you complete this lesson? Click to finish and earn points!"}
+  1140→                      </p>
+  1141→                      <motion.button
+  1142→                        onClick={handleComplete}
+  1143→                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+  1144→                        whileHover={{ scale: 1.05 }}
+  1145→                        whileTap={{ scale: 0.95 }}
+  1146→                      >
+  1147→                        <PartyPopper className="w-6 h-6" />
+  1148→                        {t.completeLesson}
+  1149→                        <Sparkles className="w-6 h-6" />
+  1150→                      </motion.button>
+  1151→                    </div>
+  1152→                  )}
+  1153→                </motion.div>
+  1154→              </CardContent>
+  1155→            </Card>
+  1156→          </motion.div>
+  1157→        )}
+  1158→      </AnimatePresence>
+  1159→
+  1160→      {/* Navigation Buttons */}
+  1161→      <div className="flex justify-between items-center pt-4">
+  1162→        <Button 
+  1163→          variant="outline" 
+  1164→          onClick={() => {
+  1165→            const currentIndex = sections.findIndex(s => s.value === activeSection);
+  1166→            if (currentIndex > 0) {
+  1167→              handleSectionChange(sections[currentIndex - 1].value);
+  1168→            }
+  1169→          }}
+  1170→          disabled={activeSection === "intro"}
+  1171→          className="gap-2"
+  1172→        >
+  1173→          {dir === "rtl" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+  1174→          {language === "ar" ? "السابق" : "Previous"}
+  1175→        </Button>
+  1176→
+  1177→        <Button 
+  1178→          variant="outline" 
+  1179→          onClick={() => {
+  1180→            const currentIndex = sections.findIndex(s => s.value === activeSection);
+  1181→            if (currentIndex < sections.length - 1) {
+  1182→              handleSectionChange(sections[currentIndex + 1].value);
+  1183→            }
+  1184→          }}
+  1185→          disabled={activeSection === "summary"}
+  1186→          className="gap-2"
+  1187→        >
+  1188→          {language === "ar" ? "التالي" : "Next"}
+  1189→          {dir === "rtl" ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+  1190→        </Button>
+  1191→      </div>
+  1192→    </div>
+  1193→  );
+  1194→}
+  1195→

@@ -1,0 +1,1478 @@
+
+[1] 📖 الدرس 1: الموجات (الفيزياء)
+    ✅ Saved
+
+[2] 📖 الدرس 2: البصريات (الفيزياء)
+    ❌ Error: No JSON
+
+[3] 📖 الدرس 3: البصريات (الفيزياء)
+    ✅ Saved
+
+[4] 📖 الدرس 4: البصريات (الفيزياء)
+    ✅ Saved
+
+[5] 📖 الدرس 1: البنية الذرية (الكيمياء)
+    ✅ Saved
+
+[6] 📖 الدرس 2: البنية الذرية (الكيمياء)
+    ✅ Saved
+
+[7] 📖 الدرس 3: البنية الذرية (الكيمياء)
+    ✅ Saved
+
+[8] 📖 الدرس 4: البنية الذرية (الكيمياء)
+    ✅ Saved
+
+[9] 📖 الدرس 1: الروابط الكيميائية (الكيمياء)
+    ✅ Saved
+
+[10] 📖 الدرس 2: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[11] 📖 الدرس 3: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[12] 📖 الدرس 1: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[13] 📖 الدرس 2: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[14] 📖 الدرس 3: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[15] 📖 الدرس 4: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[16] 📖 الدرس 1: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[17] 📖 الدرس 2: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[18] 📖 الدرس 1: مقدمة في الفلسفة (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[19] 📖 الدرس 2: مقدمة في الفلسفة (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[20] 📖 الدرس 1: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[21] 📖 الدرس 2: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[22] 📖 الدرس 3: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[23] 📖 الدرس 4: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[24] 📖 الدرس 1: الأخلاق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[25] 📖 الدرس 2: الأخلاق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[26] 📖 الدرس 1: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[27] 📖 الدرس 2: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[28] 📖 الدرس 1: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[29] 📖 الدرس 2: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[30] 📖 الدرس 3: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[31] 📖 الدرس 4: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[32] 📖 الدرس 1: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[33] 📖 الدرس 2: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[34] 📖 الدرس 3: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[35] 📖 الدرس 1: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[36] 📖 الدرس 2: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[37] 📖 الدرس 3: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[38] 📖 الدرس 4: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[39] 📖 الدرس 1: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[40] 📖 الدرس 2: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[41] 📖 الدرس 3: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[42] 📖 الدرس 4: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[43] 📖 الدرس 1: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[44] 📖 الدرس 2: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[45] 📖 الدرس 3: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[46] 📖 الدرس 4: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[47] 📖 الدرس 1: السلوك الإنساني (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[48] 📖 الدرس 2: السلوك الإنساني (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[49] 📖 الدرس 1: وحدة النحو (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[50] 📖 الدرس 2: وحدة النحو (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[51] 📖 الدرس 3: وحدة النحو (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[52] 📖 الدرس 1: وحدة البلاغة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[53] 📖 الدرس 2: وحدة البلاغة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[54] 📖 الدرس 3: وحدة البلاغة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[55] 📖 الدرس 1: وحدة الأدب (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[56] 📖 الدرس 2: وحدة الأدب (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[57] 📖 الدرس 1: وحدة القراءة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[58] 📖 الدرس 2: وحدة القراءة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[59] 📖 الدرس 3: وحدة القراءة (اللغة العربية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[60] 📖 الدرس 1: الجبر (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[61] 📖 الدرس 2: الجبر (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[62] 📖 الدرس 1: الهندسة (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[63] 📖 الدرس 2: الهندسة (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[64] 📖 الدرس 3: الهندسة (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[65] 📖 الدرس 1: التفاضل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[66] 📖 الدرس 2: التفاضل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[67] 📖 الدرس 3: التفاضل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[68] 📖 الدرس 4: التفاضل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[69] 📖 الدرس 1: التكامل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[70] 📖 الدرس 2: التكامل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[71] 📖 الدرس 3: التكامل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[72] 📖 الدرس 4: التكامل (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[73] 📖 الدرس 1: الاحتمالات (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[74] 📖 الدرس 2: الاحتمالات (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[75] 📖 الدرس 3: الاحتمالات (الرياضيات)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[76] 📖 الدرس 1: الجبر والمعادلات (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[77] 📖 الدرس 2: الجبر والمعادلات (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[78] 📖 الدرس 1: الهندسة التحليلية (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[79] 📖 الدرس 2: الهندسة التحليلية (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[80] 📖 الدرس 3: الهندسة التحليلية (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[81] 📖 الدرس 1: التفاضل (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[82] 📖 الدرس 2: التفاضل (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[83] 📖 الدرس 3: التفاضل (الرياضيات (1))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[84] 📖 الدرس 1: الحضارة المصرية القديمة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[85] 📖 الدرس 2: الحضارة المصرية القديمة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[86] 📖 الدرس 3: الحضارة المصرية القديمة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[87] 📖 الدرس 1: الحضارة الإسلامية (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[88] 📖 الدرس 2: الحضارة الإسلامية (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[89] 📖 الدرس 3: الحضارة الإسلامية (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[90] 📖 الدرس 4: الحضارة الإسلامية (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[91] 📖 الدرس 1: مصر الحديثة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[92] 📖 الدرس 2: مصر الحديثة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[93] 📖 الدرس 3: مصر الحديثة (التاريخ)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[94] 📖 الدرس 1: Grammar Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[95] 📖 الدرس 2: Grammar Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[96] 📖 الدرس 3: Grammar Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[97] 📖 الدرس 4: Grammar Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[98] 📖 الدرس 1: Reading Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[99] 📖 الدرس 2: Reading Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[100] 📖 الدرس 1: Writing Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[101] 📖 الدرس 2: Writing Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[102] 📖 الدرس 3: Writing Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[103] 📖 الدرس 1: Vocabulary Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[104] 📖 الدرس 2: Vocabulary Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[105] 📖 الدرس 3: Vocabulary Unit (اللغة الإنجليزية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[106] 📖 الدرس 1: الخلية (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[107] 📖 الدرس 2: الخلية (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[108] 📖 الدرس 3: الخلية (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[109] 📖 الدرس 1: الوراثة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[110] 📖 الدرس 2: الوراثة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[111] 📖 الدرس 3: الوراثة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[112] 📖 الدرس 4: الوراثة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[113] 📖 الدرس 1: الأنظمة الحيوية (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[114] 📖 الدرس 2: الأنظمة الحيوية (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[115] 📖 الدرس 1: البيئة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[116] 📖 الدرس 2: البيئة (الأحياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[117] 📖 الدرس 1: التكامل (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[118] 📖 الدرس 2: التكامل (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[119] 📖 الدرس 3: التكامل (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[120] 📖 الدرس 4: التكامل (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[121] 📖 الدرس 1: المعادلات التفاضلية (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[122] 📖 الدرس 2: المعادلات التفاضلية (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[123] 📖 الدرس 3: المعادلات التفاضلية (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[124] 📖 الدرس 1: التوافقيات (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[125] 📖 الدرس 2: التوافقيات (الرياضيات (2))
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[126] 📖 الدرس 1: جغرافيا مصر (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[127] 📖 الدرس 2: جغرافيا مصر (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[128] 📖 الدرس 3: جغرافيا مصر (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[129] 📖 الدرس 4: جغرافيا مصر (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[130] 📖 الدرس 1: جغرافيا العالم (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[131] 📖 الدرس 2: جغرافيا العالم (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[132] 📖 الدرس 3: جغرافيا العالم (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[133] 📖 الدرس 4: جغرافيا العالم (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[134] 📖 الدرس 1: الخرائط (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[135] 📖 الدرس 2: الخرائط (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[136] 📖 الدرس 3: الخرائط (الجغرافيا)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[137] 📖 الدرس 1: الوحدة الأولى (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[138] 📖 الدرس 2: الوحدة الأولى (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[139] 📖 الدرس 3: الوحدة الأولى (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[140] 📖 الدرس 1: الوحدة الثانية (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[141] 📖 الدرس 2: الوحدة الثانية (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[142] 📖 الدرس 3: الوحدة الثانية (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[143] 📖 الدرس 4: الوحدة الثانية (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[144] 📖 الدرس 1: الوحدة الثالثة (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[145] 📖 الدرس 2: الوحدة الثالثة (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[146] 📖 الدرس 3: الوحدة الثالثة (اللغة الثانية)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[147] 📖 الدرس 1: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[148] 📖 الدرس 2: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[149] 📖 الدرس 1: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[150] 📖 الدرس 2: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[151] 📖 الدرس 3: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[152] 📖 الدرس 1: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[153] 📖 الدرس 2: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[154] 📖 الدرس 3: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[155] 📖 الدرس 4: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[156] 📖 الدرس 1: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[157] 📖 الدرس 2: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[158] 📖 الدرس 1: البصريات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[159] 📖 الدرس 2: البصريات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[160] 📖 الدرس 3: البصريات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[161] 📖 الدرس 1: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[162] 📖 الدرس 2: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[163] 📖 الدرس 3: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[164] 📖 الدرس 4: الميكانيكا (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[165] 📖 الدرس 1: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[166] 📖 الدرس 2: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[167] 📖 الدرس 3: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[168] 📖 الدرس 4: الكهربية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[169] 📖 الدرس 1: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[170] 📖 الدرس 2: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[171] 📖 الدرس 3: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[172] 📖 الدرس 4: المغناطيسية (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[173] 📖 الدرس 1: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[174] 📖 الدرس 2: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[175] 📖 الدرس 3: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[176] 📖 الدرس 4: الموجات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[177] 📖 الدرس 1: البصريات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[178] 📖 الدرس 2: البصريات (الفيزياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[179] 📖 الدرس 1: مقدمة في الفلسفة (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[180] 📖 الدرس 2: مقدمة في الفلسفة (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[181] 📖 الدرس 1: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[182] 📖 الدرس 2: المنطق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[183] 📖 الدرس 1: الأخلاق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[184] 📖 الدرس 2: الأخلاق (الفلسفة)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[185] 📖 الدرس 1: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[186] 📖 الدرس 2: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[187] 📖 الدرس 1: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[188] 📖 الدرس 2: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[189] 📖 الدرس 3: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[190] 📖 الدرس 4: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[191] 📖 الدرس 1: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[192] 📖 الدرس 2: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[193] 📖 الدرس 1: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[194] 📖 الدرس 2: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[195] 📖 الدرس 3: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[196] 📖 الدرس 4: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[197] 📖 الدرس 1: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[198] 📖 الدرس 2: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[199] 📖 الدرس 3: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[200] 📖 الدرس 4: البنية الذرية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[201] 📖 الدرس 1: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[202] 📖 الدرس 2: الروابط الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[203] 📖 الدرس 1: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[204] 📖 الدرس 2: التفاعلات الكيميائية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[205] 📖 الدرس 1: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[206] 📖 الدرس 2: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[207] 📖 الدرس 3: الكيمياء العضوية (الكيمياء)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[208] 📖 الدرس 1: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[209] 📖 الدرس 2: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[210] 📖 الدرس 3: علم النفس (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[211] 📖 الدرس 1: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[212] 📖 الدرس 2: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[213] 📖 الدرس 3: علم الاجتماع (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[214] 📖 الدرس 1: السلوك الإنساني (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[215] 📖 الدرس 2: السلوك الإنساني (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+[216] 📖 الدرس 3: السلوك الإنساني (علم النفس والاجتماع)
+Failed to make API request: Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+    at ZAI.createChatCompletion (/home/z/my-project/node_modules/z-ai-web-dev-sdk/dist/index.js:103:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async main (/home/z/my-project/scripts/robust-generate.ts:43:32)
+    ❌ Error: API request failed with status 429: {"error":"Too many requests, please try again later"}
+
+✅ All lessons complete! Total generated: 8

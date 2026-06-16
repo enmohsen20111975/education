@@ -1,0 +1,570 @@
+     1→"use client";
+     2→
+     3→import { LanguageProvider, useLanguage } from "@/lib/i18n";
+     4→import { Button } from "@/components/ui/button";
+     5→import { Card, CardContent } from "@/components/ui/card";
+     6→import { Badge } from "@/components/ui/badge";
+     7→import { Progress } from "@/components/ui/progress";
+     8→import { 
+     9→  BookOpen, Play, FlaskConical, ChevronLeft, ChevronRight, Globe, User,
+    10→  Atom, Calculator, Beaker, Lock, CheckCircle, Clock, Brain
+    11→} from "lucide-react";
+    12→import { useState } from "react";
+    13→import { LessonView } from "@/components/LessonView";
+    14→import { lessonsData, type LessonContent } from "@/data/lessons";
+    15→import MindMap, { MIND_MAPS, type MindMapType } from "@/components/MindMap";
+    16→
+    17→// بيانات المواد العلمية
+    18→const subjects = [
+    19→  { 
+    20→    id: "physics", 
+    21→    nameAr: "الفيزياء", 
+    22→    nameEn: "Physics",
+    23→    icon: Atom,
+    24→    color: "from-emerald-500 to-teal-600",
+    25→  },
+    26→  { 
+    27→    id: "math", 
+    28→    nameAr: "الرياضيات", 
+    29→    nameEn: "Mathematics",
+    30→    icon: Calculator,
+    31→    color: "from-blue-500 to-indigo-600",
+    32→  },
+    33→  { 
+    34→    id: "chemistry", 
+    35→    nameAr: "الكيمياء", 
+    36→    nameEn: "Chemistry",
+    37→    icon: Beaker,
+    38→    color: "from-purple-500 to-pink-600",
+    39→  },
+    40→];
+    41→
+    42→// بيانات الخرائط الذهنية المتاحة
+    43→const mindMapsList: { id: MindMapType; nameAr: string; nameEn: string; color: string }[] = [
+    44→  { id: "motion", nameAr: "الحركة", nameEn: "Motion", color: "bg-emerald-500" },
+    45→  { id: "energy", nameAr: "الطاقة", nameEn: "Energy", color: "bg-purple-500" },
+    46→  { id: "atom", nameAr: "الذرة", nameEn: "Atom", color: "bg-cyan-500" },
+    47→];
+    48→
+    49→// بيانات وهمية للتقدم
+    50→const mockProgress = {
+    51→  completedLessons: ["motion-intro", "velocity-acceleration"],
+    52→  currentLesson: "equations-motion",
+    53→};
+    54→
+    55→function DashboardContent() {
+    56→  const { language, setLanguage, t, dir } = useLanguage();
+    57→  const [activeTab, setActiveTab] = useState<"dashboard" | "lessons" | "mindmaps">("dashboard");
+    58→  const [selectedLesson, setSelectedLesson] = useState<LessonContent | null>(null);
+    59→  const [selectedSubject, setSelectedSubject] = useState<string>("physics");
+    60→  const [selectedMindMap, setSelectedMindMap] = useState<MindMapType>("motion");
+    61→
+    62→  // Group lessons by unit
+    63→  const groupedLessons = lessonsData.reduce((acc, lesson) => {
+    64→    if (!acc[lesson.unit]) {
+    65→      acc[lesson.unit] = [];
+    66→    }
+    67→    acc[lesson.unit].push(lesson);
+    68→    return acc;
+    69→  }, {} as Record<string, LessonContent[]>);
+    70→
+    71→  // Get unique units
+    72→  const units = [...new Set(lessonsData.map(l => l.unit))];
+    73→
+    74→  // Progress calculation
+    75→  const totalLessons = lessonsData.length;
+    76→  const completedCount = mockProgress.completedLessons.length;
+    77→  const progressPercentage = (completedCount / totalLessons) * 100;
+    78→
+    79→  // If a lesson is selected, show the lesson view
+    80→  if (selectedLesson) {
+    81→    return (
+    82→      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900" dir={dir}>
+    83→        <div className="container mx-auto px-4 py-6">
+    84→          <LessonView 
+    85→            lesson={selectedLesson} 
+    86→            language={language} 
+    87→            onBack={() => setSelectedLesson(null)} 
+    88→          />
+    89→        </div>
+    90→      </div>
+    91→    );
+    92→  }
+    93→
+    94→  return (
+    95→    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900" dir={dir}>
+    96→      {/* Header */}
+    97→      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-sm dark:bg-slate-900/80">
+    98→        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+    99→          {/* Logo */}
+   100→          <div className="flex items-center gap-2">
+   101→            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
+   102→              <BookOpen className="w-6 h-6 text-white" />
+   103→            </div>
+   104→            <div>
+   105→              <h1 className="font-bold text-lg text-slate-900 dark:text-white">
+   106→                {language === "ar" ? "ثانوية تفاعلية" : "Interactive HS"}
+   107→              </h1>
+   108→              <p className="text-xs text-slate-500">
+   109→                {language === "ar" ? "منصة تعليمية تفاعلية" : "Interactive Learning Platform"}
+   110→              </p>
+   111→            </div>
+   112→          </div>
+   113→
+   114→          {/* Navigation */}
+   115→          <nav className="hidden md:flex items-center gap-1">
+   116→            <Button 
+   117→              variant={activeTab === "dashboard" ? "default" : "ghost"} 
+   118→              onClick={() => setActiveTab("dashboard")}
+   119→              className={activeTab === "dashboard" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   120→            >
+   121→              {t("nav.home")}
+   122→            </Button>
+   123→            <Button 
+   124→              variant={activeTab === "lessons" ? "default" : "ghost"} 
+   125→              onClick={() => setActiveTab("lessons")}
+   126→              className={activeTab === "lessons" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   127→            >
+   128→              {language === "ar" ? "الدروس" : "Lessons"}
+   129→            </Button>
+   130→            <Button 
+   131→              variant={activeTab === "mindmaps" ? "default" : "ghost"} 
+   132→              onClick={() => setActiveTab("mindmaps")}
+   133→              className={activeTab === "mindmaps" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   134→            >
+   135→              <Brain className="w-4 h-4 mr-2" />
+   136→              {language === "ar" ? "خرائط ذهنية" : "Mind Maps"}
+   137→            </Button>
+   138→          </nav>
+   139→
+   140→          {/* Actions */}
+   141→          <div className="flex items-center gap-2">
+   142→            <Button
+   143→              variant="outline"
+   144→              size="icon"
+   145→              onClick={() => setLanguage(language === "ar" ? "en" : "ar")}
+   146→              className="rounded-full"
+   147→            >
+   148→              <Globe className="w-4 h-4" />
+   149→            </Button>
+   150→            <Button variant="outline" size="icon" className="rounded-full">
+   151→              <User className="w-4 h-4" />
+   152→            </Button>
+   153→          </div>
+   154→        </div>
+   155→      </header>
+   156→
+   157→      {/* Main Content */}
+   158→      <main className="container mx-auto px-4 py-6 pb-24">
+   159→        {/* Dashboard Tab */}
+   160→        {activeTab === "dashboard" && (
+   161→          <div className="space-y-8">
+   162→            {/* Welcome Banner */}
+   163→            <Card className="border-0 shadow-lg overflow-hidden">
+   164→              <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 p-8 text-white">
+   165→                <h2 className="text-3xl font-bold mb-2">{t("dashboard.welcome")}</h2>
+   166→                <p className="text-emerald-100 text-lg">{t("dashboard.subtitle")}</p>
+   167→                <div className="mt-6 flex gap-4">
+   168→                  <Button 
+   169→                    className="bg-white text-emerald-600 hover:bg-emerald-50"
+   170→                    onClick={() => setActiveTab("lessons")}
+   171→                  >
+   172→                    {language === "ar" ? "ابدأ التعلم" : "Start Learning"}
+   173→                    {dir === "rtl" ? <ChevronLeft className="w-4 h-4 mr-2" /> : <ChevronRight className="w-4 h-4 ml-2" />}
+   174→                  </Button>
+   175→                </div>
+   176→              </div>
+   177→            </Card>
+   178→
+   179→            {/* Progress Stats */}
+   180→            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+   181→              <Card className="border-0 shadow-md">
+   182→                <CardContent className="p-6">
+   183→                  <div className="flex items-center justify-between mb-2">
+   184→                    <span className="text-slate-500">{language === "ar" ? "تقدمك الكلي" : "Your Progress"}</span>
+   185→                    <span className="text-2xl font-bold">{completedCount}/{totalLessons}</span>
+   186→                  </div>
+   187→                  <Progress value={progressPercentage} className="h-3" />
+   188→                </CardContent>
+   189→              </Card>
+   190→              
+   191→              <Card className="border-0 shadow-md">
+   192→                <CardContent className="p-6">
+   193→                  <div className="flex items-center gap-3">
+   194→                    <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
+   195→                      <CheckCircle className="w-6 h-6 text-emerald-600" />
+   196→                    </div>
+   197→                    <div>
+   198→                      <p className="text-slate-500 text-sm">{language === "ar" ? "دروس مكتملة" : "Completed"}</p>
+   199→                      <p className="text-2xl font-bold">{completedCount}</p>
+   200→                    </div>
+   201→                  </div>
+   202→                </CardContent>
+   203→              </Card>
+   204→              
+   205→              <Card className="border-0 shadow-md">
+   206→                <CardContent className="p-6">
+   207→                  <div className="flex items-center gap-3">
+   208→                    <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
+   209→                      <Clock className="w-6 h-6 text-amber-600" />
+   210→                    </div>
+   211→                    <div>
+   212→                      <p className="text-slate-500 text-sm">{language === "ar" ? "ساعات التعلم" : "Study Hours"}</p>
+   213→                      <p className="text-2xl font-bold">2.5</p>
+   214→                    </div>
+   215→                  </div>
+   216→                </CardContent>
+   217→              </Card>
+   218→            </div>
+   219→
+   220→            {/* Subjects Grid */}
+   221→            <div>
+   222→              <h2 className="text-2xl font-bold mb-4">
+   223→                {language === "ar" ? "المواد الدراسية" : "Subjects"}
+   224→              </h2>
+   225→              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+   226→                {subjects.map((subject) => {
+   227→                  const lessonCount = lessonsData.filter(l => l.subject === subject.id).length;
+   228→                  return (
+   229→                    <Card 
+   230→                      key={subject.id}
+   231→                      className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+   232→                      onClick={() => { setSelectedSubject(subject.id); setActiveTab("lessons"); }}
+   233→                    >
+   234→                      <CardContent className="p-6">
+   235→                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${subject.color} flex items-center justify-center mb-4`}>
+   236→                          <subject.icon className="w-8 h-8 text-white" />
+   237→                        </div>
+   238→                        <h3 className="text-xl font-bold mb-1">
+   239→                          {language === "ar" ? subject.nameAr : subject.nameEn}
+   240→                        </h3>
+   241→                        <p className="text-slate-500">
+   242→                          {lessonCount} {language === "ar" ? "درس" : "lessons"}
+   243→                        </p>
+   244→                      </CardContent>
+   245→                    </Card>
+   246→                  );
+   247→                })}
+   248→              </div>
+   249→            </div>
+   250→
+   251→            {/* Mind Maps Preview */}
+   252→            <div>
+   253→              <div className="flex items-center justify-between mb-4">
+   254→                <h2 className="text-2xl font-bold">
+   255→                  {language === "ar" ? "الخرائط الذهنية" : "Mind Maps"}
+   256→                </h2>
+   257→                <Button 
+   258→                  variant="outline" 
+   259→                  onClick={() => setActiveTab("mindmaps")}
+   260→                  className="gap-2"
+   261→                >
+   262→                  {language === "ar" ? "عرض الكل" : "View All"}
+   263→                  {dir === "rtl" ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+   264→                </Button>
+   265→              </div>
+   266→              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+   267→                {mindMapsList.map((map) => (
+   268→                  <Card 
+   269→                    key={map.id}
+   270→                    className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
+   271→                    onClick={() => { setSelectedMindMap(map.id); setActiveTab("mindmaps"); }}
+   272→                  >
+   273→                    <CardContent className="p-6">
+   274→                      <div className={`w-12 h-12 rounded-xl ${map.color} flex items-center justify-center mb-4`}>
+   275→                        <Brain className="w-6 h-6 text-white" />
+   276→                      </div>
+   277→                      <h3 className="text-lg font-bold">
+   278→                        {language === "ar" ? map.nameAr : map.nameEn}
+   279→                      </h3>
+   280→                      <p className="text-slate-500 text-sm">
+   281→                        {language === "ar" ? "خريطة تفاعلية" : "Interactive mind map"}
+   282→                      </p>
+   283→                    </CardContent>
+   284→                  </Card>
+   285→                ))}
+   286→              </div>
+   287→            </div>
+   288→
+   289→            {/* Continue Learning */}
+   290→            <div>
+   291→              <h2 className="text-2xl font-bold mb-4">
+   292→                {language === "ar" ? "استمر في التعلم" : "Continue Learning"}
+   293→              </h2>
+   294→              {lessonsData.find(l => l.id === mockProgress.currentLesson) && (
+   295→                <Card 
+   296→                  className="border-0 shadow-md cursor-pointer hover:shadow-xl transition-all"
+   297→                  onClick={() => setSelectedLesson(lessonsData.find(l => l.id === mockProgress.currentLesson)!)}
+   298→                >
+   299→                  <CardContent className="p-6">
+   300→                    <div className="flex items-center gap-4">
+   301→                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+   302→                        <Play className="w-8 h-8 text-white" />
+   303→                      </div>
+   304→                      <div className="flex-1">
+   305→                        <Badge className="mb-2">{language === "ar" ? "الدرس التالي" : "Next Lesson"}</Badge>
+   306→                        <h3 className="text-xl font-bold">
+   307→                          {language === "ar" 
+   308→                            ? lessonsData.find(l => l.id === mockProgress.currentLesson)?.titleAr
+   309→                            : lessonsData.find(l => l.id === mockProgress.currentLesson)?.titleEn}
+   310→                        </h3>
+   311→                        <p className="text-slate-500">
+   312→                          {lessonsData.find(l => l.id === mockProgress.currentLesson)?.duration} {language === "ar" ? "دقيقة" : "min"}
+   313→                        </p>
+   314→                      </div>
+   315→                      <Button className="bg-emerald-600 hover:bg-emerald-700">
+   316→                        {language === "ar" ? "ابدأ" : "Start"}
+   317→                        {dir === "rtl" ? <ChevronLeft className="w-4 h-4 mr-2" /> : <ChevronRight className="w-4 h-4 ml-2" />}
+   318→                      </Button>
+   319→                    </div>
+   320→                  </CardContent>
+   321→                </Card>
+   322→              )}
+   323→            </div>
+   324→          </div>
+   325→        )}
+   326→
+   327→        {/* Lessons Tab */}
+   328→        {activeTab === "lessons" && (
+   329→          <div className="space-y-6">
+   330→            <h2 className="text-2xl font-bold">
+   331→              {language === "ar" ? "قائمة الدروس" : "Lessons List"}
+   332→            </h2>
+   333→
+   334→            {/* Subject Filter */}
+   335→            <div className="flex gap-2 flex-wrap">
+   336→              <Button
+   337→                variant={selectedSubject === "all" ? "default" : "outline"}
+   338→                onClick={() => setSelectedSubject("all")}
+   339→                className={selectedSubject === "all" ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   340→              >
+   341→                {language === "ar" ? "الكل" : "All"}
+   342→              </Button>
+   343→              {subjects.map((subject) => (
+   344→                <Button
+   345→                  key={subject.id}
+   346→                  variant={selectedSubject === subject.id ? "default" : "outline"}
+   347→                  onClick={() => setSelectedSubject(subject.id)}
+   348→                  className={selectedSubject === subject.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   349→                >
+   350→                  {language === "ar" ? subject.nameAr : subject.nameEn}
+   351→                </Button>
+   352→              ))}
+   353→            </div>
+   354→
+   355→            {/* Lessons by Unit */}
+   356→            {units.map((unit) => {
+   357→              const unitLessons = groupedLessons[unit] || [];
+   358→              const filteredLessons = selectedSubject === "all" 
+   359→                ? unitLessons 
+   360→                : unitLessons.filter(l => l.subject === selectedSubject);
+   361→              
+   362→              if (filteredLessons.length === 0) return null;
+   363→
+   364→              const unitInfo = filteredLessons[0];
+   365→              
+   366→              return (
+   367→                <div key={unit} className="space-y-3">
+   368→                  <h3 className="text-lg font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+   369→                    <div className={`w-3 h-3 rounded-full ${
+   370→                      unit === "mechanics" ? "bg-emerald-500" : 
+   371→                      unit === "forces" ? "bg-orange-500" : 
+   372→                      unit === "energy" ? "bg-purple-500" : "bg-blue-500"
+   373→                    }`} />
+   374→                    {language === "ar" ? unitInfo.unitAr : unitInfo.unitEn}
+   375→                  </h3>
+   376→                  
+   377→                  <div className="grid gap-3">
+   378→                    {filteredLessons.map((lesson) => {
+   379→                      const isCompleted = mockProgress.completedLessons.includes(lesson.id);
+   380→                      const isLocked = !lesson.isFree && !mockProgress.completedLessons.includes(lesson.id) && lesson.order > 2;
+   381→                      
+   382→                      return (
+   383→                        <Card 
+   384→                          key={lesson.id}
+   385→                          className={`border-0 shadow-md transition-all cursor-pointer hover:shadow-lg ${
+   386→                            isLocked ? "opacity-60" : ""
+   387→                          }`}
+   388→                          onClick={() => !isLocked && setSelectedLesson(lesson)}
+   389→                        >
+   390→                          <CardContent className="p-4 flex items-center justify-between">
+   391→                            <div className="flex items-center gap-4">
+   392→                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+   393→                                isCompleted 
+   394→                                  ? "bg-emerald-100 dark:bg-emerald-900" 
+   395→                                  : isLocked 
+   396→                                    ? "bg-slate-100 dark:bg-slate-800"
+   397→                                    : "bg-amber-100 dark:bg-amber-900"
+   398→                              }`}>
+   399→                                {isCompleted ? (
+   400→                                  <CheckCircle className="w-6 h-6 text-emerald-600" />
+   401→                                ) : isLocked ? (
+   402→                                  <Lock className="w-6 h-6 text-slate-400" />
+   403→                                ) : (
+   404→                                  <Play className="w-6 h-6 text-amber-600" />
+   405→                                )}
+   406→                              </div>
+   407→                              <div>
+   408→                                <h4 className="font-semibold text-lg">
+   409→                                  {language === "ar" ? lesson.titleAr : lesson.titleEn}
+   410→                                </h4>
+   411→                                <div className="flex items-center gap-3 text-sm text-slate-500">
+   412→                                  <span className="flex items-center gap-1">
+   413→                                    <Clock className="w-4 h-4" />
+   414→                                    {lesson.duration} {language === "ar" ? "دقيقة" : "min"}
+   415→                                  </span>
+   416→                                  {lesson.isFree ? (
+   417→                                    <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700">
+   418→                                      {language === "ar" ? "مجاني" : "Free"}
+   419→                                    </Badge>
+   420→                                  ) : (
+   421→                                    <Badge variant="secondary" className="text-xs bg-amber-100 text-amber-700">
+   422→                                      {language === "ar" ? "مدفوع" : "Premium"}
+   423→                                    </Badge>
+   424→                                  )}
+   425→                                  {lesson.simulators.length > 0 && (
+   426→                                    <Badge variant="secondary" className="text-xs bg-purple-100 text-purple-700">
+   427→                                      <FlaskConical className="w-3 h-3 mr-1" />
+   428→                                      {lesson.simulators.length} {language === "ar" ? "محاكي" : "simulators"}
+   429→                                    </Badge>
+   430→                                  )}
+   431→                                </div>
+   432→                              </div>
+   433→                            </div>
+   434→                            <div className="flex items-center gap-2">
+   435→                              {isCompleted && (
+   436→                                <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-300">
+   437→                                  {language === "ar" ? "مكتمل" : "Completed"}
+   438→                                </Badge>
+   439→                              )}
+   440→                              {dir === "rtl" ? <ChevronLeft className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
+   441→                            </div>
+   442→                          </CardContent>
+   443→                        </Card>
+   444→                      );
+   445→                    })}
+   446→                  </div>
+   447→                </div>
+   448→              );
+   449→            })}
+   450→          </div>
+   451→        )}
+   452→
+   453→        {/* Mind Maps Tab */}
+   454→        {activeTab === "mindmaps" && (
+   455→          <div className="space-y-6">
+   456→            <div className="flex items-center justify-between">
+   457→              <h2 className="text-2xl font-bold">
+   458→                {language === "ar" ? "الخرائط الذهنية التفاعلية" : "Interactive Mind Maps"}
+   459→              </h2>
+   460→            </div>
+   461→
+   462→            {/* Mind Map Selector */}
+   463→            <div className="flex gap-2 flex-wrap">
+   464→              {mindMapsList.map((map) => (
+   465→                <Button
+   466→                  key={map.id}
+   467→                  variant={selectedMindMap === map.id ? "default" : "outline"}
+   468→                  onClick={() => setSelectedMindMap(map.id)}
+   469→                  className={selectedMindMap === map.id ? "bg-emerald-600 hover:bg-emerald-700" : ""}
+   470→                >
+   471→                  <Brain className="w-4 h-4 mr-2" />
+   472→                  {language === "ar" ? map.nameAr : map.nameEn}
+   473→                </Button>
+   474→              ))}
+   475→            </div>
+   476→
+   477→            {/* Mind Map Display */}
+   478→            <Card className="border-0 shadow-lg overflow-hidden">
+   479→              <CardContent className="p-0">
+   480→                <div className="h-[600px]">
+   481→                  <MindMap 
+   482→                    data={MIND_MAPS[selectedMindMap]} 
+   483→                    language={language}
+   484→                    onNodeClick={(node) => {
+   485→                      console.log("Clicked node:", node);
+   486→                    }}
+   487→                  />
+   488→                </div>
+   489→              </CardContent>
+   490→            </Card>
+   491→
+   492→            {/* Description */}
+   493→            <Card className="border-0 shadow-md bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
+   494→              <CardContent className="p-6">
+   495→                <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
+   496→                  <Brain className="w-5 h-5 text-emerald-600" />
+   497→                  {language === "ar" ? "كيفية استخدام الخريطة الذهنية" : "How to use the Mind Map"}
+   498→                </h3>
+   499→                <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+   500→                  <li className="flex items-center gap-2">
+   501→                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
+   502→                    {language === "ar" ? "انقر على العقدة لتوسيع أو طي الفروع" : "Click on a node to expand or collapse branches"}
+   503→                  </li>
+   504→                  <li className="flex items-center gap-2">
+   505→                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+   506→                    {language === "ar" ? "استخدم العجلة للتكبير والتصغير" : "Use the mouse wheel to zoom in/out"}
+   507→                  </li>
+   508→                  <li className="flex items-center gap-2">
+   509→                    <span className="w-2 h-2 rounded-full bg-purple-500" />
+   510→                    {language === "ar" ? "اسحب لتحريك الخريطة" : "Drag to pan the map"}
+   511→                  </li>
+   512→                  <li className="flex items-center gap-2">
+   513→                    <span className="w-2 h-2 rounded-full bg-amber-500" />
+   514→                    {language === "ar" ? "استخدم زر 'توسيع الكل' لعرض كل الفروع" : "Use 'Expand All' button to show all branches"}
+   515→                  </li>
+   516→                </ul>
+   517→              </CardContent>
+   518→            </Card>
+   519→          </div>
+   520→        )}
+   521→      </main>
+   522→
+   523→      {/* Mobile Navigation */}
+   524→      <nav className="fixed bottom-0 left-0 right-0 border-t bg-white dark:bg-slate-900 md:hidden">
+   525→        <div className="flex items-center justify-around py-2">
+   526→          <Button 
+   527→            variant="ghost" 
+   528→            className="flex flex-col gap-1 h-auto py-2"
+   529→            onClick={() => setActiveTab("dashboard")}
+   530→          >
+   531→            <BookOpen className={`w-5 h-5 ${activeTab === "dashboard" ? "text-emerald-600" : ""}`} />
+   532→            <span className="text-xs">{t("nav.home")}</span>
+   533→          </Button>
+   534→          <Button 
+   535→            variant="ghost" 
+   536→            className="flex flex-col gap-1 h-auto py-2"
+   537→            onClick={() => setActiveTab("lessons")}
+   538→          >
+   539→            <Play className={`w-5 h-5 ${activeTab === "lessons" ? "text-emerald-600" : ""}`} />
+   540→            <span className="text-xs">{language === "ar" ? "الدروس" : "Lessons"}</span>
+   541→          </Button>
+   542→          <Button 
+   543→            variant="ghost" 
+   544→            className="flex flex-col gap-1 h-auto py-2"
+   545→            onClick={() => setActiveTab("mindmaps")}
+   546→          >
+   547→            <Brain className={`w-5 h-5 ${activeTab === "mindmaps" ? "text-emerald-600" : ""}`} />
+   548→            <span className="text-xs">{language === "ar" ? "خرائط" : "Mind Maps"}</span>
+   549→          </Button>
+   550→        </div>
+   551→      </nav>
+   552→
+   553→      {/* Footer */}
+   554→      <footer className="border-t bg-white dark:bg-slate-900 py-4 hidden md:block">
+   555→        <div className="container mx-auto px-4 text-center text-sm text-slate-500">
+   556→          © 2024 {language === "ar" ? "ثانوية تفاعلية" : "Interactive High School"}. {t("footer.rights")}
+   557→        </div>
+   558→      </footer>
+   559→    </div>
+   560→  );
+   561→}
+   562→
+   563→export default function Home() {
+   564→  return (
+   565→    <LanguageProvider>
+   566→      <DashboardContent />
+   567→    </LanguageProvider>
+   568→  );
+   569→}
+   570→

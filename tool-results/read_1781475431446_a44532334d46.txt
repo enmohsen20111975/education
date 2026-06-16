@@ -1,0 +1,2002 @@
+     1→// Comprehensive Mind Maps Data for SmartEdu Platform
+     2→// Bilingual (Arabic/English) educational mind maps
+     3→
+     4→// Types
+     5→export interface MindMapNode {
+     6→  id: string;
+     7→  text: string;
+     8→  textAr: string;
+     9→  x: number;
+    10→  y: number;
+    11→  color: string;
+    12→  children?: MindMapNode[];
+    13→}
+    14→
+    15→export interface MindMapData {
+    16→  id: string;
+    17→  title: string;
+    18→  titleAr: string;
+    19→  subject: string;
+    20→  subjectAr: string;
+    21→  data: MindMapNode;
+    22→}
+    23→
+    24→// Branch colors palette
+    25→const COLORS = {
+    26→  emerald: "#10b981",
+    27→  blue: "#3b82f6",
+    28→  purple: "#8b5cf6",
+    29→  amber: "#f59e0b",
+    30→  rose: "#f43f5e",
+    31→  cyan: "#06b6d4",
+    32→  // Lighter variants
+    33→  emeraldLight: "#34d399",
+    34→  blueLight: "#60a5fa",
+    35→  purpleLight: "#a78bfa",
+    36→  amberLight: "#fbbf24",
+    37→  roseLight: "#fb7185",
+    38→  cyanLight: "#22d3ee",
+    39→  // Extra light
+    40→  emeraldExtra: "#6ee7b7",
+    41→  blueExtra: "#93c5fd",
+    42→  purpleExtra: "#c4b5fd",
+    43→  amberExtra: "#fcd34d",
+    44→  roseExtra: "#fda4af",
+    45→  cyanExtra: "#67e8f9",
+    46→  // Lightest
+    47→  emeraldPale: "#a7f3d0",
+    48→  bluePale: "#bfdbfe",
+    49→  purplePale: "#ddd6fe",
+    50→  amberPale: "#fef3c7",
+    51→  rosePale: "#fecdd3",
+    52→  cyanPale: "#a5f3fc",
+    53→};
+    54→
+    55→// ==========================================
+    56→// PHYSICS MIND MAPS
+    57→// ==========================================
+    58→
+    59→const newtonsLaws: MindMapData = {
+    60→  id: "newtons-laws",
+    61→  title: "Newton's Laws of Motion",
+    62→  titleAr: "قوانين نيوتن للحركة",
+    63→  subject: "Physics",
+    64→  subjectAr: "الفيزياء",
+    65→  data: {
+    66→    id: "newton-root",
+    67→    text: "Newton's Laws",
+    68→    textAr: "قوانين نيوتن",
+    69→    x: 0,
+    70→    y: 0,
+    71→    color: COLORS.emerald,
+    72→    children: [
+    73→      {
+    74→        id: "first-law",
+    75→        text: "First Law",
+    76→        textAr: "القانون الأول",
+    77→        x: 0,
+    78→        y: 0,
+    79→        color: COLORS.blue,
+    80→        children: [
+    81→          { id: "inertia", text: "Inertia", textAr: "القصور الذاتي", x: 0, y: 0, color: COLORS.blueLight },
+    82→          { id: "rest-motion", text: "Rest or Uniform Motion", textAr: "سكون أو حركة منتظمة", x: 0, y: 0, color: COLORS.blueExtra },
+    83→          { id: "net-force-zero", text: "Net Force = 0", textAr: "محصلة القوى = صفر", x: 0, y: 0, color: COLORS.bluePale },
+    84→        ],
+    85→      },
+    86→      {
+    87→        id: "second-law",
+    88→        text: "Second Law",
+    89→        textAr: "القانون الثاني",
+    90→        x: 0,
+    91→        y: 0,
+    92→        color: COLORS.purple,
+    93→        children: [
+    94→          { id: "f-ma", text: "F = ma", textAr: "ق = ك × ت", x: 0, y: 0, color: COLORS.purpleLight },
+    95→          { id: "force-mass", text: "Force & Mass", textAr: "القوة والكتلة", x: 0, y: 0, color: COLORS.purpleExtra },
+    96→          { id: "acceleration", text: "Acceleration", textAr: "التسارع", x: 0, y: 0, color: COLORS.purplePale },
+    97→        ],
+    98→      },
+    99→      {
+   100→        id: "third-law",
+   101→        text: "Third Law",
+   102→        textAr: "القانون الثالث",
+   103→        x: 0,
+   104→        y: 0,
+   105→        color: COLORS.amber,
+   106→        children: [
+   107→          { id: "action-reaction", text: "Action-Reaction", textAr: "فعل ورد فعل", x: 0, y: 0, color: COLORS.amberLight },
+   108→          { id: "equal-opposite", text: "Equal & Opposite", textAr: "متساوية ومتضادة", x: 0, y: 0, color: COLORS.amberExtra },
+   109→          { id: "different-objects", text: "Different Objects", textAr: "أجسام مختلفة", x: 0, y: 0, color: COLORS.amberPale },
+   110→        ],
+   111→      },
+   112→      {
+   113→        id: "applications",
+   114→        text: "Applications",
+   115→        textAr: "التطبيقات",
+   116→        x: 0,
+   117→        y: 0,
+   118→        color: COLORS.rose,
+   119→        children: [
+   120→          { id: "free-fall", text: "Free Fall", textAr: "السقوط الحر", x: 0, y: 0, color: COLORS.roseLight },
+   121→          { id: "friction", text: "Friction", textAr: "الاحتكاك", x: 0, y: 0, color: COLORS.roseExtra },
+   122→          { id: "projectile", text: "Projectile Motion", textAr: "حركة المقذوفات", x: 0, y: 0, color: COLORS.rosePale },
+   123→        ],
+   124→      },
+   125→      {
+   126→        id: "gravity",
+   127→        text: "Gravity",
+   128→        textAr: "الجاذبية",
+   129→        x: 0,
+   130→        y: 0,
+   131→        color: COLORS.cyan,
+   132→        children: [
+   133→          { id: "universal-law", text: "Universal Law", textAr: "القانون الكوني", x: 0, y: 0, color: COLORS.cyanLight },
+   134→          { id: "g-constant", text: "G = 6.67×10⁻¹¹", textAr: "ث = 6.67×10⁻¹¹", x: 0, y: 0, color: COLORS.cyanExtra },
+   135→          { id: "weight", text: "Weight = mg", textAr: "الوزن = ك × ج", x: 0, y: 0, color: COLORS.cyanPale },
+   136→        ],
+   137→      },
+   138→    ],
+   139→  },
+   140→};
+   141→
+   142→const kinematics: MindMapData = {
+   143→  id: "kinematics",
+   144→  title: "Kinematics",
+   145→  titleAr: "الكينماتيكا",
+   146→  subject: "Physics",
+   147→  subjectAr: "الفيزياء",
+   148→  data: {
+   149→    id: "kinematics-root",
+   150→    text: "Kinematics",
+   151→    textAr: "الكينماتيكا",
+   152→    x: 0,
+   153→    y: 0,
+   154→    color: COLORS.blue,
+   155→    children: [
+   156→      {
+   157→        id: "displacement",
+   158→        text: "Displacement",
+   159→        textAr: "الإزاحة",
+   160→        x: 0,
+   161→        y: 0,
+   162→        color: COLORS.emerald,
+   163→        children: [
+   164→          { id: "vector-quantity", text: "Vector Quantity", textAr: "كمية متجهة", x: 0, y: 0, color: COLORS.emeraldLight },
+   165→          { id: "initial-final", text: "Final - Initial", textAr: "النهائي - الابتدائي", x: 0, y: 0, color: COLORS.emeraldExtra },
+   166→          { id: "direction-matters", text: "Direction Matters", textAr: "الاتجاه مهم", x: 0, y: 0, color: COLORS.emeraldPale },
+   167→        ],
+   168→      },
+   169→      {
+   170→        id: "velocity-kine",
+   171→        text: "Velocity",
+   172→        textAr: "السرعة المتجهة",
+   173→        x: 0,
+   174→        y: 0,
+   175→        color: COLORS.purple,
+   176→        children: [
+   177→          { id: "v-disp-time", text: "v = Δx/Δt", textAr: "سرعة = إزاحة/زمن", x: 0, y: 0, color: COLORS.purpleLight },
+   178→          { id: "avg-instant", text: "Average vs Instant", textAr: "المتوسطة واللحظية", x: 0, y: 0, color: COLORS.purpleExtra },
+   179→          { id: "speed-vs-vel", text: "Speed vs Velocity", textAr: "السرعة القياسية والمتجهة", x: 0, y: 0, color: COLORS.purplePale },
+   180→        ],
+   181→      },
+   182→      {
+   183→        id: "acceleration-kine",
+   184→        text: "Acceleration",
+   185→        textAr: "التسارع",
+   186→        x: 0,
+   187→        y: 0,
+   188→        color: COLORS.amber,
+   189→        children: [
+   190→          { id: "a-dv-dt", text: "a = Δv/Δt", textAr: "ت = Δسرعة/Δزمن", x: 0, y: 0, color: COLORS.amberLight },
+   191→          { id: "uniform-acc", text: "Uniform Acceleration", textAr: "تسارع منتظم", x: 0, y: 0, color: COLORS.amberExtra },
+   192→          { id: "acc-due-gravity", text: "g = 9.8 m/s²", textAr: "ج = 9.8 م/ث²", x: 0, y: 0, color: COLORS.amberPale },
+   193→        ],
+   194→      },
+   195→      {
+   196→        id: "equations-kine",
+   197→        text: "Equations of Motion",
+   198→        textAr: "معادلات الحركة",
+   199→        x: 0,
+   200→        y: 0,
+   201→        color: COLORS.rose,
+   202→        children: [
+   203→          { id: "eq1-kine", text: "v = v₀ + at", textAr: "ع = ع₀ + ت×ز", x: 0, y: 0, color: COLORS.roseLight },
+   204→          { id: "eq2-kine", text: "x = x₀ + v₀t + ½at²", textAr: "ف = ف₀ + ع₀×ز + ½ت×ز²", x: 0, y: 0, color: COLORS.roseExtra },
+   205→          { id: "eq3-kine", text: "v² = v₀² + 2aΔx", textAr: "ع² = ع₀² + 2×ت×Δف", x: 0, y: 0, color: COLORS.rosePale },
+   206→        ],
+   207→      },
+   208→      {
+   209→        id: "graphs",
+   210→        text: "Motion Graphs",
+   211→        textAr: "رسوم الحركة",
+   212→        x: 0,
+   213→        y: 0,
+   214→        color: COLORS.cyan,
+   215→        children: [
+   216→          { id: "x-t-graph", text: "x-t Graph", textAr: "رسم ف-ز", x: 0, y: 0, color: COLORS.cyanLight },
+   217→          { id: "v-t-graph", text: "v-t Graph", textAr: "رسم ع-ز", x: 0, y: 0, color: COLORS.cyanExtra },
+   218→          { id: "a-t-graph", text: "a-t Graph", textAr: "رسم ت-ز", x: 0, y: 0, color: COLORS.cyanPale },
+   219→        ],
+   220→      },
+   221→    ],
+   222→  },
+   223→};
+   224→
+   225→const energy: MindMapData = {
+   226→  id: "energy-physics",
+   227→  title: "Energy",
+   228→  titleAr: "الطاقة",
+   229→  subject: "Physics",
+   230→  subjectAr: "الفيزياء",
+   231→  data: {
+   232→    id: "energy-root",
+   233→    text: "Energy",
+   234→    textAr: "الطاقة",
+   235→    x: 0,
+   236→    y: 0,
+   237→    color: COLORS.purple,
+   238→    children: [
+   239→      {
+   240→        id: "kinetic-energy",
+   241→        text: "Kinetic Energy",
+   242→        textAr: "الطاقة الحركية",
+   243→        x: 0,
+   244→        y: 0,
+   245→        color: COLORS.blue,
+   246→        children: [
+   247→          { id: "ke-formula", text: "KE = ½mv²", textAr: "طح = ½ك×ع²", x: 0, y: 0, color: COLORS.blueLight },
+   248→          { id: "mass-depend", text: "Depends on Mass", textAr: "تعتمد على الكتلة", x: 0, y: 0, color: COLORS.blueExtra },
+   249→          { id: "vel-squared", text: "Velocity Squared", textAr: "مربع السرعة", x: 0, y: 0, color: COLORS.bluePale },
+   250→        ],
+   251→      },
+   252→      {
+   253→        id: "potential-energy",
+   254→        text: "Potential Energy",
+   255→        textAr: "الطاقة الكامنة",
+   256→        x: 0,
+   257→        y: 0,
+   258→        color: COLORS.emerald,
+   259→        children: [
+   260→          { id: "gravitational-pe", text: "Gravitational PE", textAr: "طاقة جاذبية كامنة", x: 0, y: 0, color: COLORS.emeraldLight },
+   261→          { id: "pe-formula", text: "PE = mgh", textAr: "طك = ك×ج×ف", x: 0, y: 0, color: COLORS.emeraldExtra },
+   262→          { id: "elastic-pe", text: "Elastic PE = ½kx²", textAr: "طاقة مرنة = ½ك×ف²", x: 0, y: 0, color: COLORS.emeraldPale },
+   263→        ],
+   264→      },
+   265→      {
+   266→        id: "conservation-energy",
+   267→        text: "Conservation",
+   268→        textAr: "حفظ الطاقة",
+   269→        x: 0,
+   270→        y: 0,
+   271→        color: COLORS.amber,
+   272→        children: [
+   273→          { id: "total-const", text: "Total Energy Constant", textAr: "الطاقة الكلية ثابتة", x: 0, y: 0, color: COLORS.amberLight },
+   274→          { id: "ke-pe-transform", text: "KE ↔ PE", textAr: "حو ← طك", x: 0, y: 0, color: COLORS.amberExtra },
+   275→          { id: "mechanical-e", text: "Mechanical Energy", textAr: "الطاقة الميكانيكية", x: 0, y: 0, color: COLORS.amberPale },
+   276→        ],
+   277→      },
+   278→      {
+   279→        id: "work-energy",
+   280→        text: "Work",
+   281→        textAr: "الشغل",
+   282→        x: 0,
+   283→        y: 0,
+   284→        color: COLORS.rose,
+   285→        children: [
+   286→          { id: "w-fd", text: "W = F·d·cosθ", textAr: "ش = ق×ف×جتاθ", x: 0, y: 0, color: COLORS.roseLight },
+   287→          { id: "work-theorem", text: "Work-Energy Theorem", textAr: "نظرية الشغل والطاقة", x: 0, y: 0, color: COLORS.roseExtra },
+   288→          { id: "power-energy", text: "Power = W/t", textAr: "القدرة = ش/ز", x: 0, y: 0, color: COLORS.rosePale },
+   289→        ],
+   290→      },
+   291→      {
+   292→        id: "efficiency",
+   293→        text: "Efficiency",
+   294→        textAr: "الكفاءة",
+   295→        x: 0,
+   296→        y: 0,
+   297→        color: COLORS.cyan,
+   298→        children: [
+   299→          { id: "eff-formula", text: "η = output/input", textAr: "ك = المخرج/المدخل", x: 0, y: 0, color: COLORS.cyanLight },
+   300→          { id: "energy-loss", text: "Energy Loss", textAr: "فقدان الطاقة", x: 0, y: 0, color: COLORS.cyanExtra },
+   301→          { id: "heat-loss", text: "Heat Loss", textAr: "فقدان الحرارة", x: 0, y: 0, color: COLORS.cyanPale },
+   302→        ],
+   303→      },
+   304→    ],
+   305→  },
+   306→};
+   307→
+   308→const waves: MindMapData = {
+   309→  id: "waves",
+   310→  title: "Waves",
+   311→  titleAr: "الموجات",
+   312→  subject: "Physics",
+   313→  subjectAr: "الفيزياء",
+   314→  data: {
+   315→    id: "waves-root",
+   316→    text: "Waves",
+   317→    textAr: "الموجات",
+   318→    x: 0,
+   319→    y: 0,
+   320→    color: COLORS.cyan,
+   321→    children: [
+   322→      {
+   323→        id: "wave-types",
+   324→        text: "Types of Waves",
+   325→        textAr: "أنواع الموجات",
+   326→        x: 0,
+   327→        y: 0,
+   328→        color: COLORS.blue,
+   329→        children: [
+   330→          { id: "mechanical", text: "Mechanical", textAr: "ميكانيكية", x: 0, y: 0, color: COLORS.blueLight },
+   331→          { id: "electromagnetic", text: "Electromagnetic", textAr: "كهرومغناطيسية", x: 0, y: 0, color: COLORS.blueExtra },
+   332→          { id: "matter-waves", text: "Matter Waves", textAr: "موجات مادية", x: 0, y: 0, color: COLORS.bluePale },
+   333→        ],
+   334→      },
+   335→      {
+   336→        id: "wave-properties",
+   337→        text: "Properties",
+   338→        textAr: "الخصائص",
+   339→        x: 0,
+   340→        y: 0,
+   341→        color: COLORS.emerald,
+   342→        children: [
+   343→          { id: "wavelength", text: "Wavelength (λ)", textAr: "طول الموجة (λ)", x: 0, y: 0, color: COLORS.emeraldLight },
+   344→          { id: "frequency", text: "Frequency (f)", textAr: "التردد (ت)", x: 0, y: 0, color: COLORS.emeraldExtra },
+   345→          { id: "amplitude", text: "Amplitude (A)", textAr: "السعة (س)", x: 0, y: 0, color: COLORS.emeraldPale },
+   346→        ],
+   347→      },
+   348→      {
+   349→        id: "wave-equation",
+   350→        text: "Wave Equation",
+   351→        textAr: "معادلة الموجة",
+   352→        x: 0,
+   353→        y: 0,
+   354→        color: COLORS.purple,
+   355→        children: [
+   356→          { id: "v-fl", text: "v = fλ", textAr: "س = ت×λ", x: 0, y: 0, color: COLORS.purpleLight },
+   357→          { id: "t-1-f", text: "T = 1/f", textAr: "ز = 1/ت", x: 0, y: 0, color: COLORS.purpleExtra },
+   358→          { id: "speed-medium", text: "Speed in Medium", textAr: "السرعة في الوسط", x: 0, y: 0, color: COLORS.purplePale },
+   359→        ],
+   360→      },
+   361→      {
+   362→        id: "wave-behaviors",
+   363→        text: "Behaviors",
+   364→        textAr: "السلوكيات",
+   365→        x: 0,
+   366→        y: 0,
+   367→        color: COLORS.amber,
+   368→        children: [
+   369→          { id: "reflection-wave", text: "Reflection", textAr: "الانعكاس", x: 0, y: 0, color: COLORS.amberLight },
+   370→          { id: "refraction-wave", text: "Refraction", textAr: "الانكسار", x: 0, y: 0, color: COLORS.amberExtra },
+   371→          { id: "diffraction", text: "Diffraction", textAr: "الحيود", x: 0, y: 0, color: COLORS.amberPale },
+   372→          { id: "interference", text: "Interference", textAr: "التراكب", x: 0, y: 0, color: COLORS.amber },
+   373→        ],
+   374→      },
+   375→      {
+   376→        id: "sound-waves",
+   377→        text: "Sound Waves",
+   378→        textAr: "موجات الصوت",
+   379→        x: 0,
+   380→        y: 0,
+   381→        color: COLORS.rose,
+   382→        children: [
+   383→          { id: "longitudinal", text: "Longitudinal", textAr: "طولية", x: 0, y: 0, color: COLORS.roseLight },
+   384→          { id: "doppler", text: "Doppler Effect", textAr: "تأثير دوبلر", x: 0, y: 0, color: COLORS.roseExtra },
+   385→          { id: "resonance", text: "Resonance", textAr: "الرنين", x: 0, y: 0, color: COLORS.rosePale },
+   386→        ],
+   387→      },
+   388→    ],
+   389→  },
+   390→};
+   391→
+   392→const electricity: MindMapData = {
+   393→  id: "electricity",
+   394→  title: "Electricity",
+   395→  titleAr: "الكهرباء",
+   396→  subject: "Physics",
+   397→  subjectAr: "الفيزياء",
+   398→  data: {
+   399→    id: "electricity-root",
+   400→    text: "Electricity",
+   401→    textAr: "الكهرباء",
+   402→    x: 0,
+   403→    y: 0,
+   404→    color: COLORS.amber,
+   405→    children: [
+   406→      {
+   407→        id: "electric-charge",
+   408→        text: "Electric Charge",
+   409→        textAr: "الشحنة الكهربائية",
+   410→        x: 0,
+   411→        y: 0,
+   412→        color: COLORS.blue,
+   413→        children: [
+   414→          { id: "positive-charge", text: "Positive (+)", textAr: "موجبة (+)", x: 0, y: 0, color: COLORS.blueLight },
+   415→          { id: "negative-charge", text: "Negative (-)", textAr: "سالبة (-)", x: 0, y: 0, color: COLORS.blueExtra },
+   416→          { id: "coulomb", text: "Q (Coulomb)", textAr: "ش (كولوم)", x: 0, y: 0, color: COLORS.bluePale },
+   417→        ],
+   418→      },
+   419→      {
+   420→        id: "current",
+   421→        text: "Current",
+   422→        textAr: "التيار",
+   423→        x: 0,
+   424→        y: 0,
+   425→        color: COLORS.emerald,
+   426→        children: [
+   427→          { id: "i-q-t", text: "I = Q/t", textAr: "ت = ش/ز", x: 0, y: 0, color: COLORS.emeraldLight },
+   428→          { id: "ampere", text: "Unit: Ampere", textAr: "الوحدة: أمبير", x: 0, y: 0, color: COLORS.emeraldExtra },
+   429→          { id: "drift-velocity", text: "Drift Velocity", textAr: "سرعة الانجراف", x: 0, y: 0, color: COLORS.emeraldPale },
+   430→        ],
+   431→      },
+   432→      {
+   433→        id: "voltage",
+   434→        text: "Voltage",
+   435→        textAr: "الجهد",
+   436→        x: 0,
+   437→        y: 0,
+   438→        color: COLORS.purple,
+   439→        children: [
+   440→          { id: "v-w-q", text: "V = W/Q", textAr: "ج = ش/ش", x: 0, y: 0, color: COLORS.purpleLight },
+   441→          { id: "volt", text: "Unit: Volt", textAr: "الوحدة: فولت", x: 0, y: 0, color: COLORS.purpleExtra },
+   442→          { id: "emf", text: "EMF", textAr: "القوة الدافعة الكهربائية", x: 0, y: 0, color: COLORS.purplePale },
+   443→        ],
+   444→      },
+   445→      {
+   446→        id: "resistance",
+   447→        text: "Resistance",
+   448→        textAr: "المقاومة",
+   449→        x: 0,
+   450→        y: 0,
+   451→        color: COLORS.rose,
+   452→        children: [
+   453→          { id: "ohm-law", text: "V = IR", textAr: "ج = ت×م", x: 0, y: 0, color: COLORS.roseLight },
+   454→          { id: "ohm", text: "Unit: Ohm (Ω)", textAr: "الوحدة: أوم (Ω)", x: 0, y: 0, color: COLORS.roseExtra },
+   455→          { id: "r-pla", text: "R = ρL/A", textAr: "م = ρ×ط/م", x: 0, y: 0, color: COLORS.rosePale },
+   456→        ],
+   457→      },
+   458→      {
+   459→        id: "circuits",
+   460→        text: "Circuits",
+   461→        textAr: "الدوائر",
+   462→        x: 0,
+   463→        y: 0,
+   464→        color: COLORS.cyan,
+   465→        children: [
+   466→          { id: "series-circuit", text: "Series", textAr: "على التوالي", x: 0, y: 0, color: COLORS.cyanLight },
+   467→          { id: "parallel-circuit", text: "Parallel", textAr: "على التوازي", x: 0, y: 0, color: COLORS.cyanExtra },
+   468→          { id: "power-circuit", text: "P = IV = I²R", textAr: "ق = ت×ج = ت²×م", x: 0, y: 0, color: COLORS.cyanPale },
+   469→        ],
+   470→      },
+   471→    ],
+   472→  },
+   473→};
+   474→
+   475→const optics: MindMapData = {
+   476→  id: "optics",
+   477→  title: "Optics",
+   478→  titleAr: "البصريات",
+   479→  subject: "Physics",
+   480→  subjectAr: "الفيزياء",
+   481→  data: {
+   482→    id: "optics-root",
+   483→    text: "Optics",
+   484→    textAr: "البصريات",
+   485→    x: 0,
+   486→    y: 0,
+   487→    color: COLORS.rose,
+   488→    children: [
+   489→      {
+   490→        id: "light-nature",
+   491→        text: "Nature of Light",
+   492→        textAr: "طبيعة الضوء",
+   493→        x: 0,
+   494→        y: 0,
+   495→        color: COLORS.blue,
+   496→        children: [
+   497→          { id: "wave-particle", text: "Wave-Particle Duality", textAr: "ازدواجية الموجة والجسيم", x: 0, y: 0, color: COLORS.blueLight },
+   498→          { id: "c-speed", text: "c = 3×10⁸ m/s", textAr: "س = 3×10⁸ م/ث", x: 0, y: 0, color: COLORS.blueExtra },
+   499→          { id: "em-spectrum", text: "EM Spectrum", textAr: "الطيف الكهرومغناطيسي", x: 0, y: 0, color: COLORS.bluePale },
+   500→        ],
+   501→      },
+   502→      {
+   503→        id: "reflection-optics",
+   504→        text: "Reflection",
+   505→        textAr: "الانعكاس",
+   506→        x: 0,
+   507→        y: 0,
+   508→        color: COLORS.emerald,
+   509→        children: [
+   510→          { id: "law-reflection", text: "θi = θr", textAr: "زاوية السقوط = زاوية الانعكاس", x: 0, y: 0, color: COLORS.emeraldLight },
+   511→          { id: "mirrors", text: "Mirrors", textAr: "المرايا", x: 0, y: 0, color: COLORS.emeraldExtra },
+   512→          { id: "plane-curved", text: "Plane & Curved", textAr: "مستوية ومنحنية", x: 0, y: 0, color: COLORS.emeraldPale },
+   513→        ],
+   514→      },
+   515→      {
+   516→        id: "refraction-optics",
+   517→        text: "Refraction",
+   518→        textAr: "الانكسار",
+   519→        x: 0,
+   520→        y: 0,
+   521→        color: COLORS.purple,
+   522→        children: [
+   523→          { id: "snell-law", text: "n₁sinθ₁ = n₂sinθ₂", textAr: "ن₁جاθ₁ = ن₂جاθ₂", x: 0, y: 0, color: COLORS.purpleLight },
+   524→          { id: "index-refraction", text: "n = c/v", textAr: "ن = س/س", x: 0, y: 0, color: COLORS.purpleExtra },
+   525→          { id: "total-internal", text: "Total Internal Reflection", textAr: "الانعكاس الكلي", x: 0, y: 0, color: COLORS.purplePale },
+   526→        ],
+   527→      },
+   528→      {
+   529→        id: "lenses",
+   530→        text: "Lenses",
+   531→        textAr: "العدسات",
+   532→        x: 0,
+   533→        y: 0,
+   534→        color: COLORS.amber,
+   535→        children: [
+   536→          { id: "convex", text: "Convex (Converging)", textAr: "محدبة (مجمعة)", x: 0, y: 0, color: COLORS.amberLight },
+   537→          { id: "concave", text: "Concave (Diverging)", textAr: "مقعرة (مفرقة)", x: 0, y: 0, color: COLORS.amberExtra },
+   538→          { id: "lens-formula", text: "1/f = 1/u + 1/v", textAr: "1/ب = 1/ب₀ + 1/ب₁", x: 0, y: 0, color: COLORS.amberPale },
+   539→        ],
+   540→      },
+   541→      {
+   542→        id: "optical-instruments",
+   543→        text: "Instruments",
+   544→        textAr: "الأجهزة البصرية",
+   545→        x: 0,
+   546→        y: 0,
+   547→        color: COLORS.cyan,
+   548→        children: [
+   549→          { id: "eye", text: "Human Eye", textAr: "العين البشرية", x: 0, y: 0, color: COLORS.cyanLight },
+   550→          { id: "microscope", text: "Microscope", textAr: "المجهر", x: 0, y: 0, color: COLORS.cyanExtra },
+   551→          { id: "telescope", text: "Telescope", textAr: "التلسكوب", x: 0, y: 0, color: COLORS.cyanPale },
+   552→        ],
+   553→      },
+   554→    ],
+   555→  },
+   556→};
+   557→
+   558→// ==========================================
+   559→// CHEMISTRY MIND MAPS
+   560→// ==========================================
+   561→
+   562→const periodicTable: MindMapData = {
+   563→  id: "periodic-table",
+   564→  title: "Periodic Table",
+   565→  titleAr: "الجدول الدوري",
+   566→  subject: "Chemistry",
+   567→  subjectAr: "الكيمياء",
+   568→  data: {
+   569→    id: "periodic-root",
+   570→    text: "Periodic Table",
+   571→    textAr: "الجدول الدوري",
+   572→    x: 0,
+   573→    y: 0,
+   574→    color: COLORS.purple,
+   575→    children: [
+   576→      {
+   577→        id: "groups",
+   578→        text: "Groups",
+   579→        textAr: "المجموعات",
+   580→        x: 0,
+   581→        y: 0,
+   582→        color: COLORS.blue,
+   583→        children: [
+   584→          { id: "alkali", text: "Alkali Metals (1)", textAr: "الفلزات القلوية (1)", x: 0, y: 0, color: COLORS.blueLight },
+   585→          { id: "alkaline", text: "Alkaline Earth (2)", textAr: "القلوية الأرضية (2)", x: 0, y: 0, color: COLORS.blueExtra },
+   586→          { id: "halogens", text: "Halogens (17)", textAr: "الهالوجينات (17)", x: 0, y: 0, color: COLORS.bluePale },
+   587→          { id: "noble-gases", text: "Noble Gases (18)", textAr: "الغازات النبيلة (18)", x: 0, y: 0, color: COLORS.blue },
+   588→        ],
+   589→      },
+   590→      {
+   591→        id: "periods",
+   592→        text: "Periods",
+   593→        textAr: "الدورات",
+   594→        x: 0,
+   595→        y: 0,
+   596→        color: COLORS.emerald,
+   597→        children: [
+   598→          { id: "period-1", text: "Period 1: 2 elements", textAr: "الدورة 1: عنصران", x: 0, y: 0, color: COLORS.emeraldLight },
+   599→          { id: "period-2-3", text: "Periods 2-3: 8 elements", textAr: "الدورات 2-3: 8 عناصر", x: 0, y: 0, color: COLORS.emeraldExtra },
+   600→          { id: "period-trend", text: "Periodic Trends", textAr: "اتجاهات دورية", x: 0, y: 0, color: COLORS.emeraldPale },
+   601→        ],
+   602→      },
+   603→      {
+   604→        id: "blocks",
+   605→        text: "Blocks",
+   606→        textAr: "الكتل",
+   607→        x: 0,
+   608→        y: 0,
+   609→        color: COLORS.amber,
+   610→        children: [
+   611→          { id: "s-block", text: "s-block", textAr: "كتلة s", x: 0, y: 0, color: COLORS.amberLight },
+   612→          { id: "p-block", text: "p-block", textAr: "كتلة p", x: 0, y: 0, color: COLORS.amberExtra },
+   613→          { id: "d-block", text: "d-block (Transition)", textAr: "كتلة d (الانتقالية)", x: 0, y: 0, color: COLORS.amberPale },
+   614→          { id: "f-block", text: "f-block (Lanthanides/Actinides)", textAr: "كتلة f (اللانثانيدات/الأكتينيدات)", x: 0, y: 0, color: COLORS.amber },
+   615→        ],
+   616→      },
+   617→      {
+   618→        id: "periodic-trends",
+   619→        text: "Periodic Trends",
+   620→        textAr: "الاتجاهات الدورية",
+   621→        x: 0,
+   622→        y: 0,
+   623→        color: COLORS.rose,
+   624→        children: [
+   625→          { id: "atomic-radius", text: "Atomic Radius", textAr: "نصف القطر الذري", x: 0, y: 0, color: COLORS.roseLight },
+   626→          { id: "electronegativity", text: "Electronegativity", textAr: "السالبية الكهربائية", x: 0, y: 0, color: COLORS.roseExtra },
+   627→          { id: "ionization", text: "Ionization Energy", textAr: "طاقة التأين", x: 0, y: 0, color: COLORS.rosePale },
+   628→        ],
+   629→      },
+   630→      {
+   631→        id: "metals-nonmetals",
+   632→        text: "Classification",
+   633→        textAr: "التصنيف",
+   634→        x: 0,
+   635→        y: 0,
+   636→        color: COLORS.cyan,
+   637→        children: [
+   638→          { id: "metals", text: "Metals", textAr: "الفلزات", x: 0, y: 0, color: COLORS.cyanLight },
+   639→          { id: "nonmetals", text: "Nonmetals", textAr: "اللافلزات", x: 0, y: 0, color: COLORS.cyanExtra },
+   640→          { id: "metalloids", text: "Metalloids", textAr: "أشباه الفلزات", x: 0, y: 0, color: COLORS.cyanPale },
+   641→        ],
+   642→      },
+   643→    ],
+   644→  },
+   645→};
+   646→
+   647→const chemicalBonding: MindMapData = {
+   648→  id: "chemical-bonding",
+   649→  title: "Chemical Bonding",
+   650→  titleAr: "الروابط الكيميائية",
+   651→  subject: "Chemistry",
+   652→  subjectAr: "الكيمياء",
+   653→  data: {
+   654→    id: "bonding-root",
+   655→    text: "Chemical Bonding",
+   656→    textAr: "الروابط الكيميائية",
+   657→    x: 0,
+   658→    y: 0,
+   659→    color: COLORS.emerald,
+   660→    children: [
+   661→      {
+   662→        id: "ionic-bond",
+   663→        text: "Ionic Bond",
+   664→        textAr: "الرابطة الأيونية",
+   665→        x: 0,
+   666→        y: 0,
+   667→        color: COLORS.blue,
+   668→        children: [
+   669→          { id: "electron-transfer", text: "Electron Transfer", textAr: "انتقال الإلكترونات", x: 0, y: 0, color: COLORS.blueLight },
+   670→          { id: "cation-anion", text: "Cation + Anion", textAr: "كاتيون + أنيون", x: 0, y: 0, color: COLORS.blueExtra },
+   671→          { id: "crystal-lattice", text: "Crystal Lattice", textAr: "الشبكة البلورية", x: 0, y: 0, color: COLORS.bluePale },
+   672→        ],
+   673→      },
+   674→      {
+   675→        id: "covalent-bond",
+   676→        text: "Covalent Bond",
+   677→        textAr: "الرابطة التساهمية",
+   678→        x: 0,
+   679→        y: 0,
+   680→        color: COLORS.purple,
+   681→        children: [
+   682→          { id: "electron-sharing", text: "Electron Sharing", textAr: "مشاركة الإلكترونات", x: 0, y: 0, color: COLORS.purpleLight },
+   683→          { id: "single-double-triple", text: "Single/Double/Triple", textAr: "أحادية/ثنائية/ثلاثية", x: 0, y: 0, color: COLORS.purpleExtra },
+   684→          { id: "polar-nonpolar", text: "Polar vs Nonpolar", textAr: "قطبية وغير قطبية", x: 0, y: 0, color: COLORS.purplePale },
+   685→        ],
+   686→      },
+   687→      {
+   688→        id: "metallic-bond",
+   689→        text: "Metallic Bond",
+   690→        textAr: "الرابطة الفلزية",
+   691→        x: 0,
+   692→        y: 0,
+   693→        color: COLORS.amber,
+   694→        children: [
+   695→          { id: "sea-electrons", text: "Sea of Electrons", textAr: "بحر الإلكترونات", x: 0, y: 0, color: COLORS.amberLight },
+   696→          { id: "conductivity", text: "Conductivity", textAr: "التوصيلية", x: 0, y: 0, color: COLORS.amberExtra },
+   697→          { id: "malleability", text: "Malleability & Ductility", textAr: "القابلية للطرق والسحب", x: 0, y: 0, color: COLORS.amberPale },
+   698→        ],
+   699→      },
+   700→      {
+   701→        id: "intermolecular",
+   702→        text: "Intermolecular Forces",
+   703→        textAr: "القوى بين الجزيئية",
+   704→        x: 0,
+   705→        y: 0,
+   706→        color: COLORS.rose,
+   707→        children: [
+   708→          { id: "hydrogen-bond", text: "Hydrogen Bond", textAr: "رابطة هيدروجينية", x: 0, y: 0, color: COLORS.roseLight },
+   709→          { id: "dipole-dipole", text: "Dipole-Dipole", textAr: "ثنائي قطب-ثنائي قطب", x: 0, y: 0, color: COLORS.roseExtra },
+   710→          { id: "london-forces", text: "London Dispersion", textAr: "قوى لندن", x: 0, y: 0, color: COLORS.rosePale },
+   711→        ],
+   712→      },
+   713→      {
+   714→        id: "bond-properties",
+   715→        text: "Bond Properties",
+   716→        textAr: "خصائص الروابط",
+   717→        x: 0,
+   718→        y: 0,
+   719→        color: COLORS.cyan,
+   720→        children: [
+   721→          { id: "bond-length", text: "Bond Length", textAr: "طول الرابطة", x: 0, y: 0, color: COLORS.cyanLight },
+   722→          { id: "bond-energy", text: "Bond Energy", textAr: "طاقة الرابطة", x: 0, y: 0, color: COLORS.cyanExtra },
+   723→          { id: "bond-angle", text: "Bond Angle", textAr: "زاوية الرابطة", x: 0, y: 0, color: COLORS.cyanPale },
+   724→        ],
+   725→      },
+   726→    ],
+   727→  },
+   728→};
+   729→
+   730→const atomicStructure: MindMapData = {
+   731→  id: "atomic-structure",
+   732→  title: "Atomic Structure",
+   733→  titleAr: "البناء الذري",
+   734→  subject: "Chemistry",
+   735→  subjectAr: "الكيمياء",
+   736→  data: {
+   737→    id: "atom-root",
+   738→    text: "Atomic Structure",
+   739→    textAr: "البناء الذري",
+   740→    x: 0,
+   741→    y: 0,
+   742→    color: COLORS.cyan,
+   743→    children: [
+   744→      {
+   745→        id: "subatomic-particles",
+   746→        text: "Subatomic Particles",
+   747→        textAr: "الجسيمات دون الذرية",
+   748→        x: 0,
+   749→        y: 0,
+   750→        color: COLORS.blue,
+   751→        children: [
+   752→          { id: "proton-atom", text: "Proton (+1)", textAr: "بروتون (+1)", x: 0, y: 0, color: COLORS.blueLight },
+   753→          { id: "neutron-atom", text: "Neutron (0)", textAr: "نيوترون (0)", x: 0, y: 0, color: COLORS.blueExtra },
+   754→          { id: "electron-atom", text: "Electron (-1)", textAr: "إلكترون (-1)", x: 0, y: 0, color: COLORS.bluePale },
+   755→        ],
+   756→      },
+   757→      {
+   758→        id: "nucleus-atom",
+   759→        text: "Nucleus",
+   760→        textAr: "النواة",
+   761→        x: 0,
+   762→        y: 0,
+   763→        color: COLORS.emerald,
+   764→        children: [
+   765→          { id: "protons-neutrons-atom", text: "Protons + Neutrons", textAr: "بروتونات + نيوترونات", x: 0, y: 0, color: COLORS.emeraldLight },
+   766→          { id: "mass-number-atom", text: "Mass Number (A)", textAr: "عدد الكتلة (A)", x: 0, y: 0, color: COLORS.emeraldExtra },
+   767→          { id: "density", text: "High Density", textAr: "كثافة عالية", x: 0, y: 0, color: COLORS.emeraldPale },
+   768→        ],
+   769→      },
+   770→      {
+   771→        id: "electron-configuration",
+   772→        text: "Electron Configuration",
+   773→        textAr: "التوزيع الإلكتروني",
+   774→        x: 0,
+   775→        y: 0,
+   776→        color: COLORS.purple,
+   777→        children: [
+   778→          { id: "energy-levels", text: "Energy Levels (n)", textAr: "مستويات الطاقة (ن)", x: 0, y: 0, color: COLORS.purpleLight },
+   779→          { id: "orbitals", text: "s, p, d, f Orbitals", textAr: "مدارات s, p, d, f", x: 0, y: 0, color: COLORS.purpleExtra },
+   780→          { id: "aufbau", text: "Aufbau Principle", textAr: "مبدأ البناء التصاعدي", x: 0, y: 0, color: COLORS.purplePale },
+   781→        ],
+   782→      },
+   783→      {
+   784→        id: "atomic-number-mass",
+   785→        text: "Atomic Numbers",
+   786→        textAr: "الأعداد الذرية",
+   787→        x: 0,
+   788→        y: 0,
+   789→        color: COLORS.amber,
+   790→        children: [
+   791→          { id: "z-number", text: "Atomic Number (Z)", textAr: "العدد الذري (Z)", x: 0, y: 0, color: COLORS.amberLight },
+   792→          { id: "isotopes", text: "Isotopes", textAr: "النظائر", x: 0, y: 0, color: COLORS.amberExtra },
+   793→          { id: "avg-atomic-mass", text: "Average Atomic Mass", textAr: "متوسط الكتلة الذرية", x: 0, y: 0, color: COLORS.amberPale },
+   794→        ],
+   795→      },
+   796→      {
+   797→        id: "quantum-numbers",
+   798→        text: "Quantum Numbers",
+   799→        textAr: "الأعداد الكمية",
+   800→        x: 0,
+   801→        y: 0,
+   802→        color: COLORS.rose,
+   803→        children: [
+   804→          { id: "principal-q", text: "Principal (n)", textAr: "الرئيسي (ن)", x: 0, y: 0, color: COLORS.roseLight },
+   805→          { id: "angular-q", text: "Angular (l)", textAr: "الزاوي (ل)", x: 0, y: 0, color: COLORS.roseExtra },
+   806→          { id: "magnetic-q", text: "Magnetic (m)", textAr: "المغناطيسي (م)", x: 0, y: 0, color: COLORS.rosePale },
+   807→          { id: "spin-q", text: "Spin (s)", textAr: "الدوراني (س)", x: 0, y: 0, color: COLORS.rose },
+   808→        ],
+   809→      },
+   810→    ],
+   811→  },
+   812→};
+   813→
+   814→// ==========================================
+   815→// BIOLOGY MIND MAPS
+   816→// ==========================================
+   817→
+   818→const cell: MindMapData = {
+   819→  id: "cell-biology",
+   820→  title: "Cell Biology",
+   821→  titleAr: "علم الخلية",
+   822→  subject: "Biology",
+   823→  subjectAr: "الأحياء",
+   824→  data: {
+   825→    id: "cell-root",
+   826→    text: "The Cell",
+   827→    textAr: "الخلية",
+   828→    x: 0,
+   829→    y: 0,
+   830→    color: COLORS.emerald,
+   831→    children: [
+   832→      {
+   833→        id: "cell-types",
+   834→        text: "Types of Cells",
+   835→        textAr: "أنواع الخلايا",
+   836→        x: 0,
+   837→        y: 0,
+   838→        color: COLORS.blue,
+   839→        children: [
+   840→          { id: "prokaryotic", text: "Prokaryotic", textAr: "بدائية النواة", x: 0, y: 0, color: COLORS.blueLight },
+   841→          { id: "eukaryotic", text: "Eukaryotic", textAr: "حقيقية النواة", x: 0, y: 0, color: COLORS.blueExtra },
+   842→          { id: "plant-animal", text: "Plant vs Animal", textAr: "نباتية وحيوانية", x: 0, y: 0, color: COLORS.bluePale },
+   843→        ],
+   844→      },
+   845→      {
+   846→        id: "cell-organelles",
+   847→        text: "Organelles",
+   848→        textAr: "العضيات",
+   849→        x: 0,
+   850→        y: 0,
+   851→        color: COLORS.purple,
+   852→        children: [
+   853→          { id: "nucleus-cell", text: "Nucleus", textAr: "النواة", x: 0, y: 0, color: COLORS.purpleLight },
+   854→          { id: "mitochondria", text: "Mitochondria", textAr: "الميتوكوندريا", x: 0, y: 0, color: COLORS.purpleExtra },
+   855→          { id: "ribosomes", text: "Ribosomes", textAr: "الريبوسومات", x: 0, y: 0, color: COLORS.purplePale },
+   856→          { id: "er-golgi", text: "ER & Golgi", textAr: "الشبكة الإندوبلازمية وجولجي", x: 0, y: 0, color: COLORS.purple },
+   857→        ],
+   858→      },
+   859→      {
+   860→        id: "cell-membrane",
+   861→        text: "Cell Membrane",
+   862→        textAr: "غشاء الخلية",
+   863→        x: 0,
+   864→        y: 0,
+   865→        color: COLORS.amber,
+   866→        children: [
+   867→          { id: "phospholipid", text: "Phospholipid Bilayer", textAr: "طبقة ثنائية الفسفوليبيد", x: 0, y: 0, color: COLORS.amberLight },
+   868→          { id: "membrane-proteins", text: "Membrane Proteins", textAr: "بروتينات الغشاء", x: 0, y: 0, color: COLORS.amberExtra },
+   869→          { id: "selective-permeable", text: "Selective Permeability", textAr: "النفاذية الاختيارية", x: 0, y: 0, color: COLORS.amberPale },
+   870→        ],
+   871→      },
+   872→      {
+   873→        id: "cell-transport",
+   874→        text: "Cell Transport",
+   875→        textAr: "نقل المواد",
+   876→        x: 0,
+   877→        y: 0,
+   878→        color: COLORS.rose,
+   879→        children: [
+   880→          { id: "passive-transport", text: "Passive Transport", textAr: "النقل السلبي", x: 0, y: 0, color: COLORS.roseLight },
+   881→          { id: "active-transport", text: "Active Transport", textAr: "النقل النشط", x: 0, y: 0, color: COLORS.roseExtra },
+   882→          { id: "osmosis", text: "Osmosis", textAr: "التنافذ", x: 0, y: 0, color: COLORS.rosePale },
+   883→        ],
+   884→      },
+   885→      {
+   886→        id: "cell-division",
+   887→        text: "Cell Division",
+   888→        textAr: "انقسام الخلية",
+   889→        x: 0,
+   890→        y: 0,
+   891→        color: COLORS.cyan,
+   892→        children: [
+   893→          { id: "mitosis", text: "Mitosis", textAr: "الانقسام المتساوي", x: 0, y: 0, color: COLORS.cyanLight },
+   894→          { id: "meiosis", text: "Meiosis", textAr: "الانقسام المنصف", x: 0, y: 0, color: COLORS.cyanExtra },
+   895→          { id: "cell-cycle", text: "Cell Cycle", textAr: "دورة الخلية", x: 0, y: 0, color: COLORS.cyanPale },
+   896→        ],
+   897→      },
+   898→    ],
+   899→  },
+   900→};
+   901→
+   902→const dnaGenetics: MindMapData = {
+   903→  id: "dna-genetics",
+   904→  title: "DNA & Genetics",
+   905→  titleAr: "الدي إن أيه والوراثة",
+   906→  subject: "Biology",
+   907→  subjectAr: "الأحياء",
+   908→  data: {
+   909→    id: "dna-root",
+   910→    text: "DNA & Genetics",
+   911→    textAr: "الدي إن أيه والوراثة",
+   912→    x: 0,
+   913→    y: 0,
+   914→    color: COLORS.blue,
+   915→    children: [
+   916→      {
+   917→        id: "dna-structure",
+   918→        text: "DNA Structure",
+   919→        textAr: "تركيب الدي إن أيه",
+   920→        x: 0,
+   921→        y: 0,
+   922→        color: COLORS.emerald,
+   923→        children: [
+   924→          { id: "double-helix", text: "Double Helix", textAr: "اللولب المزدوج", x: 0, y: 0, color: COLORS.emeraldLight },
+   925→          { id: "nucleotides", text: "Nucleotides (A,T,G,C)", textAr: "النيوكليوتيدات (أ، ت، ج، س)", x: 0, y: 0, color: COLORS.emeraldExtra },
+   926→          { id: "base-pairing", text: "Base Pairing Rules", textAr: "قواعد اقتران القواعد", x: 0, y: 0, color: COLORS.emeraldPale },
+   927→        ],
+   928→      },
+   929→      {
+   930→        id: "central-dogma",
+   931→        text: "Central Dogma",
+   932→        textAr: "العقيدة المركزية",
+   933→        x: 0,
+   934→        y: 0,
+   935→        color: COLORS.purple,
+   936→        children: [
+   937→          { id: "replication", text: "DNA Replication", textAr: "تضاعف الدي إن أيه", x: 0, y: 0, color: COLORS.purpleLight },
+   938→          { id: "transcription", text: "Transcription", textAr: "النسخ", x: 0, y: 0, color: COLORS.purpleExtra },
+   939→          { id: "translation", text: "Translation", textAr: "الترجمة", x: 0, y: 0, color: COLORS.purplePale },
+   940→        ],
+   941→      },
+   942→      {
+   943→        id: "mendelian-genetics",
+   944→        text: "Mendelian Genetics",
+   945→        textAr: "وراثة مندل",
+   946→        x: 0,
+   947→        y: 0,
+   948→        color: COLORS.amber,
+   949→        children: [
+   950→          { id: "dominant-recessive", text: "Dominant & Recessive", textAr: "سائد ومتنحٍ", x: 0, y: 0, color: COLORS.amberLight },
+   951→          { id: "punnett-square", text: "Punnett Square", textAr: "مربع بونيت", x: 0, y: 0, color: COLORS.amberExtra },
+   952→          { id: "genotype-phenotype", text: "Genotype vs Phenotype", textAr: "الطراز الجيني والظاهري", x: 0, y: 0, color: COLORS.amberPale },
+   953→        ],
+   954→      },
+   955→      {
+   956→        id: "mutations",
+   957→        text: "Mutations",
+   958→        textAr: "الطفرات",
+   959→        x: 0,
+   960→        y: 0,
+   961→        color: COLORS.rose,
+   962→        children: [
+   963→          { id: "point-mutation", text: "Point Mutation", textAr: "طفرة نقطية", x: 0, y: 0, color: COLORS.roseLight },
+   964→          { id: "frameshift", text: "Frameshift", textAr: "إزاحة الإطار", x: 0, y: 0, color: COLORS.roseExtra },
+   965→          { id: "chromosomal", text: "Chromosomal", textAr: "كروموسومية", x: 0, y: 0, color: COLORS.rosePale },
+   966→        ],
+   967→      },
+   968→      {
+   969→        id: "genetic-tech",
+   970→        text: "Genetic Technology",
+   971→        textAr: "التقنية الوراثية",
+   972→        x: 0,
+   973→        y: 0,
+   974→        color: COLORS.cyan,
+   975→        children: [
+   976→          { id: "pcr", text: "PCR", textAr: "تفاعل البلمرة المتسلسل", x: 0, y: 0, color: COLORS.cyanLight },
+   977→          { id: "genetic-engineering", text: "Genetic Engineering", textAr: "الهندسة الوراثية", x: 0, y: 0, color: COLORS.cyanExtra },
+   978→          { id: "crispr", text: "CRISPR", textAr: "كريسبر", x: 0, y: 0, color: COLORS.cyanPale },
+   979→        ],
+   980→      },
+   981→    ],
+   982→  },
+   983→};
+   984→
+   985→const humanBodySystems: MindMapData = {
+   986→  id: "human-body",
+   987→  title: "Human Body Systems",
+   988→  titleAr: "أجهزة جسم الإنسان",
+   989→  subject: "Biology",
+   990→  subjectAr: "الأحياء",
+   991→  data: {
+   992→    id: "body-root",
+   993→    text: "Human Body Systems",
+   994→    textAr: "أجهزة جسم الإنسان",
+   995→    x: 0,
+   996→    y: 0,
+   997→    color: COLORS.rose,
+   998→    children: [
+   999→      {
+  1000→        id: "circulatory-system",
+  1001→        text: "Circulatory",
+  1002→        textAr: "الدوري",
+  1003→        x: 0,
+  1004→        y: 0,
+  1005→        color: COLORS.rose,
+  1006→        children: [
+  1007→          { id: "heart", text: "Heart", textAr: "القلب", x: 0, y: 0, color: COLORS.roseLight },
+  1008→          { id: "blood-vessels", text: "Blood Vessels", textAr: "الأوعية الدموية", x: 0, y: 0, color: COLORS.roseExtra },
+  1009→          { id: "blood", text: "Blood Components", textAr: "مكونات الدم", x: 0, y: 0, color: COLORS.rosePale },
+  1010→        ],
+  1011→      },
+  1012→      {
+  1013→        id: "respiratory-system",
+  1014→        text: "Respiratory",
+  1015→        textAr: "التنفسي",
+  1016→        x: 0,
+  1017→        y: 0,
+  1018→        color: COLORS.blue,
+  1019→        children: [
+  1020→          { id: "lungs", text: "Lungs", textAr: "الرئتان", x: 0, y: 0, color: COLORS.blueLight },
+  1021→          { id: "gas-exchange", text: "Gas Exchange", textAr: "تبادل الغازات", x: 0, y: 0, color: COLORS.blueExtra },
+  1022→          { id: "breathing", text: "Breathing Mechanism", textAr: "آلية التنفس", x: 0, y: 0, color: COLORS.bluePale },
+  1023→        ],
+  1024→      },
+  1025→      {
+  1026→        id: "digestive-system",
+  1027→        text: "Digestive",
+  1028→        textAr: "الهضمي",
+  1029→        x: 0,
+  1030→        y: 0,
+  1031→        color: COLORS.amber,
+  1032→        children: [
+  1033→          { id: "alimentary-canal", text: "Alimentary Canal", textAr: "القناة الهضمية", x: 0, y: 0, color: COLORS.amberLight },
+  1034→          { id: "enzymes", text: "Digestive Enzymes", textAr: "إنزيمات الهضم", x: 0, y: 0, color: COLORS.amberExtra },
+  1035→          { id: "absorption", text: "Nutrient Absorption", textAr: "امتصاص المغذيات", x: 0, y: 0, color: COLORS.amberPale },
+  1036→        ],
+  1037→      },
+  1038→      {
+  1039→        id: "nervous-system",
+  1040→        text: "Nervous",
+  1041→        textAr: "العصبي",
+  1042→        x: 0,
+  1043→        y: 0,
+  1044→        color: COLORS.purple,
+  1045→        children: [
+  1046→          { id: "brain", text: "Brain", textAr: "الدماغ", x: 0, y: 0, color: COLORS.purpleLight },
+  1047→          { id: "spinal-cord", text: "Spinal Cord", textAr: "الحبل الشوكي", x: 0, y: 0, color: COLORS.purpleExtra },
+  1048→          { id: "neurons", text: "Neurons", textAr: "الخلايا العصبية", x: 0, y: 0, color: COLORS.purplePale },
+  1049→        ],
+  1050→      },
+  1051→      {
+  1052→        id: "musculoskeletal",
+  1053→        text: "Musculoskeletal",
+  1054→        textAr: "العضلي الهيكلي",
+  1055→        x: 0,
+  1056→        y: 0,
+  1057→        color: COLORS.emerald,
+  1058→        children: [
+  1059→          { id: "skeleton", text: "Skeleton (206 bones)", textAr: "الهيكل العظمي (206 عظمة)", x: 0, y: 0, color: COLORS.emeraldLight },
+  1060→          { id: "muscles", text: "Muscles", textAr: "العضلات", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1061→          { id: "joints", text: "Joints", textAr: "المفاصل", x: 0, y: 0, color: COLORS.emeraldPale },
+  1062→        ],
+  1063→      },
+  1064→    ],
+  1065→  },
+  1066→};
+  1067→
+  1068→const ecology: MindMapData = {
+  1069→  id: "ecology",
+  1070→  title: "Ecology",
+  1071→  titleAr: "علم البيئة",
+  1072→  subject: "Biology",
+  1073→  subjectAr: "الأحياء",
+  1074→  data: {
+  1075→    id: "ecology-root",
+  1076→    text: "Ecology",
+  1077→    textAr: "علم البيئة",
+  1078→    x: 0,
+  1079→    y: 0,
+  1080→    color: COLORS.emerald,
+  1081→    children: [
+  1082→      {
+  1083→        id: "ecosystem",
+  1084→        text: "Ecosystem",
+  1085→        textAr: "النظام البيئي",
+  1086→        x: 0,
+  1087→        y: 0,
+  1088→        color: COLORS.blue,
+  1089→        children: [
+  1090→          { id: "biotic", text: "Biotic Factors", textAr: "العوامل الحيوية", x: 0, y: 0, color: COLORS.blueLight },
+  1091→          { id: "abiotic", text: "Abiotic Factors", textAr: "العوامل غير الحيوية", x: 0, y: 0, color: COLORS.blueExtra },
+  1092→          { id: "habitats", text: "Habitats", textAr: "الموائل الطبيعية", x: 0, y: 0, color: COLORS.bluePale },
+  1093→        ],
+  1094→      },
+  1095→      {
+  1096→        id: "food-chains",
+  1097→        text: "Food Chains",
+  1098→        textAr: "السلاسل الغذائية",
+  1099→        x: 0,
+  1100→        y: 0,
+  1101→        color: COLORS.amber,
+  1102→        children: [
+  1103→          { id: "producers", text: "Producers", textAr: "المنتجات", x: 0, y: 0, color: COLORS.amberLight },
+  1104→          { id: "consumers", text: "Consumers", textAr: "المستهلكات", x: 0, y: 0, color: COLORS.amberExtra },
+  1105→          { id: "decomposers", text: "Decomposers", textAr: "المحللات", x: 0, y: 0, color: COLORS.amberPale },
+  1106→        ],
+  1107→      },
+  1108→      {
+  1109→        id: "energy-flow",
+  1110→        text: "Energy Flow",
+  1111→        textAr: "تدفق الطاقة",
+  1112→        x: 0,
+  1113→        y: 0,
+  1114→        color: COLORS.purple,
+  1115→        children: [
+  1116→          { id: "trophic-levels", text: "Trophic Levels", textAr: "المستويات الغذائية", x: 0, y: 0, color: COLORS.purpleLight },
+  1117→          { id: "energy-pyramid", text: "Energy Pyramid", textAr: "هرم الطاقة", x: 0, y: 0, color: COLORS.purpleExtra },
+  1118→          { id: "10-percent", text: "10% Rule", textAr: "قاعدة الـ 10٪", x: 0, y: 0, color: COLORS.purplePale },
+  1119→        ],
+  1120→      },
+  1121→      {
+  1122→        id: "cycles",
+  1123→        text: "Biogeochemical Cycles",
+  1124→        textAr: "الدورات الحيوية الجيولوجية",
+  1125→        x: 0,
+  1126→        y: 0,
+  1127→        color: COLORS.rose,
+  1128→        children: [
+  1129→          { id: "carbon-cycle", text: "Carbon Cycle", textAr: "دورة الكربون", x: 0, y: 0, color: COLORS.roseLight },
+  1130→          { id: "nitrogen-cycle", text: "Nitrogen Cycle", textAr: "دورة النيتروجين", x: 0, y: 0, color: COLORS.roseExtra },
+  1131→          { id: "water-cycle", text: "Water Cycle", textAr: "دورة الماء", x: 0, y: 0, color: COLORS.rosePale },
+  1132→        ],
+  1133→      },
+  1134→      {
+  1135→        id: "conservation-eco",
+  1136→        text: "Conservation",
+  1137→        textAr: "الحفاظ على البيئة",
+  1138→        x: 0,
+  1139→        y: 0,
+  1140→        color: COLORS.cyan,
+  1141→        children: [
+  1142→          { id: "biodiversity", text: "Biodiversity", textAr: "التنوع الحيوي", x: 0, y: 0, color: COLORS.cyanLight },
+  1143→          { id: "endangered", text: "Endangered Species", textAr: "الأنواع المهددة", x: 0, y: 0, color: COLORS.cyanExtra },
+  1144→          { id: "climate-change", text: "Climate Change", textAr: "التغير المناخي", x: 0, y: 0, color: COLORS.cyanPale },
+  1145→        ],
+  1146→      },
+  1147→    ],
+  1148→  },
+  1149→};
+  1150→
+  1151→// ==========================================
+  1152→// MATHEMATICS MIND MAPS
+  1153→// ==========================================
+  1154→
+  1155→const algebra: MindMapData = {
+  1156→  id: "algebra",
+  1157→  title: "Algebra",
+  1158→  titleAr: "الجبر",
+  1159→  subject: "Mathematics",
+  1160→  subjectAr: "الرياضيات",
+  1161→  data: {
+  1162→    id: "algebra-root",
+  1163→    text: "Algebra",
+  1164→    textAr: "الجبر",
+  1165→    x: 0,
+  1166→    y: 0,
+  1167→    color: COLORS.blue,
+  1168→    children: [
+  1169→      {
+  1170→        id: "expressions",
+  1171→        text: "Expressions",
+  1172→        textAr: "التعبيرات الجبرية",
+  1173→        x: 0,
+  1174→        y: 0,
+  1175→        color: COLORS.emerald,
+  1176→        children: [
+  1177→          { id: "variables", text: "Variables", textAr: "المتغيرات", x: 0, y: 0, color: COLORS.emeraldLight },
+  1178→          { id: "constants", text: "Constants", textAr: "الثوابت", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1179→          { id: "coefficients", text: "Coefficients", textAr: "المعاملات", x: 0, y: 0, color: COLORS.emeraldPale },
+  1180→        ],
+  1181→      },
+  1182→      {
+  1183→        id: "equations-alg",
+  1184→        text: "Equations",
+  1185→        textAr: "المعادلات",
+  1186→        x: 0,
+  1187→        y: 0,
+  1188→        color: COLORS.purple,
+  1189→        children: [
+  1190→          { id: "linear-eq", text: "Linear Equations", textAr: "المعادلات الخطية", x: 0, y: 0, color: COLORS.purpleLight },
+  1191→          { id: "quadratic-eq", text: "Quadratic Equations", textAr: "المعادلات التربيعية", x: 0, y: 0, color: COLORS.purpleExtra },
+  1192→          { id: "systems-eq", text: "Systems of Equations", textAr: "نظم المعادلات", x: 0, y: 0, color: COLORS.purplePale },
+  1193→        ],
+  1194→      },
+  1195→      {
+  1196→        id: "inequalities",
+  1197→        text: "Inequalities",
+  1198→        textAr: "المتباينات",
+  1199→        x: 0,
+  1200→        y: 0,
+  1201→        color: COLORS.amber,
+  1202→        children: [
+  1203→          { id: "linear-ineq", text: "Linear Inequalities", textAr: "المتباينات الخطية", x: 0, y: 0, color: COLORS.amberLight },
+  1204→          { id: "solving-ineq", text: "Solving Methods", textAr: "طرق الحل", x: 0, y: 0, color: COLORS.amberExtra },
+  1205→          { id: "graphing-ineq", text: "Graphing Solutions", textAr: "تمثيل الحلول", x: 0, y: 0, color: COLORS.amberPale },
+  1206→        ],
+  1207→      },
+  1208→      {
+  1209→        id: "factoring",
+  1210→        text: "Factoring",
+  1211→        textAr: "التحليل",
+  1212→        x: 0,
+  1213→        y: 0,
+  1214→        color: COLORS.rose,
+  1215→        children: [
+  1216→          { id: "gcf", text: "GCF", textAr: "العامل المشترك الأكبر", x: 0, y: 0, color: COLORS.roseLight },
+  1217→          { id: "difference-squares", text: "Difference of Squares", textAr: "فرق مربعين", x: 0, y: 0, color: COLORS.roseExtra },
+  1218→          { id: "quadratic-formula", text: "Quadratic Formula", textAr: "الصيغة التربيعية", x: 0, y: 0, color: COLORS.rosePale },
+  1219→        ],
+  1220→      },
+  1221→      {
+  1222→        id: "functions-alg",
+  1223→        text: "Functions",
+  1224→        textAr: "الدوال",
+  1225→        x: 0,
+  1226→        y: 0,
+  1227→        color: COLORS.cyan,
+  1228→        children: [
+  1229→          { id: "domain-range", text: "Domain & Range", textAr: "المجال والمدى", x: 0, y: 0, color: COLORS.cyanLight },
+  1230→          { id: "composite-functions", text: "Composite Functions", textAr: "الدوال المركبة", x: 0, y: 0, color: COLORS.cyanExtra },
+  1231→          { id: "inverse-functions", text: "Inverse Functions", textAr: "الدوال العكسية", x: 0, y: 0, color: COLORS.cyanPale },
+  1232→        ],
+  1233→      },
+  1234→    ],
+  1235→  },
+  1236→};
+  1237→
+  1238→const geometry: MindMapData = {
+  1239→  id: "geometry",
+  1240→  title: "Geometry",
+  1241→  titleAr: "الهندسة",
+  1242→  subject: "Mathematics",
+  1243→  subjectAr: "الرياضيات",
+  1244→  data: {
+  1245→    id: "geometry-root",
+  1246→    text: "Geometry",
+  1247→    textAr: "الهندسة",
+  1248→    x: 0,
+  1249→    y: 0,
+  1250→    color: COLORS.purple,
+  1251→    children: [
+  1252→      {
+  1253→        id: "triangles-geo",
+  1254→        text: "Triangles",
+  1255→        textAr: "المثلثات",
+  1256→        x: 0,
+  1257→        y: 0,
+  1258→        color: COLORS.blue,
+  1259→        children: [
+  1260→          { id: "types-triangles", text: "Types (Scalene, Iso, Equi)", textAr: "الأنواع (حادي، متساوي، متطابق)", x: 0, y: 0, color: COLORS.blueLight },
+  1261→          { id: "pythagorean", text: "Pythagorean Theorem", textAr: "نظرية فيثاغورس", x: 0, y: 0, color: COLORS.blueExtra },
+  1262→          { id: "area-triangle", text: "Area = ½bh", textAr: "المساحة = ½×ق×ع", x: 0, y: 0, color: COLORS.bluePale },
+  1263→        ],
+  1264→      },
+  1265→      {
+  1266→        id: "circles-geo",
+  1267→        text: "Circles",
+  1268→        textAr: "الدوائر",
+  1269→        x: 0,
+  1270→        y: 0,
+  1271→        color: COLORS.emerald,
+  1272→        children: [
+  1273→          { id: "circle-parts", text: "Parts (Radius, Diameter)", textAr: "الأجزاء (نصف القطر، القطر)", x: 0, y: 0, color: COLORS.emeraldLight },
+  1274→          { id: "circumference", text: "C = 2πr", textAr: "مح = 2πن", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1275→          { id: "area-circle", text: "A = πr²", textAr: "م = πن²", x: 0, y: 0, color: COLORS.emeraldPale },
+  1276→        ],
+  1277→      },
+  1278→      {
+  1279→        id: "quadrilaterals",
+  1280→        text: "Quadrilaterals",
+  1281→        textAr: "رباعيات الأضلاع",
+  1282→        x: 0,
+  1283→        y: 0,
+  1284→        color: COLORS.amber,
+  1285→        children: [
+  1286→          { id: "square-rect", text: "Square & Rectangle", textAr: "المربع والمستطيل", x: 0, y: 0, color: COLORS.amberLight },
+  1287→          { id: "parallelogram", text: "Parallelogram", textAr: "متوازي الأضلاع", x: 0, y: 0, color: COLORS.amberExtra },
+  1288→          { id: "trapezoid", text: "Trapezoid", textAr: "الشبه منحرف", x: 0, y: 0, color: COLORS.amberPale },
+  1289→        ],
+  1290→      },
+  1291→      {
+  1292→        id: "solids",
+  1293→        text: "3D Solids",
+  1294→        textAr: "المجسمات",
+  1295→        x: 0,
+  1296→        y: 0,
+  1297→        color: COLORS.rose,
+  1298→        children: [
+  1299→          { id: "prisms", text: "Prisms", textAr: "المنشورات", x: 0, y: 0, color: COLORS.roseLight },
+  1300→          { id: "pyramids", text: "Pyramids", textAr: "الأهرامات", x: 0, y: 0, color: COLORS.roseExtra },
+  1301→          { id: "spheres", text: "Spheres", textAr: "الكورات", x: 0, y: 0, color: COLORS.rosePale },
+  1302→        ],
+  1303→      },
+  1304→      {
+  1305→        id: "theorems",
+  1306→        text: "Theorems",
+  1307→        textAr: "النظريات",
+  1308→        x: 0,
+  1309→        y: 0,
+  1310→        color: COLORS.cyan,
+  1311→        children: [
+  1312→          { id: "similarity", text: "Similarity", textAr: "التشابه", x: 0, y: 0, color: COLORS.cyanLight },
+  1313→          { id: "congruence", text: "Congruence", textAr: "التطابق", x: 0, y: 0, color: COLORS.cyanExtra },
+  1314→          { id: "circle-theorems", text: "Circle Theorems", textAr: "نظريات الدائرة", x: 0, y: 0, color: COLORS.cyanPale },
+  1315→        ],
+  1316→      },
+  1317→    ],
+  1318→  },
+  1319→};
+  1320→
+  1321→const trigonometry: MindMapData = {
+  1322→  id: "trigonometry",
+  1323→  title: "Trigonometry",
+  1324→  titleAr: "حساب المثلثات",
+  1325→  subject: "Mathematics",
+  1326→  subjectAr: "الرياضيات",
+  1327→  data: {
+  1328→    id: "trig-root",
+  1329→    text: "Trigonometry",
+  1330→    textAr: "حساب المثلثات",
+  1331→    x: 0,
+  1332→    y: 0,
+  1333→    color: COLORS.amber,
+  1334→    children: [
+  1335→      {
+  1336→        id: "basic-ratios",
+  1337→        text: "Basic Ratios",
+  1338→        textAr: "النسب الأساسية",
+  1339→        x: 0,
+  1340→        y: 0,
+  1341→        color: COLORS.blue,
+  1342→        children: [
+  1343→          { id: "sine", text: "Sin θ = opposite/hyp", textAr: "جا θ = المقابل/وتر", x: 0, y: 0, color: COLORS.blueLight },
+  1344→          { id: "cosine", text: "Cos θ = adjacent/hyp", textAr: "جتا θ = المجاور/وتر", x: 0, y: 0, color: COLORS.blueExtra },
+  1345→          { id: "tangent", text: "Tan θ = opposite/adj", textAr: "ظا θ = المقابل/المجاور", x: 0, y: 0, color: COLORS.bluePale },
+  1346→        ],
+  1347→      },
+  1348→      {
+  1349→        id: "unit-circle",
+  1350→        text: "Unit Circle",
+  1351→        textAr: "دائرة الوحدة",
+  1352→        x: 0,
+  1353→        y: 0,
+  1354→        color: COLORS.emerald,
+  1355→        children: [
+  1356→          { id: "radians", text: "Radians", textAr: "الراديان", x: 0, y: 0, color: COLORS.emeraldLight },
+  1357→          { id: "quadrants", text: "Quadrants", textAr: "الرباعات", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1358→          { id: "special-angles", text: "Special Angles", textAr: "الزوايا الخاصة", x: 0, y: 0, color: COLORS.emeraldPale },
+  1359→        ],
+  1360→      },
+  1361→      {
+  1362→        id: "identities",
+  1363→        text: "Identities",
+  1364→        textAr: "الهويات",
+  1365→        x: 0,
+  1366→        y: 0,
+  1367→        color: COLORS.purple,
+  1368→        children: [
+  1369→          { id: "pythagorean-id", text: "sin²θ + cos²θ = 1", textAr: "جا²θ + جتا²θ = 1", x: 0, y: 0, color: COLORS.purpleLight },
+  1370→          { id: "double-angle", text: "Double Angle", textAr: "ضعف الزاوية", x: 0, y: 0, color: COLORS.purpleExtra },
+  1371→          { id: "sum-difference", text: "Sum & Difference", textAr: "المجموع والفرق", x: 0, y: 0, color: COLORS.purplePale },
+  1372→        ],
+  1373→      },
+  1374→      {
+  1375→        id: "inverse-trig",
+  1376→        text: "Inverse Functions",
+  1377→        textAr: "الدوال العكسية",
+  1378→        x: 0,
+  1379→        y: 0,
+  1380→        color: COLORS.rose,
+  1381→        children: [
+  1382→          { id: "arcsin", text: "arcsin", textAr: "جا⁻¹", x: 0, y: 0, color: COLORS.roseLight },
+  1383→          { id: "arccos", text: "arccos", textAr: "جتا⁻¹", x: 0, y: 0, color: COLORS.roseExtra },
+  1384→          { id: "arctan", text: "arctan", textAr: "ظا⁻¹", x: 0, y: 0, color: COLORS.rosePale },
+  1385→        ],
+  1386→      },
+  1387→      {
+  1388→        id: "applications-trig",
+  1389→        text: "Applications",
+  1390→        textAr: "التطبيقات",
+  1391→        x: 0,
+  1392→        y: 0,
+  1393→        color: COLORS.cyan,
+  1394→        children: [
+  1395→          { id: "law-sines", text: "Law of Sines", textAr: "قانون الجيوب", x: 0, y: 0, color: COLORS.cyanLight },
+  1396→          { id: "law-cosines", text: "Law of Cosines", textAr: "قانون جيب التمام", x: 0, y: 0, color: COLORS.cyanExtra },
+  1397→          { id: "triangle-area", text: "Area Formula", textAr: "قانون المساحة", x: 0, y: 0, color: COLORS.cyanPale },
+  1398→        ],
+  1399→      },
+  1400→    ],
+  1401→  },
+  1402→};
+  1403→
+  1404→const calculus: MindMapData = {
+  1405→  id: "calculus",
+  1406→  title: "Calculus",
+  1407→  titleAr: "التفاضل والتكامل",
+  1408→  subject: "Mathematics",
+  1409→  subjectAr: "الرياضيات",
+  1410→  data: {
+  1411→    id: "calc-root",
+  1412→    text: "Calculus",
+  1413→    textAr: "التفاضل والتكامل",
+  1414→    x: 0,
+  1415→    y: 0,
+  1416→    color: COLORS.cyan,
+  1417→    children: [
+  1418→      {
+  1419→        id: "limits",
+  1420→        text: "Limits",
+  1421→        textAr: "النهايات",
+  1422→        x: 0,
+  1423→        y: 0,
+  1424→        color: COLORS.blue,
+  1425→        children: [
+  1426→          { id: "limit-definition", text: "lim x→a f(x)", textAr: "نهـ س←أ د(س)", x: 0, y: 0, color: COLORS.blueLight },
+  1427→          { id: "continuity", text: "Continuity", textAr: "الاتصال", x: 0, y: 0, color: COLORS.blueExtra },
+  1428→          { id: "limit-laws", text: "Limit Laws", textAr: "قوانين النهايات", x: 0, y: 0, color: COLORS.bluePale },
+  1429→        ],
+  1430→      },
+  1431→      {
+  1432→        id: "derivatives",
+  1433→        text: "Derivatives",
+  1434→        textAr: "المشتقات",
+  1435→        x: 0,
+  1436→        y: 0,
+  1437→        color: COLORS.emerald,
+  1438→        children: [
+  1439→          { id: "derivative-def", text: "f'(x) = lim Δx→0", textAr: "د'(س) = نهـ Δس←0", x: 0, y: 0, color: COLORS.emeraldLight },
+  1440→          { id: "power-rule", text: "Power Rule", textAr: "قاعدة القوة", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1441→          { id: "chain-rule", text: "Chain Rule", textAr: "القاعدة المتسلسلة", x: 0, y: 0, color: COLORS.emeraldPale },
+  1442→        ],
+  1443→      },
+  1444→      {
+  1445→        id: "integration",
+  1446→        text: "Integration",
+  1447→        textAr: "التكامل",
+  1448→        x: 0,
+  1449→        y: 0,
+  1450→        color: COLORS.purple,
+  1451→        children: [
+  1452→          { id: "indefinite", text: "Indefinite Integral", textAr: "التكامل غير المحدد", x: 0, y: 0, color: COLORS.purpleLight },
+  1453→          { id: "definite", text: "Definite Integral", textAr: "التكامل المحدد", x: 0, y: 0, color: COLORS.purpleExtra },
+  1454→          { id: "ftc", text: "Fundamental Theorem", textAr: "النظرية الأساسية", x: 0, y: 0, color: COLORS.purplePale },
+  1455→        ],
+  1456→      },
+  1457→      {
+  1458→        id: "applications-calc",
+  1459→        text: "Applications",
+  1460→        textAr: "التطبيقات",
+  1461→        x: 0,
+  1462→        y: 0,
+  1463→        color: COLORS.amber,
+  1464→        children: [
+  1465→          { id: "optimization", text: "Optimization", textAr: "التحسين", x: 0, y: 0, color: COLORS.amberLight },
+  1466→          { id: "related-rates", text: "Related Rates", textAr: "المعدلات المرتبطة", x: 0, y: 0, color: COLORS.amberExtra },
+  1467→          { id: "area-volume", text: "Area & Volume", textAr: "المساحة والحجم", x: 0, y: 0, color: COLORS.amberPale },
+  1468→        ],
+  1469→      },
+  1470→      {
+  1471→        id: "techniques",
+  1472→        text: "Techniques",
+  1473→        textAr: "طرق التكامل",
+  1474→        x: 0,
+  1475→        y: 0,
+  1476→        color: COLORS.rose,
+  1477→        children: [
+  1478→          { id: "substitution", text: "Substitution", textAr: "التعويض", x: 0, y: 0, color: COLORS.roseLight },
+  1479→          { id: "parts", text: "Integration by Parts", textAr: "التكامل بالأجزاء", x: 0, y: 0, color: COLORS.roseExtra },
+  1480→          { id: "partial-fractions", text: "Partial Fractions", textAr: "الكسور الجزئية", x: 0, y: 0, color: COLORS.rosePale },
+  1481→        ],
+  1482→      },
+  1483→    ],
+  1484→  },
+  1485→};
+  1486→
+  1487→// ==========================================
+  1488→// GEOGRAPHY MIND MAPS
+  1489→// ==========================================
+  1490→
+  1491→const climate: MindMapData = {
+  1492→  id: "climate",
+  1493→  title: "Climate",
+  1494→  titleAr: "المناخ",
+  1495→  subject: "Geography",
+  1496→  subjectAr: "الجغرافيا",
+  1497→  data: {
+  1498→    id: "climate-root",
+  1499→    text: "Climate",
+  1500→    textAr: "المناخ",
+  1501→    x: 0,
+  1502→    y: 0,
+  1503→    color: COLORS.cyan,
+  1504→    children: [
+  1505→      {
+  1506→        id: "climate-zones",
+  1507→        text: "Climate Zones",
+  1508→        textAr: "المناطق المناخية",
+  1509→        x: 0,
+  1510→        y: 0,
+  1511→        color: COLORS.blue,
+  1512→        children: [
+  1513→          { id: "tropical", text: "Tropical", textAr: "استوائية", x: 0, y: 0, color: COLORS.blueLight },
+  1514→          { id: "temperate", text: "Temperate", textAr: "معتدلة", x: 0, y: 0, color: COLORS.blueExtra },
+  1515→          { id: "polar", text: "Polar", textAr: "قطبية", x: 0, y: 0, color: COLORS.bluePale },
+  1516→        ],
+  1517→      },
+  1518→      {
+  1519→        id: "climate-factors",
+  1520→        text: "Climate Factors",
+  1521→        textAr: "عوامل المناخ",
+  1522→        x: 0,
+  1523→        y: 0,
+  1524→        color: COLORS.emerald,
+  1525→        children: [
+  1526→          { id: "latitude", text: "Latitude", textAr: "خط العرض", x: 0, y: 0, color: COLORS.emeraldLight },
+  1527→          { id: "altitude", text: "Altitude", textAr: "الارتفاع", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1528→          { id: "ocean-currents", text: "Ocean Currents", textAr: "تيارات المحيطات", x: 0, y: 0, color: COLORS.emeraldPale },
+  1529→        ],
+  1530→      },
+  1531→      {
+  1532→        id: "weather-elements",
+  1533→        text: "Weather Elements",
+  1534→        textAr: "عناصر الطقس",
+  1535→        x: 0,
+  1536→        y: 0,
+  1537→        color: COLORS.purple,
+  1538→        children: [
+  1539→          { id: "temperature", text: "Temperature", textAr: "درجة الحرارة", x: 0, y: 0, color: COLORS.purpleLight },
+  1540→          { id: "humidity", text: "Humidity", textAr: "الرطوبة", x: 0, y: 0, color: COLORS.purpleExtra },
+  1541→          { id: "precipitation", text: "Precipitation", textAr: "التساقط", x: 0, y: 0, color: COLORS.purplePale },
+  1542→        ],
+  1543→      },
+  1544→      {
+  1545→        id: "climate-change-geo",
+  1546→        text: "Climate Change",
+  1547→        textAr: "التغير المناخي",
+  1548→        x: 0,
+  1549→        y: 0,
+  1550→        color: COLORS.amber,
+  1551→        children: [
+  1552→          { id: "global-warming", text: "Global Warming", textAr: "الاحترار العالمي", x: 0, y: 0, color: COLORS.amberLight },
+  1553→          { id: "greenhouse-effect", text: "Greenhouse Effect", textAr: "تأثير الاحتباس الحراري", x: 0, y: 0, color: COLORS.amberExtra },
+  1554→          { id: "impacts", text: "Environmental Impacts", textAr: "التأثيرات البيئية", x: 0, y: 0, color: COLORS.amberPale },
+  1555→        ],
+  1556→      },
+  1557→    ],
+  1558→  },
+  1559→};
+  1560→
+  1561→const population: MindMapData = {
+  1562→  id: "population",
+  1563→  title: "Population",
+  1564→  titleAr: "السكان",
+  1565→  subject: "Geography",
+  1566→  subjectAr: "الجغرافيا",
+  1567→  data: {
+  1568→    id: "population-root",
+  1569→    text: "Population",
+  1570→    textAr: "السكان",
+  1571→    x: 0,
+  1572→    y: 0,
+  1573→    color: COLORS.amber,
+  1574→    children: [
+  1575→      {
+  1576→        id: "population-distribution",
+  1577→        text: "Distribution",
+  1578→        textAr: "التوزيع السكاني",
+  1579→        x: 0,
+  1580→        y: 0,
+  1581→        color: COLORS.blue,
+  1582→        children: [
+  1583→          { id: "dense-areas", text: "Densely Populated", textAr: "مناطق كثيفة", x: 0, y: 0, color: COLORS.blueLight },
+  1584→          { id: "sparse-areas", text: "Sparsely Populated", textAr: "مناطق قليلة", x: 0, y: 0, color: COLORS.blueExtra },
+  1585→          { id: "factors-dist", text: "Affecting Factors", textAr: "العوامل المؤثرة", x: 0, y: 0, color: COLORS.bluePale },
+  1586→        ],
+  1587→      },
+  1588→      {
+  1589→        id: "population-growth",
+  1590→        text: "Growth",
+  1591→        textAr: "النمو السكاني",
+  1592→        x: 0,
+  1593→        y: 0,
+  1594→        color: COLORS.emerald,
+  1595→        children: [
+  1596→          { id: "birth-rate", text: "Birth Rate", textAr: "معدل المواليد", x: 0, y: 0, color: COLORS.emeraldLight },
+  1597→          { id: "death-rate", text: "Death Rate", textAr: "معدل الوفيات", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1598→          { id: "migration", text: "Migration", textAr: "الهجرة", x: 0, y: 0, color: COLORS.emeraldPale },
+  1599→        ],
+  1600→      },
+  1601→      {
+  1602→        id: "population-structure",
+  1603→        text: "Structure",
+  1604→        textAr: "التركيب السكاني",
+  1605→        x: 0,
+  1606→        y: 0,
+  1607→        color: COLORS.purple,
+  1608→        children: [
+  1609→          { id: "age-structure", text: "Age Structure", textAr: "التركيب العمري", x: 0, y: 0, color: COLORS.purpleLight },
+  1610→          { id: "gender-ratio", text: "Gender Ratio", textAr: "نسبة الجنس", x: 0, y: 0, color: COLORS.purpleExtra },
+  1611→          { id: "pyramids", text: "Population Pyramids", textAr: "الأهرامات السكانية", x: 0, y: 0, color: COLORS.purplePale },
+  1612→        ],
+  1613→      },
+  1614→      {
+  1615→        id: "urbanization",
+  1616→        text: "Urbanization",
+  1617→        textAr: "التحضر",
+  1618→        x: 0,
+  1619→        y: 0,
+  1620→        color: COLORS.rose,
+  1621→        children: [
+  1622→          { id: "rural-urban", text: "Rural to Urban", textAr: "من ريفي إلى حضري", x: 0, y: 0, color: COLORS.roseLight },
+  1623→          { id: "megacities", text: "Megacities", textAr: "المدن الضخمة", x: 0, y: 0, color: COLORS.roseExtra },
+  1624→          { id: "challenges", text: "Urban Challenges", textAr: "التحديات الحضرية", x: 0, y: 0, color: COLORS.rosePale },
+  1625→        ],
+  1626→      },
+  1627→    ],
+  1628→  },
+  1629→};
+  1630→
+  1631→// ==========================================
+  1632→// ARABIC MIND MAPS
+  1633→// ==========================================
+  1634→
+  1635→const arabicGrammar: MindMapData = {
+  1636→  id: "arabic-grammar",
+  1637→  title: "Arabic Grammar",
+  1638→  titleAr: "قواعد اللغة العربية",
+  1639→  subject: "Arabic",
+  1640→  subjectAr: "اللغة العربية",
+  1641→  data: {
+  1642→    id: "grammar-root",
+  1643→    text: "Arabic Grammar",
+  1644→    textAr: "قواعد اللغة العربية",
+  1645→    x: 0,
+  1646→    y: 0,
+  1647→    color: COLORS.emerald,
+  1648→    children: [
+  1649→      {
+  1650→        id: "parts-of-speech",
+  1651→        text: "Parts of Speech",
+  1652→        textAr: "أقسام الكلام",
+  1653→        x: 0,
+  1654→        y: 0,
+  1655→        color: COLORS.blue,
+  1656→        children: [
+  1657→          { id: "noun", text: "Noun (اسم)", textAr: "الاسم", x: 0, y: 0, color: COLORS.blueLight },
+  1658→          { id: "verb", text: "Verb (فعل)", textAr: "الفعل", x: 0, y: 0, color: COLORS.blueExtra },
+  1659→          { id: "particle", text: "Particle (حرف)", textAr: "الحرف", x: 0, y: 0, color: COLORS.bluePale },
+  1660→        ],
+  1661→      },
+  1662→      {
+  1663→        id: "sentence-types",
+  1664→        text: "Sentence Types",
+  1665→        textAr: "أنواع الجمل",
+  1666→        x: 0,
+  1667→        y: 0,
+  1668→        color: COLORS.purple,
+  1669→        children: [
+  1670→          { id: "nominal", text: "Nominal (اسمية)", textAr: "الجملة الاسمية", x: 0, y: 0, color: COLORS.purpleLight },
+  1671→          { id: "verbal", text: "Verbal (فعلية)", textAr: "الجملة الفعلية", x: 0, y: 0, color: COLORS.purpleExtra },
+  1672→          { id: "components", text: "Sentence Components", textAr: "أركان الجملة", x: 0, y: 0, color: COLORS.purplePale },
+  1673→        ],
+  1674→      },
+  1675→      {
+  1676→        id: "irab",
+  1677→        text: "Irab (الإعراب)",
+  1678→        textAr: "الإعراب",
+  1679→        x: 0,
+  1680→        y: 0,
+  1681→        color: COLORS.amber,
+  1682→        children: [
+  1683→          { id: "marfu", text: "Marfu' (مرفوع)", textAr: "المرفوع", x: 0, y: 0, color: COLORS.amberLight },
+  1684→          { id: "mansub", text: "Mansub (منصوب)", textAr: "المنصوب", x: 0, y: 0, color: COLORS.amberExtra },
+  1685→          { id: "majrur", text: "Majrur (مجرور)", textAr: "المجرور", x: 0, y: 0, color: COLORS.amberPale },
+  1686→        ],
+  1687→      },
+  1688→      {
+  1689→        id: "verb-types-ar",
+  1690→        text: "Verb Types",
+  1691→        textAr: "أنواع الأفعال",
+  1692→        x: 0,
+  1693→        y: 0,
+  1694→        color: COLORS.rose,
+  1695→        children: [
+  1696→          { id: "past", text: "Past (ماضي)", textAr: "الفعل الماضي", x: 0, y: 0, color: COLORS.roseLight },
+  1697→          { id: "present", text: "Present (مضارع)", textAr: "الفعل المضارع", x: 0, y: 0, color: COLORS.roseExtra },
+  1698→          { id: "imperative", text: "Imperative (أمر)", textAr: "فعل الأمر", x: 0, y: 0, color: COLORS.rosePale },
+  1699→        ],
+  1700→      },
+  1701→      {
+  1702→        id: "derivation",
+  1703→        text: "Derivation",
+  1704→        textAr: "الاشتقاق",
+  1705→        x: 0,
+  1706→        y: 0,
+  1707→        color: COLORS.cyan,
+  1708→        children: [
+  1709→          { id: "masdar", text: "Masdar", textAr: "المصدر", x: 0, y: 0, color: COLORS.cyanLight },
+  1710→          { id: "ism-fail", text: "Ism Fa'il", textAr: "اسم الفاعل", x: 0, y: 0, color: COLORS.cyanExtra },
+  1711→          { id: "ism-mafoul", text: "Ism Maf'ul", textAr: "اسم المفعول", x: 0, y: 0, color: COLORS.cyanPale },
+  1712→        ],
+  1713→      },
+  1714→    ],
+  1715→  },
+  1716→};
+  1717→
+  1718→const arabicLiterature: MindMapData = {
+  1719→  id: "arabic-literature",
+  1720→  title: "Arabic Literature",
+  1721→  titleAr: "الأدب العربي",
+  1722→  subject: "Arabic",
+  1723→  subjectAr: "اللغة العربية",
+  1724→  data: {
+  1725→    id: "literature-root",
+  1726→    text: "Arabic Literature",
+  1727→    textAr: "الأدب العربي",
+  1728→    x: 0,
+  1729→    y: 0,
+  1730→    color: COLORS.purple,
+  1731→    children: [
+  1732→      {
+  1733→        id: "poetry",
+  1734→        text: "Poetry",
+  1735→        textAr: "الشعر",
+  1736→        x: 0,
+  1737→        y: 0,
+  1738→        color: COLORS.blue,
+  1739→        children: [
+  1740→          { id: "classical-poetry", text: "Classical Poetry", textAr: "الشعر الجاهلي", x: 0, y: 0, color: COLORS.blueLight },
+  1741→          { id: "modern-poetry", text: "Modern Poetry", textAr: "الشعر الحديث", x: 0, y: 0, color: COLORS.blueExtra },
+  1742→          { id: "poetry-elements", text: "Poetry Elements", textAr: "عناصر الشعر", x: 0, y: 0, color: COLORS.bluePale },
+  1743→        ],
+  1744→      },
+  1745→      {
+  1746→        id: "prose",
+  1747→        text: "Prose",
+  1748→        textAr: "النثر",
+  1749→        x: 0,
+  1750→        y: 0,
+  1751→        color: COLORS.emerald,
+  1752→        children: [
+  1753→          { id: "essay", text: "Essay", textAr: "المقال", x: 0, y: 0, color: COLORS.emeraldLight },
+  1754→          { id: "story", text: "Story", textAr: "القصة", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1755→          { id: "novel", text: "Novel", textAr: "الرواية", x: 0, y: 0, color: COLORS.emeraldPale },
+  1756→        ],
+  1757→      },
+  1758→      {
+  1759→        id: "literary-arts",
+  1760→        text: "Literary Arts",
+  1761→        textAr: "الفنون الأدبية",
+  1762→        x: 0,
+  1763→        y: 0,
+  1764→        color: COLORS.amber,
+  1765→        children: [
+  1766→          { id: "rhetoric", text: "Rhetoric (البلاغة)", textAr: "البلاغة", x: 0, y: 0, color: COLORS.amberLight },
+  1767→          { id: "criticism", text: "Criticism", textAr: "النقد الأدبي", x: 0, y: 0, color: COLORS.amberExtra },
+  1768→          { id: "eloquence", text: "Eloquence", textAr: "الفصاحة", x: 0, y: 0, color: COLORS.amberPale },
+  1769→        ],
+  1770→      },
+  1771→      {
+  1772→        id: "figurative",
+  1773→        text: "Figurative Language",
+  1774→        textAr: "الصور البيانية",
+  1775→        x: 0,
+  1776→        y: 0,
+  1777→        color: COLORS.rose,
+  1778→        children: [
+  1779→          { id: "simile", text: "Simile (تشبيه)", textAr: "التشبيه", x: 0, y: 0, color: COLORS.roseLight },
+  1780→          { id: "metaphor", text: "Metaphor (استعارة)", textAr: "الاستعارة", x: 0, y: 0, color: COLORS.roseExtra },
+  1781→          { id: "metonymy", text: "Metonymy (كناية)", textAr: "الكناية", x: 0, y: 0, color: COLORS.rosePale },
+  1782→        ],
+  1783→      },
+  1784→    ],
+  1785→  },
+  1786→};
+  1787→
+  1788→// ==========================================
+  1789→// ENGLISH MIND MAPS
+  1790→// ==========================================
+  1791→
+  1792→const englishGrammar: MindMapData = {
+  1793→  id: "english-grammar",
+  1794→  title: "English Grammar",
+  1795→  titleAr: "قواعد اللغة الإنجليزية",
+  1796→  subject: "English",
+  1797→  subjectAr: "اللغة الإنجليزية",
+  1798→  data: {
+  1799→    id: "eng-grammar-root",
+  1800→    text: "English Grammar",
+  1801→    textAr: "قواعد اللغة الإنجليزية",
+  1802→    x: 0,
+  1803→    y: 0,
+  1804→    color: COLORS.blue,
+  1805→    children: [
+  1806→      {
+  1807→        id: "tenses",
+  1808→        text: "Tenses",
+  1809→        textAr: "الأزمنة",
+  1810→        x: 0,
+  1811→        y: 0,
+  1812→        color: COLORS.emerald,
+  1813→        children: [
+  1814→          { id: "present-tenses", text: "Present Tenses", textAr: "أزمنة الحاضر", x: 0, y: 0, color: COLORS.emeraldLight },
+  1815→          { id: "past-tenses", text: "Past Tenses", textAr: "أزمنة الماضي", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1816→          { id: "future-tenses", text: "Future Tenses", textAr: "أزمنة المستقبل", x: 0, y: 0, color: COLORS.emeraldPale },
+  1817→        ],
+  1818→      },
+  1819→      {
+  1820→        id: "sentence-structure",
+  1821→        text: "Sentence Structure",
+  1822→        textAr: "بنية الجملة",
+  1823→        x: 0,
+  1824→        y: 0,
+  1825→        color: COLORS.purple,
+  1826→        children: [
+  1827→          { id: "subject-predicate", text: "Subject & Predicate", textAr: "الفاعل والمسند", x: 0, y: 0, color: COLORS.purpleLight },
+  1828→          { id: "clauses", text: "Clauses", textAr: "العبارات", x: 0, y: 0, color: COLORS.purpleExtra },
+  1829→          { id: "sentence-types-eng", text: "Sentence Types", textAr: "أنواع الجمل", x: 0, y: 0, color: COLORS.purplePale },
+  1830→        ],
+  1831→      },
+  1832→      {
+  1833→        id: "parts-of-speech-eng",
+  1834→        text: "Parts of Speech",
+  1835→        textAr: "أقسام الكلام",
+  1836→        x: 0,
+  1837→        y: 0,
+  1838→        color: COLORS.amber,
+  1839→        children: [
+  1840→          { id: "nouns", text: "Nouns", textAr: "الأسماء", x: 0, y: 0, color: COLORS.amberLight },
+  1841→          { id: "verbs", text: "Verbs", textAr: "الأفعال", x: 0, y: 0, color: COLORS.amberExtra },
+  1842→          { id: "adjectives", text: "Adjectives", textAr: "الصفات", x: 0, y: 0, color: COLORS.amberPale },
+  1843→          { id: "adverbs", text: "Adverbs", textAr: "الظروف", x: 0, y: 0, color: COLORS.amber },
+  1844→        ],
+  1845→      },
+  1846→      {
+  1847→        id: "conditionals",
+  1848→        text: "Conditionals",
+  1849→        textAr: "الجمل الشرطية",
+  1850→        x: 0,
+  1851→        y: 0,
+  1852→        color: COLORS.rose,
+  1853→        children: [
+  1854→          { id: "zero-conditional", text: "Zero Conditional", textAr: "الشرط الصفري", x: 0, y: 0, color: COLORS.roseLight },
+  1855→          { id: "first-conditional", text: "First Conditional", textAr: "الشرط الأول", x: 0, y: 0, color: COLORS.roseExtra },
+  1856→          { id: "second-third", text: "Second & Third", textAr: "الثاني والثالث", x: 0, y: 0, color: COLORS.rosePale },
+  1857→        ],
+  1858→      },
+  1859→      {
+  1860→        id: "voice",
+  1861→        text: "Active & Passive",
+  1862→        textAr: "المبني للمعلوم والمجهول",
+  1863→        x: 0,
+  1864→        y: 0,
+  1865→        color: COLORS.cyan,
+  1866→        children: [
+  1867→          { id: "active-voice", text: "Active Voice", textAr: "المبني للمعلوم", x: 0, y: 0, color: COLORS.cyanLight },
+  1868→          { id: "passive-voice", text: "Passive Voice", textAr: "المبني للمجهول", x: 0, y: 0, color: COLORS.cyanExtra },
+  1869→          { id: "conversion", text: "Voice Conversion", textAr: "تحويل البناء", x: 0, y: 0, color: COLORS.cyanPale },
+  1870→        ],
+  1871→      },
+  1872→    ],
+  1873→  },
+  1874→};
+  1875→
+  1876→const englishWriting: MindMapData = {
+  1877→  id: "english-writing",
+  1878→  title: "English Writing",
+  1879→  titleAr: "الكتابة بالإنجليزية",
+  1880→  subject: "English",
+  1881→  subjectAr: "اللغة الإنجليزية",
+  1882→  data: {
+  1883→    id: "writing-root",
+  1884→    text: "English Writing",
+  1885→    textAr: "الكتابة بالإنجليزية",
+  1886→    x: 0,
+  1887→    y: 0,
+  1888→    color: COLORS.rose,
+  1889→    children: [
+  1890→      {
+  1891→        id: "essay-writing",
+  1892→        text: "Essay Writing",
+  1893→        textAr: "كتابة المقال",
+  1894→        x: 0,
+  1895→        y: 0,
+  1896→        color: COLORS.blue,
+  1897→        children: [
+  1898→          { id: "introduction", text: "Introduction", textAr: "المقدمة", x: 0, y: 0, color: COLORS.blueLight },
+  1899→          { id: "body-paragraphs", text: "Body Paragraphs", textAr: "الفقرات الرئيسية", x: 0, y: 0, color: COLORS.blueExtra },
+  1900→          { id: "conclusion", text: "Conclusion", textAr: "الخاتمة", x: 0, y: 0, color: COLORS.bluePale },
+  1901→        ],
+  1902→      },
+  1903→      {
+  1904→        id: "paragraph-structure",
+  1905→        text: "Paragraph Structure",
+  1906→        textAr: "بنية الفقرة",
+  1907→        x: 0,
+  1908→        y: 0,
+  1909→        color: COLORS.emerald,
+  1910→        children: [
+  1911→          { id: "topic-sentence", text: "Topic Sentence", textAr: "الجملة الرئيسية", x: 0, y: 0, color: COLORS.emeraldLight },
+  1912→          { id: "supporting", text: "Supporting Details", textAr: "التفاصيل الداعمة", x: 0, y: 0, color: COLORS.emeraldExtra },
+  1913→          { id: "transition", text: "Transitions", textAr: "كلمات الربط", x: 0, y: 0, color: COLORS.emeraldPale },
+  1914→        ],
+  1915→      },
+  1916→      {
+  1917→        id: "writing-types",
+  1918→        text: "Types of Writing",
+  1919→        textAr: "أنواع الكتابة",
+  1920→        x: 0,
+  1921→        y: 0,
+  1922→        color: COLORS.purple,
+  1923→        children: [
+  1924→          { id: "narrative", text: "Narrative", textAr: "السردية", x: 0, y: 0, color: COLORS.purpleLight },
+  1925→          { id: "descriptive", text: "Descriptive", textAr: "الوصفية", x: 0, y: 0, color: COLORS.purpleExtra },
+  1926→          { id: "argumentative", text: "Argumentative", textAr: "الجدلية", x: 0, y: 0, color: COLORS.purplePale },
+  1927→        ],
+  1928→      },
+  1929→      {
+  1930→        id: "punctuation",
+  1931→        text: "Punctuation",
+  1932→        textAr: "علامات الترقيم",
+  1933→        x: 0,
+  1934→        y: 0,
+  1935→        color: COLORS.amber,
+  1936→        children: [
+  1937→          { id: "period-comma", text: "Period & Comma", textAr: "النقطة والفاصلة", x: 0, y: 0, color: COLORS.amberLight },
+  1938→          { id: "quotes", text: "Quotation Marks", textAr: "علامات الاقتباس", x: 0, y: 0, color: COLORS.amberExtra },
+  1939→          { id: "apostrophe", text: "Apostrophe", textAr: "الفاصلة العليا", x: 0, y: 0, color: COLORS.amberPale },
+  1940→        ],
+  1941→      },
+  1942→    ],
+  1943→  },
+  1944→};
+  1945→
+  1946→// ==========================================
+  1947→// MAIN EXPORT
+  1948→// ==========================================
+  1949→
+  1950→export const MIND_MAPS: Record<string, MindMapData> = {
+  1951→  // Physics
+  1952→  "newtons-laws": newtonsLaws,
+  1953→  kinematics: kinematics,
+  1954→  energy: energy,
+  1955→  waves: waves,
+  1956→  electricity: electricity,
+  1957→  optics: optics,
+  1958→  // Chemistry
+  1959→  "periodic-table": periodicTable,
+  1960→  "chemical-bonding": chemicalBonding,
+  1961→  "atomic-structure": atomicStructure,
+  1962→  // Biology
+  1963→  cell: cell,
+  1964→  "dna-genetics": dnaGenetics,
+  1965→  "human-body": humanBodySystems,
+  1966→  ecology: ecology,
+  1967→  // Mathematics
+  1968→  algebra: algebra,
+  1969→  geometry: geometry,
+  1970→  trigonometry: trigonometry,
+  1971→  calculus: calculus,
+  1972→  // Geography
+  1973→  climate: climate,
+  1974→  population: population,
+  1975→  // Arabic
+  1976→  "arabic-grammar": arabicGrammar,
+  1977→  "arabic-literature": arabicLiterature,
+  1978→  // English
+  1979→  "english-grammar": englishGrammar,
+  1980→  "english-writing": englishWriting,
+  1981→};
+  1982→
+  1983→// Type for all available mind map keys
+  1984→export type MindMapType = keyof typeof MIND_MAPS;
+  1985→
+  1986→// Helper functions
+  1987→export function getMindMapById(id: MindMapType): MindMapData | undefined {
+  1988→  return MIND_MAPS[id];
+  1989→}
+  1990→
+  1991→export function getMindMapsBySubject(subject: string): MindMapData[] {
+  1992→  return Object.values(MIND_MAPS).filter(
+  1993→    (map) => map.subject.toLowerCase() === subject.toLowerCase()
+  1994→  );
+  1995→}
+  1996→
+  1997→export function getAllSubjects(): string[] {
+  1998→  const subjects = new Set(Object.values(MIND_MAPS).map((map) => map.subject));
+  1999→  return Array.from(subjects);
+  2000→}
+
+[showing lines 1-2000 of 2019; use offset=2001 with limit to continue reading]

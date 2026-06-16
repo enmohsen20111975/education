@@ -1,0 +1,676 @@
+     1→"use client";
+     2→
+     3→import { useState, useEffect, useCallback } from "react";
+     4→import { motion, AnimatePresence } from "framer-motion";
+     5→import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+     6→import { Badge } from "@/components/ui/badge";
+     7→import { Button } from "@/components/ui/button";
+     8→import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+     9→import { Progress } from "@/components/ui/progress";
+    10→import { 
+    11→  BookOpen, Target, Lightbulb, Calculator, FlaskConical, 
+    12→  ChevronLeft, ChevronRight, Play, CheckCircle, ArrowRight,
+    13→  FileText, Zap, Brain, HelpCircle, Network, BarChart3,
+    14→  Share2, Copy, Twitter, Facebook, Link2, PartyPopper,
+    15→  Sparkles, Check, RotateCcw, Eye, EyeOff, Trophy, Star, Clock
+    16→} from "lucide-react";
+    17→import { MotionSimulator } from "@/components/simulators/MotionSimulator";
+    18→import { ForcesSimulator } from "@/components/simulators/ForcesSimulator";
+    19→import { EnergySimulator } from "@/components/simulators/EnergySimulator";
+    20→import { FreeFallSimulator } from "@/components/simulators/FreeFallSimulator";
+    21→import { WaveSimulator } from "@/components/simulators/WaveSimulator";
+    22→import { FunctionsSimulator } from "@/components/simulators/FunctionsSimulator";
+    23→import { PeriodicTableSimulator } from "@/components/simulators/PeriodicTableSimulator";
+    24→import { ProjectileSimulator } from "@/components/simulators/ProjectileSimulator";
+    25→import MindMap from "@/components/MindMap";
+    26→import { Infographic } from "@/components/Infographic";
+    27→import type { LessonDetailFromApi } from "@/hooks/useApi";
+    28→
+    29→interface LessonViewProps {
+    30→  lesson: LessonDetailFromApi;
+    31→  language: "ar" | "en";
+    32→  onBack: () => void;
+    33→  onComplete?: () => void;
+    34→}
+    35→
+    36→// Confetti Particle Component
+    37→const ConfettiParticle = ({ color, x, delay }: { color: string; x: number; delay: number }) => (
+    38→  <motion.div
+    39→    className="absolute w-3 h-3 rounded-sm"
+    40→    style={{ 
+    41→      backgroundColor: color,
+    42→      left: `${x}%`,
+    43→      top: -20
+    44→    }}
+    45→    initial={{ y: 0, rotate: 0, opacity: 1 }}
+    46→    animate={{ 
+    47→      y: typeof window !== 'undefined' ? window.innerHeight + 100 : 800,
+    48→      rotate: Math.random() * 720 - 360,
+    49→      opacity: [1, 1, 0]
+    50→    }}
+    51→    transition={{ 
+    52→      duration: 2 + Math.random() * 2,
+    53→      delay,
+    54→      ease: "easeIn"
+    55→    }}
+    56→  />
+    57→);
+    58→
+    59→// Flip Card Component for Concepts
+    60→const FlipCard = ({ term, definition, language }: { term: string; definition: string; language: "ar" | "en" }) => {
+    61→  const [isFlipped, setIsFlipped] = useState(false);
+    62→  const dir = language === "ar" ? "rtl" : "ltr";
+    63→
+    64→  return (
+    65→    <div 
+    66→      className="relative h-48 cursor-pointer perspective-1000"
+    67→      onClick={() => setIsFlipped(!isFlipped)}
+    68→    >
+    69→      <motion.div
+    70→        className="absolute inset-0 w-full h-full"
+    71→        style={{ transformStyle: "preserve-3d" }}
+    72→        animate={{ rotateY: isFlipped ? 180 : 0 }}
+    73→        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+    74→      >
+    75→        {/* Front Side */}
+    76→        <div 
+    77→          className="absolute inset-0 w-full h-full rounded-xl border-2 border-amber-200 dark:border-amber-800 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950 dark:to-orange-950 flex flex-col items-center justify-center p-4 shadow-lg"
+    78→          style={{ backfaceVisibility: "hidden" }}
+    79→        >
+    80→          <div className="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center mb-3">
+    81→            <Lightbulb className="w-6 h-6 text-amber-500" />
+    82→          </div>
+    83→          <h3 className="font-bold text-lg text-center">{term}</h3>
+    84→          <p className="text-xs text-slate-500 mt-2 flex items-center gap-1">
+    85→            <Eye className="w-3 h-3" />
+    86→            {language === "ar" ? "انقر للقلب" : "Click to flip"}
+    87→          </p>
+    88→        </div>
+    89→
+    90→        {/* Back Side */}
+    91→        <div 
+    92→          className="absolute inset-0 w-full h-full rounded-xl border-2 border-teal-200 dark:border-teal-800 bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-950 dark:to-emerald-950 flex items-center justify-center p-4 shadow-lg"
+    93→          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+    94→          dir={dir}
+    95→        >
+    96→          <p className="text-center text-slate-700 dark:text-slate-300">{definition}</p>
+    97→        </div>
+    98→      </motion.div>
+    99→    </div>
+   100→  );
+   101→};
+   102→
+   103→// Step Animation Component for Examples
+   104→const AnimatedStep = ({ step, index, isVisible }: { step: string; index: number; isVisible: boolean }) => {
+   105→  return (
+   106→    <motion.div
+   107→      className="flex items-start gap-2"
+   108→      initial={{ opacity: 0, x: -20 }}
+   109→      animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+   110→      transition={{ delay: index * 0.2, duration: 0.4 }}
+   111→    >
+   112→      <motion.span 
+   113→        className="w-6 h-6 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white flex items-center justify-center text-sm shrink-0"
+   114→        initial={{ scale: 0 }}
+   115→        animate={isVisible ? { scale: 1 } : { scale: 0 }}
+   116→        transition={{ delay: index * 0.2 + 0.1, type: "spring", stiffness: 300 }}
+   117→      >
+   118→        {index + 1}
+   119→      </motion.span>
+   120→      <code className="text-slate-700 dark:text-slate-300">{step}</code>
+   121→    </motion.div>
+   122→  );
+   123→};
+   124→
+   125→// Navigation Tab Button Component
+   126→const NavTabButton = ({ 
+   127→  value, 
+   128→  icon: Icon, 
+   129→  label, 
+   130→  isActive,
+   131→  onClick,
+   132→  visited
+   133→}: { 
+   134→  value: string; 
+   135→  icon: React.ElementType; 
+   136→  label: string; 
+   137→  isActive: boolean;
+   138→  onClick: () => void;
+   139→  visited: boolean;
+   140→}) => (
+   141→  <motion.button
+   142→    onClick={onClick}
+   143→    className={`relative flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
+   144→      isActive 
+   145→        ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg" 
+   146→        : visited
+   147→          ? "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300"
+   148→          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+   149→    }`}
+   150→    whileHover={{ scale: 1.02, y: -2 }}
+   151→    whileTap={{ scale: 0.98 }}
+   152→  >
+   153→    <motion.div
+   154→      animate={isActive ? { rotate: [0, -10, 10, 0] } : {}}
+   155→      transition={{ duration: 0.5, repeat: isActive ? Infinity : 0, repeatDelay: 2 }}
+   156→    >
+   157→      <Icon className="w-4 h-4" />
+   158→    </motion.div>
+   159→    <span className="hidden sm:inline">{label}</span>
+   160→    {visited && !isActive && (
+   161→      <Check className="w-3 h-3 text-emerald-500" />
+   162→    )}
+   163→    {isActive && (
+   164→      <motion.div
+   165→        className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-white"
+   166→        layoutId="activeTab"
+   167→      />
+   168→    )}
+   169→  </motion.button>
+   170→);
+   171→
+   172→export function LessonView({ lesson, language, onBack, onComplete }: LessonViewProps) {
+   173→  const [activeSection, setActiveSection] = useState<string>("intro");
+   174→  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set(["intro"]));
+   175→  const [isCompleted, setIsCompleted] = useState(false);
+   176→  const [showConfetti, setShowConfetti] = useState(false);
+   177→  const [showShareMenu, setShowShareMenu] = useState(false);
+   178→  const [copiedLink, setCopiedLink] = useState(false);
+   179→  const dir = language === "ar" ? "rtl" : "ltr";
+   180→
+   181→  // Calculate progress
+   182→  const totalSections = 9;
+   183→  const progress = (visitedSections.size / totalSections) * 100;
+   184→
+   185→  // Handle section change
+   186→  const handleSectionChange = (section: string) => {
+   187→    setActiveSection(section);
+   188→    setVisitedSections(prev => new Set([...prev, section]));
+   189→  };
+   190→
+   191→  // Handle lesson completion
+   192→  const handleComplete = () => {
+   193→    setIsCompleted(true);
+   194→    setShowConfetti(true);
+   195→    setTimeout(() => setShowConfetti(false), 4000);
+   196→    onComplete?.();
+   197→  };
+   198→
+   199→  // Copy link to clipboard
+   200→  const copyLink = useCallback(() => {
+   201→    navigator.clipboard.writeText(window.location.href);
+   202→    setCopiedLink(true);
+   203→    setTimeout(() => setCopiedLink(false), 2000);
+   204→  }, []);
+   205→
+   206→  // Get localized content
+   207→  const getLocalizedContent = (content: { ar: string; en: string }) => {
+   208→    return language === "ar" ? content.ar : content.en;
+   209→  };
+   210→
+   211→  const getLocalizedArray = (content: { ar: any[]; en: any[] }) => {
+   212→    return language === "ar" ? content.ar : content.en;
+   213→  };
+   214→
+   215→  // Tab items
+   216→  const tabItems = [
+   217→    { value: "intro", icon: BookOpen, label: language === "ar" ? "المقدمة" : "Intro" },
+   218→    { value: "objectives", icon: Target, label: language === "ar" ? "الأهداف" : "Goals" },
+   219→    { value: "concepts", icon: Lightbulb, label: language === "ar" ? "المفاهيم" : "Concepts" },
+   220→    { value: "formulas", icon: Calculator, label: language === "ar" ? "المعادلات" : "Formulas" },
+   221→    { value: "examples", icon: FileText, label: language === "ar" ? "الأمثلة" : "Examples" },
+   222→    { value: "simulator", icon: Zap, label: language === "ar" ? "المحاكي" : "Simulator" },
+   223→    { value: "mindmap", icon: Network, label: language === "ar" ? "الخريطة" : "Mind Map" },
+   224→    { value: "infographic", icon: BarChart3, label: language === "ar" ? "الرسم" : "Chart" },
+   225→    { value: "summary", icon: Brain, label: language === "ar" ? "الملخص" : "Summary" },
+   226→  ];
+   227→
+   228→  // Render simulator
+   229→  const renderSimulator = (simSlug: string) => {
+   230→    switch (simSlug) {
+   231→      case "motion":
+   232→        return <MotionSimulator language={language} />;
+   233→      case "forces":
+   234→        return <ForcesSimulator language={language} />;
+   235→      case "energy":
+   236→        return <EnergySimulator language={language} />;
+   237→      case "freeFall":
+   238→        return <FreeFallSimulator language={language} />;
+   239→      case "wave":
+   240→        return <WaveSimulator language={language} />;
+   241→      case "functions":
+   242→        return <FunctionsSimulator language={language} />;
+   243→      case "periodicTable":
+   244→        return <PeriodicTableSimulator language={language} />;
+   245→      case "projectile":
+   246→        return <ProjectileSimulator language={language} />;
+   247→      default:
+   248→        return (
+   249→          <div className="text-center py-12 text-slate-500">
+   250→            {language === "ar" ? "المحاكي غير متاح" : "Simulator not available"}
+   251→          </div>
+   252→        );
+   253→    }
+   254→  };
+   255→
+   256→  return (
+   257→    <div className="relative" dir={dir}>
+   258→      {/* Confetti Effect */}
+   259→      <AnimatePresence>
+   260→        {showConfetti && (
+   261→          <div className="fixed inset-0 pointer-events-none z-50">
+   262→            {Array.from({ length: 50 }).map((_, i) => (
+   263→              <ConfettiParticle
+   264→                key={i}
+   265→                color={["#10b981", "#3b82f6", "#f59e0b", "#8b5cf6", "#f43f5e"][i % 5]}
+   266→                x={Math.random() * 100}
+   267→                delay={Math.random() * 0.5}
+   268→              />
+   269→            ))}
+   270→          </div>
+   271→        )}
+   272→      </AnimatePresence>
+   273→
+   274→      {/* Header */}
+   275→      <motion.div
+   276→        initial={{ opacity: 0, y: -20 }}
+   277→        animate={{ opacity: 1, y: 0 }}
+   278→        className="mb-6"
+   279→      >
+   280→        <div className="flex items-center gap-4 mb-4">
+   281→          <Button
+   282→            variant="ghost"
+   283→            onClick={onBack}
+   284→            className="shrink-0"
+   285→          >
+   286→            {language === "ar" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+   287→          </Button>
+   288→          <div className="flex-1">
+   289→            <h1 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white">
+   290→              {getLocalizedContent(lesson.titleAr && lesson.titleEn ? { ar: lesson.titleAr, en: lesson.titleEn } : { ar: lesson.titleAr, en: lesson.titleEn })}
+   291→            </h1>
+   292→            <div className="flex items-center gap-3 mt-1">
+   293→              <Badge variant="secondary" className="gap-1">
+   294→                <BookOpen className="w-3 h-3" />
+   295→                {language === "ar" ? lesson.unit.nameAr : lesson.unit.nameEn}
+   296→              </Badge>
+   297→              <Badge variant="outline" className="gap-1">
+   298→                <Clock className="w-3 h-3" />
+   299→                {lesson.duration} {language === "ar" ? "دقيقة" : "min"}
+   300→              </Badge>
+   301→              {lesson.simulators?.length > 0 && (
+   302→                <Badge className="gap-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+   303→                  <Zap className="w-3 h-3" />
+   304→                  {lesson.simulators.length} {language === "ar" ? "محاكي" : "simulators"}
+   305→                </Badge>
+   306→              )}
+   307→            </div>
+   308→          </div>
+   309→        </div>
+   310→
+   311→        {/* Progress Bar */}
+   312→        <div className="mb-4">
+   313→          <div className="flex items-center justify-between text-sm mb-2">
+   314→            <span className="text-slate-600 dark:text-slate-400">
+   315→              {language === "ar" ? "التقدم" : "Progress"}
+   316→            </span>
+   317→            <span className="font-medium text-emerald-600">
+   318→              {Math.round(progress)}%
+   319→            </span>
+   320→          </div>
+   321→          <Progress value={progress} className="h-2" />
+   322→        </div>
+   323→
+   324→        {/* Navigation Tabs */}
+   325→        <div className="flex flex-wrap gap-2">
+   326→          {tabItems.map((tab) => (
+   327→            <NavTabButton
+   328→              key={tab.value}
+   329→              value={tab.value}
+   330→              icon={tab.icon}
+   331→              label={tab.label}
+   332→              isActive={activeSection === tab.value}
+   333→              onClick={() => handleSectionChange(tab.value)}
+   334→              visited={visitedSections.has(tab.value)}
+   335→            />
+   336→          ))}
+   337→        </div>
+   338→      </motion.div>
+   339→
+   340→      {/* Content */}
+   341→      <AnimatePresence mode="wait">
+   342→        <motion.div
+   343→          key={activeSection}
+   344→          initial={{ opacity: 0, y: 20 }}
+   345→          animate={{ opacity: 1, y: 0 }}
+   346→          exit={{ opacity: 0, y: -20 }}
+   347→          transition={{ duration: 0.3 }}
+   348→        >
+   349→          {/* Introduction Section */}
+   350→          {activeSection === "intro" && (
+   351→            <Card className="overflow-hidden">
+   352→              <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+   353→                <CardTitle className="flex items-center gap-2">
+   354→                  <BookOpen className="w-5 h-5" />
+   355→                  {language === "ar" ? "المقدمة" : "Introduction"}
+   356→                </CardTitle>
+   357→              </CardHeader>
+   358→              <CardContent className="p-6">
+   359→                <div className="prose dark:prose-invert max-w-none">
+   360→                  <div className="whitespace-pre-wrap text-slate-700 dark:text-slate-300 leading-relaxed">
+   361→                    {getLocalizedContent(lesson.introduction)}
+   362→                  </div>
+   363→                </div>
+   364→              </CardContent>
+   365→            </Card>
+   366→          )}
+   367→
+   368→          {/* Objectives Section */}
+   369→          {activeSection === "objectives" && (
+   370→            <Card>
+   371→              <CardHeader className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
+   372→                <CardTitle className="flex items-center gap-2">
+   373→                  <Target className="w-5 h-5" />
+   374→                  {language === "ar" ? "الأهداف التعليمية" : "Learning Objectives"}
+   375→                </CardTitle>
+   376→              </CardHeader>
+   377→              <CardContent className="p-6">
+   378→                <div className="space-y-4">
+   379→                  {getLocalizedArray(lesson.objectives).map((objective: string, index: number) => (
+   380→                    <motion.div
+   381→                      key={index}
+   382→                      initial={{ opacity: 0, x: -20 }}
+   383→                      animate={{ opacity: 1, x: 0 }}
+   384→                      transition={{ delay: index * 0.1 }}
+   385→                      className="flex items-start gap-3"
+   386→                    >
+   387→                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-cyan-100 dark:from-blue-900 dark:to-cyan-900 flex items-center justify-center shrink-0">
+   388→                        <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+   389→                      </div>
+   390→                      <p className="text-slate-700 dark:text-slate-300 pt-1">{objective}</p>
+   391→                    </motion.div>
+   392→                  ))}
+   393→                </div>
+   394→              </CardContent>
+   395→            </Card>
+   396→          )}
+   397→
+   398→          {/* Concepts Section */}
+   399→          {activeSection === "concepts" && (
+   400→            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+   401→              {getLocalizedArray(lesson.keyConcepts).map((concept: { term: string; definition: string }, index: number) => (
+   402→                <motion.div
+   403→                  key={index}
+   404→                  initial={{ opacity: 0, scale: 0.9 }}
+   405→                  animate={{ opacity: 1, scale: 1 }}
+   406→                  transition={{ delay: index * 0.1 }}
+   407→                >
+   408→                  <FlipCard
+   409→                    term={concept.term}
+   410→                    definition={concept.definition}
+   411→                    language={language}
+   412→                  />
+   413→                </motion.div>
+   414→              ))}
+   415→            </div>
+   416→          )}
+   417→
+   418→          {/* Formulas Section */}
+   419→          {activeSection === "formulas" && (
+   420→            <div className="space-y-4">
+   421→              {getLocalizedArray(lesson.formulas).map((formula: { formula: string; explanation: string }, index: number) => (
+   422→                <motion.div
+   423→                  key={index}
+   424→                  initial={{ opacity: 0, x: -20 }}
+   425→                  animate={{ opacity: 1, x: 0 }}
+   426→                  transition={{ delay: index * 0.1 }}
+   427→                >
+   428→                  <Card className="overflow-hidden">
+   429→                    <div className="flex items-stretch">
+   430→                      <div className="w-24 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg shrink-0">
+   431→                        #{index + 1}
+   432→                      </div>
+   433→                      <div className="flex-1 p-4">
+   434→                        <div className="text-center mb-2">
+   435→                          <code className="text-2xl font-mono text-purple-600 dark:text-purple-400">
+   436→                            {formula.formula}
+   437→                          </code>
+   438→                        </div>
+   439→                        <p className="text-center text-slate-600 dark:text-slate-400 text-sm">
+   440→                          {formula.explanation}
+   441→                        </p>
+   442→                      </div>
+   443→                    </div>
+   444→                  </Card>
+   445→                </motion.div>
+   446→              ))}
+   447→            </div>
+   448→          )}
+   449→
+   450→          {/* Examples Section */}
+   451→          {activeSection === "examples" && (
+   452→            <div className="space-y-6">
+   453→              {getLocalizedArray(lesson.examples).map((example: { question: string; solution: string; steps: string[] }, index: number) => (
+   454→                <motion.div
+   455→                  key={index}
+   456→                  initial={{ opacity: 0, y: 20 }}
+   457→                  animate={{ opacity: 1, y: 0 }}
+   458→                  transition={{ delay: index * 0.2 }}
+   459→                >
+   460→                  <Card>
+   461→                    <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+   462→                      <CardTitle className="flex items-center gap-2">
+   463→                        <HelpCircle className="w-5 h-5" />
+   464→                        {language === "ar" ? `مثال ${index + 1}` : `Example ${index + 1}`}
+   465→                      </CardTitle>
+   466→                    </CardHeader>
+   467→                    <CardContent className="p-6">
+   468→                      <div className="mb-4 p-4 bg-amber-50 dark:bg-amber-950/30 rounded-lg">
+   469→                        <p className="font-medium text-amber-800 dark:text-amber-200">
+   470→                          {example.question}
+   471→                        </p>
+   472→                      </div>
+   473→                      
+   474→                      <div className="space-y-3 mb-4">
+   475→                        {example.steps?.map((step: string, stepIndex: number) => (
+   476→                          <AnimatedStep
+   477→                            key={stepIndex}
+   478→                            step={step}
+   479→                            index={stepIndex}
+   480→                            isVisible={true}
+   481→                          />
+   482→                        ))}
+   483→                      </div>
+   484→
+   485→                      <div className="p-4 bg-emerald-50 dark:bg-emerald-950/30 rounded-lg">
+   486→                        <p className="font-medium text-emerald-800 dark:text-emerald-200">
+   487→                          <strong>{language === "ar" ? "الحل: " : "Solution: "}</strong>
+   488→                          {example.solution}
+   489→                        </p>
+   490→                      </div>
+   491→                    </CardContent>
+   492→                  </Card>
+   493→                </motion.div>
+   494→              ))}
+   495→            </div>
+   496→          )}
+   497→
+   498→          {/* Simulator Section */}
+   499→          {activeSection === "simulator" && (
+   500→            <Card className="overflow-hidden">
+   501→              <CardHeader className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+   502→                <CardTitle className="flex items-center gap-2">
+   503→                  <Zap className="w-5 h-5" />
+   504→                  {language === "ar" ? "المحاكي التفاعلي" : "Interactive Simulator"}
+   505→                </CardTitle>
+   506→              </CardHeader>
+   507→              <CardContent className="p-0">
+   508→                {lesson.simulators?.length > 0 ? (
+   509→                  <div>
+   510→                    {lesson.simulators.length > 1 && (
+   511→                      <div className="flex gap-2 p-4 bg-slate-100 dark:bg-slate-800 overflow-x-auto">
+   512→                        {lesson.simulators.map((sim: string, index: number) => (
+   513→                          <Badge key={sim} variant="outline" className="shrink-0">
+   514→                            {sim}
+   515→                          </Badge>
+   516→                        ))}
+   517→                      </div>
+   518→                    )}
+   519→                    {renderSimulator(lesson.simulators[0])}
+   520→                  </div>
+   521→                ) : (
+   522→                  <div className="text-center py-12 text-slate-500">
+   523→                    <Zap className="w-12 h-12 mx-auto mb-4 opacity-50" />
+   524→                    <p>{language === "ar" ? "لا يوجد محاكي لهذا الدرس" : "No simulator for this lesson"}</p>
+   525→                  </div>
+   526→                )}
+   527→              </CardContent>
+   528→            </Card>
+   529→          )}
+   530→
+   531→          {/* Mind Map Section */}
+   532→          {activeSection === "mindmap" && (
+   533→            <Card className="overflow-hidden">
+   534→              <CardHeader className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white">
+   535→                <CardTitle className="flex items-center gap-2">
+   536→                  <Network className="w-5 h-5" />
+   537→                  {language === "ar" ? "الخريطة الذهنية" : "Mind Map"}
+   538→                </CardTitle>
+   539→              </CardHeader>
+   540→              <CardContent className="p-0">
+   541→                {lesson.mindMap ? (
+   542→                  <div className="h-[600px]">
+   543→                    <MindMap data={lesson.mindMap} language={language} />
+   544→                  </div>
+   545→                ) : (
+   546→                  <div className="text-center py-12 text-slate-500">
+   547→                    <Network className="w-12 h-12 mx-auto mb-4 opacity-50" />
+   548→                    <p>{language === "ar" ? "لا توجد خريطة ذهنية لهذا الدرس" : "No mind map for this lesson"}</p>
+   549→                  </div>
+   550→                )}
+   551→              </CardContent>
+   552→            </Card>
+   553→          )}
+   554→
+   555→          {/* Infographic Section */}
+   556→          {activeSection === "infographic" && (
+   557→            <Card className="overflow-hidden">
+   558→              <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
+   559→                <CardTitle className="flex items-center gap-2">
+   560→                  <BarChart3 className="w-5 h-5" />
+   561→                  {language === "ar" ? "الرسم التوضيحي" : "Infographic"}
+   562→                </CardTitle>
+   563→              </CardHeader>
+   564→              <CardContent className="p-6">
+   565→                {lesson.infographic ? (
+   566→                  <Infographic
+   567→                    type={lesson.infographic.type}
+   568→                    data={lesson.infographic.data}
+   569→                    language={language}
+   570→                  />
+   571→                ) : (
+   572→                  <div className="text-center py-12 text-slate-500">
+   573→                    <BarChart3 className="w-12 h-12 mx-auto mb-4 opacity-50" />
+   574→                    <p>{language === "ar" ? "لا يوجد رسم توضيحي لهذا الدرس" : "No infographic for this lesson"}</p>
+   575→                  </div>
+   576→                )}
+   577→              </CardContent>
+   578→            </Card>
+   579→          )}
+   580→
+   581→          {/* Summary Section */}
+   582→          {activeSection === "summary" && (
+   583→            <Card className="overflow-hidden">
+   584→              <CardHeader className="bg-gradient-to-r from-rose-500 to-pink-500 text-white">
+   585→                <CardTitle className="flex items-center gap-2">
+   586→                  <Brain className="w-5 h-5" />
+   587→                  {language === "ar" ? "ملخص الدرس" : "Lesson Summary"}
+   588→                </CardTitle>
+   589→              </CardHeader>
+   590→              <CardContent className="p-6">
+   591→                <div className="prose dark:prose-invert max-w-none">
+   592→                  <p className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">
+   593→                    {getLocalizedContent(lesson.summary)}
+   594→                  </p>
+   595→                </div>
+   596→
+   597→                {/* Complete Lesson Button */}
+   598→                {!isCompleted ? (
+   599→                  <motion.div
+   600→                    initial={{ opacity: 0, y: 20 }}
+   601→                    animate={{ opacity: 1, y: 0 }}
+   602→                    className="mt-8"
+   603→                  >
+   604→                    <Button
+   605→                      onClick={handleComplete}
+   606→                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white py-6 text-lg"
+   607→                    >
+   608→                      <CheckCircle className="w-5 h-5 mr-2" />
+   609→                      {language === "ar" ? "إكمال الدرس" : "Complete Lesson"}
+   610→                    </Button>
+   611→                  </motion.div>
+   612→                ) : (
+   613→                  <motion.div
+   614→                    initial={{ opacity: 0, scale: 0.9 }}
+   615→                    animate={{ opacity: 1, scale: 1 }}
+   616→                    className="mt-8 text-center p-6 bg-emerald-50 dark:bg-emerald-950/30 rounded-xl"
+   617→                  >
+   618→                    <PartyPopper className="w-12 h-12 mx-auto mb-4 text-emerald-500" />
+   619→                    <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
+   620→                      {language === "ar" ? "أحسنت! 🎉" : "Great Job! 🎉"}
+   621→                    </h3>
+   622→                    <p className="text-slate-600 dark:text-slate-400">
+   623→                      {language === "ar" ? "لقد أكملت هذا الدرس بنجاح" : "You've completed this lesson successfully"}
+   624→                    </p>
+   625→                    <div className="flex justify-center gap-2 mt-4">
+   626→                      <Badge className="bg-amber-500 text-white">
+   627→                        <Trophy className="w-3 h-3 mr-1" />
+   628→                        +50 {language === "ar" ? "نقطة" : "points"}
+   629→                      </Badge>
+   630→                    </div>
+   631→                  </motion.div>
+   632→                )}
+   633→              </CardContent>
+   634→            </Card>
+   635→          )}
+   636→        </motion.div>
+   637→      </AnimatePresence>
+   638→
+   639→      {/* Bottom Navigation */}
+   640→      <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-t border-slate-200 dark:border-slate-800 p-4 md:hidden">
+   641→        <div className="flex justify-between items-center gap-2">
+   642→          <Button
+   643→            variant="outline"
+   644→            onClick={() => {
+   645→              const currentIndex = tabItems.findIndex(t => t.value === activeSection);
+   646→              if (currentIndex > 0) {
+   647→                handleSectionChange(tabItems[currentIndex - 1].value);
+   648→              }
+   649→            }}
+   650→            disabled={activeSection === "intro"}
+   651→          >
+   652→            {language === "ar" ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+   653→          </Button>
+   654→          <div className="flex-1 text-center">
+   655→            <span className="text-sm text-slate-500">
+   656→              {tabItems.findIndex(t => t.value === activeSection) + 1} / {tabItems.length}
+   657→            </span>
+   658→          </div>
+   659→          <Button
+   660→            variant="outline"
+   661→            onClick={() => {
+   662→              const currentIndex = tabItems.findIndex(t => t.value === activeSection);
+   663→              if (currentIndex < tabItems.length - 1) {
+   664→                handleSectionChange(tabItems[currentIndex + 1].value);
+   665→              }
+   666→            }}
+   667→            disabled={activeSection === "summary"}
+   668→          >
+   669→            {language === "ar" ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+   670→          </Button>
+   671→        </div>
+   672→      </div>
+   673→    </div>
+   674→  );
+   675→}
+   676→

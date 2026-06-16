@@ -1,0 +1,891 @@
+     1→     1→"use client";
+     2→     2→
+     3→     3→import React, { useMemo } from "react";
+     4→     4→import { motion } from "framer-motion";
+     5→     5→import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+     6→     6→import { Badge } from "@/components/ui/badge";
+     7→     7→import {
+     8→     8→  ArrowRight,
+     9→     9→  ArrowLeft,
+    10→    10→  CheckCircle,
+    11→    11→  Circle,
+    12→    12→  Clock,
+    13→    13→  Lightbulb,
+    14→    14→  TrendingUp,
+    15→    15→  Zap,
+    16→    16→  Target,
+    17→    17→  GitBranch,
+    18→    18→  Layers,
+    19→    19→  Activity,
+    20→    20→} from "lucide-react";
+    21→    21→
+    22→    22→// ==========================================
+    23→    23→// أنواع البيانات للمخططات المختلفة
+    24→    24→// ==========================================
+    25→    25→
+    26→    26→// عنصر المقارنة
+    27→    27→interface ComparisonItem {
+    28→    28→  label: string;
+    29→    29→  labelAr: string;
+    30→    30→  value1: number;
+    31→    31→  value2: number;
+    32→    32→  label1: string;
+    33→    33→  label2: string;
+    34→    34→  maxValue?: number;
+    35→    35→}
+    36→    36→
+    37→    37→// خطوة العملية
+    38→    38→interface ProcessStep {
+    39→    39→  step: number;
+    40→    40→  title: string;
+    41→    41→  titleAr: string;
+    42→    42→  description: string;
+    43→    43→  descriptionAr: string;
+    44→    44→  icon?: string;
+    45→    45→}
+    46→    46→
+    47→    47→// قسم الدائرة
+    48→    48→interface CircleSegment {
+    49→    49→  label: string;
+    50→    50→  labelAr: string;
+    51→    51→  value: number;
+    52→    52→  color: string;
+    53→    53→  description?: string;
+    54→    54→  descriptionAr?: string;
+    55→    55→}
+    56→    56→
+    57→    57→// حدث الجدول الزمني
+    58→    58→interface TimelineEvent {
+    59→    59→  year: string;
+    60→    60→  yearAr?: string;
+    61→    61→  title: string;
+    62→    62→  titleAr: string;
+    63→    63→  description: string;
+    64→    64→  descriptionAr: string;
+    65→    65→  icon?: string;
+    66→    66→}
+    67→    67→
+    68→    68→// بيانات المخططات
+    69→    69→interface ComparisonData {
+    70→    70→  items: ComparisonItem[];
+    71→    71→  showValues?: boolean;
+    72→    72→}
+    73→    73→
+    74→    74→interface ProcessData {
+    75→    75→  steps: ProcessStep[];
+    76→    76→  showNumbers?: boolean;
+    77→    77→}
+    78→    78→
+    79→    79→interface CircleData {
+    80→    80→  segments: CircleSegment[];
+    81→    81→  showPercentage?: boolean;
+    82→    82→  centerLabel?: string;
+    83→    83→  centerLabelAr?: string;
+    84→    84→}
+    85→    85→
+    86→    86→interface TimelineData {
+    87→    87→  events: TimelineEvent[];
+    88→    88→  showYear?: boolean;
+    89→    89→}
+    90→    90→
+    91→    91→// Props الرئيسية
+    92→    92→interface InfographicProps {
+    93→    93→  type: "comparison" | "process" | "circle" | "timeline";
+    94→    94→  data: ComparisonData | ProcessData | CircleData | TimelineData;
+    95→    95→  language: "ar" | "en";
+    96→    96→  title?: string;
+    97→    97→  titleAr?: string;
+    98→    98→  className?: string;
+    99→    99→}
+   100→   100→
+   101→   101→// ==========================================
+   102→   102→// ألوان متناسقة للمخططات
+   103→   103→// ==========================================
+   104→   104→const COLORS = {
+   105→   105→  primary: "#10B981", // أخضر زمردي
+   106→   106→  secondary: "#F59E0B", // برتقالي
+   107→   107→  tertiary: "#8B5CF6", // بنفسجي
+   108→   108→  quaternary: "#EF4444", // أحمر
+   109→   109→  quinary: "#3B82F6", // أزرق
+   110→   110→  senary: "#EC4899", // وردي
+   111→   111→};
+   112→   112→
+   113→   113→const SEGMENT_COLORS = [
+   114→   114→  "#10B981",
+   115→   115→  "#F59E0B",
+   116→   116→  "#8B5CF6",
+   117→   117→  "#EF4444",
+   118→   118→  "#3B82F6",
+   119→   119→  "#EC4899",
+   120→   120→  "#14B8A6",
+   121→   121→  "#F97316",
+   122→   122→];
+   123→   123→
+   124→   124→// ==========================================
+   125→   125→// حركات Framer Motion
+   126→   126→// ==========================================
+   127→   127→const containerVariants = {
+   128→   128→  hidden: { opacity: 0 },
+   129→   129→  visible: {
+   130→   130→    opacity: 1,
+   131→   131→    transition: {
+   132→   132→      staggerChildren: 0.1,
+   133→   133→    },
+   134→   134→  },
+   135→   135→};
+   136→   136→
+   137→   137→const itemVariants = {
+   138→   138→  hidden: { opacity: 0, y: 20 },
+   139→   139→  visible: {
+   140→   140→    opacity: 1,
+   141→   141→    y: 0,
+   142→   142→    transition: {
+   143→   143→      duration: 0.5,
+   144→   144→      ease: "easeOut",
+   145→   145→    },
+   146→   146→  },
+   147→   147→};
+   148→   148→
+   149→   149→const scaleVariants = {
+   150→   150→  hidden: { opacity: 0, scale: 0.8 },
+   151→   151→  visible: {
+   152→   152→    opacity: 1,
+   153→   153→    scale: 1,
+   154→   154→    transition: {
+   155→   155→      duration: 0.5,
+   156→   156→      ease: "easeOut",
+   157→   157→    },
+   158→   158→  },
+   159→   159→};
+   160→   160→
+   161→   161→// ==========================================
+   162→   162→// مكون مخطط المقارنة
+   163→   163→// ==========================================
+   164→   164→function ComparisonChart({
+   165→   165→  data,
+   166→   166→  language,
+   167→   167→}: {
+   168→   168→  data: ComparisonData;
+   169→   169→  language: "ar" | "en";
+   170→   170→}) {
+   171→   171→  const dir = language === "ar" ? "rtl" : "ltr";
+   172→   172→  const isRTL = language === "ar";
+   173→   173→
+   174→   174→  return (
+   175→   175→    <motion.div
+   176→   176→      className="space-y-4"
+   177→   177→      variants={containerVariants}
+   178→   178→      initial="hidden"
+   179→   179→      animate="visible"
+   180→   180→      dir={dir}
+   181→   181→    >
+   182→   182→      {/* مفتاح الخريطة */}
+   183→   183→      <div className="flex items-center justify-center gap-6 mb-6">
+   184→   184→        <div className="flex items-center gap-2">
+   185→   185→          <div className="w-4 h-4 rounded-full bg-emerald-500" />
+   186→   186→          <span className="text-sm font-medium">{data.items[0]?.label1 || "A"}</span>
+   187→   187→        </div>
+   188→   188→        <div className="flex items-center gap-2">
+   189→   189→          <div className="w-4 h-4 rounded-full bg-amber-500" />
+   190→   190→          <span className="text-sm font-medium">{data.items[0]?.label2 || "B"}</span>
+   191→   191→        </div>
+   192→   192→      </div>
+   193→   193→
+   194→   194→      {/* عناصر المقارنة */}
+   195→   195→      {data.items.map((item, index) => {
+   196→   196→        const maxVal = item.maxValue || Math.max(item.value1, item.value2, 100);
+   197→   197→        const percent1 = (item.value1 / maxVal) * 100;
+   198→   198→        const percent2 = (item.value2 / maxVal) * 100;
+   199→   199→
+   200→   200→        return (
+   201→   201→          <motion.div
+   202→   202→            key={index}
+   203→   203→            variants={itemVariants}
+   204→   204→            className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"
+   205→   205→          >
+   206→   206→            {/* التسمية */}
+   207→   207→            <div className="flex items-center justify-between mb-3">
+   208→   208→              <span className="font-semibold text-lg">
+   209→   209→                {isRTL ? item.labelAr : item.label}
+   210→   210→              </span>
+   211→   211→              {data.showValues && (
+   212→   212→                <div className="flex items-center gap-4 text-sm">
+   213→   213→                  <span className="text-emerald-600 font-medium">{item.value1}</span>
+   214→   214→                  <span className="text-amber-600 font-medium">{item.value2}</span>
+   215→   215→                </div>
+   216→   216→              )}
+   217→   217→            </div>
+   218→   218→
+   219→   219→            {/* أشرطة المقارنة */}
+   220→   220→            <div className="space-y-2">
+   221→   221→              {/* الشريط الأول */}
+   222→   222→              <div className="flex items-center gap-3">
+   223→   223→                <span className="text-xs text-slate-500 w-16">
+   224→   224→                  {item.label1}
+   225→   225→                </span>
+   226→   226→                <div className="flex-1 h-6 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+   227→   227→                  <motion.div
+   228→   228→                    className="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full"
+   229→   229→                    initial={{ width: 0 }}
+   230→   230→                    animate={{ width: `${percent1}%` }}
+   231→   231→                    transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
+   232→   232→                  />
+   233→   233→                </div>
+   234→   234→                <span className="text-sm font-medium text-emerald-600 w-12 text-end">
+   235→   235→                  {item.value1}
+   236→   236→                </span>
+   237→   237→              </div>
+   238→   238→
+   239→   239→              {/* الشريط الثاني */}
+   240→   240→              <div className="flex items-center gap-3">
+   241→   241→                <span className="text-xs text-slate-500 w-16">
+   242→   242→                  {item.label2}
+   243→   243→                </span>
+   244→   244→                <div className="flex-1 h-6 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+   245→   245→                  <motion.div
+   246→   246→                    className="h-full bg-gradient-to-r from-amber-400 to-amber-600 rounded-full"
+   247→   247→                    initial={{ width: 0 }}
+   248→   248→                    animate={{ width: `${percent2}%` }}
+   249→   249→                    transition={{ duration: 1, delay: index * 0.1 + 0.2, ease: "easeOut" }}
+   250→   250→                  />
+   251→   251→                </div>
+   252→   252→                <span className="text-sm font-medium text-amber-600 w-12 text-end">
+   253→   253→                  {item.value2}
+   254→   254→                </span>
+   255→   255→              </div>
+   256→   256→            </div>
+   257→   257→          </motion.div>
+   258→   258→        );
+   259→   259→      })}
+   260→   260→    </motion.div>
+   261→   261→  );
+   262→   262→}
+   263→   263→
+   264→   264→// ==========================================
+   265→   265→// مكون مخطط العملية
+   266→   266→// ==========================================
+   267→   267→function ProcessFlow({
+   268→   268→  data,
+   269→   269→  language,
+   270→   270→}: {
+   271→   271→  data: ProcessData;
+   272→   272→  language: "ar" | "en";
+   273→   273→}) {
+   274→   274→  const dir = language === "ar" ? "rtl" : "ltr";
+   275→   275→  const isRTL = language === "ar";
+   276→   276→
+   277→   277→  // أيقونات متاحة
+   278→   278→  const iconMap: Record<string, React.ReactNode> = {
+   279→   279→    lightbulb: <Lightbulb className="w-5 h-5" />,
+   280→   280→    target: <Target className="w-5 h-5" />,
+   281→   281→    zap: <Zap className="w-5 h-5" />,
+   282→   282→    check: <CheckCircle className="w-5 h-5" />,
+   283→   283→    activity: <Activity className="w-5 h-5" />,
+   284→   284→    layers: <Layers className="w-5 h-5" />,
+   285→   285→    trending: <TrendingUp className="w-5 h-5" />,
+   286→   286→    gitbranch: <GitBranch className="w-5 h-5" />,
+   287→   287→  };
+   288→   288→
+   289→   289→  return (
+   290→   290→    <motion.div
+   291→   291→      className="relative"
+   292→   292→      variants={containerVariants}
+   293→   293→      initial="hidden"
+   294→   294→      animate="visible"
+   295→   295→      dir={dir}
+   296→   296→    >
+   297→   297→      {/* خط الربط العمودي */}
+   298→   298→      <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-300 via-emerald-500 to-teal-500 transform -translate-x-1/2 hidden md:block" />
+   299→   299→
+   300→   300→      <div className="space-y-6">
+   301→   301→        {data.steps.map((step, index) => (
+   302→   302→          <motion.div
+   303→   303→            key={index}
+   304→   304→            variants={itemVariants}
+   305→   305→            className={`flex items-center gap-4 ${
+   306→   306→              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+   307→   307→            }`}
+   308→   308→          >
+   309→   309→            {/* المحتوى */}
+   310→   310→            <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+   311→   311→              <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+   312→   312→                <CardContent className="p-4">
+   313→   313→                  <div className="flex items-center gap-3 mb-2">
+   314→   314→                    {/* رقم الخطوة */}
+   315→   315→                    {data.showNumbers !== false && (
+   316→   316→                      <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
+   317→   317→                        {step.step}
+   318→   318→                      </div>
+   319→   319→                    )}
+   320→   320→                    {/* أيقونة */}
+   321→   321→                    {step.icon && iconMap[step.icon] && (
+   322→   322→                      <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900 flex items-center justify-center text-emerald-600">
+   323→   323→                        {iconMap[step.icon]}
+   324→   324→                      </div>
+   325→   325→                    )}
+   326→   326→                    <h3 className="font-bold text-lg">
+   327→   327→                      {isRTL ? step.titleAr : step.title}
+   328→   328→                    </h3>
+   329→   329→                  </div>
+   330→   330→                  <p className="text-slate-600 dark:text-slate-300">
+   331→   331→                    {isRTL ? step.descriptionAr : step.description}
+   332→   332→                  </p>
+   333→   333→                </CardContent>
+   334→   334→              </Card>
+   335→   335→            </div>
+   336→   336→
+   337→   337→            {/* النقطة المركزية */}
+   338→   338→            <div className="hidden md:flex w-12 h-12 rounded-full bg-white dark:bg-slate-800 border-4 border-emerald-500 items-center justify-center z-10 shadow-lg">
+   339→   339→              <span className="font-bold text-emerald-600">{step.step}</span>
+   340→   340→            </div>
+   341→   341→
+   342→   342→            {/* مساحة فارغة للمحاذاة */}
+   343→   343→            <div className="flex-1 hidden md:block" />
+   344→   344→          </motion.div>
+   345→   345→        ))}
+   346→   346→      </div>
+   347→   347→    </motion.div>
+   348→   348→  );
+   349→   349→}
+   350→   350→
+   351→   351→// ==========================================
+   352→   352→// مكون مخطط الدائرة
+   353→   353→// ==========================================
+   354→   354→function CircleDiagram({
+   355→   355→  data,
+   356→   356→  language,
+   357→   357→}: {
+   358→   358→  data: CircleData;
+   359→   359→  language: "ar" | "en";
+   360→   360→}) {
+   361→   361→  const dir = language === "ar" ? "rtl" : "ltr";
+   362→   362→  const isRTL = language === "ar";
+   363→   363→
+   364→   364→  // حساب الزوايا والأقواس
+   365→   365→  const total = data.segments.reduce((sum, seg) => sum + seg.value, 0);
+   366→   366→  
+   367→   367→  const segmentsWithAngles = useMemo(() => {
+   368→   368→    // استخدام reduce لبناء المصفوفة مع تتبع الزاوية الحالية
+   369→   369→    const result = data.segments.reduce<{
+   370→   370→      segments: Array<{
+   371→   371→        label: string;
+   372→   372→        labelAr: string;
+   373→   373→        value: number;
+   374→   374→        color: string;
+   375→   375→        description?: string;
+   376→   376→        descriptionAr?: string;
+   377→   377→        percentage: number;
+   378→   378→        startAngle: number;
+   379→   379→        endAngle: number;
+   380→   380→      }>;
+   381→   381→      currentAngle: number;
+   382→   382→    }>((acc, seg, index) => {
+   383→   383→      const percentage = (seg.value / total) * 100;
+   384→   384→      const angle = (seg.value / total) * 360;
+   385→   385→      const startAngle = acc.currentAngle;
+   386→   386→      const endAngle = acc.currentAngle + angle;
+   387→   387→
+   388→   388→      acc.segments.push({
+   389→   389→        ...seg,
+   390→   390→        percentage,
+   391→   391→        startAngle,
+   392→   392→        endAngle,
+   393→   393→        color: seg.color || SEGMENT_COLORS[index % SEGMENT_COLORS.length],
+   394→   394→      });
+   395→   395→
+   396→   396→      acc.currentAngle = endAngle;
+   397→   397→      return acc;
+   398→   398→    }, { segments: [], currentAngle: -90 });
+   399→   399→
+   400→   400→    return result.segments;
+   401→   401→  }, [data.segments, total]);
+   402→   402→
+   403→   403→  // إنشاء مسار القوس SVG
+   404→   404→  const createArcPath = (startAngle: number, endAngle: number, radius: number) => {
+   405→   405→    const startRad = (startAngle * Math.PI) / 180;
+   406→   406→    const endRad = (endAngle * Math.PI) / 180;
+   407→   407→    
+   408→   408→    const startX = 100 + radius * Math.cos(startRad);
+   409→   409→    const startY = 100 + radius * Math.sin(startRad);
+   410→   410→    const endX = 100 + radius * Math.cos(endRad);
+   411→   411→    const endY = 100 + radius * Math.sin(endRad);
+   412→   412→    
+   413→   413→    const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+   414→   414→    
+   415→   415→    return `M 100 100 L ${startX} ${startY} A ${radius} ${radius} 0 ${largeArc} 1 ${endX} ${endY} Z`;
+   416→   416→  };
+   417→   417→
+   418→   418→  return (
+   419→   419→    <motion.div
+   420→   420→      className="space-y-6"
+   421→   421→      variants={containerVariants}
+   422→   422→      initial="hidden"
+   423→   423→      animate="visible"
+   424→   424→      dir={dir}
+   425→   425→    >
+   426→   426→      <div className="flex flex-col lg:flex-row items-center gap-8">
+   427→   427→        {/* الدائرة */}
+   428→   428→        <motion.div
+   429→   429→          variants={scaleVariants}
+   430→   430→          className="relative w-64 h-64 lg:w-80 lg:h-80"
+   431→   431→        >
+   432→   432→          <svg viewBox="0 0 200 200" className="w-full h-full transform -rotate-0">
+   433→   433→            {/* خلفية الدائرة */}
+   434→   434→            <circle
+   435→   435→              cx="100"
+   436→   436→              cy="100"
+   437→   437→              r="80"
+   438→   438→              fill="none"
+   439→   439→              stroke="currentColor"
+   440→   440→              strokeWidth="2"
+   441→   441→              className="text-slate-200 dark:text-slate-700"
+   442→   442→            />
+   443→   443→            
+   444→   444→            {/* الأقسام */}
+   445→   445→            {segmentsWithAngles.map((seg, index) => (
+   446→   446→              <motion.path
+   447→   447→                key={index}
+   448→   448→                d={createArcPath(seg.startAngle, seg.endAngle, 80)}
+   449→   449→                fill={seg.color}
+   450→   450→                initial={{ opacity: 0, scale: 0.8 }}
+   451→   451→                animate={{ opacity: 1, scale: 1 }}
+   452→   452→                transition={{ duration: 0.5, delay: index * 0.1 }}
+   453→   453→                className="hover:opacity-80 transition-opacity cursor-pointer"
+   454→   454→              />
+   455→   455→            ))}
+   456→   456→            
+   457→   457→            {/* الدائرة المركزية */}
+   458→   458→            <circle
+   459→   459→              cx="100"
+   460→   460→              cy="100"
+   461→   461→              r="40"
+   462→   462→              fill="white"
+   463→   463→              className="dark:fill-slate-800"
+   464→   464→            />
+   465→   465→            
+   466→   466→            {/* النص المركزي */}
+   467→   467→            <text
+   468→   468→              x="100"
+   469→   469→              y="100"
+   470→   470→              textAnchor="middle"
+   471→   471→              dominantBaseline="middle"
+   472→   472→              className="text-sm font-bold fill-slate-700 dark:fill-slate-200"
+   473→   473→            >
+   474→   474→              {isRTL ? data.centerLabelAr : data.centerLabel || (data.showPercentage !== false ? `${total}%` : total)}
+   475→   475→            </text>
+   476→   476→          </svg>
+   477→   477→        </motion.div>
+   478→   478→
+   479→   479→        {/* التسميات */}
+   480→   480→        <div className="flex-1 space-y-3">
+   481→   481→          {segmentsWithAngles.map((seg, index) => (
+   482→   482→            <motion.div
+   483→   483→              key={index}
+   484→   484→              variants={itemVariants}
+   485→   485→              className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg hover:shadow-md transition-shadow"
+   486→   486→            >
+   487→   487→              <div
+   488→   488→                className="w-4 h-4 rounded-full shrink-0"
+   489→   489→                style={{ backgroundColor: seg.color }}
+   490→   490→              />
+   491→   491→              <div className="flex-1">
+   492→   492→                <div className="flex items-center justify-between">
+   493→   493→                  <span className="font-medium">{isRTL ? seg.labelAr : seg.label}</span>
+   494→   494→                  <Badge variant="outline" className="ml-2">
+   495→   495→                    {data.showPercentage !== false ? `${seg.percentage.toFixed(1)}%` : seg.value}
+   496→   496→                  </Badge>
+   497→   497→                </div>
+   498→   498→                {(isRTL ? seg.descriptionAr : seg.description) && (
+   499→   499→                  <p className="text-sm text-slate-500 mt-1">
+   500→   500→                    {isRTL ? seg.descriptionAr : seg.description}
+   501→   501→                  </p>
+   502→   502→                )}
+   503→   503→              </div>
+   504→   504→            </motion.div>
+   505→   505→          ))}
+   506→   506→        </div>
+   507→   507→      </div>
+   508→   508→    </motion.div>
+   509→   509→  );
+   510→   510→}
+   511→   511→
+   512→   512→// ==========================================
+   513→   513→// مكون الجدول الزمني
+   514→   514→// ==========================================
+   515→   515→function Timeline({
+   516→   516→  data,
+   517→   517→  language,
+   518→   518→}: {
+   519→   519→  data: TimelineData;
+   520→   520→  language: "ar" | "en";
+   521→   521→}) {
+   522→   522→  const dir = language === "ar" ? "rtl" : "ltr";
+   523→   523→  const isRTL = language === "ar";
+   524→   524→
+   525→   525→  // أيقونات متاحة
+   526→   526→  const iconMap: Record<string, React.ReactNode> = {
+   527→   527→    lightbulb: <Lightbulb className="w-5 h-5" />,
+   528→   528→    target: <Target className="w-5 h-5" />,
+   529→   529→    zap: <Zap className="w-5 h-5" />,
+   530→   530→    check: <CheckCircle className="w-5 h-5" />,
+   531→   531→    activity: <Activity className="w-5 h-5" />,
+   532→   532→    clock: <Clock className="w-5 h-5" />,
+   533→   533→    circle: <Circle className="w-5 h-5" />,
+   534→   534→  };
+   535→   535→
+   536→   536→  return (
+   537→   537→    <motion.div
+   538→   538→      className="relative"
+   539→   539→      variants={containerVariants}
+   540→   540→      initial="hidden"
+   541→   541→      animate="visible"
+   542→   542→      dir={dir}
+   543→   543→    >
+   544→   544→      {/* الخط الأفقي للجدول الزمني */}
+   545→   545→      <div className="absolute left-0 right-0 top-8 h-1 bg-gradient-to-r from-purple-300 via-purple-500 to-pink-500 hidden lg:block" />
+   546→   546→
+   547→   547→      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-4">
+   548→   548→        {data.events.map((event, index) => (
+   549→   549→          <motion.div
+   550→   550→            key={index}
+   551→   551→            variants={itemVariants}
+   552→   552→            className={`relative ${index % 2 === 0 ? "lg:pt-12" : "lg:pt-0"}`}
+   553→   553→          >
+   554→   554→            {/* النقطة الزمنية */}
+   555→   555→            <div className="absolute left-4 lg:left-1/2 top-0 lg:top-8 transform lg:-translate-x-1/2 z-10">
+   556→   556→              <motion.div
+   557→   557→                className="w-8 h-8 rounded-full bg-white dark:bg-slate-800 border-4 border-purple-500 flex items-center justify-center shadow-lg"
+   558→   558→                whileHover={{ scale: 1.2 }}
+   559→   559→              >
+   560→   560→                {event.icon && iconMap[event.icon] ? (
+   561→   561→                  <div className="text-purple-500 scale-75">{iconMap[event.icon]}</div>
+   562→   562→                ) : (
+   563→   563→                  <div className="w-2 h-2 rounded-full bg-purple-500" />
+   564→   564→                )}
+   565→   565→              </motion.div>
+   566→   566→            </div>
+   567→   567→
+   568→   568→            {/* البطاقة */}
+   569→   569→            <Card className={`border-0 shadow-lg hover:shadow-xl transition-all duration-300 ml-12 lg:ml-0 ${
+   570→   570→              index % 2 === 0 ? "lg:mr-auto lg:mr-[10%] lg:max-w-[85%]" : "lg:ml-auto lg:ml-[10%] lg:max-w-[85%]"
+   571→   571→            }`}>
+   572→   572→              <CardContent className="p-4">
+   573→   573→                {/* السنة */}
+   574→   574→                {data.showYear !== false && (
+   575→   575→                  <Badge className="mb-2 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200">
+   576→   576→                    <Clock className="w-3 h-3 mr-1" />
+   577→   577→                    {isRTL && event.yearAr ? event.yearAr : event.year}
+   578→   578→                  </Badge>
+   579→   579→                )}
+   580→   580→
+   581→   581→                {/* العنوان */}
+   582→   582→                <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+   583→   583→                  {event.icon && iconMap[event.icon] && (
+   584→   584→                    <span className="text-purple-500">{iconMap[event.icon]}</span>
+   585→   585→                  )}
+   586→   586→                  {isRTL ? event.titleAr : event.title}
+   587→   587→                </h3>
+   588→   588→
+   589→   589→                {/* الوصف */}
+   590→   590→                <p className="text-slate-600 dark:text-slate-300">
+   591→   591→                  {isRTL ? event.descriptionAr : event.description}
+   592→   592→                </p>
+   593→   593→              </CardContent>
+   594→   594→            </Card>
+   595→   595→          </motion.div>
+   596→   596→        ))}
+   597→   597→      </div>
+   598→   598→    </motion.div>
+   599→   599→  );
+   600→   600→}
+   601→   601→
+   602→   602→// ==========================================
+   603→   603→// المكون الرئيسي
+   604→   604→// ==========================================
+   605→   605→export function Infographic({
+   606→   606→  type,
+   607→   607→  data,
+   608→   608→  language,
+   609→   609→  title,
+   610→   610→  titleAr,
+   611→   611→  className = "",
+   612→   612→}: InfographicProps) {
+   613→   613→  const dir = language === "ar" ? "rtl" : "ltr";
+   614→   614→  const isRTL = language === "ar";
+   615→   615→
+   616→   616→  // أيقونة حسب النوع
+   617→   617→  const typeIcons = {
+   618→   618→    comparison: <TrendingUp className="w-5 h-5" />,
+   619→   619→    process: <GitBranch className="w-5 h-5" />,
+   620→   620→    circle: <Circle className="w-5 h-5" />,
+   621→   621→    timeline: <Clock className="w-5 h-5" />,
+   622→   622→  };
+   623→   623→
+   624→   624→  // ألوان حسب النوع
+   625→   625→  const typeColors = {
+   626→   626→    comparison: "from-emerald-500 to-teal-500",
+   627→   627→    process: "from-blue-500 to-indigo-500",
+   628→   628→    circle: "from-purple-500 to-pink-500",
+   629→   629→    timeline: "from-amber-500 to-orange-500",
+   630→   630→  };
+   631→   631→
+   632→   632→  // عنوان افتراضي حسب النوع
+   633→   633→  const defaultTitles = {
+   634→   634→    comparison: { ar: "مخطط المقارنة", en: "Comparison Chart" },
+   635→   635→    process: { ar: "خطوات العملية", en: "Process Flow" },
+   636→   636→    circle: { ar: "التوزيع النسبي", en: "Distribution Chart" },
+   637→   637→    timeline: { ar: "الجدول الزمني", en: "Timeline" },
+   638→   638→  };
+   639→   639→
+   640→   640→  const displayTitle = (isRTL ? titleAr : title) || defaultTitles[type][language];
+   641→   641→
+   642→   642→  // عرض المخطط المناسب
+   643→   643→  const renderChart = () => {
+   644→   644→    switch (type) {
+   645→   645→      case "comparison":
+   646→   646→        return <ComparisonChart data={data as ComparisonData} language={language} />;
+   647→   647→      case "process":
+   648→   648→        return <ProcessFlow data={data as ProcessData} language={language} />;
+   649→   649→      case "circle":
+   650→   650→        return <CircleDiagram data={data as CircleData} language={language} />;
+   651→   651→      case "timeline":
+   652→   652→        return <Timeline data={data as TimelineData} language={language} />;
+   653→   653→      default:
+   654→   654→        return null;
+   655→   655→    }
+   656→   656→  };
+   657→   657→
+   658→   658→  return (
+   659→   659→    <motion.div
+   660→   660→      initial={{ opacity: 0, y: 20 }}
+   661→   661→      animate={{ opacity: 1, y: 0 }}
+   662→   662→      transition={{ duration: 0.5 }}
+   663→   663→      className={className}
+   664→   664→      dir={dir}
+   665→   665→    >
+   666→   666→      <Card className="border-0 shadow-lg overflow-hidden">
+   667→   667→        {/* شريط العنوان الملون */}
+   668→   668→        <div className={`h-2 bg-gradient-to-r ${typeColors[type]}`} />
+   669→   669→        
+   670→   670→        <CardHeader className="pb-2">
+   671→   671→          <CardTitle className="flex items-center gap-2">
+   672→   672→            <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+   673→   673→              type === "comparison" ? "bg-emerald-100 text-emerald-600" :
+   674→   674→              type === "process" ? "bg-blue-100 text-blue-600" :
+   675→   675→              type === "circle" ? "bg-purple-100 text-purple-600" :
+   676→   676→              "bg-amber-100 text-amber-600"
+   677→   677→            }`}>
+   678→   678→              {typeIcons[type]}
+   679→   679→            </div>
+   680→   680→            {displayTitle}
+   681→   681→          </CardTitle>
+   682→   682→        </CardHeader>
+   683→   683→        
+   684→   684→        <CardContent className="pt-4">
+   685→   685→          {renderChart()}
+   686→   686→        </CardContent>
+   687→   687→      </Card>
+   688→   688→    </motion.div>
+   689→   689→  );
+   690→   690→}
+   691→   691→
+   692→   692→// ==========================================
+   693→   693→// أمثلة جاهزة للاستخدام
+   694→   694→// ==========================================
+   695→   695→
+   696→   696→// مثال: مقارنة السرعة المتوسطة واللحظية
+   697→   697→export const speedComparisonData: ComparisonData = {
+   698→   698→  items: [
+   699→   699→    {
+   700→   700→      label: "Average Speed",
+   701→   701→      labelAr: "السرعة المتوسطة",
+   702→   702→      value1: 60,
+   703→   703→      value2: 45,
+   704→   704→      label1: "Car A",
+   705→   705→      label2: "Car B",
+   706→   706→      maxValue: 100,
+   707→   707→    },
+   708→   708→    {
+   709→   709→      label: "Instant Speed",
+   710→   710→      labelAr: "السرعة اللحظية",
+   711→   711→      value1: 80,
+   712→   712→      value2: 55,
+   713→   713→      label1: "Car A",
+   714→   714→      label2: "Car B",
+   715→   715→      maxValue: 100,
+   716→   716→    },
+   717→   717→    {
+   718→   718→      label: "Acceleration",
+   719→   719→      labelAr: "التسارع",
+   720→   720→      value1: 15,
+   721→   721→      value2: 20,
+   722→   722→      label1: "Car A",
+   723→   723→      label2: "Car B",
+   724→   724→      maxValue: 30,
+   725→   725→    },
+   726→   726→  ],
+   727→   727→  showValues: true,
+   728→   728→};
+   729→   729→
+   730→   730→// مثال: خطوات حل مسألة فيزيائية
+   731→   731→export const physicsProcessData: ProcessData = {
+   732→   732→  steps: [
+   733→   733→    {
+   734→   734→      step: 1,
+   735→   735→      title: "Read and Understand",
+   736→   736→      titleAr: "القراءة والفهم",
+   737→   737→      description: "Read the problem carefully and identify the given information and what is required.",
+   738→   738→      descriptionAr: "اقرأ المسألة بعناية وحدد المعطيات والمطلوب.",
+   739→   739→      icon: "lightbulb",
+   740→   740→    },
+   741→   741→    {
+   742→   742→      step: 2,
+   743→   743→      title: "Draw a Diagram",
+   744→   744→      titleAr: "رسم تخطيطي",
+   745→   745→      description: "Draw a clear diagram showing all forces and variables.",
+   746→   746→      descriptionAr: "ارسم تخطيطاً واضحاً يوضح جميع القوى والمتغيرات.",
+   747→   747→      icon: "target",
+   748→   748→    },
+   749→   749→    {
+   750→   750→      step: 3,
+   751→   751→      title: "Choose the Right Law",
+   752→   752→      titleAr: "اختيار القانون المناسب",
+   753→   753→      description: "Select the appropriate physical law or equation for the problem.",
+   754→   754→      descriptionAr: "اختر القانون الفيزيائي أو المعادلة المناسبة للمسألة.",
+   755→   755→      icon: "zap",
+   756→   756→    },
+   757→   757→    {
+   758→   758→      step: 4,
+   759→   759→      title: "Solve and Verify",
+   760→   760→      titleAr: "الحل والتحقق",
+   761→   761→      description: "Solve the equation and verify that the answer is reasonable.",
+   762→   762→      descriptionAr: "حل المعادلة وتحقق من أن الإجابة منطقية.",
+   763→   763→      icon: "check",
+   764→   764→    },
+   765→   765→  ],
+   766→   766→  showNumbers: true,
+   767→   767→};
+   768→   768→
+   769→   769→// مثال: أنواع الطاقة (دائرة)
+   770→   770→export const energyCircleData: CircleData = {
+   771→   771→  segments: [
+   772→   772→    {
+   773→   773→      label: "Kinetic Energy",
+   774→   774→      labelAr: "الطاقة الحركية",
+   775→   775→      value: 35,
+   776→   776→      color: "#10B981",
+   777→   777→      description: "Energy of motion",
+   778→   778→      descriptionAr: "طاقة الحركة",
+   779→   779→    },
+   780→   780→    {
+   781→   781→      label: "Potential Energy",
+   782→   782→      labelAr: "طاقة الوضع",
+   783→   783→      value: 25,
+   784→   784→      color: "#F59E0B",
+   785→   785→      description: "Stored energy",
+   786→   786→      descriptionAr: "الطاقة المخزنة",
+   787→   787→    },
+   788→   788→    {
+   789→   789→      label: "Thermal Energy",
+   790→   790→      labelAr: "الطاقة الحرارية",
+   791→   791→      value: 20,
+   792→   792→      color: "#EF4444",
+   793→   793→      description: "Heat energy",
+   794→   794→      descriptionAr: "طاقة الحرارة",
+   795→   795→    },
+   796→   796→    {
+   797→   797→      label: "Chemical Energy",
+   798→   798→      labelAr: "الطاقة الكيميائية",
+   799→   799→      value: 15,
+   800→   800→      color: "#8B5CF6",
+   801→   801→      description: "Energy in bonds",
+   802→   802→      descriptionAr: "الطاقة في الروابط",
+   803→   803→    },
+   804→   804→    {
+   805→   805→      label: "Other Forms",
+   806→   806→      labelAr: "أشكال أخرى",
+   807→   807→      value: 5,
+   808→   808→      color: "#3B82F6",
+   809→   809→      description: "Nuclear, electrical, etc.",
+   810→   810→      descriptionAr: "النووية، الكهربائية، إلخ.",
+   811→   811→    },
+   812→   812→  ],
+   813→   813→  showPercentage: true,
+   814→   814→  centerLabel: "Energy",
+   815→   815→  centerLabelAr: "الطاقة",
+   816→   816→};
+   817→   817→
+   818→   818→// مثال: تطور نظرية الذرة (Timeline)
+   819→   819→export const atomTimelineData: TimelineData = {
+   820→   820→  events: [
+   821→   821→    {
+   822→   822→      year: "400 BC",
+   823→   823→      yearAr: "400 ق.م",
+   824→   824→      title: "Democritus",
+   825→   825→      titleAr: "ديموقريطس",
+   826→   826→      description: "First proposed the concept of indivisible particles called atoms.",
+   827→   827→      descriptionAr: "أول من اقترح مفهوم الجسيمات غير القابلة للتجزئة المسماة ذرات.",
+   828→   828→      icon: "circle",
+   829→   829→    },
+   830→   830→    {
+   831→   831→      year: "1803",
+   832→   832→      yearAr: "1803",
+   833→   833→      title: "Dalton's Model",
+   834→   834→      titleAr: "نموذج دالتون",
+   835→   835→      description: "Atoms are solid spheres, and different elements have different atoms.",
+   836→   836→      descriptionAr: "الذرات كرات صلبة، والعناصر المختلفة لها ذرات مختلفة.",
+   837→   837→      icon: "activity",
+   838→   838→    },
+   839→   839→    {
+   840→   840→      year: "1897",
+   841→   841→      yearAr: "1897",
+   842→   842→      title: "Thomson's Model",
+   843→   843→      titleAr: "نموذج طومسون",
+   844→   844→      description: "Discovered electrons, proposed the plum pudding model.",
+   845→   845→      descriptionAr: "اكتشف الإلكترونات، اقترح نموذج البرقوق في العجينة.",
+   846→   846→      icon: "zap",
+   847→   847→    },
+   848→   848→    {
+   849→   849→      year: "1911",
+   850→   850→      yearAr: "1911",
+   851→   851→      title: "Rutherford's Model",
+   852→   852→      titleAr: "نموذج رذرفورد",
+   853→   853→      description: "Atoms have a dense nucleus with electrons orbiting around it.",
+   854→   854→      descriptionAr: "الذرات لها نواة كثيفة مع إلكترونات تدور حولها.",
+   855→   855→      icon: "target",
+   856→   856→    },
+   857→   857→    {
+   858→   858→      year: "1913",
+   859→   859→      yearAr: "1913",
+   860→   860→      title: "Bohr's Model",
+   861→   861→      titleAr: "نموذج بور",
+   862→   862→      description: "Electrons orbit in specific energy levels around the nucleus.",
+   863→   863→      descriptionAr: "الإلكترونات تدور في مستويات طاقة محددة حول النواة.",
+   864→   864→      icon: "lightbulb",
+   865→   865→    },
+   866→   866→    {
+   867→   867→      year: "1926",
+   868→   868→      yearAr: "1926",
+   869→   869→      title: "Quantum Model",
+   870→   870→      titleAr: "النموذج الكمومي",
+   871→   871→      description: "Electrons exist in probability clouds, not definite orbits.",
+   872→   872→      descriptionAr: "الإلكترونات موجودة في سحب احتمالية، وليست مدارات محددة.",
+   873→   873→      icon: "check",
+   874→   874→    },
+   875→   875→  ],
+   876→   876→  showYear: true,
+   877→   877→};
+   878→   878→
+   879→   879→// تصدير الأنواع للاستخدام الخارجي
+   880→   880→export type {
+   881→   881→  InfographicProps,
+   882→   882→  ComparisonItem,
+   883→   883→  ComparisonData,
+   884→   884→  ProcessStep,
+   885→   885→  ProcessData,
+   886→   886→  CircleSegment,
+   887→   887→  CircleData,
+   888→   888→  TimelineEvent,
+   889→   889→  TimelineData,
+   890→   890→};
+   891→   891→
