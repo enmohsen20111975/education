@@ -128,6 +128,11 @@ function LandingPageContent() {
                 {t("المنصة", "Platform")}
               </Button>
             </Link>
+            <Link href="http://localhost:3002" target="_blank">
+              <Button variant="ghost" size="sm" className="rounded-full">
+                {t("مصنع الفيديو", "Video Factory")}
+              </Button>
+            </Link>
             <Button
               variant="ghost"
               size="sm"
