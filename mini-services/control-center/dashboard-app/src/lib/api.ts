@@ -1,6 +1,10 @@
 /**
  * API Client for Unified Video Factory backend
  * Backend runs at http://localhost:3001 by default (override via NEXT_PUBLIC_API_URL)
+ *
+ * للتكامل مع قاعدة بيانات المنصة الرئيسية:
+ * استخدم FACTORY_API_BASE_URL أو NEXT_PUBLIC_FACTORY_API_URL
+ * لتحديد عنوان واجهة برمجة تطبيقات المصنع (المنصة الرئيسية).
  */
 
 import type {
@@ -16,10 +20,22 @@ import type {
   VideoGenerateResult,
   VideoStatusResponse,
   ExportEducationResult,
+  FactoryStats,
+  FactoryJob,
+  FactoryJobStatus,
+  FactoryContentType,
 } from "@/lib/types";
 
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
+/**
+ * عنوان واجهة برمجة تطبيقات المصنع (المنصة الرئيسية)
+ * يُستخدم للتكامل مع قاعدة البيانات المشتركة
+ */
+export const FACTORY_API_BASE_URL =
+  process.env.NEXT_PUBLIC_FACTORY_API_URL ||
+  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000");
 
 export const API_DATA_URL = API_BASE_URL; // images & files served from same origin
 
@@ -35,6 +51,29 @@ async function request<T>(
   init?: RequestInit,
 ): Promise<T> {
   const url = `${API_BASE_URL}${path}`;
+  return doRequest<T>(url, init);
+}
+
+/**
+ * طلب إلى واجهة برمجة تطبيقات المصنع (المنصة الرئيسية)
+ * يُستخدم base URL مختلف عن الواجهة الأساسية
+ */
+async function factoryRequest<T>(
+  path: string,
+  init?: RequestInit,
+): Promise<T> {
+  const url = `${FACTORY_API_BASE_URL}${path}`;
+  return doRequest<T>(url, init);
+}
+
+/**
+ * دالة طلب HTTP عامة مشتركة
+ * تُستخدم من كل من request و factoryRequest
+ */
+async function doRequest<T>(
+  url: string,
+  init?: RequestInit,
+): Promise<T> {
   const res = await fetch(url, {
     ...init,
     headers: {
@@ -307,6 +346,82 @@ export const pipelineApi = {
 
   testR2(): Promise<ApiResponse<{ ok: boolean; message?: string }>> {
     return request(`/api/r2/test`, { method: "POST" });
+  },
+};
+
+// ============ Factory / Platform DB Integration API ============
+// (P1-021: تكامل المصنع مع قاعدة البيانات الرئيسية)
+
+/**
+ * إضافة واجهة برمجة تطبيقات المصنع للتكامل مع المنصة الرئيسية
+ * تستخدم FACTORY_API_BASE_URL للاتصال بقاعدة البيانات المشتركة
+ */
+export const factoryApi = {
+  /**
+   * جلب إحصائيات المصنع الشاملة من المنصة الرئيسية
+   * يتضمن عدد الدروس والمفاهيم والمعادلات والأسئلة والأمثلة
+   */
+  getStats(): Promise<FactoryStats> {
+    return factoryRequest<ApiResponse<FactoryStats>>(
+    "/api/factory/stats",
+    ).then((r) => r.data!);
+  },
+
+  /**
+   * بدء توليد محتوى بالذكاء الاصطناعي لدرس معين
+   * @param lessonId - معرّف الدرس
+   * @param types - أنواع المحتوى المطلوب توليدها
+   * @returns معرّف المهمة المنشأة
+   */
+  startGeneration(
+    lessonId: string,
+    types: FactoryContentType[],
+  ): Promise<{ jobId: string; lessonId: string; status: string }> {
+    return factoryRequest<
+      ApiResponse<{ jobId: string; lessonId: string; status: string }>
+    >("/api/factory/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ lessonId, types }),
+    }).then((r) => r.data!);
+  },
+
+  /**
+   * جلب قائمة المهام الحالية في قائمة الانتظار
+   * @param lessonId - فلتر اختياري حسب معرّف الدرس
+   * @param jobId - فلتر اختياري لمعرّف مهمة محدد
+   */
+  getJobs(params?: {
+    lessonId?: string;
+    jobId?: string;
+  }): Promise<FactoryJob[]> {
+    const sp = new URLSearchParams();
+    if (params?.lessonId) sp.set("lessonId", params.lessonId);
+    if (params?.jobId) sp.set("jobId", params.jobId);
+    const qs = sp.toString();
+    const path = `/api/factory/jobs${qs ? `?${qs}` : ""}`;
+
+    // عند طلب jobId نحصل على حالة مهمة واحدة (FactoryJobStatus)
+    if (params?.jobId) {
+      return factoryRequest<ApiResponse<FactoryJobStatus>>(path).then((r) => {
+        const d = r.data!;
+        // تحويل حالة المهمة إلى قائمة عناصر
+        return d.results.map((res) => ({
+          id: `${d.jobId}_${res.type}`,
+          lessonId: d.lessonId,
+          lessonTitle: d.lessonTitle,
+          contentType: res.type,
+          status: res.status as FactoryJob["status"],
+          progress: d.progress,
+          createdAt: d.startedAt ?? new Date().toISOString(),
+          error: res.error,
+        }));
+      });
+    }
+
+    return factoryRequest<ApiResponse<FactoryJob[]>>(path).then(
+      (r) => r.data ?? [],
+    );
   },
 };
 
