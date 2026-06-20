@@ -4,7 +4,8 @@ import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
 import {
   Home, Upload, Zap, FileText, Eye, Bot, Settings, ScrollText,
-  Menu, Moon, Sun, ChevronLeft, ChevronRight, Factory
+  Menu, Moon, Sun, ChevronLeft, ChevronRight, Factory,
+  Video, NotebookPen, ClipboardList, Brain
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
@@ -20,6 +21,10 @@ import PreviewTab from './PreviewTab';
 import ModelsTab from './ModelsTab';
 import SettingsTab from './SettingsTab';
 import LogsTab from './LogsTab';
+import VideoTab from './VideoTab';
+import SummariesTab from './SummariesTab';
+import ExamsTab from './ExamsTab';
+import MaterialsTab from './MaterialsTab';
 
 const navSections = [
   {
@@ -35,6 +40,15 @@ const navSections = [
       { id: 'extraction' as TabType, label: 'الاستخراج', icon: <Zap className="w-4 h-4" /> },
       { id: 'content' as TabType, label: 'المحتوى', icon: <FileText className="w-4 h-4" /> },
       { id: 'preview' as TabType, label: 'المعاينة', icon: <Eye className="w-4 h-4" /> },
+    ],
+  },
+  {
+    label: 'الإنتاج',
+    items: [
+      { id: 'video' as TabType, label: 'الفيديو', icon: <Video className="w-4 h-4" /> },
+      { id: 'summaries' as TabType, label: 'الملخصات', icon: <NotebookPen className="w-4 h-4" /> },
+      { id: 'exams' as TabType, label: 'الامتحانات', icon: <ClipboardList className="w-4 h-4" /> },
+      { id: 'materials' as TabType, label: 'المواد المساعدة', icon: <Brain className="w-4 h-4" /> },
     ],
   },
   {
@@ -131,6 +145,10 @@ export default function FactoryDashboard() {
       case 'extraction': return <ExtractionTab />;
       case 'content': return <ContentTab />;
       case 'preview': return <PreviewTab />;
+      case 'video': return <VideoTab />;
+      case 'summaries': return <SummariesTab />;
+      case 'exams': return <ExamsTab />;
+      case 'materials': return <MaterialsTab />;
       case 'models': return <ModelsTab />;
       case 'settings': return <SettingsTab />;
       case 'logs': return <LogsTab />;

@@ -338,5 +338,72 @@ model ExtractedLesson {
   status      String           @default("draft") // draft | reviewed | approved
   createdAt   DateTime         @default(now())
   updatedAt   DateTime
-  ExtractedUnit ExtractedUnit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  ExtractedUnit     ExtractedUnit     @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  GeneratedVideo    GeneratedVideo[]
+  GeneratedSummary  GeneratedSummary[]
+  ExamTemplate      ExamTemplate[]
+  LearningMaterial  LearningMaterial[]
+}
+
+// ============ Content Generation System ============
+
+model GeneratedVideo {
+  id          String   @id
+  lessonId    String
+  title       String
+  script      String   @default("")
+  scriptStyle String   @default("explanatory") // explanatory | storytelling | exam_review
+  duration    Int      @default(0)
+  ttsEngine   String   @default("edge-tts")
+  ttsVoice    String   @default("ar-EG-Hoda")
+  status      String   @default("draft") // draft | generating_script | generating_audio | assembling | ready | error
+  audioUrl    String?
+  videoUrl    String?
+  error       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  ExtractedLesson ExtractedLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model GeneratedSummary {
+  id          String   @id
+  lessonId    String
+  type        String   @default("summary") // summary | notes | key_concepts | study_guide
+  title       String
+  content     String   @default("")
+  format      String   @default("markdown") // markdown | plain_text | structured
+  wordCount   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  ExtractedLesson ExtractedLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model ExamTemplate {
+  id          String   @id
+  lessonId    String
+  title       String
+  examType    String   @default("quiz") // quiz | midterm | final | practice
+  difficulty  String   @default("medium") // easy | medium | hard | mixed
+  duration    Int      @default(30)
+  totalMarks  Int      @default(20)
+  questions   String   @default("[]") // JSON array of question objects
+  answerKey   String   @default("[]") // JSON array of answers
+  status      String   @default("draft") // draft | reviewed | approved
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  ExtractedLesson ExtractedLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
+
+model LearningMaterial {
+  id          String   @id
+  lessonId    String
+  type        String   @default("mindmap") // mindmap | infographic | diagram | flashcards | formula_sheet
+  title       String
+  description String   @default("")
+  data        String   @default("") // JSON data for the material
+  imageUrl    String?
+  status      String   @default("draft") // draft | reviewed | approved
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  ExtractedLesson ExtractedLesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }

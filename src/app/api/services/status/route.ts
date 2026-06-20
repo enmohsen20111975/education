@@ -31,6 +31,8 @@ async function checkTesseract(): Promise<{ available: boolean; message: string }
 }
 
 // GET /api/services/status — Check all services status
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const [lmstudioAvailable, ollamaAvailable, tesseract] = await Promise.all([

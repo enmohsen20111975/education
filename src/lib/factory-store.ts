@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type TabType = 'home' | 'sources' | 'extraction' | 'content' | 'preview' | 'models' | 'settings' | 'logs';
+export type TabType = 'home' | 'sources' | 'extraction' | 'content' | 'preview' | 'video' | 'summaries' | 'exams' | 'materials' | 'models' | 'settings' | 'logs';
 
 export interface Book {
   id: string;
