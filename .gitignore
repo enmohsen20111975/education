@@ -50,7 +50,22 @@ dev.log
 
 # Screenshots
 screenshot.png
+*.png
+!public/logo.svg
+
+# Tool results
+tool-results/
 
 # Agent context
 agent-ctx/
-worklog.md
+WORKLOG.md
+
+# Uploads (user PDF files)
+uploads/
+
+# Data files (factory runtime data)
+data/factory-settings.json
+data/factory-logs.json
+
+# Zip archives
+*.zip
