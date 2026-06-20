@@ -1,0 +1,957 @@
+     1→/**
+     2→ * Unified Video Factory - Dashboard Backend Server
+     3→ * --------------------------------------------------
+     4→ * Express + Socket.io REST API server.
+     5→ *
+     6→ * Serves on port 3001 and provides:
+     7→ *   - /api/books/...           Books CRUD + extraction control
+     8→ *   - /api/books/:bookId/lessons/...  Lessons CRUD + images + review
+     9→ *   - /api/videos/...          Video generation queue + streaming
+    10→ *   - /api/config              Pipeline config
+    11→ *   - /api/system/status       System resources (CPU/RAM/Disk/GPU)
+    12→ *   - /data/*                  Static images, videos and PDFs
+    13→ *
+    14→ * Realtime events are emitted via socket.io:
+    15→ *   - extraction-progress
+    16→ *   - video-progress
+    17→ *   - queue-update
+    18→ *   - log
+    19→ *
+    20→ * @module dashboard-server
+    21→ */
+    22→
+    23→const express = require('express');
+    24→const http = require('http');
+    25→const cors = require('cors');
+    26→const multer = require('multer');
+    27→const path = require('path');
+    28→const fs = require('fs');
+    29→const os = require('os');
+    30→const { Server } = require('socket.io');
+    31→const { exec, execSync, spawn } = require('child_process');
+    32→const crypto = require('crypto');
+    33→
+    34→// DB access layers
+    35→const books = require('./lib/db/books');
+    36→const lessons = require('./lib/db/lessons');
+    37→const queue = require('./lib/db/queue');
+    38→const config = require('./lib/db/config');
+    39→
+    40→// ------------------------------------------------------------------
+    41→// Constants & paths
+    42→// ------------------------------------------------------------------
+    43→const PORT = process.env.PORT || 3001;
+    44→const ROOT_DIR = __dirname;
+    45→const DATA_DIR = path.join(ROOT_DIR, 'data');
+    46→const BOOKS_DIR = books.BOOKS_DIR; // data/books
+    47→
+    48→// Ensure data dirs exist
+    49→if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+    50→if (!fs.existsSync(BOOKS_DIR)) fs.mkdirSync(BOOKS_DIR, { recursive: true });
+    51→
+    52→// ------------------------------------------------------------------
+    53→// App setup
+    54→// ------------------------------------------------------------------
+    55→const app = express();
+    56→const server = http.createServer(app);
+    57→
+    58→const io = new Server(server, {
+    59→  cors: { origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] },
+    60→});
+    61→
+    62→// JSON body parser with 100mb limit (lessons can include big raw_text)
+    63→app.use(express.json({ limit: '100mb' }));
+    64→app.use(express.urlencoded({ extended: true, limit: '100mb' }));
+    65→
+    66→// CORS for all origins
+    67→app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] }));
+    68→app.options('*', cors());
+    69→
+    70→// Simple timestamped logging middleware
+    71→app.use((req, _res, next) => {
+    72→  const ts = new Date().toISOString();
+    73→  console.log(`[${ts}] ${req.method} ${req.originalUrl}`);
+    74→  next();
+    75→});
+    76→
+    77→// Static serving for /data -> frontend can fetch images/videos via
+    78→// /data/books/{bookId}/images/{lessonId}/img-001.png
+    79→app.use('/data', express.static(DATA_DIR, {
+    80→  fallthrough: true,
+    81→  setHeaders: (res, filePath) => {
+    82→    if (filePath.endsWith('.mp4')) {
+    83→      res.setHeader('Content-Type', 'video/mp4');
+    84→      res.setHeader('Accept-Ranges', 'bytes');
+    85→    }
+    86→  },
+    87→}));
+    88→
+    89→// ------------------------------------------------------------------
+    90→// Multer storage helpers
+    91→// ------------------------------------------------------------------
+    92→const pdfStorage = multer.diskStorage({
+    93→  destination: (req, _file, cb) => {
+    94→    const bookId = req.params.bookId || req.body.bookId;
+    95→    if (bookId) {
+    96→      const dir = path.join(BOOKS_DIR, bookId);
+    97→      fs.mkdirSync(dir, { recursive: true });
+    98→      cb(null, dir);
+    99→    } else {
+   100→      // tmp dir for new uploads where bookId not known yet
+   101→      const tmp = path.join(BOOKS_DIR, '_uploads');
+   102→      fs.mkdirSync(tmp, { recursive: true });
+   103→      cb(null, tmp);
+   104→    }
+   105→  },
+   106→  filename: (_req, file, cb) => {
+   107→    cb(null, 'source.pdf');
+   108→  },
+   109→});
+   110→
+   111→const imageStorage = multer.diskStorage({
+   112→  destination: (req, _file, cb) => {
+   113→    const { bookId, lessonId } = req.params;
+   114→    const dir = path.join(BOOKS_DIR, bookId, 'images', lessonId);
+   115→    fs.mkdirSync(dir, { recursive: true });
+   116→    cb(null, dir);
+   117→  },
+   118→  filename: (_req, file, cb) => {
+   119→    const id = crypto.randomBytes(4).toString('hex');
+   120→    const ext = path.extname(file.originalname) || '.png';
+   121→    cb(null, `img-${id}${ext}`);
+   122→  },
+   123→});
+   124→
+   125→const uploadPdf = multer({
+   126→  storage: pdfStorage,
+   127→  limits: { fileSize: 500 * 1024 * 1024 }, // 500 MB
+   128→  fileFilter: (_req, file, cb) => {
+   129→    if (file.mimetype === 'application/pdf' || file.originalname.toLowerCase().endsWith('.pdf')) {
+   130→      cb(null, true);
+   131→    } else {
+   132→      cb(new Error('Only PDF files are allowed'));
+   133→    }
+   134→  },
+   135→});
+   136→
+   137→const uploadImage = multer({
+   138→  storage: imageStorage,
+   139→  limits: { fileSize: 20 * 1024 * 1024 }, // 20 MB
+   140→  fileFilter: (_req, file, cb) => {
+   141→    if (/^image\//.test(file.mimetype)) {
+   142→      cb(null, true);
+   143→    } else {
+   144→      cb(new Error('Only image files are allowed'));
+   145→    }
+   146→  },
+   147→});
+   148→
+   149→// ------------------------------------------------------------------
+   150→// Response helpers
+   151→// ------------------------------------------------------------------
+   152→function ok(res, data, code = 200) {
+   153→  return res.status(code).json({ success: true, data });
+   154→}
+   155→function fail(res, message, code = 400) {
+   156→  return res.status(code).json({ success: false, error: message });
+   157→}
+   158→function notFound(res, message = 'Not found') {
+   159→  return res.status(404).json({ success: false, error: message });
+   160→}
+   161→
+   162→// async handler wrapper to catch errors
+   163→function wrap(fn) {
+   164→  return (req, res, next) => Promise.resolve(fn(req, res, next)).catch((err) => {
+   165→    console.error(`[ERROR] ${req.method} ${req.originalUrl}:`, err.message);
+   166→    return res.status(500).json({ success: false, error: err.message || 'Internal server error' });
+   167→  });
+   168→}
+   169→
+   170→// ------------------------------------------------------------------
+   171→// Helper utilities
+   172→// ------------------------------------------------------------------
+   173→function getPdfPageCount(pdfPath) {
+   174→  try {
+   175→    if (pdfPath && fs.existsSync(pdfPath)) {
+   176→      const out = execSync(`pdfinfo "${pdfPath}" 2>/dev/null`, { encoding: 'utf-8' });
+   177→      const m = out.match(/Pages:\s+(\d+)/i);
+   178→      if (m) return parseInt(m[1], 10);
+   179→    }
+   180→  } catch (_) { /* ignore */ }
+   181→  return 0;
+   182→}
+   183→
+   184→function getBookOr404(res, bookId) {
+   185→  const master = books.getBook(bookId);
+   186→  if (!master) {
+   187→    notFound(res, `Book '${bookId}' not found`);
+   188→    return null;
+   189→  }
+   190→  return master;
+   191→}
+   192→
+   193→function getLessonOr404(res, bookId, lessonId) {
+   194→  const lesson = lessons.getLesson(bookId, lessonId);
+   195→  if (!lesson) {
+   196→    notFound(res, `Lesson '${lessonId}' not found in book '${bookId}'`);
+   197→    return null;
+   198→  }
+   199→  return lesson;
+   200→}
+   201→
+   202→// ------------------------------------------------------------------
+   203→// Books API
+   204→// ------------------------------------------------------------------
+   205→
+   206→// GET /api/books - list all books
+   207→app.get('/api/books', wrap((req, res) => {
+   208→  const list = books.listBooks();
+   209→  return ok(res, list);
+   210→}));
+   211→
+   212→// POST /api/books/upload - upload PDF, create book
+   213→app.post('/api/books/upload', (req, res, next) => {
+   214→  // Pre-parse: multer saves to BOOKS_DIR/_uploads/source.pdf since bookId
+   215→  // is not known until we generate it from the title.
+   216→  uploadPdf.single('pdf')(req, res, (err) => {
+   217→    if (err) return fail(res, err.message || 'Upload failed', 400);
+   218→    next();
+   219→  });
+   220→}, wrap(async (req, res) => {
+   221→  if (!req.file) return fail(res, 'No PDF file uploaded (field name must be "pdf")', 400);
+   222→
+   223→  const title = req.body.title || path.basename(req.file.originalname, '.pdf');
+   224→  const subject = req.body.subject || 'other';
+   225→  const grade = req.body.grade || '3rd-secondary';
+   226→  const publisher = req.body.publisher || '';
+   227→
+   228→  // Generate a unique book id (collision-safe)
+   229→  let bookId = books.generateBookId(title);
+   230→  while (books.bookExists(bookId)) {
+   231→    bookId = books.generateBookId(title);
+   232→  }
+   233→
+   234→  // Create master.json + book directory structure (lessons/, images/, videos/)
+   235→  // createBook will mkdir the book directory itself.
+   236→  const master = books.createBook({
+   237→    id: bookId,
+   238→    title,
+   239→    subject,
+   240→    grade,
+   241→    publisher,
+   242→    source_pdf: `books/${bookId}/source.pdf`,
+   243→    total_pages: 0,
+   244→  });
+   245→
+   246→  // Now move the uploaded PDF into the freshly-created book directory.
+   247→  const finalPath = path.join(BOOKS_DIR, bookId, 'source.pdf');
+   248→  if (req.file.path !== finalPath) {
+   249→    fs.renameSync(req.file.path, finalPath);
+   250→  }
+   251→
+   252→  // Inspect page count and update master
+   253→  const totalPages = getPdfPageCount(finalPath);
+   254→  master.book.total_pages = totalPages;
+   255→  master.book.source_pdf = `books/${bookId}/source.pdf`;
+   256→  books.saveBook(bookId, master);
+   257→
+   258→  io.emit('log', { level: 'info', msg: `Book '${title}' uploaded as ${bookId} (${totalPages} pages)` });
+   259→  return ok(res, master, 201);
+   260→}));
+   261→
+   262→// GET /api/books/:bookId - get full master
+   263→app.get('/api/books/:bookId', wrap((req, res) => {
+   264→  const master = getBookOr404(res, req.params.bookId);
+   265→  if (!master) return;
+   266→  return ok(res, master);
+   267→}));
+   268→
+   269→// DELETE /api/books/:bookId - delete book and all data
+   270→app.delete('/api/books/:bookId', wrap((req, res) => {
+   271→  if (!books.bookExists(req.params.bookId)) return notFound(res, `Book '${req.params.bookId}' not found`);
+   272→  books.deleteBook(req.params.bookId);
+   273→  io.emit('log', { level: 'warn', msg: `Book ${req.params.bookId} deleted` });
+   274→  return ok(res, { bookId: req.params.bookId, deleted: true });
+   275→}));
+   276→
+   277→// POST /api/books/:bookId/extract - start extraction
+   278→app.post('/api/books/:bookId/extract', wrap((req, res) => {
+   279→  const master = getBookOr404(res, req.params.bookId);
+   280→  if (!master) return;
+   281→
+   282→  // Mark as extracting (actual python process is handled separately by
+   283→  // content-extractor scripts; here we just flag the status so the UI
+   284→  // can update. Real worker reads this status from master.json.)
+   285→  books.updateExtractionStatus(req.params.bookId, 'extracting', 0);
+   286→
+   287→  // Attempt to spawn python extractor in background (best-effort).
+   288→  try {
+   289→    const extractorScript = path.join(ROOT_DIR, 'content-extractor', 'run-all.py');
+   290→    if (fs.existsSync(extractorScript)) {
+   291→      const py = spawn('python3', [extractorScript, '--book-id', req.params.bookId], {
+   292→        cwd: ROOT_DIR,
+   293→        detached: true,
+   294→        stdio: 'ignore',
+   295→      });
+   296→      py.unref();
+   297→      console.log(`[extract] spawned python pid=${py.pid} for ${req.params.bookId}`);
+   298→    } else {
+   299→      console.warn(`[extract] ${extractorScript} not found - skipping actual extraction`);
+   300→    }
+   301→  } catch (e) {
+   302→    console.warn(`[extract] failed to spawn extractor: ${e.message}`);
+   303→  }
+   304→
+   305→  io.emit('extraction-progress', { bookId: req.params.bookId, status: 'extracting', progress: 0 });
+   306→  io.emit('log', { level: 'info', msg: `Extraction started for ${req.params.bookId}` });
+   307→
+   308→  return ok(res, { bookId: req.params.bookId, status: 'extracting', progress: 0 });
+   309→}));
+   310→
+   311→// GET /api/books/:bookId/extract/status
+   312→app.get('/api/books/:bookId/extract/status', wrap((req, res) => {
+   313→  const master = getBookOr404(res, req.params.bookId);
+   314→  if (!master) return;
+   315→  return ok(res, {
+   316→    bookId: req.params.bookId,
+   317→    status: master.book.extraction_status,
+   318→    progress: master.book.extraction_progress,
+   319→  });
+   320→}));
+   321→
+   322→// POST /api/books/:bookId/extract/stop
+   323→app.post('/api/books/:bookId/extract/stop', wrap((req, res) => {
+   324→  const master = getBookOr404(res, req.params.bookId);
+   325→  if (!master) return;
+   326→
+   327→  // Mark back to pending (real impl would kill the python child)
+   328→  books.updateExtractionStatus(req.params.bookId, 'pending', master.book.extraction_progress || 0);
+   329→
+   330→  io.emit('extraction-progress', { bookId: req.params.bookId, status: 'pending', progress: master.book.extraction_progress || 0 });
+   331→  io.emit('log', { level: 'warn', msg: `Extraction stopped for ${req.params.bookId}` });
+   332→
+   333→  return ok(res, { bookId: req.params.bookId, status: 'pending' });
+   334→}));
+   335→
+   336→// GET /api/books/:bookId/logs - read extraction.log
+   337→app.get('/api/books/:bookId/logs', wrap((req, res) => {
+   338→  const logPath = path.join(BOOKS_DIR, req.params.bookId, 'extraction.log');
+   339→  if (!fs.existsSync(logPath)) {
+   340→    return ok(res, { bookId: req.params.bookId, logs: '', exists: false });
+   341→  }
+   342→  // Limit output to last 1MB to avoid huge payloads
+   343→  const stat = fs.statSync(logPath);
+   344→  const maxBytes = 1024 * 1024;
+   345→  let content;
+   346→  if (stat.size > maxBytes) {
+   347→    const fd = fs.openSync(logPath, 'r');
+   348→    const buf = Buffer.alloc(maxBytes);
+   349→    fs.readSync(fd, buf, 0, maxBytes, stat.size - maxBytes);
+   350→    fs.closeSync(fd);
+   351→    content = '... (truncated) ...\n' + buf.toString('utf-8');
+   352→  } else {
+   353→    content = fs.readFileSync(logPath, 'utf-8');
+   354→  }
+   355→  return ok(res, { bookId: req.params.bookId, logs: content, exists: true, size: stat.size });
+   356→}));
+   357→
+   358→// ------------------------------------------------------------------
+   359→// Lessons API
+   360→// ------------------------------------------------------------------
+   361→
+   362→// GET /api/books/:bookId/lessons - list lesson summaries
+   363→app.get('/api/books/:bookId/lessons', wrap((req, res) => {
+   364→  if (!books.bookExists(req.params.bookId)) return notFound(res, `Book '${req.params.bookId}' not found`);
+   365→  const list = lessons.listLessons(req.params.bookId);
+   366→  if (list === null) return notFound(res, `Book '${req.params.bookId}' not found`);
+   367→  return ok(res, list);
+   368→}));
+   369→
+   370→// GET /api/books/:bookId/lessons/:lessonId - get full lesson
+   371→app.get('/api/books/:bookId/lessons/:lessonId', wrap((req, res) => {
+   372→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   373→  if (!lesson) return;
+   374→  return ok(res, lesson);
+   375→}));
+   376→
+   377→// PUT /api/books/:bookId/lessons/:lessonId - update full lesson
+   378→app.put('/api/books/:bookId/lessons/:lessonId', wrap((req, res) => {
+   379→  const existing = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   380→  if (!existing) return;
+   381→
+   382→  const newLesson = req.body;
+   383→  if (!newLesson || typeof newLesson !== 'object') {
+   384→    return fail(res, 'Request body must be a lesson object', 400);
+   385→  }
+   386→  // Ensure ids are preserved
+   387→  newLesson.metadata = newLesson.metadata || existing.metadata || {};
+   388→  newLesson.metadata.book_id = req.params.bookId;
+   389→  newLesson.metadata.lesson_id = req.params.lessonId;
+   390→
+   391→  lessons.saveLesson(req.params.bookId, req.params.lessonId, newLesson);
+   392→  return ok(res, newLesson);
+   393→}));
+   394→
+   395→// POST /api/books/:bookId/lessons/:lessonId/images - upload image
+   396→app.post('/api/books/:bookId/lessons/:lessonId/images', (req, res, next) => {
+   397→  uploadImage.single('image')(req, res, (err) => {
+   398→    if (err) return fail(res, err.message || 'Image upload failed', 400);
+   399→    next();
+   400→  });
+   401→}, wrap((req, res) => {
+   402→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   403→  if (!lesson) {
+   404→    // Cleanup uploaded file
+   405→    if (req.file && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path);
+   406→    return;
+   407→  }
+   408→  if (!req.file) return fail(res, 'No image uploaded (field name must be "image")', 400);
+   409→
+   410→  // relative path stored in master: books/{bookId}/images/{lessonId}/{filename}
+   411→  const relPath = path.relative(BOOKS_DIR, req.file.path).split(path.sep).join('/');
+   412→
+   413→  const image = lessons.addImage(req.params.bookId, req.params.lessonId, {
+   414→    source_page: parseInt(req.body.source_page || 0, 10),
+   415→    path: relPath,
+   416→    description: req.body.description || '',
+   417→    type: req.body.type || 'illustration',
+   418→    width: parseInt(req.body.width || 0, 10),
+   419→    height: parseInt(req.body.height || 0, 10),
+   420→    uploaded_by: 'dashboard',
+   421→  });
+   422→
+   423→  io.emit('log', { level: 'info', msg: `Image added to ${req.params.lessonId}: ${relPath}` });
+   424→  return ok(res, image, 201);
+   425→}));
+   426→
+   427→// DELETE /api/books/:bookId/lessons/:lessonId/images/:imageId
+   428→app.delete('/api/books/:bookId/lessons/:lessonId/images/:imageId', wrap((req, res) => {
+   429→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   430→  if (!lesson) return;
+   431→  const removed = lessons.deleteImage(req.params.bookId, req.params.lessonId, req.params.imageId);
+   432→  if (!removed) return notFound(res, `Image '${req.params.imageId}' not found`);
+   433→  return ok(res, { imageId: req.params.imageId, deleted: true });
+   434→}));
+   435→
+   436→// POST /api/books/:bookId/lessons/:lessonId/review - mark as reviewed
+   437→app.post('/api/books/:bookId/lessons/:lessonId/review', wrap((req, res) => {
+   438→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   439→  if (!lesson) return;
+   440→  const notes = (req.body && req.body.notes) || '';
+   441→  const updated = lessons.markAsReviewed(req.params.bookId, req.params.lessonId, notes);
+   442→  io.emit('log', { level: 'info', msg: `Lesson ${req.params.lessonId} marked as reviewed` });
+   443→  return ok(res, updated);
+   444→}));
+   445→
+   446→// ------------------------------------------------------------------
+   447→// Videos API
+   448→// ------------------------------------------------------------------
+   449→
+   450→// GET /api/videos/queue
+   451→app.get('/api/videos/queue', wrap((req, res) => {
+   452→  const q = queue.getQueue();
+   453→  return ok(res, q);
+   454→}));
+   455→
+   456→// POST /api/videos/generate/:bookId/:lessonId - add to queue
+   457→app.post('/api/videos/generate/:bookId/:lessonId', wrap((req, res) => {
+   458→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   459→  if (!lesson) return;
+   460→  const title = lesson.metadata?.title || req.params.lessonId;
+   461→
+   462→  const added = queue.addToQueue(req.params.bookId, req.params.lessonId, title);
+   463→  if (!added) {
+   464→    return fail(res, 'Lesson already in queue', 409);
+   465→  }
+   466→
+   467→  // Update lesson video status to 'generating'
+   468→  lessons.updateVideoStatus(req.params.bookId, req.params.lessonId, {
+   469→    status: 'generating',
+   470→  });
+   471→
+   472→  io.emit('queue-update', queue.getQueue());
+   473→  io.emit('log', { level: 'info', msg: `Video generation queued for ${req.params.lessonId}` });
+   474→  return ok(res, { bookId: req.params.bookId, lessonId: req.params.lessonId, status: 'generating' });
+   475→}));
+   476→
+   477→// POST /api/videos/generate-batch - body: { book_id, lesson_ids: [] }
+   478→app.post('/api/videos/generate-batch', wrap((req, res) => {
+   479→  const { book_id, lesson_ids } = req.body || {};
+   480→  if (!book_id || !Array.isArray(lesson_ids)) {
+   481→    return fail(res, 'Body must include {book_id, lesson_ids: []}', 400);
+   482→  }
+   483→  if (!books.bookExists(book_id)) return notFound(res, `Book '${book_id}' not found`);
+   484→
+   485→  const results = [];
+   486→  for (const lessonId of lesson_ids) {
+   487→    const lesson = lessons.getLesson(book_id, lessonId);
+   488→    if (!lesson) {
+   489→      results.push({ lessonId, ok: false, error: 'Lesson not found' });
+   490→      continue;
+   491→    }
+   492→    const title = lesson.metadata?.title || lessonId;
+   493→    const added = queue.addToQueue(book_id, lessonId, title);
+   494→    if (added) {
+   495→      lessons.updateVideoStatus(book_id, lessonId, { status: 'generating' });
+   496→      results.push({ lessonId, ok: true, status: 'generating' });
+   497→    } else {
+   498→      results.push({ lessonId, ok: false, error: 'Already in queue' });
+   499→    }
+   500→  }
+   501→  io.emit('queue-update', queue.getQueue());
+   502→  io.emit('log', { level: 'info', msg: `Batch generate: ${results.filter(r => r.ok).length}/${lesson_ids.length} added` });
+   503→  return ok(res, { book_id, results });
+   504→}));
+   505→
+   506→// GET /api/videos/status/:bookId/:lessonId
+   507→app.get('/api/videos/status/:bookId/:lessonId', wrap((req, res) => {
+   508→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   509→  if (!lesson) return;
+   510→  return ok(res, {
+   511→    bookId: req.params.bookId,
+   512→    lessonId: req.params.lessonId,
+   513→    video: lesson.video || { status: 'not_generated' },
+   514→  });
+   515→}));
+   516→
+   517→// POST /api/videos/cancel/:bookId/:lessonId
+   518→app.post('/api/videos/cancel/:bookId/:lessonId', wrap((req, res) => {
+   519→  const lesson = getLessonOr404(res, req.params.bookId, req.params.lessonId);
+   520→  if (!lesson) return;
+   521→  const cancelled = queue.cancelJob(req.params.bookId, req.params.lessonId);
+   522→
+   523→  lessons.updateVideoStatus(req.params.bookId, req.params.lessonId, { status: 'cancelled' });
+   524→  io.emit('queue-update', queue.getQueue());
+   525→  io.emit('log', { level: 'warn', msg: `Video cancelled for ${req.params.lessonId}` });
+   526→
+   527→  return ok(res, { bookId: req.params.bookId, lessonId: req.params.lessonId, status: 'cancelled', was_in_queue: cancelled });
+   528→}));
+   529→
+   530→// GET /api/videos/:bookId/:lessonId/file - stream MP4
+   531→app.get('/api/videos/:bookId/:lessonId/file', wrap((req, res) => {
+   532→  const videoPath = path.join(BOOKS_DIR, req.params.bookId, 'videos', `${req.params.lessonId}.mp4`);
+   533→  if (!fs.existsSync(videoPath)) {
+   534→    return notFound(res, `Video file not found for lesson ${req.params.lessonId}`);
+   535→  }
+   536→  const stat = fs.statSync(videoPath);
+   537→  const fileSize = stat.size;
+   538→  const range = req.headers.range;
+   539→
+   540→  if (range) {
+   541→    // Support HTTP range requests for streaming
+   542→    const parts = range.replace(/bytes=/, '').split('-');
+   543→    const start = parseInt(parts[0], 10);
+   544→    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+   545→    const chunkSize = end - start + 1;
+   546→    const stream = fs.createReadStream(videoPath, { start, end });
+   547→    res.writeHead(206, {
+   548→      'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+   549→      'Accept-Ranges': 'bytes',
+   550→      'Content-Length': chunkSize,
+   551→      'Content-Type': 'video/mp4',
+   552→    });
+   553→    stream.pipe(res);
+   554→  } else {
+   555→    res.writeHead(200, {
+   556→      'Content-Length': fileSize,
+   557→      'Content-Type': 'video/mp4',
+   558→      'Accept-Ranges': 'bytes',
+   559→    });
+   560→    fs.createReadStream(videoPath).pipe(res);
+   561→  }
+   562→}));
+   563→
+   564→// POST /api/videos/export-education - body: { book_id } or { book_id, lesson_ids: [] }
+   565→app.post('/api/videos/export-education', wrap((req, res) => {
+   566→  const { book_id, lesson_ids } = req.body || {};
+   567→  if (!book_id) return fail(res, 'Body must include book_id', 400);
+   568→  const master = getBookOr404(res, book_id);
+   569→  if (!master) return;
+   570→
+   571→  // Determine target lessons
+   572→  let targetLessonIds = Array.isArray(lesson_ids) && lesson_ids.length > 0
+   573→    ? lesson_ids
+   574→    : null;
+   575→
+   576→  const exportData = {
+   577→    book: {
+   578→      id: master.book.id,
+   579→      title: master.book.title,
+   580→      subject: master.book.subject,
+   581→      grade: master.book.grade,
+   582→    },
+   583→    exported_at: new Date().toISOString(),
+   584→    lessons: [],
+   585→  };
+   586→
+   587→  for (const unit of master.units || []) {
+   588→    for (const lessonSummary of unit.lessons || []) {
+   589→      if (targetLessonIds && !targetLessonIds.includes(lessonSummary.id)) continue;
+   590→      const lesson = lessons.getLesson(book_id, lessonSummary.id);
+   591→      if (!lesson) continue;
+   592→
+   593→      exportData.lessons.push({
+   594→        lesson_id: lesson.metadata.lesson_id,
+   595→        title: lesson.metadata.title,
+   596→        unit_title: unit.title,
+   597→        video_url: lesson.video?.video_url
+   598→          ? lesson.video.video_url
+   599→          : `/data/books/${book_id}/videos/${lessonSummary.id}.mp4`,
+   600→        video_status: lesson.video?.status || 'not_generated',
+   601→        duration_sec: lesson.video?.duration_sec || 0,
+   602→        summary: lesson.content?.summary || '',
+   603→        objectives: lesson.content?.objectives || [],
+   604→        questions: lesson.questions || [],
+   605→      });
+   606→    }
+   607→  }
+   608→
+   609→  const exportPath = path.join(BOOKS_DIR, book_id, 'education-export.json');
+   610→  fs.writeFileSync(exportPath, JSON.stringify(exportData, null, 2), 'utf-8');
+   611→
+   612→  io.emit('log', { level: 'info', msg: `Education export created for ${book_id} (${exportData.lessons.length} lessons)` });
+   613→  return ok(res, {
+   614→    book_id,
+   615→    path: `data/books/${book_id}/education-export.json`,
+   616→    absolute_path: exportPath,
+   617→    lessons_count: exportData.lessons.length,
+   618→  });
+   619→}));
+   620→
+   621→// ------------------------------------------------------------------
+   622→// Pipeline / Config API
+   623→// ------------------------------------------------------------------
+   624→
+   625→// GET /api/config
+   626→app.get('/api/config', wrap((req, res) => {
+   627→  return ok(res, config.getConfig());
+   628→}));
+   629→
+   630→// POST /api/config - save config
+   631→app.post('/api/config', wrap((req, res) => {
+   632→  const newConfig = req.body;
+   633→  if (!newConfig || typeof newConfig !== 'object') {
+   634→    return fail(res, 'Body must be a config object', 400);
+   635→  }
+   636→  const merged = config.saveConfig(newConfig);
+   637→  io.emit('log', { level: 'info', msg: 'Pipeline config updated' });
+   638→  return ok(res, merged);
+   639→}));
+   640→
+   641→// POST /api/config/reset - reset to default (bonus endpoint)
+   642→app.post('/api/config/reset', wrap((req, res) => {
+   643→  const def = config.resetConfig();
+   644→  return ok(res, def);
+   645→}));
+   646→
+   647→// ------------------------------------------------------------------
+   648→// System status API
+   649→// ------------------------------------------------------------------
+   650→
+   651→function getGpuInfo() {
+   652→  try {
+   653→    const out = execSync('nvidia-smi --query-gpu=name,memory.total,memory.used,memory.free,utilization.gpu --format=csv,noheader,nounits', {
+   654→      encoding: 'utf-8',
+   655→      timeout: 3000,
+   656→    }).trim();
+   657→    const parts = out.split(',').map((s) => s.trim());
+   658→    if (parts.length >= 5) {
+   659→      return {
+   660→        name: parts[0],
+   661→        vram_total_mb: parseInt(parts[1], 10),
+   662→        vram_used_mb: parseInt(parts[2], 10),
+   663→        vram_free_mb: parseInt(parts[3], 10),
+   664→        utilization_percent: parseInt(parts[4], 10),
+   665→      };
+   666→    }
+   667→  } catch (_) { /* no GPU or nvidia-smi missing */ }
+   668→  return null;
+   669→}
+   670→
+   671→function getCpuPercent() {
+   672→  // Average load over 1 minute, normalized by CPU count -> rough percent
+   673→  const cpus = os.cpus().length || 1;
+   674→  const load = os.loadavg()[0]; // 1-min avg
+   675→  const percent = Math.min(100, Math.round((load / cpus) * 100));
+   676→  return percent;
+   677→}
+   678→
+   679→function getDiskUsage(dirPath) {
+   680→  try {
+   681→    const out = execSync(`df -k "${dirPath}" | tail -1`, { encoding: 'utf-8' });
+   682→    const parts = out.trim().split(/\s+/);
+   683→    if (parts.length >= 4) {
+   684→      const total = parseInt(parts[1], 10) * 1024;
+   685→      const used = parseInt(parts[2], 10) * 1024;
+   686→      const free = parseInt(parts[3], 10) * 1024;
+   687→      const percent = total > 0 ? Math.round((used / total) * 100) : 0;
+   688→      return { total, used, free, percent };
+   689→    }
+   690→  } catch (_) { /* ignore */ }
+   691→  return { total: 0, used: 0, free: 0, percent: 0 };
+   692→}
+   693→
+   694→// GET /api/system/status
+   695→app.get('/api/system/status', wrap((req, res) => {
+   696→  const totalMem = os.totalmem();
+   697→  const freeMem = os.freemem();
+   698→  const usedMem = totalMem - freeMem;
+   699→  const memPercent = totalMem > 0 ? Math.round((usedMem / totalMem) * 100) : 0;
+   700→
+   701→  const data = {
+   702→    cpu_percent: getCpuPercent(),
+   703→    cpu_cores: os.cpus().length,
+   704→    cpu_model: os.cpus()[0]?.model || 'unknown',
+   705→    memory: {
+   706→      total: totalMem,
+   707→      used: usedMem,
+   708→      free: freeMem,
+   709→      percent: memPercent,
+   710→    },
+   711→    disk: getDiskUsage(DATA_DIR),
+   712→    uptime_sec: Math.round(os.uptime()),
+   713→    platform: os.platform(),
+   714→    hostname: os.hostname(),
+   715→    node_version: process.version,
+   716→    timestamp: new Date().toISOString(),
+   717→  };
+   718→
+   719→  const gpu = getGpuInfo();
+   720→  if (gpu) data.gpu = gpu;
+   721→
+   722→  return ok(res, data);
+   723→}));
+   724→
+   725→// ------------------------------------------------------------------
+   726→// Health check
+   727→// ------------------------------------------------------------------
+   728→app.get('/api/health', wrap((req, res) => {
+   729→  return ok(res, { status: 'ok', uptime: process.uptime(), port: PORT });
+   730→}));
+   731→
+   732→// ------------------------------------------------------------------
+   733→// Socket.io setup
+   734→// ------------------------------------------------------------------
+   735→io.on('connection', (socket) => {
+   736→  console.log(`[socket.io] client connected: ${socket.id}`);
+   737→  socket.emit('log', { level: 'info', msg: 'Connected to dashboard server', ts: new Date().toISOString() });
+   738→  socket.on('disconnect', () => {
+   739→    console.log(`[socket.io] client disconnected: ${socket.id}`);
+   740→  });
+   741→});
+   742→
+   743→// Expose io globally so other scripts can require this module and emit
+   744→app.set('io', io);
+   745→
+   746→// ------------------------------------------------------------------
+   747→// Root welcome page (health check + quick links)
+   748→// ------------------------------------------------------------------
+   749→app.get('/', (req, res) => {
+   750→  const booksCount = (books.listBooks() || []).length;
+   751→  const queueState = queue.getQueue();
+   752→  const cfg = config.getConfig();
+   753→  const uptimeSec = Math.floor(process.uptime());
+   754→
+   755→  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+   756→  res.send(`
+   757→<!DOCTYPE html>
+   758→<html lang="ar" dir="rtl">
+   759→<head>
+   760→  <meta charset="UTF-8">
+   761→  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   762→  <title>🎬 Smart Video Factory - Backend</title>
+   763→  <style>
+   764→    * { box-sizing: border-box; margin: 0; padding: 0; }
+   765→    body {
+   766→      font-family: 'Segoe UI', Tahoma, sans-serif;
+   767→      background: linear-gradient(135deg, #0B0F19 0%, #1E293B 100%);
+   768→      color: #F8FAFC;
+   769→      min-height: 100vh;
+   770→      padding: 40px 20px;
+   771→    }
+   772→    .container { max-width: 900px; margin: 0 auto; }
+   773→    .header { text-align: center; margin-bottom: 40px; }
+   774→    .header h1 {
+   775→      font-size: 2.5rem;
+   776→      background: linear-gradient(to right, #6366F1, #A855F7, #EC4899);
+   777→      -webkit-background-clip: text;
+   778→      -webkit-text-fill-color: transparent;
+   779→      margin-bottom: 10px;
+   780→    }
+   781→    .header p { color: #94A3B8; font-size: 1.1rem; }
+   782→    .status-grid {
+   783→      display: grid;
+   784→      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+   785→      gap: 16px;
+   786→      margin-bottom: 30px;
+   787→    }
+   788→    .status-card {
+   789→      background: rgba(30, 41, 59, 0.6);
+   790→      backdrop-filter: blur(10px);
+   791→      border: 1px solid rgba(255, 255, 255, 0.08);
+   792→      border-radius: 16px;
+   793→      padding: 20px;
+   794→      text-align: center;
+   795→    }
+   796→    .status-card .label { color: #94A3B8; font-size: 0.9rem; margin-bottom: 8px; }
+   797→    .status-card .value { font-size: 2rem; font-weight: 800; color: #6366F1; }
+   798→    .status-card .value.green { color: #10B981; }
+   799→    .status-card .value.amber { color: #F59E0B; }
+   800→    .info-box {
+   801→      background: rgba(30, 41, 59, 0.6);
+   802→      border: 1px solid rgba(255, 255, 255, 0.08);
+   803→      border-radius: 16px;
+   804→      padding: 24px;
+   805→      margin-bottom: 20px;
+   806→    }
+   807→    .info-box h2 {
+   808→      color: #A855F7;
+   809→      font-size: 1.3rem;
+   810→      margin-bottom: 16px;
+   811→      display: flex;
+   812→      align-items: center;
+   813→      gap: 8px;
+   814→    }
+   815→    .info-box p, .info-box li { color: #CBD5E1; line-height: 1.8; }
+   816→    .info-box code {
+   817→      background: rgba(99, 102, 241, 0.15);
+   818→      color: #818CF8;
+   819→      padding: 2px 8px;
+   820→      border-radius: 4px;
+   821→      font-family: 'Consolas', monospace;
+   822→      font-size: 0.9rem;
+   823→    }
+   824→    .info-box a {
+   825→      color: #6366F1;
+   826→      text-decoration: none;
+   827→      border-bottom: 1px dashed;
+   828→    }
+   829→    .info-box a:hover { color: #818CF8; }
+   830→    .badge {
+   831→      display: inline-block;
+   832→      padding: 4px 12px;
+   833→      border-radius: 999px;
+   834→      font-size: 0.85rem;
+   835→      font-weight: 600;
+   836→    }
+   837→    .badge.ok { background: rgba(16, 185, 129, 0.15); color: #10B981; }
+   838→    .badge.warn { background: rgba(245, 158, 11, 0.15); color: #F59E0B; }
+   839→    ul { list-style: none; padding-right: 0; }
+   840→    ul li { padding: 6px 0; }
+   841→    ul li::before { content: '▸ '; color: #6366F1; }
+   842→  </style>
+   843→</head>
+   844→<body>
+   845→  <div class="container">
+   846→    <div class="header">
+   847→      <h1>🎬 Smart Video Factory</h1>
+   848→      <p>Backend API Server - v2.0</p>
+   849→    </div>
+   850→
+   851→    <div class="status-grid">
+   852→      <div class="status-card">
+   853→        <div class="label">📚 الكتب</div>
+   854→        <div class="value">${booksCount}</div>
+   855→      </div>
+   856→      <div class="status-card">
+   857→        <div class="label">🎬 في الانتظار</div>
+   858→        <div class="value amber">${queueState.pending_queue?.length || 0}</div>
+   859→      </div>
+   860→      <div class="status-card">
+   861→        <div class="label">⚙️ قيد التنفيذ</div>
+   862→        <div class="value amber">${queueState.active_jobs?.length || 0}</div>
+   863→      </div>
+   864→      <div class="status-card">
+   865→        <div class="label">⏱️ Uptime</div>
+   866→        <div class="value green">${Math.floor(uptimeSec / 60)}m</div>
+   867→      </div>
+   868→    </div>
+   869→
+   870→    <div class="info-box">
+   871→      <h2>🚀 الخادم يعمل بنجاح</h2>
+   872→      <p>هذا هو خادم الـ API الخلفي. لوحة التحكم الأمامية تعمل على منفذ آخر:</p>
+   873→      <ul style="margin-top: 12px;">
+   874→        <li>🎨 <strong>لوحة التحكم (Frontend)</strong>: <code>http://localhost:3000</code></li>
+   875→        <li>🌐 <strong>API Server</strong>: <code>http://localhost:3001/api/*</code></li>
+   876→        <li>🔌 <strong>WebSocket</strong>: <code>ws://localhost:3001</code></li>
+   877→      </ul>
+   878→      <p style="margin-top: 16px;">
+   879→        <strong>⚠️ ملاحظة:</strong> لو لم تكن لوحة التحكم تعمل، شغلها بأمر:
+   880→        <br>
+   881→        <code style="display: inline-block; margin-top: 8px; padding: 8px 12px;">cd dashboard-app; npm run dev</code>
+   882→      </p>
+   883→    </div>
+   884→
+   885→    <div class="info-box">
+   886→      <h2>📋 روابط API المهمة</h2>
+   887→      <ul>
+   888→        <li><a href="/api/books" target="_blank">GET /api/books</a> - قائمة الكتب</li>
+   889→        <li><a href="/api/config" target="_blank">GET /api/config</a> - الإعدادات</li>
+   890→        <li><a href="/api/system/status" target="_blank">GET /api/system/status</a> - حالة النظام</li>
+   891→        <li><a href="/api/videos/queue" target="_blank">GET /api/videos/queue</a> - قائمة انتظار الفيديو</li>
+   892→      </ul>
+   893→    </div>
+   894→
+   895→    <div class="info-box">
+   896→      <h2>🤖 نماذج Ollama</h2>
+   897→      <p>النموذج الحالي المُعد: <code>${cfg.stage_2_vlm_extraction?.preferred_model || 'qwen2.5vl:7b'}</code></p>
+   898→      <p style="margin-top: 12px;">لتحميل النماذج الصحيحة (في Terminal منفصل):</p>
+   899→      <ul style="margin-top: 8px;">
+   900→        <li><code>ollama pull qwen2.5vl:7b</code> (الموصى به - الأحدث)</li>
+   901→        <li><code>ollama pull llama3.2-vision:11b</code> (بديل قوي)</li>
+   902→        <li><code>ollama pull gemma3:4b</code> (خفيف - fallback)</li>
+   903→      </ul>
+   904→    </div>
+   905→  </div>
+   906→</body>
+   907→</html>
+   908→  `);
+   909→});
+   910→
+   911→// ------------------------------------------------------------------
+   912→// 404 + error handlers (last)
+   913→// ------------------------------------------------------------------
+   914→app.use((req, res) => {
+   915→  return notFound(res, `Route not found: ${req.method} ${req.originalUrl}`);
+   916→});
+   917→
+   918→// eslint-disable-next-line no-unused-vars
+   919→app.use((err, req, res, _next) => {
+   920→  console.error(`[FATAL]`, err);
+   921→  if (err instanceof multer.MulterError) {
+   922→    return res.status(400).json({ success: false, error: `Upload error: ${err.message}` });
+   923→  }
+   924→  return res.status(500).json({ success: false, error: err.message || 'Internal server error' });
+   925→});
+   926→
+   927→// ------------------------------------------------------------------
+   928→// Start
+   929→// ------------------------------------------------------------------
+   930→server.listen(PORT, () => {
+   931→  console.log('========================================================');
+   932→  console.log(`  🎬 Unified Video Factory - Dashboard Server`);
+   933→  console.log(`  📡 HTTP:  http://localhost:${PORT}`);
+   934→  console.log(`  🔌 WS:    ws://localhost:${PORT}`);
+   935→  console.log(`  📁 Data:  ${DATA_DIR}`);
+   936→  console.log(`  🚀 Ready  (pid ${process.pid})`);
+   937→  console.log('========================================================');
+   938→});
+   939→
+   940→// Graceful shutdown
+   941→process.on('SIGINT', () => {
+   942→  console.log('\n[shutdown] SIGINT received, closing server...');
+   943→  server.close(() => {
+   944→    io.close();
+   945→    process.exit(0);
+   946→  });
+   947→});
+   948→process.on('SIGTERM', () => {
+   949→  console.log('\n[shutdown] SIGTERM received, closing server...');
+   950→  server.close(() => {
+   951→    io.close();
+   952→    process.exit(0);
+   953→  });
+   954→});
+   955→
+   956→module.exports = { app, server, io };
+   957→
