@@ -1,587 +1,912 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { useTheme } from "next-themes";
 import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Play, Sparkles, Rocket, Star, Zap, Trophy, Users, BookOpen,
-  ChevronDown, Heart, Atom, Calculator, FlaskConical, Leaf,
-  Globe, Moon, Sun, Brain, Quote, Instagram, Twitter, Youtube
+import { Progress } from "@/components/ui/progress";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Play,
+  Square,
+  RotateCcw,
+  Loader2,
+  CheckCircle2,
+  XCircle,
+  Film,
+  FileText,
+  Mic,
+  Layers,
+  Download,
+  Settings,
+  AlertCircle,
+  Clock,
+  Sparkles,
+  ChevronRight,
+  Video,
+  Clapperboard,
+  MessageSquare,
+  Workflow,
+  MonitorPlay,
+  Globe,
+  Moon,
+  Sun,
 } from "lucide-react";
 
-// ==================== ANIMATIONS ====================
+// ============================================================
+// الأنواع / Types
+// ============================================================
+
+interface VideoJob {
+  id: string;
+  lessonId: string;
+  lessonTitle: string;
+  status: string;
+  progress: number;
+  currentStep: string;
+  scenesCompleted: number;
+  totalScenes: number;
+  error?: string;
+  createdAt: string;
+  updatedAt: string;
+  language: string;
+  style: string;
+  voice: string;
+}
+
+interface LessonItem {
+  id: string;
+  titleAr: string;
+  titleEn: string;
+  unitName?: string;
+}
+
+// ============================================================
+// ثوابت الحركات / Animation Constants
+// ============================================================
+
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
 };
 
 const scaleIn = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200 } }
+  hidden: { scale: 0.9, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200 } },
 };
 
-const floatAnimation = {
-  animate: {
-    y: [0, -10, 0],
-    transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-  }
+const statusColors: Record<string, string> = {
+  queued: "bg-yellow-500/20 text-yellow-600 border-yellow-500/30",
+  scripting: "bg-purple-500/20 text-purple-600 border-purple-500/30",
+  tts: "bg-cyan-500/20 text-cyan-600 border-cyan-500/30",
+  composing: "bg-orange-500/20 text-orange-600 border-orange-500/30",
+  rendering: "bg-pink-500/20 text-pink-600 border-pink-500/30",
+  done: "bg-emerald-500/20 text-emerald-600 border-emerald-500/30",
+  error: "bg-red-500/20 text-red-600 border-red-500/30",
+  cancelled: "bg-gray-500/20 text-gray-600 border-gray-500/30",
 };
 
-// ==================== MAIN APP ====================
-function LandingPageContent() {
+const statusLabels: Record<string, { ar: string; en: string }> = {
+  queued: { ar: "في الانتظار", en: "Queued" },
+  scripting: { ar: "توليد النص", en: "Scripting" },
+  tts: { ar: "تحويل لكلام", en: "TTS" },
+  composing: { ar: "تركيب المشاهد", en: "Composing" },
+  rendering: { ar: "العرض النهائي", en: "Rendering" },
+  done: { ar: "مكتمل", en: "Done" },
+  error: { ar: "خطأ", en: "Error" },
+  cancelled: { ar: "ملغى", en: "Cancelled" },
+};
+
+const statusIcons: Record<string, React.ReactNode> = {
+  queued: <Clock className="w-4 h-4" />,
+  scripting: <FileText className="w-4 h-4" />,
+  tts: <Mic className="w-4 h-4" />,
+  composing: <Layers className="w-4 h-4" />,
+  rendering: <MonitorPlay className="w-4 h-4" />,
+  done: <CheckCircle2 className="w-4 h-4" />,
+  error: <XCircle className="w-4 h-4" />,
+  cancelled: <AlertCircle className="w-4 h-4" />,
+};
+
+const pipelineSteps = [
+  { key: "scripting", icon: FileText, ar: "توليد النص", en: "Script Gen" },
+  { key: "tts", icon: Mic, ar: "تحويل لكلام", en: "TTS" },
+  { key: "composing", icon: Layers, ar: "تركيب المشاهد", en: "Compose" },
+  { key: "rendering", icon: MonitorPlay, ar: "العرض النهائي", en: "Render" },
+];
+
+// ============================================================
+// المكون الرئيسي / Main Component
+// ============================================================
+
+function VideoFactoryContent() {
   const { language, toggleLanguage, t } = useLanguage();
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
-  const [showContent, setShowContent] = useState(false);
-  const isRTL = language === "ar";
 
+  // ─── حالة التطبيق / App State ───
+  const [lessons, setLessons] = useState<LessonItem[]>([]);
+  const [selectedLesson, setSelectedLesson] = useState<string>("");
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("ar");
+  const [selectedStyle, setSelectedStyle] = useState<string>("explainer");
+  const [selectedVoice, setSelectedVoice] = useState<string>("female-ar");
+  const [jobs, setJobs] = useState<VideoJob[]>([]);
+  const [activeJob, setActiveJob] = useState<VideoJob | null>(null);
+  const [isProducing, setIsProducing] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+  const [isLoadingLessons, setIsLoadingLessons] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const pollingRef = useRef<NodeJS.Timeout | null>(null);
+
+  // ─── تحميل الدروس / Load lessons ───
+  const loadLessons = useCallback(async () => {
+    setIsLoadingLessons(true);
+    try {
+      const res = await fetch("/api/lessons");
+      if (res.ok) {
+        const data = await res.json();
+        const lessonItems: LessonItem[] = (data.data?.lessons ?? data.lessons ?? []).map(
+          (l: { id: string; titleAr: string; titleEn: string; Unit?: { nameAr: string } }) => ({
+            id: l.id,
+            titleAr: l.titleAr,
+            titleEn: l.titleEn,
+            unitName: l.Unit?.nameAr,
+          })
+        );
+        setLessons(lessonItems);
+        if (lessonItems.length > 0 && !selectedLesson) {
+          setSelectedLesson(lessonItems[0].id);
+        }
+      }
+    } catch {
+      console.error("Failed to load lessons");
+    } finally {
+      setIsLoadingLessons(false);
+    }
+  }, [selectedLesson]);
+
+  // ─── تحميل المهام / Load jobs ───
+  const loadJobs = useCallback(async () => {
+    try {
+      const res = await fetch("/api/video/jobs");
+      if (res.ok) {
+        const data = await res.json();
+        setJobs(data.data?.jobs ?? []);
+        // تحديث المهمة النشطة
+        const activeJobs = (data.data?.jobs ?? []).filter(
+          (j: VideoJob) => !["done", "error", "cancelled"].includes(j.status)
+        );
+        if (activeJobs.length > 0) {
+          setActiveJob(activeJobs[0]);
+          setIsProducing(true);
+        } else {
+          if (activeJob && (activeJob.status === "done" || activeJob.status === "error")) {
+            // Keep showing completed job briefly
+          } else {
+            setActiveJob(null);
+            setIsProducing(false);
+          }
+        }
+      }
+    } catch {
+      console.error("Failed to load jobs");
+    }
+  }, [activeJob]);
+
+  // ─── جلب البيانات الأولية / Fetch initial data ───
   useEffect(() => {
-    const timer = setTimeout(() => setShowContent(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
+    loadLessons();
+    loadJobs();
+  }, [loadLessons, loadJobs]);
 
-  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
+  // ─── استقصاء المهام النشطة / Poll active jobs ───
+  useEffect(() => {
+    if (isProducing) {
+      pollingRef.current = setInterval(loadJobs, 2000);
+    } else if (pollingRef.current) {
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
+    }
+    return () => {
+      if (pollingRef.current) clearInterval(pollingRef.current);
+    };
+  }, [isProducing, loadJobs]);
 
-  // Features data
-  const features = [
-    { icon: Zap, title: { ar: "تعلم تفاعلي", en: "Interactive Learning" }, desc: { ar: "محاكيات ومحادثات ذكية", en: "Simulators & AI Chat" }, color: "from-purple-500 to-pink-500" },
-    { icon: Trophy, title: { ar: "تحديات ومكافآت", en: "Challenges & Rewards" }, desc: { ar: "نقاط وشارات ومراكز", en: "Points, Badges & Rankings" }, color: "from-cyan-500 to-blue-500" },
-    { icon: Brain, title: { ar: "ذكاء اصطناعي", en: "AI Powered" }, desc: { ar: "شرح مخصص لكل طالب", en: "Personalized explanations" }, color: "from-orange-500 to-red-500" },
-    { icon: Users, title: { ar: "مجتمع نشط", en: "Active Community" }, desc: { ar: "شارك وتعلم مع أصدقائك", en: "Learn with friends" }, color: "from-green-500 to-teal-500" },
-  ];
+  // ─── إظهار إشعار / Show toast ───
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
-  // Subjects data
-  const subjects = [
-    { icon: Atom, name: { ar: "فيزياء", en: "Physics" }, lessons: 120, color: "#8B5CF6" },
-    { icon: FlaskConical, name: { ar: "كيمياء", en: "Chemistry" }, lessons: 100, color: "#EC4899" },
-    { icon: Calculator, name: { ar: "رياضيات", en: "Math" }, lessons: 150, color: "#F97316" },
-    { icon: Leaf, name: { ar: "أحياء", en: "Biology" }, lessons: 90, color: "#10B981" },
-    { icon: BookOpen, name: { ar: "عربي", en: "Arabic" }, lessons: 80, color: "#06B6D4" },
-    { icon: Globe, name: { ar: "إنجليزي", en: "English" }, lessons: 85, color: "#3B82F6" },
-  ];
+  // ─── بدء الإنتاج / Start production ───
+  const handleProduce = async () => {
+    if (!selectedLesson) return;
 
-  // Stats data
-  const stats = [
-    { value: "1,152+", label: { ar: "درس", en: "Lessons" } },
-    { value: "54+", label: { ar: "محاكي تفاعلي", en: "Simulators" } },
-    { value: "5,000+", label: { ar: "سؤال تدريبي", en: "Questions" } },
-    { value: "100%", label: { ar: "منهج مصري", en: "Egyptian Curriculum" } },
-  ];
+    try {
+      setIsProducing(true);
+      const res = await fetch("/api/video/produce", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lessonId: selectedLesson,
+          language: selectedLanguage,
+          style: selectedStyle,
+          voice: selectedVoice,
+        }),
+      });
 
-  // Testimonials data
-  const testimonials = [
-    {
-      name: "أحمد محمد",
-      grade: "الصف الثالث الثانوي",
-      text: { ar: "المحاكيات خلتنى أفهم الفيزياء بطريقة مختلفة تماماً! كنت بكره الفيزياء دلوقتي بنجح فيها بتفوق!", en: "The simulators made me understand physics in a totally different way!" },
-      avatar: "👨‍🎓",
-      rating: 5
-    },
-    {
-      name: "سارة أحمد",
-      grade: "الصف الثاني الثانوي",
-      text: { ar: "أخيراً منصة تعليمية مش بتوجع! بتعلم وأستمتع في نفس الوقت", en: "Finally an educational platform that doesn't hurt!" },
-      avatar: "👩‍🎓",
-      rating: 5
-    },
-    {
-      name: "محمد علي",
-      grade: "الصف الأول الثانوي",
-      text: { ar: "نظام النقاط والشارات محفز جداً! خلاني أحب المذاكرة", en: "The points and badges system is very motivating!" },
-      avatar: "🧑‍🎓",
-      rating: 5
-    },
-  ];
+      const data = await res.json();
+      if (data.success) {
+        setToast({ message: data.data?.message || "تم إنشاء المهمة بنجاح", type: "success" });
+        loadJobs();
+      } else {
+        setToast({ message: data.error || "حدث خطأ", type: "error" });
+        setIsProducing(false);
+      }
+    } catch {
+      setToast({ message: "فشل الاتصال بالخادم", type: "error" });
+      setIsProducing(false);
+    }
+  };
+
+  // ─── إلغاء المهمة / Cancel job ───
+  const handleCancel = async (jobId: string) => {
+    try {
+      const res = await fetch("/api/video/cancel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jobId }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setToast({ message: "تم إلغاء المهمة", type: "success" });
+        loadJobs();
+      }
+    } catch {
+      setToast({ message: "فشل إلغاء المهمة", type: "error" });
+    }
+  };
+
+  // ─── تصدير البيانات / Export data ───
+  const handleExport = async (lessonId: string) => {
+    setIsExporting(true);
+    try {
+      const res = await fetch(`/api/video/export/${lessonId}?language=${selectedLanguage}`);
+      if (res.ok) {
+        const data = await res.json();
+        const blob = new Blob([JSON.stringify(data.data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `remotion-export-${lessonId}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        setToast({ message: "تم تصدير البيانات بنجاح", type: "success" });
+      } else {
+        const data = await res.json();
+        setToast({ message: data.error || "فشل التصدير", type: "error" });
+      }
+    } catch {
+      setToast({ message: "فشل التصدير", type: "error" });
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const selectedLessonData = lessons.find((l) => l.id === selectedLesson);
 
   return (
-    <div className={`min-h-screen flex flex-col bg-background overflow-x-hidden ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div
+      className={`min-h-screen flex flex-col bg-background overflow-x-hidden ${language === "ar" ? "rtl" : "ltr"}`}
+      dir={language === "ar" ? "rtl" : "ltr"}
+    >
       {/* ==================== NAVBAR ==================== */}
-      <motion.nav 
-        initial={{ y: -100 }}
+      <motion.nav
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 glass"
+        transition={{ duration: 0.4 }}
+        className="sticky top-0 z-50 border-b border-border/40 backdrop-blur-xl bg-background/80"
       >
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <motion.div 
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.05 }}
-          >
-            <img src="/logo.jpeg" alt="SmartEdu" className="w-10 h-10 rounded-xl object-cover" />
-            <span className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              {t("تعلم ذكي", "SmartEdu")}
-            </span>
-          </motion.div>
-
           <div className="flex items-center gap-3">
-            <Link href="/platform">
-              <Button variant="ghost" size="sm" className="rounded-full">
-                {t("المنصة", "Platform")}
-              </Button>
-            </Link>
-            <Link href="http://localhost:3002" target="_blank">
-              <Button variant="ghost" size="sm" className="rounded-full">
-                {t("مصنع الفيديو", "Video Factory")}
-              </Button>
-            </Link>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              className="rounded-full"
+            <motion.div
+              className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
             >
+              <Clapperboard className="w-5 h-5 text-white" />
+            </motion.div>
+            <div>
+              <span className="font-bold text-lg bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                {t("مصنع الفيديو", "Video Factory")}
+              </span>
+              <p className="text-xs text-muted-foreground">
+                {t("Phase 5 — خط إنتاج الفيديو التعليمي", "Phase 5 — Educational Video Pipeline")}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="sm" onClick={toggleLanguage} className="rounded-full">
               <Globe className="w-4 h-4 mr-1" />
               {language === "ar" ? "EN" : "عربي"}
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
+            <Button variant="ghost" size="icon" onClick={() => setTheme(isDark ? "light" : "dark")} className="rounded-full">
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
           </div>
         </div>
       </motion.nav>
 
-      {/* ==================== HERO SECTION ==================== */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 gradient-hero opacity-10 animate-gradient" />
-        <div className="absolute inset-0 gradient-mesh opacity-30" />
-        
-        {/* Floating Elements */}
-        <motion.div 
-          {...floatAnimation}
-          className="absolute top-32 left-10 w-20 h-20 rounded-2xl gradient-primary opacity-20 blur-xl"
-        />
-        <motion.div 
-          {...floatAnimation}
-          animate={{ y: [0, 15, 0], x: [0, 5, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute top-40 right-20 w-16 h-16 rounded-full gradient-accent opacity-20 blur-lg"
-        />
-        <motion.div 
-          {...floatAnimation}
-          animate={{ y: [0, -20, 0], rotate: [0, 180, 360] }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="absolute bottom-40 left-1/4 w-12 h-12 rounded-xl gradient-success opacity-20 blur-md"
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
-          <AnimatePresence mode="wait">
-            {showContent && (
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={staggerContainer}
-                className="space-y-8"
-              >
-                {/* Badge */}
-                <motion.div variants={fadeInUp}>
-                  <Badge className="px-4 py-2 text-sm gradient-primary text-white border-0 rounded-full animate-pulse">
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    {t("منصة تعليمية جديدة بالكامل", "A Brand New Learning Platform")}
-                  </Badge>
-                </motion.div>
-
-                {/* Main Title */}
-                <motion.h1 
-                  variants={fadeInUp}
-                  className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight"
-                >
-                  <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
-                    {t("تعلم بطريقتك", "Learn Your Way")}
-                  </span>
-                  <br />
-                  <span className="text-foreground">
-                    {t("استمتع وانت بتتعلم", "Have Fun Learning")}
-                  </span>
-                </motion.h1>
-
-                {/* Subtitle */}
-                <motion.p 
-                  variants={fadeInUp}
-                  className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
-                >
-                  {t(
-                    "منصة تعليمية تفاعلية للمرحلة الثانوية. محاكيات، ألعاب، تحديات، وذكاء اصطناعي يساعدك تفهم أحسن.",
-                    "An interactive learning platform for high school. Simulators, games, challenges, and AI to help you understand better."
-                  )}
-                </motion.p>
-
-                {/* CTA Buttons */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                >
-                  <Link href="/platform">
-                    <Button 
-                      size="lg"
-                      className="btn-youth px-8 py-6 text-lg text-white"
-                    >
-                      <Rocket className="w-5 h-5 mr-2" />
-                      {t("ابدأ التعلم الآن", "Start Learning Now")}
-                    </Button>
-                  </Link>
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    className="px-8 py-6 text-lg rounded-xl border-2 hover:bg-purple-500/10"
-                    onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                  >
-                    <Play className="w-5 h-5 mr-2" />
-                    {t("شوف كيف يعمل", "See How It Works")}
-                  </Button>
-                </motion.div>
-
-                {/* Scroll Indicator */}
-                <motion.div 
-                  variants={fadeInUp}
-                  className="pt-8"
-                >
-                  <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    className="inline-flex flex-col items-center text-muted-foreground"
-                  >
-                    <span className="text-sm mb-2">{t("اكتشف المزيد", "Discover More")}</span>
-                    <ChevronDown className="w-5 h-5" />
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* ==================== STATS SECTION ==================== */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 via-pink-500/5 to-orange-500/5" />
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={scaleIn}
-                className="text-center p-6"
-              >
-                <div className="text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground mt-1">
-                  {t(stat.label.ar, stat.label.en)}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== FEATURES SECTION ==================== */}
-      <section id="features" className="py-20 relative">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                {t("ليه تختارنا؟", "Why Choose Us?")}
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              {t("ميزات خلت آلاف الطلاب يحبونا", "Features that made thousands of students love us")}
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="card-youth group cursor-pointer"
-              >
-                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                  <feature.icon className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-lg font-bold mb-2">
-                  {t(feature.title.ar, feature.title.en)}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {t(feature.desc.ar, feature.desc.en)}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== SUBJECTS SECTION ==================== */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 gradient-mesh opacity-20" />
-        <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-                {t("كل المواد", "All Subjects")}
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              {t("منهج الثانوية العامة المصري بالكامل", "Complete Egyptian High School Curriculum")}
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
-          >
-            {subjects.map((subject, index) => (
-              <Link key={index} href="/platform">
-                <motion.div
-                  variants={scaleIn}
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="cursor-pointer group"
-                >
-                  <div className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden rounded-xl bg-card p-6 text-center">
-                    <motion.div 
-                      className="w-16 h-16 rounded-2xl mx-auto mb-3 flex items-center justify-center"
-                      style={{ backgroundColor: `${subject.color}20` }}
-                      whileHover={{ rotate: [0, -10, 10, 0] }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <subject.icon className="w-8 h-8" style={{ color: subject.color }} />
-                    </motion.div>
-                    <h3 className="font-bold text-sm mb-1">
-                      {t(subject.name.ar, subject.name.en)}
-                    </h3>
-                    <p className="text-xs text-muted-foreground">
-                      {subject.lessons} {t("درس", "lessons")}
-                    </p>
-                  </div>
-                </motion.div>
-              </Link>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== TESTIMONIALS SECTION ==================== */}
-      <section className="py-20 relative">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                {t("طلابنا بيقولوا إيه؟", "What Our Students Say?")}
-              </span>
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              {t("آلاف الطلاب غيروا طريقتهم في التعلم", "Thousands of students changed their learning way")}
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-6"
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                whileHover={{ y: -5 }}
-                className="card-youth relative"
-              >
-                <Quote className="absolute top-4 right-4 w-8 h-8 text-purple-500/20" />
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-4xl">{testimonial.avatar}</div>
-                  <div>
-                    <h4 className="font-bold">{testimonial.name}</h4>
-                    <p className="text-xs text-muted-foreground">{testimonial.grade}</p>
-                  </div>
-                </div>
-                <div className="flex gap-1 mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t(testimonial.text.ar, testimonial.text.en)}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ==================== CTA SECTION ==================== */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4">
+      {/* ==================== TOAST ==================== */}
+      <AnimatePresence>
+        {toast && (
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="relative rounded-3xl overflow-hidden"
+            initial={{ opacity: 0, y: -20, x: "50%" }}
+            animate={{ opacity: 1, y: 0, x: "50%" }}
+            exit={{ opacity: 0, y: -20 }}
+            className={`fixed top-20 left-1/2 -translate-x-1/2 z-[100] px-4 py-2.5 rounded-xl border shadow-lg text-sm font-medium backdrop-blur-xl ${
+              toast.type === "success"
+                ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-600"
+                : "bg-red-500/15 border-red-500/30 text-red-600"
+            }`}
           >
-            {/* Background */}
-            <div className="absolute inset-0 gradient-hero" />
-            <div className="absolute inset-0 bg-black/20" />
-            
-            {/* Content */}
-            <div className="relative z-10 p-12 md:p-16 text-center text-white">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 200 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm mb-6"
-              >
-                <Rocket className="w-10 h-10" />
-              </motion.div>
-              
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {t("جاهز تبدأ رحلتك؟", "Ready to Start Your Journey?")}
-              </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto">
-                {t(
-                  "انضم لآلاف الطلاب اللي بيتعلموا بطريقة ممتعة. ابدأ دلوقتي مجاناً!",
-                  "Join thousands of students learning in a fun way. Start now for free!"
-                )}
-              </p>
-              
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/platform">
-                  <Button 
-                    size="lg"
-                    className="bg-white text-purple-600 hover:bg-white/90 px-10 py-6 text-lg font-bold rounded-2xl shadow-2xl"
-                  >
-                    {t("ابدأ مجاناً الآن", "Start Free Now")}
-                  </Button>
-                </Link>
-              </motion.div>
-            </div>
+            {toast.message}
           </motion.div>
-        </div>
-      </section>
+        )}
+      </AnimatePresence>
 
-      {/* ==================== SOCIAL SECTION ==================== */}
-      <section className="py-12 border-t border-border/50">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="flex flex-col items-center gap-6"
-          >
-            <p className="text-muted-foreground font-medium">
-              {t("تابعنا على السوشيال ميديا", "Follow us on social media")}
-            </p>
-            <div className="flex items-center gap-4">
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-lg"
-              >
-                <Instagram className="w-6 h-6" />
-              </motion.a>
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.2, rotate: -5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white shadow-lg"
-              >
-                <Twitter className="w-6 h-6" />
-              </motion.a>
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.2, rotate: 5 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 rounded-full bg-gradient-to-r from-red-500 to-orange-500 flex items-center justify-center text-white shadow-lg"
-              >
-                <Youtube className="w-6 h-6" />
-              </motion.a>
-            </div>
+      {/* ==================== MAIN CONTENT ==================== */}
+      <main className="flex-1 max-w-7xl mx-auto px-4 py-6 w-full">
+        <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
+          {/* ─── Hero / Stats ─── */}
+          <motion.div variants={fadeInUp} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Film,
+                value: jobs.filter((j) => j.status === "done").length.toString(),
+                label: { ar: "فيديو مكتمل", en: "Videos Done" },
+                color: "from-emerald-500 to-teal-500",
+              },
+              {
+                icon: Loader2,
+                value: jobs.filter((j) => ["queued", "scripting", "tts", "composing", "rendering"].includes(j.status)).length.toString(),
+                label: { ar: "قيد الإنتاج", en: "In Progress" },
+                color: "from-purple-500 to-pink-500",
+              },
+              {
+                icon: FileText,
+                value: jobs.filter((j) => j.status === "scripting").length.toString(),
+                label: { ar: "نصوص جاري توليدها", en: "Scripts Running" },
+                color: "from-cyan-500 to-blue-500",
+              },
+              {
+                icon: Video,
+                value: jobs.length.toString(),
+                label: { ar: "إجمالي المهام", en: "Total Jobs" },
+                color: "from-orange-500 to-red-500",
+              },
+            ].map((stat, i) => (
+              <motion.div key={i} variants={scaleIn} whileHover={{ y: -3 }}>
+                <Card className="border-0 shadow-md overflow-hidden">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center shrink-0`}>
+                        <stat.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <div className="text-2xl font-black">{stat.value}</div>
+                        <div className="text-xs text-muted-foreground">{t(stat.label.ar, stat.label.en)}</div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
-      </section>
+
+          <div className="grid lg:grid-cols-3 gap-6">
+            {/* ==================== LEFT PANEL: Controls ==================== */}
+            <div className="lg:col-span-1 space-y-4">
+              {/* ─── Lesson Selector ─── */}
+              <motion.div variants={fadeInUp}>
+                <Card className="border shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Film className="w-4 h-4 text-purple-500" />
+                      {t("اختر درساً", "Select a Lesson")}
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      {t("اختر الدرس لإنتاج فيديو تعليمي له", "Choose a lesson to produce an educational video")}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    {isLoadingLessons ? (
+                      <div className="space-y-2">
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                      </div>
+                    ) : (
+                      <Select value={selectedLesson} onValueChange={setSelectedLesson}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder={t("اختر درساً...", "Choose a lesson...")} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <ScrollArea className="max-h-64">
+                            {lessons.map((lesson) => (
+                              <SelectItem key={lesson.id} value={lesson.id} className="py-2">
+                                <span className="font-medium">{language === "ar" ? lesson.titleAr : lesson.titleEn}</span>
+                                {lesson.unitName && (
+                                  <span className="text-muted-foreground text-xs mr-2">— {lesson.unitName}</span>
+                                )}
+                              </SelectItem>
+                            ))}
+                          </ScrollArea>
+                        </SelectContent>
+                      </Select>
+                    )}
+
+                    {selectedLessonData && (
+                      <div className="p-3 rounded-lg bg-muted/50 border border-border/50">
+                        <p className="text-sm font-semibold">{language === "ar" ? selectedLessonData.titleAr : selectedLessonData.titleEn}</p>
+                        {selectedLessonData.unitName && (
+                          <p className="text-xs text-muted-foreground">{selectedLessonData.unitName}</p>
+                        )}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* ─── Production Settings ─── */}
+              <motion.div variants={fadeInUp}>
+                <Card className="border shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Settings className="w-4 h-4 text-orange-500" />
+                      {t("إعدادات الإنتاج", "Production Settings")}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Language */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-muted-foreground">
+                        {t("اللغة", "Language")}
+                      </label>
+                      <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ar">{t("العربية", "Arabic")}</SelectItem>
+                          <SelectItem value="en">{t("English", "الإنجليزية")}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Style */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-muted-foreground">
+                        {t("نمط الفيديو", "Video Style")}
+                      </label>
+                      <Select value={selectedStyle} onValueChange={setSelectedStyle}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="explainer">{t("شرح تفاعلي", "Explainer")}</SelectItem>
+                          <SelectItem value="whiteboard">{t("سبورة بيضاء", "Whiteboard")}</SelectItem>
+                          <SelectItem value="cinematic">{t("سينمائي", "Cinematic")}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Voice */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-medium text-muted-foreground">
+                        {t("الصوت", "Voice")}
+                      </label>
+                      <Select value={selectedVoice} onValueChange={setSelectedVoice}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="female-ar">{t("أنثى — عربي", "Female — Arabic")}</SelectItem>
+                          <SelectItem value="male-ar">{t("ذكر — عربي", "Male — Arabic")}</SelectItem>
+                          <SelectItem value="female-en">{t("أنثى — إنجليزي", "Female — English")}</SelectItem>
+                          <SelectItem value="male-en">{t("ذكر — إنجليزي", "Male — English")}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <Separator />
+
+                    {/* Action Buttons */}
+                    <div className="space-y-2">
+                      <Button
+                        onClick={handleProduce}
+                        disabled={!selectedLesson || isProducing}
+                        className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/25"
+                        size="lg"
+                      >
+                        {isProducing ? (
+                          <>
+                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                            {t("جاري الإنتاج...", "Producing...")}
+                          </>
+                        ) : (
+                          <>
+                            <Play className="w-4 h-4 mr-2" />
+                            {t("ابدأ إنتاج الفيديو", "Start Video Production")}
+                          </>
+                        )}
+                      </Button>
+
+                      <Button
+                        onClick={() => handleExport(selectedLesson)}
+                        disabled={!selectedLesson || isExporting}
+                        variant="outline"
+                        className="w-full"
+                        size="sm"
+                      >
+                        {isExporting ? (
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        ) : (
+                          <Download className="w-4 h-4 mr-2" />
+                        )}
+                        {t("تصدير لـ Remotion", "Export for Remotion")}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+
+            {/* ==================== CENTER + RIGHT: Pipeline & Jobs ==================== */}
+            <div className="lg:col-span-2 space-y-4">
+              {/* ─── Pipeline Visualization ─── */}
+              <motion.div variants={fadeInUp}>
+                <Card className="border shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <Workflow className="w-4 h-4 text-cyan-500" />
+                      {t("خط الإنتاج", "Production Pipeline")}
+                    </CardTitle>
+                    <CardDescription className="text-xs">
+                      {t(
+                        "المراحل: نص ← كلام ← تركيب ← عرض",
+                        "Pipeline: Script → TTS → Compose → Render"
+                      )}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {activeJob ? (
+                      <div className="space-y-4">
+                        {/* Progress bar */}
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between text-sm">
+                            <span className="font-medium">{activeJob.lessonTitle}</span>
+                            <span className="text-muted-foreground">{activeJob.progress}%</span>
+                          </div>
+                          <Progress value={activeJob.progress} className="h-2" />
+                          <p className="text-xs text-muted-foreground">{activeJob.currentStep}</p>
+                        </div>
+
+                        {/* Pipeline steps */}
+                        <div className="grid grid-cols-4 gap-3">
+                          {pipelineSteps.map((step) => {
+                            const stepIndex = pipelineSteps.findIndex((s) => s.key === step.key);
+                            const activeStepIndex = pipelineSteps.findIndex((s) => s.key === activeJob.status);
+                            const isActive = step.key === activeJob.status;
+                            const isCompleted = stepIndex < activeStepIndex || activeJob.status === "done";
+                            const isPending = stepIndex > activeStepIndex;
+
+                            return (
+                              <motion.div
+                                key={step.key}
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                className={`relative flex flex-col items-center gap-2 p-3 rounded-xl border transition-all ${
+                                  isActive
+                                    ? "border-purple-500/50 bg-purple-500/10 shadow-lg shadow-purple-500/10"
+                                    : isCompleted
+                                    ? "border-emerald-500/50 bg-emerald-500/10"
+                                    : "border-border/50 bg-muted/30 opacity-50"
+                                }`}
+                              >
+                                <div
+                                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                    isActive
+                                      ? "bg-purple-600 text-white animate-pulse"
+                                      : isCompleted
+                                      ? "bg-emerald-500 text-white"
+                                      : "bg-muted text-muted-foreground"
+                                  }`}
+                                >
+                                  {isActive ? (
+                                    <Loader2 className="w-5 h-5 animate-spin" />
+                                  ) : isCompleted ? (
+                                    <CheckCircle2 className="w-5 h-5" />
+                                  ) : (
+                                    <step.icon className="w-5 h-5" />
+                                  )}
+                                </div>
+                                <span className="text-[10px] font-medium text-center">
+                                  {t(step.ar, step.en)}
+                                </span>
+                                {isPending && (
+                                  <div className="absolute top-2 right-2">
+                                    <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                                  </div>
+                                )}
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+
+                        {/* Scene progress */}
+                        {activeJob.totalScenes > 0 && (
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <Layers className="w-3.5 h-3.5" />
+                            <span>
+                              {activeJob.scenesCompleted} / {activeJob.totalScenes}{" "}
+                              {t("مشهد", "scenes")}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Cancel button */}
+                        {!["done", "error", "cancelled"].includes(activeJob.status) && (
+                          <Button
+                            onClick={() => handleCancel(activeJob.id)}
+                            variant="outline"
+                            size="sm"
+                            className="text-red-500 hover:text-red-600 hover:bg-red-500/10"
+                          >
+                            <Square className="w-3.5 h-3.5 mr-1.5" />
+                            {t("إلغاء المهمة", "Cancel Job")}
+                          </Button>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <div className="w-20 h-20 rounded-full bg-muted/50 flex items-center justify-center mb-4">
+                          <Clapperboard className="w-10 h-10 text-muted-foreground/50" />
+                        </div>
+                        <h3 className="font-semibold text-lg mb-1">
+                          {t("لا توجد مهمة نشطة", "No Active Job")}
+                        </h3>
+                        <p className="text-sm text-muted-foreground max-w-sm">
+                          {t(
+                            "اختر درساً من القائمة على اليسار واضغط 'ابدأ إنتاج الفيديو' لبدء خط الإنتاج",
+                            "Select a lesson from the left panel and click 'Start Video Production' to begin"
+                          )}
+                        </p>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* ─── Jobs List ─── */}
+              <motion.div variants={fadeInUp}>
+                <Card className="border shadow-sm">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-base flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-amber-500" />
+                        {t("سجل المهام", "Jobs History")}
+                      </CardTitle>
+                      <Badge variant="secondary" className="text-xs">
+                        {jobs.length} {t("مهمة", "jobs")}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    {jobs.length === 0 ? (
+                      <div className="text-center py-8 text-muted-foreground text-sm">
+                        {t("لا توجد مهام بعد", "No jobs yet")}
+                      </div>
+                    ) : (
+                      <ScrollArea className="max-h-96">
+                        <div className="space-y-2">
+                          {jobs.map((job, index) => (
+                            <motion.div
+                              key={job.id}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: index * 0.05 }}
+                              className={`p-3 rounded-xl border transition-all cursor-pointer hover:shadow-md ${
+                                activeJob?.id === job.id
+                                  ? "border-purple-500/40 bg-purple-500/5"
+                                  : "border-border/50 bg-card"
+                              }`}
+                              onClick={() => setActiveJob(job)}
+                            >
+                              <div className="flex items-start justify-between gap-3">
+                                <div className="flex items-start gap-3 min-w-0">
+                                  <div
+                                    className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 ${
+                                      statusColors[job.status] ?? "bg-muted"
+                                    } border`}
+                                  >
+                                    {statusIcons[job.status] ?? <Clock className="w-4 h-4" />}
+                                  </div>
+                                  <div className="min-w-0">
+                                    <p className="text-sm font-medium truncate">{job.lessonTitle}</p>
+                                    <div className="flex items-center gap-2 mt-1 flex-wrap">
+                                      <Badge
+                                        variant="outline"
+                                        className={`text-[10px] px-1.5 py-0 ${
+                                          statusColors[job.status] ?? ""
+                                        } border`}
+                                      >
+                                        {t(statusLabels[job.status]?.ar ?? job.status, statusLabels[job.status]?.en ?? job.status)}
+                                      </Badge>
+                                      <span className="text-[10px] text-muted-foreground">
+                                        {job.style} • {job.voice}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="flex flex-col items-end shrink-0">
+                                  <span className="text-xs font-mono text-muted-foreground">
+                                    {job.progress}%
+                                  </span>
+                                  {!["done", "error", "cancelled"].includes(job.status) && (
+                                    <Progress
+                                      value={job.progress}
+                                      className="h-1.5 w-16 mt-1"
+                                    />
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* Progress details for active job */}
+                              {activeJob?.id === job.id &&
+                                !["queued", "done", "error", "cancelled"].includes(job.status) && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    className="mt-3 pt-3 border-t border-border/50"
+                                  >
+                                    <p className="text-xs text-muted-foreground mb-2">
+                                      {job.currentStep}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-xs">
+                                      <ChevronRight className="w-3 h-3 text-purple-500" />
+                                      <span>
+                                        {job.scenesCompleted} / {job.totalScenes}{" "}
+                                        {t("مشهد", "scenes")}
+                                      </span>
+                                    </div>
+                                  </motion.div>
+                                )}
+
+                              {/* Error message */}
+                              {job.status === "error" && job.error && (
+                                <div className="mt-2 flex items-start gap-2 p-2 rounded-lg bg-red-500/10 border border-red-500/20">
+                                  <AlertCircle className="w-3.5 h-3.5 text-red-500 mt-0.5 shrink-0" />
+                                  <p className="text-[11px] text-red-600 break-words">{job.error}</p>
+                                </div>
+                              )}
+                            </motion.div>
+                          ))}
+                        </div>
+                      </ScrollArea>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* ─── Pipeline Architecture ─── */}
+              <motion.div variants={fadeInUp}>
+                <Card className="border shadow-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                      <MessageSquare className="w-4 h-4 text-emerald-500" />
+                      {t("هيكل خط الإنتاج", "Pipeline Architecture")}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+                      {[
+                        {
+                          icon: FileText,
+                          title: { ar: "توليد النص", en: "Script Generation" },
+                          desc: {
+                            ar: "ذكاء اصطناعي يولد نصوص المشاهد من محتوى الدرس",
+                            en: "AI generates scene narrations from lesson content",
+                          },
+                          color: "text-purple-500",
+                          bgColor: "bg-purple-500/10",
+                        },
+                        {
+                          icon: Mic,
+                          title: { ar: "تحويل لكلام", en: "Text-to-Speech" },
+                          desc: {
+                            ar: "Edge TTS يحول النصوص لأصوات طبيعية بالعربية",
+                            en: "Edge TTS converts texts to natural Arabic voices",
+                          },
+                          color: "text-cyan-500",
+                          bgColor: "bg-cyan-500/10",
+                        },
+                        {
+                          icon: Layers,
+                          title: { ar: "تركيب المشاهد", en: "Scene Composition" },
+                          desc: {
+                            ar: "تجميع البصريات والصوت مع الانتقالات",
+                            en: "Assembling visuals, audio and transitions",
+                          },
+                          color: "text-orange-500",
+                          bgColor: "bg-orange-500/10",
+                        },
+                        {
+                          icon: MonitorPlay,
+                          title: { ar: "العرض النهائي", en: "Final Render" },
+                          desc: {
+                            ar: "Remotion يعرض الفيديو بجودة عالية",
+                            en: "Remotion renders high-quality video output",
+                          },
+                          color: "text-pink-500",
+                          bgColor: "bg-pink-500/10",
+                        },
+                      ].map((item, i) => (
+                        <motion.div
+                          key={i}
+                          variants={scaleIn}
+                          whileHover={{ y: -2 }}
+                          className={`p-3 rounded-xl border border-border/50 ${item.bgColor}`}
+                        >
+                          <item.icon className={`w-5 h-5 ${item.color} mb-2`} />
+                          <h4 className="text-xs font-bold mb-1">
+                            {t(item.title.ar, item.title.en)}
+                          </h4>
+                          <p className="text-[10px] text-muted-foreground leading-relaxed">
+                            {t(item.desc.ar, item.desc.en)}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+      </main>
 
       {/* ==================== FOOTER ==================== */}
-      <footer className="mt-auto py-8 border-t border-border/50">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <img src="/logo.jpeg" alt="SmartEdu" className="w-8 h-8 rounded-lg object-cover" />
-              <span className="font-bold text-sm bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                {t("تعلم ذكي", "SmartEdu")}
-              </span>
+      <footer className="mt-auto py-6 border-t border-border/50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Clapperboard className="w-4 h-4 text-purple-500" />
+              <span>{t("مصنع الفيديو — Phase 5", "Video Factory — Phase 5")}</span>
             </div>
-            
-            <p className="text-sm text-muted-foreground">
-              © 2025 {t("تعلم ذكي. كل الحقوق محفوظة.", "SmartEdu. All rights reserved.")}
-            </p>
-            
-            <div className="flex items-center gap-4">
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="text-muted-foreground hover:text-purple-500 transition-colors"
-              >
-                <Heart className="w-5 h-5" />
-              </motion.a>
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="text-muted-foreground hover:text-pink-500 transition-colors"
-              >
-                <Star className="w-5 h-5" />
-              </motion.a>
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <span>{t("SmartEdu © 2025", "SmartEdu © 2025")}</span>
+              <Separator orientation="vertical" className="h-3" />
+              <span>
+                {t("إنتاج تعليمي بالذكاء الاصطناعي", "AI-Powered Educational Production")}
+              </span>
             </div>
           </div>
         </div>
@@ -590,10 +915,10 @@ function LandingPageContent() {
   );
 }
 
-export default function HomePage() {
+export default function VideoFactoryPage() {
   return (
     <LanguageProvider>
-      <LandingPageContent />
+      <VideoFactoryContent />
     </LanguageProvider>
   );
 }
