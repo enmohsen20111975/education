@@ -6,7 +6,7 @@
     "node": ">=18.18.0"
   },
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 4000",
     "postinstall": "prisma generate || echo 'Prisma generate skipped'",
     "build": "next build",
     "start": "next start",
