@@ -68,10 +68,11 @@ model Formula {
 }
 
 model Infographic {
-  id       String @id
-  lessonId String @unique
+  id       String     @id
+  lessonId String     @unique
   type     String
   data     String
+  Lesson   Lesson    @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 model Lesson {
@@ -97,12 +98,14 @@ model Lesson {
   Concept         Concept[]
   Example         Example[]
   Formula         Formula[]
-  Unit            Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  Infographic     Infographic[]
   LessonSimulator LessonSimulator[]
+  MindMap         MindMap[]
   Objective       Objective[]
   Progress        Progress[]
   Question        Question[]
   QuizResult      QuizResult[]
+  Unit            Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
 }
 
 model LessonSimulator {
@@ -116,9 +119,10 @@ model LessonSimulator {
 }
 
 model MindMap {
-  id       String @id
-  lessonId String @unique
+  id       String   @id
+  lessonId String   @unique
   data     String
+  Lesson   Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
 }
 
 model Objective {
