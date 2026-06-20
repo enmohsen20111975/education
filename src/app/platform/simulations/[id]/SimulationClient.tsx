@@ -5,8 +5,9 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
-import { Globe, Moon, Sun, ArrowLeft, Network, Palette } from "lucide-react";
+import { Globe, Moon, Sun, ArrowLeft, ArrowRight, Network, Palette } from "lucide-react";
 import { simulations } from "@/lib/simulations";
+import { useTheme } from "next-themes";
 import { simulatorMap } from "@/lib/simulatorMap";
 import { ScientificCalculator } from "@/components/tools/ScientificCalculator";
 import { MindMapEditor } from "@/components/simulations/MindMapEditor";
@@ -18,20 +19,19 @@ interface SimulationClientProps {
 
 export default function SimulationClient({ simId }: SimulationClientProps) {
   const { language, toggleLanguage, t } = useLanguage();
-  const [isDark, setIsDark] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
   const [simulation, setSimulation] = useState<any>(null);
 
   const isRTL = language === "ar";
+  const BackArrow = isRTL ? ArrowRight : ArrowLeft;
 
   useEffect(() => {
     const sim = simulations.find(s => s.id === simId);
     setSimulation(sim);
   }, [simId]);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   // Render the appropriate simulation component using the map
   const renderSimulation = () => {
@@ -84,7 +84,7 @@ export default function SimulationClient({ simId }: SimulationClientProps) {
     : "";
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -101,7 +101,7 @@ export default function SimulationClient({ simId }: SimulationClientProps) {
             <div className="flex items-center gap-2">
               <Link href="/platform/simulations">
                 <Button variant="ghost" size="sm" className="gap-2">
-                  <ArrowLeft className="w-4 h-4" />
+                  <BackArrow className="w-4 h-4" />
                   {t("العودة", "Back")}
                 </Button>
               </Link>

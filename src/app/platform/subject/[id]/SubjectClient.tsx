@@ -8,12 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import {
-  Globe, Moon, Sun, ChevronRight, ArrowLeft,
+  Globe, Moon, Sun, ChevronRight, ArrowLeft, ArrowRight,
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe as GlobeIcon,
   Map, Landmark, Cpu, Eye, Sigma, BarChart3, ChevronDown, Lock,
   Clock, Play
 } from "lucide-react";
 import { loadStaticData } from "@/lib/static-data";
+import { useTheme } from "next-themes";
 
 const subjectIcons: Record<string, any> = {
   Atom, Calculator, FlaskConical, Leaf, BookOpen, Globe: GlobeIcon,
@@ -61,12 +62,14 @@ interface SubjectClientProps {
 
 export default function SubjectClient({ subjectId }: SubjectClientProps) {
   const { language, toggleLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const [subject, setSubject] = useState<SubjectDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isDark, setIsDark] = useState(false);
+  const isDark = theme === "dark";
   const [expandedUnits, setExpandedUnits] = useState<Set<string>>(new Set());
 
   const isRTL = language === "ar";
+  const BackArrow = isRTL ? ArrowRight : ArrowLeft;
 
   useEffect(() => {
     const fetchSubject = async () => {
@@ -94,10 +97,7 @@ export default function SubjectClient({ subjectId }: SubjectClientProps) {
     fetchSubject();
   }, [subjectId]);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   const toggleUnit = (unitId: string) => {
     const newExpanded = new Set(expandedUnits);
@@ -121,7 +121,7 @@ export default function SubjectClient({ subjectId }: SubjectClientProps) {
   const units = subject?.Unit || [];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -139,7 +139,7 @@ export default function SubjectClient({ subjectId }: SubjectClientProps) {
               {subject?.AcademicYear && (
                 <Link href={`/platform/year/${subject.AcademicYear.code}`}>
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <ArrowLeft className="w-4 h-4" />
+                    <BackArrow className="w-4 h-4" />
                     {t("العودة", "Back")}
                   </Button>
                 </Link>

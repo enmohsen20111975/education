@@ -10,11 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  Globe, Moon, Sun, ChevronRight, ArrowLeft,
+  Globe, Moon, Sun, ChevronRight, ArrowLeft, ArrowRight,
   Clock, Play, Lock, BookOpen, Target, Lightbulb, 
   FileText, HelpCircle, Beaker, CheckCircle, FlaskConical
 } from "lucide-react";
 import { loadStaticData } from "@/lib/static-data";
+import { useTheme } from "next-themes";
 import { getSimulationsForLesson, Simulation } from "@/lib/simulations";
 import { SimulationList } from "@/components/simulations/SimulationCard";
 import { InteractiveQuiz } from "@/components/quiz/InteractiveQuiz";
@@ -116,13 +117,15 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
   
   
   const { language, toggleLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
   const [lesson, setLesson] = useState<LessonDetail | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isDark, setIsDark] = useState(false);
+  const isDark = theme === "dark";
   const [relatedSimulations, setRelatedSimulations] = useState<Simulation[]>([]);
   const [showQuiz, setShowQuiz] = useState(false);
 
   const isRTL = language === "ar";
+  const BackArrow = isRTL ? ArrowRight : ArrowLeft;
 
   useEffect(() => {
     const fetchLesson = async () => {
@@ -165,10 +168,7 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
     fetchLesson();
   }, [lessonId]);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   const getTitle = () => {
     if (!lesson) return "";
@@ -359,7 +359,7 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
   };
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -377,7 +377,7 @@ export default function LessonClient({ lessonId }: LessonClientProps) {
               {lesson?.Unit?.Subject && (
                 <Link href={`/platform/subject/${lesson.Unit.Subject.id}`}>
                   <Button variant="ghost" size="sm" className="gap-2">
-                    <ArrowLeft className="w-4 h-4" />
+                    <BackArrow className="w-4 h-4" />
                     {t("العودة", "Back")}
                   </Button>
                 </Link>

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
@@ -8,21 +7,21 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Globe, Moon, Sun, ArrowLeft, Calculator, Ruler, 
+  Globe, Moon, Sun, ArrowLeft, ArrowRight, Calculator, Ruler, 
   Thermometer, Scale, Timer
 } from "lucide-react";
 import { ScientificCalculator } from "@/components/tools/ScientificCalculator";
+import { useTheme } from "next-themes";
 
 export default function ToolsPage() {
   const { language, toggleLanguage, t } = useLanguage();
-  const [isDark, setIsDark] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
 
   const isRTL = language === "ar";
+  const BackArrow = isRTL ? ArrowRight : ArrowLeft;
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   const tools = [
     { id: "calculator", icon: Calculator, labelAr: "الآلة الحاسبة", labelEn: "Calculator" },
@@ -32,7 +31,7 @@ export default function ToolsPage() {
   ];
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50 dark:from-slate-950 dark:via-purple-950 dark:to-pink-950 ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -49,7 +48,7 @@ export default function ToolsPage() {
             <div className="flex items-center gap-2">
               <Link href="/platform">
                 <Button variant="ghost" size="sm" className="gap-2">
-                  <ArrowLeft className="w-4 h-4" />
+                  <BackArrow className="w-4 h-4" />
                   {t("العودة", "Back")}
                 </Button>
               </Link>

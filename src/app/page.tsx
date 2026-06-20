@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { LanguageProvider, useLanguage } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -35,23 +37,19 @@ const floatAnimation = {
 };
 
 // ==================== MAIN APP ====================
-export default function HomePage() {
-  const [lang, setLang] = useState<"ar" | "en">("ar");
-  const [isDark, setIsDark] = useState(false);
+function LandingPageContent() {
+  const { language, toggleLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark";
   const [showContent, setShowContent] = useState(false);
+  const isRTL = language === "ar";
 
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
-
-  const t = (ar: string, en: string) => lang === "ar" ? ar : en;
-  const isRTL = lang === "ar";
+  const toggleTheme = () => setTheme(isDark ? "light" : "dark");
 
   // Features data
   const features = [
@@ -105,7 +103,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div className={`min-h-screen bg-background overflow-x-hidden ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
+    <div className={`min-h-screen flex flex-col bg-background overflow-x-hidden ${isRTL ? "rtl" : "ltr"}`} dir={isRTL ? "rtl" : "ltr"}>
       {/* ==================== NAVBAR ==================== */}
       <motion.nav 
         initial={{ y: -100 }}
@@ -133,11 +131,11 @@ export default function HomePage() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setLang(lang === "ar" ? "en" : "ar")}
+              onClick={toggleLanguage}
               className="rounded-full"
             >
               <Globe className="w-4 h-4 mr-1" />
-              {lang === "ar" ? "EN" : "عربي"}
+              {language === "ar" ? "EN" : "عربي"}
             </Button>
             <Button
               variant="ghost"
@@ -235,6 +233,7 @@ export default function HomePage() {
                     size="lg"
                     variant="outline"
                     className="px-8 py-6 text-lg rounded-xl border-2 hover:bg-purple-500/10"
+                    onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
                   >
                     <Play className="w-5 h-5 mr-2" />
                     {t("شوف كيف يعمل", "See How It Works")}
@@ -291,7 +290,7 @@ export default function HomePage() {
       </section>
 
       {/* ==================== FEATURES SECTION ==================== */}
-      <section className="py-20 relative">
+      <section id="features" className="py-20 relative">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div 
             initial="hidden"
@@ -549,7 +548,7 @@ export default function HomePage() {
       </section>
 
       {/* ==================== FOOTER ==================== */}
-      <footer className="py-8 border-t border-border/50">
+      <footer className="mt-auto py-8 border-t border-border/50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
@@ -583,5 +582,13 @@ export default function HomePage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <LanguageProvider>
+      <LandingPageContent />
+    </LanguageProvider>
   );
 }

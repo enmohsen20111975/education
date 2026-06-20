@@ -8,6 +8,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default function YearPage({ params }: { params: { code: string } }) {
-  return <YearClient yearCode={params.code} />;
+export default async function YearPage({ params }: { params: Promise<{ code: string }> }) {
+  const { code } = await params;
+  return <YearClient yearCode={code} />;
 }

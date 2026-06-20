@@ -8,6 +8,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default function SimulationPage({ params }: { params: { id: string } }) {
-  return <SimulationClient simId={params.id} />;
+export default async function SimulationPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <SimulationClient simId={id} />;
 }
