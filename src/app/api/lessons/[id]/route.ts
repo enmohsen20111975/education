@@ -1,104 +1,104 @@
-import { NextResponse } from "next/server";
-import { getLessonById } from "@/lib/data";
+import { NextResponse } from 'next/server';
+import { db } from '@/lib/db';
 
-// GET /api/lessons/[id] - جلب درس معين بالتفصيل
+// GET /api/lessons/[id] — Get single extracted lesson
 export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+
+    const lesson = await db.extractedLesson.findUnique({
+      where: { id },
+      include: {
+        ExtractedUnit: {
+          include: {
+            Book: true,
+          },
+        },
+      },
+    });
+
+    if (!lesson) {
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ lesson });
+  } catch (error) {
+    console.error('Error fetching lesson:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch lesson' },
+      { status: 500 }
+    );
+  }
+}
+
+// PUT /api/lessons/[id] — Update extracted lesson
+export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;
-    const lesson = getLessonById(id);
+    const body = await request.json();
 
+    const lesson = await db.extractedLesson.findUnique({ where: { id } });
     if (!lesson) {
-      return NextResponse.json(
-        { error: "Lesson not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
     }
 
-    // Format the lesson data
-    const formattedLesson = {
-      id: lesson.id,
-      slug: lesson.slug,
-      titleAr: lesson.titleAr,
-      titleEn: lesson.titleEn,
-      descriptionAr: lesson.descriptionAr,
-      descriptionEn: lesson.descriptionEn,
-      duration: lesson.duration,
-      isFree: lesson.isFree,
-      order: lesson.order,
-      videoUrl: lesson.videoUrl,
-      pdfUrl: lesson.pdfUrl,
-      thumbnailUrl: lesson.thumbnailUrl,
-      introduction: {
-        ar: lesson.introductionAr,
-        en: lesson.introductionEn,
-      },
-      summary: {
-        ar: lesson.summaryAr,
-        en: lesson.summaryEn,
-      },
-      unit: {
-        id: lesson.Unit.id,
-        slug: lesson.Unit.slug,
-        nameAr: lesson.Unit.nameAr,
-        nameEn: lesson.Unit.nameEn,
-        subject: {
-          id: lesson.Unit.Subject.id,
-          slug: lesson.Unit.Subject.slug,
-          nameAr: lesson.Unit.Subject.nameAr,
-          nameEn: lesson.Unit.Subject.nameEn,
-          icon: lesson.Unit.Subject.icon,
-          color: lesson.Unit.Subject.color,
-        },
-      },
-      objectives: {
-        ar: lesson.Objective?.map((o: any) => o.textAr) || [],
-        en: lesson.Objective?.map((o: any) => o.textEn) || [],
-      },
-      keyConcepts: {
-        ar: lesson.Concept?.map((c: any) => ({ term: c.termAr, definition: c.definitionAr })) || [],
-        en: lesson.Concept?.map((c: any) => ({ term: c.termEn, definition: c.definitionEn })) || [],
-      },
-      formulas: {
-        ar: lesson.Formula?.map((f: any) => ({ formula: f.formula, explanation: f.explanationAr })) || [],
-        en: lesson.Formula?.map((f: any) => ({ formula: f.formula, explanation: f.explanationEn })) || [],
-      },
-      examples: {
-        ar: lesson.Example?.map((e: any) => ({
-          question: e.questionAr,
-          solution: e.solutionAr,
-          steps: JSON.parse(e.stepsAr || "[]"),
-        })) || [],
-        en: lesson.Example?.map((e: any) => ({
-          question: e.questionEn,
-          solution: e.solutionEn,
-          steps: JSON.parse(e.stepsEn || "[]"),
-        })) || [],
-      },
-      simulators: lesson.LessonSimulator?.map((s: any) => s.Simulator?.slug).filter(Boolean) || [],
-      questions: lesson.Question?.map((q: any) => ({
-        id: q.id,
-        type: q.type,
-        questionAr: q.questionAr,
-        questionEn: q.questionEn,
-        optionsAr: q.optionsAr ? JSON.parse(q.optionsAr) : null,
-        optionsEn: q.optionsEn ? JSON.parse(q.optionsEn) : null,
-        answer: q.answer,
-        explanationAr: q.explanationAr,
-        explanationEn: q.explanationEn,
-        points: q.points,
-      })) || [],
-      mindMap: null,
-      infographic: null,
+    const updateData: Record<string, unknown> = {
+      updatedAt: new Date(),
     };
 
-    return NextResponse.json({ lesson: formattedLesson });
+    if (body.content !== undefined) updateData.content = body.content;
+    if (body.summary !== undefined) updateData.summary = body.summary;
+    if (body.keyPoints !== undefined) {
+      updateData.keyPoints =
+        typeof body.keyPoints === 'string'
+          ? body.keyPoints
+          : JSON.stringify(body.keyPoints);
+    }
+    if (body.status !== undefined) updateData.status = body.status;
+    if (body.titleAr !== undefined) updateData.titleAr = body.titleAr;
+    if (body.titleEn !== undefined) updateData.titleEn = body.titleEn;
+
+    const updated = await db.extractedLesson.update({
+      where: { id },
+      data: updateData,
+    });
+
+    return NextResponse.json({ lesson: updated });
   } catch (error) {
-    console.error("Error fetching lesson:", error);
+    console.error('Error updating lesson:', error);
     return NextResponse.json(
-      { error: "Failed to fetch lesson" },
+      { error: 'Failed to update lesson' },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE /api/lessons/[id] — Delete extracted lesson
+export async function DELETE(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+
+    const lesson = await db.extractedLesson.findUnique({ where: { id } });
+    if (!lesson) {
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
+    }
+
+    await db.extractedLesson.delete({ where: { id } });
+
+    return NextResponse.json({ message: 'Lesson deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting lesson:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete lesson' },
       { status: 500 }
     );
   }

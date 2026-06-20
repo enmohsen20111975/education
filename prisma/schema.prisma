@@ -278,3 +278,65 @@ model UserBadge {
 
   @@unique([userId, badgeSlug])
 }
+
+// ============ Book Extraction System ============
+
+model Book {
+  id          String     @id
+  title       String
+  fileName    String
+  filePath    String
+  fileSize    Int        @default(0)
+  totalPages  Int        @default(0)
+  language    String     @default("ar")
+  status      String     @default("uploaded") // uploaded | extracting | extracted | processing | completed | error
+  progress    Int        @default(0)
+  error       String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  BookPage    BookPage[]
+  ExtractedUnit ExtractedUnit[]
+}
+
+model BookPage {
+  id        String  @id
+  bookId    String
+  pageNumber Int
+  ocrText   String  @default("")
+  status    String  @default("pending") // pending | processing | done | error
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  Book      Book    @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+  @@unique([bookId, pageNumber])
+}
+
+model ExtractedUnit {
+  id          String            @id
+  bookId      String
+  unitNumber  Int
+  titleAr     String
+  titleEn     String
+  description String            @default("")
+  order       Int               @default(1)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime
+  Book        Book              @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  ExtractedLesson ExtractedLesson[]
+}
+
+model ExtractedLesson {
+  id          String           @id
+  unitId      String
+  lessonNumber Int
+  titleAr     String
+  titleEn     String
+  content     String           @default("")
+  summary     String           @default("")
+  keyPoints   String           @default("[]") // JSON array
+  order       Int              @default(1)
+  status      String           @default("draft") // draft | reviewed | approved
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime
+  ExtractedUnit ExtractedUnit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+}
